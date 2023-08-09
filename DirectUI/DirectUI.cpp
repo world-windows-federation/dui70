@@ -10465,9 +10465,9 @@ namespace DirectUI
 	{
 
 	}
-	XProvider::~XProvider(void)
+	/*XProvider::~XProvider(void)
 	{
-	}
+	}*/
 	XProvider & XProvider::operator=(XProvider const &)
 	{
 		// TODO: 在此处插入 return 语句
@@ -10498,6 +10498,10 @@ namespace DirectUI
 		return 0;
 	}
 	long XProvider::CreateDUI(IXElementCP *, HWND *)
+	{
+		return 0;
+	}
+	long XProvider::CreateXBaby(DirectUI::IXElementCP*, HWND, Element*, unsigned long*, IXBaby**)
 	{
 		return 0;
 	}

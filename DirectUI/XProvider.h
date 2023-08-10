@@ -60,13 +60,11 @@ namespace DirectUI
 	protected:
 		Element* GetRoot(void);
 		void SetHandleEnterKey(bool);
-		//private:
-			//Todo: I really dont like this as it might break in other windows versions/architures but whatever
-		LONGLONG a;
-		LONGLONG b;
-		IUnknown* Site;
-		DWORD c;
+		Element* _RootElement;
 		DWORD refCount;
+		DWORD unknown;
+		Element* Site;
+		IXProviderCP* XProviderCP;
 	};
 
 }

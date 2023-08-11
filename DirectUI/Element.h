@@ -239,6 +239,9 @@ namespace DirectUI
 		//20
 		virtual bool EnsureVisible(int, int, int, int);
 
+		virtual long AddBehavior(IDuiBehavior* behavior);
+		virtual long RemoveBehavior(IDuiBehavior* behavior);
+
 		//21
 		virtual void SetKeyFocus(void);
 
@@ -247,6 +250,8 @@ namespace DirectUI
 
 		//23
 		virtual long WINAPI QueryInterface(GUID const &, void**);
+
+		virtual void GetImmersiveFocusRectOffsets(RECT*);
 
 
 
@@ -544,7 +549,6 @@ public:
 
 		//34
 		virtual long DefaultAction();
-
 		//35
 		virtual HRESULT GetElementProviderImpl(class InvokeHelper *, ElementProvider * *);
 
@@ -557,6 +561,9 @@ public:
 		virtual void HandleUiaPropertyChangingListener(const PropertyInfo*);
 		//39
 		virtual void HandleUiaEventListener(Event*);
+
+		virtual Element* GetUiaFocusDelegate();
+
 		
 protected:
 

@@ -55,7 +55,7 @@ namespace DirectUI
 
 		virtual long __stdcall SetButtonClassAcceptsEnterKey(bool);
 		virtual long __stdcall CreateXBaby(DirectUI::IXElementCP*, HWND, Element*, unsigned long*, IXBaby**);
-
+		virtual ~XProvider(void);
 
 	protected:
 		Element* GetRoot(void);

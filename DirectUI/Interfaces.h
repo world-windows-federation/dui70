@@ -209,3 +209,7 @@ namespace DirectUI
 	};
 
 }
+
+struct UILIB_API IDuiBehavior {
+
+};

@@ -643,6 +643,22 @@ namespace DirectUI
 	{
 		return nullptr;
 	}
+	Element* Element::GetUiaFocusDelegate()
+	{
+		return nullptr;
+	}
+	long Element::AddBehavior(IDuiBehavior* behavior)
+	{
+		return E_NOTIMPL;
+	}
+	long Element::RemoveBehavior(IDuiBehavior* behavior)
+	{
+		return E_NOTIMPL;
+	}
+	void Element::GetImmersiveFocusRectOffsets(RECT*)
+	{
+		
+	}
 	bool Element::OnPropertyChanging(const PropertyInfo*, int, Value*, Value*)
 	{
 		return false;
@@ -10465,9 +10481,9 @@ namespace DirectUI
 	{
 
 	}
-	/*XProvider::~XProvider(void)
+	XProvider::~XProvider(void)
 	{
-	}*/
+	}
 	XProvider & XProvider::operator=(XProvider const &)
 	{
 		// TODO: 在此处插入 return 语句

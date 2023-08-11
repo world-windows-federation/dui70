@@ -33,7 +33,12 @@ namespace DirectUI
 
 
 	template<class T, int>
-	class DynamicArray;
+	class DynamicArray {
+	public:
+		int size;
+		int capacity;
+		T classs;
+	};
 
 	class UILIB_API Expression
 	{

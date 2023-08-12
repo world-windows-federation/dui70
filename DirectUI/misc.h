@@ -37,7 +37,7 @@ namespace DirectUI
 	public:
 		int size;
 		int capacity;
-		T classs;
+		T* classs;
 	};
 
 	class UILIB_API Expression

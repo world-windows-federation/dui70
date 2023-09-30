@@ -11,7 +11,7 @@ public:
 	void *value{};
 };
 
-inline bool operator==(UID id, UID( (*__stdcall ev)(void))) {
+inline bool operator==(UID id, UID( (*ev)(void))) {
 	UID z;
 	auto p = ev();
 	return id.value == p.value;

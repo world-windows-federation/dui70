@@ -23,7 +23,7 @@ namespace DirectUI
 
 		void FreeProvider(void);
 		HWND GetInnerHWND(void);
-		class IXProvider * GetProvider(void);
+		struct IXProvider * GetProvider(void);
 		long Initialize(unsigned int, Element *, unsigned long *);
 		bool IsDescendent(Element *);
 		long SetProvider(IUnknown *);

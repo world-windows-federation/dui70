@@ -333,6 +333,9 @@
     <ClInclude Include="TouchButton.h">
       <Filter>头文件\DirectUI\Touch</Filter>
     </ClInclude>
+    <ClInclude Include="TouchCheckBox.h">
+      <Filter>头文件\DirectUI\Touch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md">

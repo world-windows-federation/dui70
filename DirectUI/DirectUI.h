@@ -120,6 +120,7 @@
 
 #include "RichText.h"
 #include "TouchButton.h"
+#include "TouchCheckBox.h"
 
 #include "CClassFactory.h"
 

@@ -1,5 +1,4 @@
 #include "DirectUI.h"
-
 void WINAPI DumpDuiTree(DirectUI::Element *, int)
 {
 }
@@ -11037,4 +11036,21 @@ namespace DirectUI
 		return UID();
 	}
 
+	CheckedStateFlags TouchCheckBox::GetCheckedState()
+	{
+		return CheckedStateFlags_NONE;
+	}
+	HRESULT TouchCheckBox::SetCheckedState(CheckedStateFlags state)
+	{
+		return S_OK;
+	}
+
+	bool TouchCheckBox::GetToggleOnClick()
+	{
+		return false;
+	}
+	HRESULT TouchCheckBox::SetToggleOnClick(bool toggle)
+	{
+		return S_OK;
+	}
 }

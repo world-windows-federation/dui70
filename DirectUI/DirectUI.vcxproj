@@ -251,6 +251,7 @@
     <ClInclude Include="Thumb.h" />
     <ClInclude Include="Toggle.h" />
     <ClInclude Include="TouchButton.h" />
+    <ClInclude Include="TouchCheckBox.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="UnknownElement.h" />
     <ClInclude Include="Value.h" />

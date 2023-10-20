@@ -11,7 +11,7 @@ namespace DirectUI
 	class UILIB_API Element
 	{
 	public:
-		char space[0x100];
+		char space[0x200] = {0};
 
 
 		Element();
@@ -134,12 +134,12 @@ namespace DirectUI
 
 		//20
 		virtual bool EnsureVisible(int, int, int, int);
+		virtual void SetKeyFocus(void);
 
 		virtual long AddBehavior(IDuiBehavior* behavior);
 		virtual long RemoveBehavior(IDuiBehavior* behavior);
 
 		//21
-		virtual void SetKeyFocus(void);
 
 		//22
 		virtual unsigned int MessageCallback(GMSG*);
@@ -445,6 +445,7 @@ public:
 
 		//34
 		virtual long DefaultAction();
+		virtual long GetUIAElementProvider(GUID const&, void** param2);
 		//35
 		virtual HRESULT GetElementProviderImpl(class InvokeHelper *, ElementProvider * *);
 

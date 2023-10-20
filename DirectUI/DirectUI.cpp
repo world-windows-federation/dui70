@@ -17,7 +17,7 @@ namespace DirectUI
 		return 0;
 	}
 
-	HRESULT WINAPI UnInitProcessPriv(unsigned short*unk1)
+	HRESULT WINAPI UnInitProcessPriv(unsigned short* unk1)
 	{
 		return 0;
 	}
@@ -9076,6 +9076,10 @@ namespace DirectUI
 	PropertyInfo const * Selector::SelectionProp(void)
 	{
 		return nullptr;
+	}
+	long Element::GetUIAElementProvider(GUID const&, void** param2)
+	{
+		return 0;
 	}
 	void Selector::SetClassInfoPtr(IClassInfo *)
 	{

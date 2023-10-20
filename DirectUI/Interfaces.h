@@ -21,30 +21,29 @@ namespace DirectUI
 
 	struct IClassInfo
 	{
-		IClassInfo();
-		IClassInfo(const IClassInfo&) = delete;
+
 		IClassInfo&operator=(const IClassInfo&) = delete;
 
-		virtual LONG AddRef(void) = 0;
-		virtual LONG Release(void) = 0;
+		virtual void AddRef(void) = 0;
+		virtual int Release(void) = 0;
 		virtual HRESULT CreateInstance(Element *,ULONG *,Element * *) = 0;
-		virtual struct PropertyInfo * EnumPropertyInfo(UINT) = 0;
-		virtual struct PropertyInfo * GetByClassIndex(UINT) = 0;
-		virtual UINT GetPICount(void) = 0;
-		virtual UINT GetGlobalIndex(void) = 0;
+		virtual const PropertyInfo * EnumPropertyInfo(UINT) = 0;
+		virtual const PropertyInfo * GetByClassIndex(UINT) = 0;
+		virtual unsigned int GetPICount(void) const = 0;
+		virtual unsigned int GetGlobalIndex(void) const = 0;
 		virtual IClassInfo * GetBaseClass(void) = 0;
-		virtual UCString GetName(void) = 0;
-		virtual bool IsValidProperty(struct PropertyInfo const *) = 0;
-		virtual bool IsSubclassOf(IClassInfo *) = 0;
+		virtual UCString GetName() const = 0;
+		virtual bool IsValidProperty(struct PropertyInfo const *) const = 0;
+		virtual bool IsSubclassOf(IClassInfo *) const = 0;
 		virtual void Destroy(void) = 0;
-		virtual HINSTANCE GetModule(void) = 0;
-		virtual bool IsGlobal(void) = 0;
+		virtual HINSTANCE GetModule(void) const = 0;
+		virtual bool IsGlobal(void) const = 0;
 		virtual void AddChild(void) = 0;
 		virtual void RemoveChild(void) = 0;
-		virtual UINT GetChildren(void) = 0;
-		virtual void AssertPIZeroRef(void) = 0;
+		virtual int GetChildren(void) const = 0;
+		virtual void AssertPIZeroRef(void) const = 0;
 
-		virtual ~IClassInfo();
+		//virtual ~IClassInfo();
 	};
 
 	struct UILIB_API IDataEntry

@@ -2,7 +2,7 @@
 
 namespace DirectUI
 {
-	class UILIB_API ClassInfoBase
+	class UILIB_API ClassInfoBase : IClassInfo
 	{
 	public:
 		ClassInfoBase(ClassInfoBase const &);
@@ -10,48 +10,48 @@ namespace DirectUI
 		ClassInfoBase & operator=(ClassInfoBase const &);
 
 		//0
-		virtual void AddRef();
+		virtual void AddRef() override;
 		//1
-		virtual int Release();
+		virtual int Release() override;
 
 		//NULL
 		virtual HRESULT WINAPI CreateInstance(Element*, unsigned long*, Element** ) = 0;
 
 		//2
-		virtual const PropertyInfo* EnumPropertyInfo(unsigned int);
+		virtual const PropertyInfo* EnumPropertyInfo(unsigned int) override;
 		//3
-		virtual const PropertyInfo* GetByClassIndex(unsigned int);
+		virtual const PropertyInfo* GetByClassIndex(unsigned int) override;
 		//4
-		virtual unsigned int GetPICount() const;
+		virtual unsigned int GetPICount() const override;
 		//5
-		virtual unsigned int GetGlobalIndex() const;
+		virtual unsigned int GetGlobalIndex() const override;
 
 		//NULL
 		virtual IClassInfo* WINAPI GetBaseClass() = 0;
 
 		//6
-		virtual UCString GetName() const;
+		virtual UCString GetName() const override;
 		//7
-		virtual bool IsValidProperty(const PropertyInfo*) const;
+		virtual bool IsValidProperty(const PropertyInfo*) const override;
 		//8
-		virtual bool IsSubclassOf(IClassInfo*) const;
+		virtual bool IsSubclassOf(IClassInfo*) const override;
 		//9
-		virtual void Destroy();
+		virtual void Destroy() override;
 		//10
-		virtual HINSTANCE GetModule() const;
+		virtual HINSTANCE GetModule() const override;
 		//11
-		virtual bool IsGlobal() const;
+		virtual bool IsGlobal() const override;
 
 		//12
-		virtual void AddChild();
+		virtual void AddChild() override;
 		//13
-		virtual void RemoveChild();
+		virtual void RemoveChild() override;
 		//14
-		virtual int GetChildren() const;
+		virtual int GetChildren() const override;
 		//15
-		virtual void AssertPIZeroRef() const;
+		virtual void AssertPIZeroRef() const override;
 
-		virtual ~ClassInfoBase();
+		virtual ~ClassInfoBase() ;
 
 		static bool WINAPI ClassExist(IClassInfo**, const PropertyInfo* const*, unsigned int, IClassInfo*, HINSTANCE, UCString, bool);
 		long Initialize(HINSTANCE, UCString, bool, const PropertyInfo* const*, unsigned int);

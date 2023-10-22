@@ -60,7 +60,7 @@ namespace DirectUI
 		Element* GetRoot(void);
 		void SetHandleEnterKey(bool);
 		Element* _RootElement;
-		DWORD refCount;
+		LONG refCount;
 		DWORD unknown;
 		Element* Site;
 		IXProviderCP* XProviderCP;

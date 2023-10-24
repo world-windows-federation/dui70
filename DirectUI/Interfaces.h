@@ -19,7 +19,7 @@ namespace DirectUI
 		virtual void OnListenedEvent(class Element* elem, struct Event *event) = 0;
 	};
 
-	struct IClassInfo
+	struct UILIB_API IClassInfo
 	{
 
 		IClassInfo&operator=(const IClassInfo&) = delete;

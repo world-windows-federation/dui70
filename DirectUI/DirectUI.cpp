@@ -697,14 +697,7 @@ namespace DirectUI
 	{
 		return SIZE();
 	}
-	long Element::Add(Element*)
-	{
-		return 0;
-	}
-	long Element::Add(Element*, int(*)(const void*, const void*))
-	{
-		return 0;
-	}
+
 	long Element::Add(Element**, unsigned int)
 	{
 		return 0;

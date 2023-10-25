@@ -54,7 +54,7 @@ namespace DirectUI
 		virtual ~ClassInfoBase() ;
 
 		static bool WINAPI ClassExist(IClassInfo**, const PropertyInfo* const*, unsigned int, IClassInfo*, HINSTANCE, UCString, bool);
-		long Initialize(HINSTANCE, UCString, bool, const PropertyInfo* const*, unsigned int);
+		long Initialize(HINSTANCE, UCString name, bool hasPropertyInfo, const PropertyInfo* const* properties, unsigned int properties_count);
 		long Register();
 	private:
 		char data[0x10];

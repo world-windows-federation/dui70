@@ -35,9 +35,6 @@ namespace DirectUI
 		//0x1C
 		UINT32 v12;
 
-		//0x20
-		byte v30[4];
-
 		//0x24
 		UINT32 v6;
 

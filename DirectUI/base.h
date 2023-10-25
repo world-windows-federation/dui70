@@ -2,7 +2,7 @@
 
 namespace DirectUI
 {
-	class UILIB_API ClassInfoBase : IClassInfo
+	class UILIB_API ClassInfoBase //: IClassInfo
 	{
 	public:
 		ClassInfoBase(ClassInfoBase const &);
@@ -10,46 +10,46 @@ namespace DirectUI
 		ClassInfoBase & operator=(ClassInfoBase const &);
 
 		//0
-		virtual void AddRef() override;
+		virtual void AddRef();
 		//1
-		virtual int Release() override;
+		virtual int Release();
 
 		//NULL
 		virtual HRESULT WINAPI CreateInstance(Element*, unsigned long*, Element** ) = 0;
 
 		//2
-		virtual const PropertyInfo* EnumPropertyInfo(unsigned int) override;
+		virtual const PropertyInfo* EnumPropertyInfo(unsigned int);
 		//3
-		virtual const PropertyInfo* GetByClassIndex(unsigned int) override;
+		virtual const PropertyInfo* GetByClassIndex(unsigned int);
 		//4
-		virtual unsigned int GetPICount() const override;
+		virtual unsigned int GetPICount() const;
 		//5
-		virtual unsigned int GetGlobalIndex() const override;
+		virtual unsigned int GetGlobalIndex() const;
 
 		//NULL
 		virtual IClassInfo* WINAPI GetBaseClass() = 0;
 
 		//6
-		virtual UCString GetName() const override;
+		virtual UCString GetName() const;
 		//7
-		virtual bool IsValidProperty(const PropertyInfo*) const override;
+		virtual bool IsValidProperty(const PropertyInfo*) const;
 		//8
-		virtual bool IsSubclassOf(IClassInfo*) const override;
+		virtual bool IsSubclassOf(IClassInfo*) const;
 		//9
-		virtual void Destroy() override;
+		virtual void Destroy();
 		//10
-		virtual HINSTANCE GetModule() const override;
+		virtual HINSTANCE GetModule() const;
 		//11
-		virtual bool IsGlobal() const override;
+		virtual bool IsGlobal() const;
 
 		//12
-		virtual void AddChild() override;
+		virtual void AddChild();
 		//13
-		virtual void RemoveChild() override;
+		virtual void RemoveChild();
 		//14
-		virtual int GetChildren() const override;
+		virtual int GetChildren() const;
 		//15
-		virtual void AssertPIZeroRef() const override;
+		virtual void AssertPIZeroRef() const;
 
 		virtual ~ClassInfoBase() ;
 

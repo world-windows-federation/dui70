@@ -59,9 +59,9 @@ namespace DirectUI
 	protected:
 		Element* GetRoot(void);
 		void SetHandleEnterKey(bool);
+
 		Element* _RootElement;
-		LONG refCount;
-		DWORD unknown;
+		LONGLONG refCount;
 		Element* Site;
 		IXProviderCP* XProviderCP;
 	};

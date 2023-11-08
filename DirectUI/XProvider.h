@@ -62,7 +62,7 @@ namespace DirectUI
 
 		Element* _RootElement;
 		LONGLONG refCount;
-		Element* Site;
+		Element* _RandomElement;
 		IXProviderCP* XProviderCP;
 	};
 

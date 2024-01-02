@@ -61,7 +61,7 @@ namespace DirectUI
 		void SetHandleEnterKey(bool);
 
 		Element* _RootElement;
-		LONGLONG refCount;
+		ULONG refCount;
 		Element* _RandomElement;
 		IXProviderCP* XProviderCP;
 	};

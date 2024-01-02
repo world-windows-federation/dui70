@@ -38,10 +38,4 @@
     <None Include="packages.config" />
     <None Include=".clang-format" />
   </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="app.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
-  </ItemGroup>
 </Project>

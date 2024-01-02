@@ -14,16 +14,16 @@ namespace DirectUI
 		//1
 		virtual int Release();
 
-		//NULL
+		//2
 		virtual HRESULT WINAPI CreateInstance(Element*, unsigned long*, Element** ) = 0;
 
-		//2
-		virtual const PropertyInfo* EnumPropertyInfo(unsigned int);
 		//3
-		virtual const PropertyInfo* GetByClassIndex(unsigned int);
+		virtual const PropertyInfo* EnumPropertyInfo(unsigned int);
 		//4
-		virtual unsigned int GetPICount() const;
+		virtual const PropertyInfo* GetByClassIndex(unsigned int);
 		//5
+		virtual unsigned int GetPICount() const;
+		//6
 		virtual unsigned int GetGlobalIndex() const;
 
 		//NULL
@@ -56,7 +56,7 @@ namespace DirectUI
 		static bool WINAPI ClassExist(IClassInfo**, const PropertyInfo* const*, unsigned int, IClassInfo*, HINSTANCE, UCString, bool);
 		long Initialize(HINSTANCE, UCString name, bool hasPropertyInfo, const PropertyInfo* const* properties, unsigned int properties_count);
 		long Register();
-	private:
+	//private:
 		char data[0x10];
 	};
 

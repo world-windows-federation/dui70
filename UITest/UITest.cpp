@@ -14,8 +14,6 @@
 
 #include "..\DirectUI\DirectUI.h"
 
-#include <detours/detours.h>
-
 #pragma comment(lib,"dui70.lib")
 #pragma comment(lib, "comctl32.lib")
 #include "resource.h"
@@ -117,7 +115,7 @@ void DumpClassInfo(IClassInfo *info) {
 		base ? (LPCWSTR)base->GetName() : L"None").c_str());
 
 	os << (L"  Properties:\n");
-	for (int i = 0; i < info->GetPICount(); i++) {
+	for (unsigned int i = 0; i < info->GetPICount(); i++) {
 		auto prop = info->EnumPropertyInfo(i);
 		os << (std::format(L"    [{}]: {}\n",
 			(LPCWSTR)prop->name, to_string(prop->cap->type)).c_str());
@@ -147,26 +145,26 @@ inline void HookClassFactoryRegister() {
 		0x37634
 	);
 
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
+	//DetourTransactionBegin();
+	//DetourUpdateThread(GetCurrentThread());
 
 	auto pfMine = &HookedRegister;
-	DetourAttach(&(PVOID&)RealClassFactoryRegister,
-                 *(PBYTE*)&pfMine);
-	DetourTransactionCommit();
+	//DetourAttach(&(PVOID&)RealClassFactoryRegister,
+    //             *(PBYTE*)&pfMine);
+	//DetourTransactionCommit();
 }
 
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	
-	THROW_IF_FAILED(CoInitializeEx(NULL, 0));
+	CoInitializeEx(NULL, 0);
 
-	THROW_IF_FAILED(InitProcessPriv(14, NULL, 0, true));
-	THROW_IF_FAILED(InitThread(2));
+	InitProcessPriv(14, NULL, 0, true);
+	InitThread(2);
 
 	// uncomment to update class definitions
 	// HookClassFactoryRegister();
-	THROW_IF_NTSTATUS_FAILED(RegisterAllControls());
+        RegisterAllControls();
 
 
 	NativeHWNDHost* pwnd;
@@ -178,10 +176,15 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	DUIXmlParser* pParser;
 
-	THROW_IF_FAILED(DUIXmlParser::Create(&pParser, NULL, NULL, NULL, NULL));
+	DUIXmlParser::Create(&pParser, NULL, NULL, NULL, NULL);
 
-	pParser->SetParseErrorCallback([](UCString err1, UCString err2, int unk, void*ctx) {
-		OutputDebugString(std::format(L"err: {}; {}; {}\n", (LPCWSTR)err1, (LPCWSTR)err2, unk).c_str());
+	pParser->SetParseErrorCallback(
+            [](UCString err1, UCString err2, int unk, void *ctx) {
+              MessageBox(NULL,
+                         std::format(L"err: {}; {}; {}\n", (LPCWSTR)err1,
+                                     (LPCWSTR)err2, unk)
+                             .c_str(),
+                         L"Error while parsing DirectUI", 0);
 		DebugBreak();
 	}, NULL);
 
@@ -195,7 +198,6 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	Element* pWizardMain;
 	hr = pParser->CreateElement((UCString)L"WizardMain", hwnd_element,NULL,NULL,(Element**)&pWizardMain);
 
-	THROW_IF_FAILED(hr);
 
 
 	pWizardMain->SetVisible(true);
@@ -204,42 +206,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	pwnd->ShowWindow(SW_SHOW);
 
-	auto *title_elem = pWizardMain->FindDescendent(StrToID((UCString)L"SXTitle"));
-
-	auto *accept_btn = (Button *)pWizardMain->FindDescendent(StrToID((UCString)L"SXWizardDefaultButton"));
-	auto *reject_btn = (Button *)pWizardMain->FindDescendent(StrToID((UCString)L"SXWizardAlternateButton"));
-
-	auto *edit_box = (Edit *)pWizardMain->FindDescendent(StrToID((UCString)L"SXWizardEditBox"));
-
-	auto *prog = pWizardMain->FindDescendent(StrToID((UCString)L"SXWizardLoadingProgress"));
-
-	LogListener lis;
-	hr = pWizardMain->AddListener(&lis);
-	THROW_IF_FAILED(hr);
-
-	int btn_count = 0;
-
-	EventListener click_listener([&](Element*elem, Event*ev) {
-		if (ev->flag != GMF_BUBBLED)
-			return;
-	  if (ev->type == TouchButton::Click) {
-			btn_count++;
-			hr = title_elem->SetContentString((UCString)std::format(L"Clicked {} times", btn_count).c_str());
-			THROW_IF_FAILED(hr);
-			prog->SetVisible(true);
-		}
-		if (ev->type == Edit::Enter) {
-			prog->SetVisible(false);
-			Value *txt;
-			edit_box->GetContentString(&txt);
-      hr = title_elem->SetContentString((UCString)std::format(L"Entered: {}", (LPCWSTR)txt->GetString()).c_str());
-      THROW_IF_FAILED(hr);
-		}
-	});
-	hr = pWizardMain->AddListener(&click_listener);
-	THROW_IF_FAILED(hr);
-
-	DumpDuiTree(pWizardMain, 0);
+	//DumpDuiTree(pWizardMain, 0);
 
 	StartMessagePump();
 

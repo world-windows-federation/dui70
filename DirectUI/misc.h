@@ -25,6 +25,8 @@ public:
   ~CritSecLock();
   CritSecLock &operator=(CritSecLock const &);
   void Unlock();
+private:
+	CRITICAL_SECTION* m_critcalSection;
 };
 
 template <class T, int> class DynamicArray;

@@ -109,5 +109,25 @@ namespace DirectUI
 		void SyncColorsAndFonts();
 		void UnvirtualizePosition();
 		void _DeleteCtrlWnd();
+
+		bool _fHwndCreate;
+		bool _fSpecOptimizeMove;
+		bool _fMoveDeferred;
+		HWND _hwndCtrl;
+		HWND _hwndSink;
+		LRESULT (CALLBACK *_pfnCtrlOrgProc)(HWND, UINT, WPARAM, LPARAM);
+		HWND _hwndAccName;
+		BOOL _fCtrlAttached;
+		RECT _rcBounds;
+		HFONT _hFont;
+		COLORREF _crBkColor;
+		HBRUSH _hBkBrush;
+		COLORREF _crForegroundColor;
+		bool _fForegroundColorSet;
+		UINT _nCreate;
+		int _cAnimate;
+		bool _fSentMouseWheel;
+		bool _fHandledMouseWheel;
+		DirectUI::DuiAccessible *_pClientAccessible;
 	};
 }

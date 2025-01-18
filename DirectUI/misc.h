@@ -124,19 +124,26 @@ enum DUSER_INPUT_MODIFIERS : UINT32 {
 };
 
 struct Event {
-  Element *target;
-  UID type;
-  bool handled;
-  DUSER_MSG_FLAG flag;
+  Element *peTarget;
+  UID uidType;
+  bool fHandled;
+  DUSER_MSG_FLAG nStage;
+  bool fUIAHandled;
 };
 
 struct InputEvent {
-  Element *target;
-  bool handled;
-  DUSER_MSG_FLAG flag;
-  DUSER_INPUT_DEVICE device;
-  DUSER_INPUT_CODE code;
-  DUSER_INPUT_MODIFIERS modifiers;
+  Element *peTarget;
+  bool fHandled;
+  DUSER_MSG_FLAG nStage;
+  DUSER_INPUT_DEVICE nDevice;
+  DUSER_INPUT_CODE nCode;
+  DUSER_INPUT_MODIFIERS uModifiers;
+};
+
+struct KeyboardEvent : InputEvent {
+  UChar ch;
+  WORD cRep;
+  WORD wFlags;
 };
 
 struct RectangleChange {};

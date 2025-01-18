@@ -53,6 +53,9 @@ namespace DirectUI
 		IDataEntry(void);
 		virtual ~IDataEntry(void);
 
+		virtual HRESULT GetProperty(const WCHAR*, WCHAR**, bool*) = 0;
+		virtual void* GetActual() = 0;
+
 		IDataEntry & operator=(IDataEntry const &);
 	};
 
@@ -184,8 +187,8 @@ namespace DirectUI
 
 		virtual ~IDataEngine(void);
 
-		virtual void T1() = 0;
-		virtual void T2() = 0;
+		virtual UINT GetSize() = 0;
+		virtual IDataEntry* GetEntry(UINT) = 0;
 	};
 
 	class UILIB_API StyleSheet

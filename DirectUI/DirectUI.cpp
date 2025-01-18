@@ -10,86 +10,88 @@ void WINAPI DumpDuiProperties(DirectUI::Element *)
 
 namespace DirectUI
 {
-	unsigned long g_dwElSlot;
+	DWORD g_dwElSlot;
 	
-	HRESULT WINAPI InitProcessPriv(int duiVersion, unsigned short*unk1, char bInitAllControls, bool bEnableUIAutomationProvider)
+extern "C"
+{
+
+	HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl)
 	{
 		return 0;
 	}
 
-	HRESULT WINAPI UnInitProcessPriv(unsigned short* unk1)
+	HRESULT WINAPI UnInitProcessPriv(HMODULE hModule)
 	{
 		return 0;
 	}
-	HRESULT WINAPI InitThread(int iDontKnow)
+	HRESULT WINAPI InitThread(UINT nThreadMode)
 	{
 		return 0;
 	}
 	void WINAPI UnInitThread()
 	{
-		return;
 	}
 
 	// These might be wrong, disassemble and check if it is DirectUI::XProvider* or DirectUI::XProvider**
-	int WINAPI CreateDUIWrapper(Element*, class XProvider**)
+	HRESULT WINAPI CreateDUIWrapper(Element* pe, IUnknown** ppunk)
 	{
 		return 0;
 	}
-	int WINAPI CreateDUIWrapperEx(Element*, class IXProviderCP*, class XProvider**)
+	HRESULT WINAPI CreateDUIWrapperEx(Element* pe, IXProviderCP* pprovCP, IUnknown** ppunk)
 	{
 		return 0;
 	}
-	int WINAPI CreateDUIWrapperFromResource(HINSTANCE, UCString, UCString, UCString, class XResourceProvider**)
-	{
-		return 0;
-	}
-
-	int WINAPI GetScreenDPI()
+	HRESULT WINAPI CreateDUIWrapperFromResource(HINSTANCE hRes, const WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, IUnknown** ppunk)
 	{
 		return 0;
 	}
 
-	int WINAPI RegisterAllControls()
+	HRESULT WINAPI GetScreenDPI()
 	{
 		return 0;
 	}
 
-	int WINAPI RegisterBaseControls()
+	HRESULT WINAPI RegisterAllControls()
 	{
 		return 0;
 	}
 
-	int WINAPI RegisterBrowserControls()
+	HRESULT WINAPI RegisterBaseControls()
 	{
 		return 0;
 	}
 
-	int WINAPI RegisterCommonControls()
+	HRESULT WINAPI RegisterBrowserControls()
 	{
 		return 0;
 	}
 
-	int WINAPI RegisterExtendedControls()
+	HRESULT WINAPI RegisterCommonControls()
 	{
 		return 0;
 	}
 
-	int WINAPI RegisterMacroControls()
+	HRESULT WINAPI RegisterExtendedControls()
 	{
 		return 0;
 	}
 
-	int WINAPI RegisterMiscControls()
+	HRESULT WINAPI RegisterMacroControls()
 	{
 		return 0;
 	}
 
-	int WINAPI RegisterStandardControls()
+	HRESULT WINAPI RegisterMiscControls()
 	{
 		return 0;
 	}
 
-	int WINAPI RegisterXControls()
+	HRESULT WINAPI RegisterStandardControls()
+	{
+		return 0;
+	}
+
+	HRESULT WINAPI RegisterXControls()
 	{
 		return 0;
 	}
@@ -104,7 +106,7 @@ namespace DirectUI
 		return 0;
 	}
 
-	ATOM WINAPI StrToID(UCString resId)
+	ATOM WINAPI StrToID(const WCHAR* psz)
 	{
 		return 0;
 	}
@@ -180,7 +182,7 @@ namespace DirectUI
 	{
 	}
 
-	DWORD WINAPI GetElementDataEntry(int a1)
+	IDataEntry* WINAPI GetElementDataEntry(Element* pe)
 	{
 		return 0;
 	}
@@ -257,6 +259,8 @@ namespace DirectUI
 	void WINAPI PurgeThemeHandles()
 	{
 	}
+	
+}
 
 	DuiAccessible::DuiAccessible()
 	{
@@ -699,6 +703,10 @@ namespace DirectUI
 	}
 
 	long Element::Add(Element**, unsigned int)
+	{
+		return 0;
+	}
+	long Element::Add(Element*)
 	{
 		return 0;
 	}
@@ -6323,6 +6331,9 @@ namespace DirectUI
 	void HWNDElement::OnThemeChanged(ThemeChangedEvent *)
 	{
 	}
+	void HWNDElement::OnImmersiveColorSchemeChanged()
+	{
+	}
 	void HWNDElement::OnNoChildWithShortcutFound(KeyboardEvent *)
 	{
 	}
@@ -6332,10 +6343,17 @@ namespace DirectUI
 	void HWNDElement::OnWmThemeChanged(WPARAM wParam, LPARAM lParam)
 	{
 	}
+	void HWNDElement::OnWmSettingChanged(WPARAM wParam, LPARAM lParam)
+	{
+	}
 	void HWNDElement::OnCompositionChanged()
 	{
 	}
 	bool HWNDElement::CanSetFocus()
+	{
+		return false;
+	}
+	bool HWNDElement::IsMSAAEnabled()
 	{
 		return false;
 	}
@@ -6446,6 +6464,12 @@ namespace DirectUI
 	LRESULT HWNDElement::WndProc(HWND, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		return LRESULT();
+	}
+	void HWNDElement::GetWindowClassNameAndStyle(const unsigned short**, UINT*)
+	{
+	}
+	void HWNDElement::_OnUIStateChanged(WORD, WORD)
+	{
 	}
 	bool WINAPI HWNDElement::FindShortcutRecursive(unsigned short, Element *, Element **, int *, int *, int)
 	{

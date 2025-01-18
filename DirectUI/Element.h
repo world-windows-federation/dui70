@@ -122,7 +122,7 @@ namespace DirectUI
 		//16
 		virtual long Add(Element**, unsigned int);
 
-		//long Add(Element*);
+		HRESULT Add(Element* pe);
 		//long Add(Element*, int(__cdecl*)(const void*, const void*));
 
 		//17
@@ -149,7 +149,6 @@ namespace DirectUI
 		virtual long WINAPI QueryInterface(GUID const &, void**);
 
 		virtual void GetImmersiveFocusRectOffsets(RECT*);
-
 
 
 		long Destroy(bool);
@@ -353,7 +352,7 @@ namespace DirectUI
 		long SetContentString(UCString);
 		long SetCursor(UCString);
 		long SetCursorHandle(HICON);
-		long SetDirection(int);
+		long SetDirection(int v);
 		long SetEnabled(bool);
 		long SetEncodedContentString(UCString);
 		long SetFont(UCString);
@@ -508,6 +507,81 @@ private:
 
 
 		static IClassInfo*s_pClassInfo;
+
+		HGADGET _hgDisplayNode;
+		struct BehaviorStore *_pBehaviorStore;
+		int _iIndex;
+		// struct BTreeLookup<PropertyInfo const *,Value *> *_pvmLocal;
+		void *_pvmLocal;
+		int _iGCSlot;
+		int _iGCLPSlot;
+		int _iPCTail;
+		struct DeferCycle *_pDeferCycle;
+		// Internal::ListenerData *_pld;
+		void *_pld;
+		Element *_peInitialParent;
+		Element *_peLocParent;
+		tagPOINT _ptLocPosInLayt;
+		tagSIZE _sizeLocSizeInLayt;
+		tagSIZE _sizeLocLastDSConst;
+		tagSIZE _sizeLocDesiredSize;
+		int _dSpecLayoutPos;
+		Value *_pvSpecSheet;
+		int _dSpecAlpha;
+		int _dPVLAnimationState;
+		ATOM _atomSpecID;
+		struct _BitMap
+		{
+			__int8 bLocKeyWithin : 1;
+			__int8 bLocMouseWithin : 1;
+			__int8 bCmpVisible : 1;
+			__int8 bSpecVisible : 1;
+			__int8 bSpecSelected : 1;
+			__int8 bSpecKeyFocused : 1;
+			__int8 bSpecMouseFocused : 1;
+			__int8 bSpecAccessible : 1;
+			__int8 bSpecEnabled : 1;
+			__int8 bHasChildren : 1;
+			__int8 bHasLayout : 1;
+			__int8 bHasBorder : 1;
+			__int8 bHasPadding : 1;
+			__int8 bHasMargin : 1;
+			__int8 bHasContent : 1;
+			__int8 bDefaultCAlign : 1;
+			__int8 bWordWrap : 1;
+			__int8 bHasAnimation : 1;
+			__int8 bDefaultCursor : 1;
+			__int8 bDefaultBorderColor : 1;
+			__int8 bDefaultForeground : 1;
+			__int8 bDefaultFontWeight : 1;
+			__int8 bDefaultFontStyle : 1;
+			__int8 bDefaultFontQuality : 1;
+			__int8 bSelfLayout : 1;
+			__int8 bNeedsDSUpdate : 1;
+			__int8 bDestroyed : 1;
+			__int8 bHosted : 1;
+			__int8 bHasTooltip : 1;
+			__int8 bCompositedText : 1;
+			__int8 bUiaEvents : 1;
+			__int8 bPreserveAlphaChannel : 1;
+			unsigned __int32 fNeedsLayout : 2;
+			unsigned __int32 fSpecActive : 4;
+			unsigned __int32 nSpecDirection : 1;
+			unsigned __int32 nUseDefaultFontSize : 1;
+			unsigned __int32 bHasEdgeHighlight : 1;
+			unsigned __int32 nGetsLayoutCompleteGC : 1;
+			unsigned __int32 fFontSizeInRP : 1;
+			unsigned __int32 nScaleFactor : 10;
+			unsigned __int32 bUsesDesktopPerMonitorScaling : 1;
+		};
+		_BitMap _fBit;
+		int _dSpecFontSize;
+		Value *_pvSpecFontFace;
+		Value *_pvSpecBackground;
+		class DuiAccessible *_pDuiAccessible;
+		// struct Element::Impl *_pImpl;
+		void *_pImpl;
+		HWND _rootWindowForTheming;
 	};
 
 	class UILIB_API ElementProxy : public IProxy

@@ -2,7 +2,8 @@
 
 namespace DirectUI
 {
-	MIDL_INTERFACE("1e3d87cb-f434-4838-a004-f14e385e736f") IXProvider : public IUnknown
+	MIDL_INTERFACE("1e3d87cb-f434-4838-a004-f14e385e736f")
+	IXProvider : public IUnknown
 	{
 	public:
 		virtual long __stdcall CreateDUI(IXElementCP*, HWND*) = 0;

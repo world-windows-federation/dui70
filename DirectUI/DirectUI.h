@@ -134,32 +134,36 @@ namespace DirectUI
 {
 	extern UILIB_API unsigned long g_dwElSlot;
 
-	HRESULT WINAPI InitProcessPriv(int duiVersion, unsigned short*unk1, char unk2, bool bEnableUIAutomationProvider);
-	HRESULT WINAPI UnInitProcessPriv(unsigned short*unk1);
-	EXTERN_C HRESULT WINAPI InitThread(int iDontKnow);
+extern "C"
+{
+	// HRESULT WINAPI InitProcessPriv(int duiVersion, unsigned short*unk1, char unk2, bool bEnableUIAutomationProvider);
+	// @Careful: fInitCommctl is new in Windows 10
+	HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl);
+	HRESULT WINAPI UnInitProcessPriv(HMODULE hModule);
+	EXTERN_C HRESULT WINAPI InitThread(UINT nThreadMode);
 	void WINAPI UnInitThread();
 
-	int WINAPI CreateDUIWrapper(Element*,class XProvider**);
-	int WINAPI CreateDUIWrapperEx(Element*, class IXProviderCP*, class XProvider**);
-	int WINAPI CreateDUIWrapperFromResource(HINSTANCE,UCString, UCString, UCString, class XResourceProvider**);
+	HRESULT WINAPI CreateDUIWrapper(Element* pe, IUnknown** ppunk);
+	HRESULT WINAPI CreateDUIWrapperEx(Element* pe, IXProviderCP* pprovCP, IUnknown** ppunk);
+	HRESULT WINAPI CreateDUIWrapperFromResource(HINSTANCE hRes, const WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, IUnknown** ppunk);
 
-	int WINAPI GetScreenDPI();
+	// int WINAPI GetScreenDPI();
 
-	int WINAPI RegisterAllControls();
-	int WINAPI RegisterBaseControls();
-	int WINAPI RegisterBrowserControls();
-	int WINAPI RegisterCommonControls();
-	int WINAPI RegisterExtendedControls();
-	int WINAPI RegisterMacroControls();
-	int WINAPI RegisterMiscControls();
-	int WINAPI RegisterStandardControls();
-	int WINAPI RegisterXControls();
+	HRESULT WINAPI RegisterAllControls();
+	HRESULT WINAPI RegisterBaseControls();
+	HRESULT WINAPI RegisterBrowserControls();
+	HRESULT WINAPI RegisterCommonControls();
+	HRESULT WINAPI RegisterExtendedControls();
+	HRESULT WINAPI RegisterMacroControls();
+	HRESULT WINAPI RegisterMiscControls();
+	HRESULT WINAPI RegisterStandardControls();
+	HRESULT WINAPI RegisterXControls();
 
 	int WINAPI StartMessagePump();
 	int WINAPI StopMessagePump();
 
 
-	ATOM WINAPI StrToID(UCString resId);
+	ATOM WINAPI StrToID(const WCHAR* psz);
 
 
 	int WINAPI UnicodeToMultiByte(UCString lpWideCharStr, int cchWideChar, int unk);
@@ -186,7 +190,7 @@ namespace DirectUI
 	//此函数仅调用DebugBreak，将程序中断
 	void WINAPI ForceDebugBreak();
 
-	DWORD WINAPI GetElementDataEntry(int a1);
+	IDataEntry* WINAPI GetElementDataEntry(Element* pe);
 	Macro* WINAPI GetElementMacro(int a1);
 	LPVOID WINAPI GetFontCache();
 
@@ -214,4 +218,6 @@ namespace DirectUI
 	void *WINAPI PreprocessBuffer(LPCWSTR Src, SIZE_T cSrc, BOOLEAN a3);
 	HGDIOBJ WINAPI ProcessAlphaBitmapI(HBITMAP hgdiobj);
 	void WINAPI PurgeThemeHandles();
+}
+
 }

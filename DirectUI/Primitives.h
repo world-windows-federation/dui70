@@ -76,18 +76,24 @@ namespace DirectUI
 		int nEnum;
 	};
 
+	struct PropertyInfoData
+	{
+		Value* _pvDefault;
+		int _iIndex;
+		int _iGlobalIndex;
+		IClassInfo* _pciOwner;
+		long _cRef;
+	};
+
 	struct PropertyInfo
 	{
-		UCString name;
-		UINT64 unk1;
-		struct PropCapability {
-			ValueType type : 6;
-			UINT other : 26;
-			UINT unk;
-		} *cap;
-		struct { UCString str_value; int int_value; } *enum_value_map;
-		Value *(*get_default_value)();
-		UINT64 *unk2;
+		const WCHAR* pszName;
+		int fFlags;
+		int fGroups;
+		const int *pValidValues;
+		const DirectUI::EnumMap* pEnumMaps;
+		DirectUI::Value* (*DefaultProc)();
+		DirectUI::PropertyInfoData* pData;
 	};
 
 	struct DepRecs

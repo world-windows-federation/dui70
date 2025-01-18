@@ -8,13 +8,13 @@ public:
 	// https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170#return-values
 	UID() { }
 
-	void *value{};
+	BYTE *_address{};
 };
 
 inline bool operator==(UID id, UID( (*ev)(void))) {
 	UID z;
 	auto p = ev();
-	return id.value == p.value;
+	return id._address == p._address;
 }
 
 struct GMA_ACTIONINFO
@@ -54,10 +54,10 @@ namespace DirectUI
 
 	};
 
-	struct KeyboardEvent
+	/*struct KeyboardEvent
 	{
 
-	};
+	};*/
 
 	struct CellInfo
 	{

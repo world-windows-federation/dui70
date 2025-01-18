@@ -157,9 +157,9 @@ inline void HookClassFactoryRegister() {
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	
-	CoInitializeEx(NULL, 0);
+	CoInitializeEx(nullptr, 0);
 
-	InitProcessPriv(14, NULL, 0, true);
+	InitProcessPriv(14, nullptr, true, true, true);
 	InitThread(2);
 
 	// uncomment to update class definitions
@@ -188,7 +188,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		DebugBreak();
 	}, NULL);
 
-	auto hr=pParser->SetXMLFromResource(IDR_UIFILE1, hInstance,(HINSTANCE)hInstance);
+	auto hr=pParser->SetXMLFromResource(IDR_UIFILE1, hInstance, hInstance);
 
 	unsigned long defer_key;
 	HWNDElement* hwnd_element;
@@ -210,6 +210,6 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	StartMessagePump();
 
-	UnInitProcessPriv(NULL);
+	UnInitProcessPriv(nullptr);
 	return 0;
 }

@@ -62,7 +62,7 @@ namespace DirectUI
 		virtual long DoMethod(int, char *) = 0;
 
 	protected:
-		virtual void Init(class Element *) = 0;
+		virtual void Init(Element *) = 0;
 	};
 
 	class UILIB_API Proxy

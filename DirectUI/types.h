@@ -39,6 +39,7 @@ struct EventMsg
 //forward declares
 namespace DirectUI
 {
+	// TODO: are these even in dui or custom by Seven-Mile?
 	typedef unsigned short UChar;
 	typedef UChar* UString;
 	typedef const unsigned short* UCString;

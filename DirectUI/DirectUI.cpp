@@ -11,7 +11,7 @@ void WINAPI DumpDuiProperties(DirectUI::Element *)
 namespace DirectUI
 {
 	unsigned long g_dwElSlot;
-
+	
 	HRESULT WINAPI InitProcessPriv(int duiVersion, unsigned short*unk1, char bInitAllControls, bool bEnableUIAutomationProvider)
 	{
 		return 0;
@@ -9771,328 +9771,130 @@ namespace DirectUI
 
 	IClassInfo * UnknownElement::s_pClassInfo;
 
-	Value & Value::operator=(const Value &)
-	{
-		// TODO: 在此处插入 return 语句
-		return *this;
-	}
-	void Value::AddRef()
-	{
-	}
-	Value * WINAPI Value::CreateAtom(unsigned short)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateAtom(UCString)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateBool(bool)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateColor(unsigned long)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateColor(unsigned long, unsigned long, unsigned char)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateColor(unsigned long, unsigned long, unsigned long, unsigned char)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateCursor(HICON)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateCursor(UCString)
-	{
-		return nullptr;
-	}
-	Value * Value::CreateDFCFill(unsigned int, unsigned int)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateDTBFill(UCString, int, int)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateElementList(DynamicArray<class Element*, 0>*)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateElementRef(Element *)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateEncodedString(UCString)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateExpression(Expression *)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateFill(const Fill &)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateGraphic(HBITMAP, unsigned char, unsigned int, bool, bool, bool)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateGraphic(HENHMETAFILE, HENHMETAFILE)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateGraphic(HICON, bool, bool, bool)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateGraphic(UCString, unsigned char, unsigned int, unsigned short, unsigned short, HINSTANCE, bool, bool)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateGraphic(UCString, unsigned short, unsigned short, HINSTANCE, bool, bool)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateInt(int)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateLayout(Layout *)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreatePoint(int, int)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateRect(int, int, int, int)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateSize(int, int)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateString(UCString, HINSTANCE)
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::CreateStyleSheet(StyleSheet *)
-	{
-		return nullptr;
-	}
-	bool Value::GetBool()
-	{
-		return false;
-	}
-	Cursor * Value::GetCursor()
-	{
-		return nullptr;
-	}
-	Element * Value::GetElement()
-	{
-		return nullptr;
-	}
-	DynamicArray<class Element*, 0>* Value::GetElementList()
-	{
-		return nullptr;
-	}
-	Expression * Value::GetExpression()
-	{
-		return nullptr;
-	}
-	const Fill * Value::GetFill()
-	{
-		return nullptr;
-	}
-	Graphic * Value::GetGraphic()
-	{
-		return nullptr;
-	}
-	void * Value::GetImage(bool)
-	{
-		return nullptr;
-	}
-	int Value::GetInt()
-	{
-		return 0;
-	}
-	Layout * Value::GetLayout()
-	{
-		return nullptr;
-	}
-	POINT const * Value::GetPoint()
-	{
-		return LPPOINT();
-	}
-	RECT const * Value::GetRect()
-	{
-		return LPRECT();
-	}
-	int Value::GetRefCount() const
-	{
-		return 0;
-	}
-	SIZE const * Value::GetSize()
-	{
-		return LPSIZE();
-	}
-	UCString Value::GetString()
-	{
-		return UCString();
-	}
-	StyleSheet * Value::GetStyleSheet()
-	{
-		return nullptr;
-	}
-	int Value::GetType() const
-	{
-		return 0;
-	}
-	unsigned short Value::GetAtom()
-	{
-		return 0;
-	}
-	Value * WINAPI Value::GetAtomZero()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetBoolFalse()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetBoolTrue()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetColorTrans()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetCursorNull()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetElListNull()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetElementNull()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetExprNull()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetIntZero()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetLayoutNull()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetNull()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetPointZero()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetRectZero()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetSheetNull()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetSizeZero()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetStringNull()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetUnavailable()
-	{
-		return nullptr;
-	}
-	Value * WINAPI Value::GetUnset()
-	{
-		return nullptr;
-	}
-	bool Value::IsEqual(Value *)
-	{
-		return false;
-	}
-	void Value::Release()
-	{
-	}
-	UString Value::ToString(UString, unsigned int) const
-	{
-		return UString();
-	}
-	void Value::_ZeroRelease()
-	{
-	}
-	long WINAPI Value::StrDupW(UCString, UString *)
-	{
-		return 0;
-	}
+	
+	//~ Begin DirectUI::Value Class
+	Value& Value::operator=(const Value&) = default;
+	
+	void Value::AddRef() { }
+	
+	Value* WINAPI Value::CreateAtom(ATOM atom) { return {}; }
+	Value* WINAPI Value::CreateAtom(const WCHAR* pszValue) { return {}; }
+	Value* WINAPI Value::CreateBool(bool bValue) { return {}; }
+	Value* WINAPI Value::CreateColor(COLORREF cr) { return {}; }
+	Value* WINAPI Value::CreateColor(COLORREF cr0, COLORREF cr1, BYTE dType) { return {}; }
+	Value* WINAPI Value::CreateColor(COLORREF cr0, COLORREF cr1, COLORREF cr2, UCHAR dType) { return {}; }
+	Value* WINAPI Value::CreateCursor(HICON hValue) { return {}; }
+	Value* WINAPI Value::CreateCursor(const WCHAR* pszValue) { return {}; }
+	Value* WINAPI Value::CreateDFCFill(UINT uType, UINT uState) { return {}; }
+	Value* WINAPI Value::CreateDTBFill(const WCHAR* pszClassName, int iPartId, int iStateId) { return {}; }
+	Value* WINAPI Value::CreateElementList(DynamicArray<Element*, 0>* peListValue) { return {}; }
+	Value* WINAPI Value::CreateElementRef(Element* pe) { return {}; }
+	Value* WINAPI Value::CreateEncodedString(const WCHAR* pszValue) { return {}; }
+	Value* WINAPI Value::CreateExpression(Expression* pexValue) { return {}; }
+	Value* WINAPI Value::CreateFill(const Fill&) { return {}; }
+
+	Value* WINAPI Value::CreateGraphic(HBITMAP hBitmap, BYTE dBlendMode, UINT dBlendValue, bool bFlip, bool bRTL, bool bPreMultiplied) { return {}; }
+	Value* WINAPI Value::CreateGraphic(HENHMETAFILE hEnhMetaFile, HENHMETAFILE hAltEnhMetaFile) { return {}; }
+	Value* WINAPI Value::CreateGraphic(HICON hIcon, bool bFlip, bool bRTL, bool bShared) { return {}; }
+	Value* WINAPI Value::CreateGraphic(ISharedBitmap* pBitmap, BYTE dBlendMode, UINT dBlendValue) { return {}; }
+	Value* WINAPI Value::CreateGraphic(const WCHAR* pszICO, int DIRECTUISCALEDSIZEPLACEHOLDER, HINSTANCE hResLoad, bool bFlip, bool bRTL) { return {}; }
+	Value* WINAPI Value::CreateGraphic(const WCHAR* pszBMP, BYTE dBlendMode, UINT dBlendValue, int cx, int cy, HINSTANCE hResLoad, bool bFlip, bool bRTL) { return {}; }
+	Value* WINAPI Value::CreateGraphic(const WCHAR* pszICO, int cxDesired, int cyDesired, HINSTANCE hResLoad, bool bFlip, bool bRTL) { return {}; }
+
+	Value* WINAPI Value::CreateInt(int) { return {}; }
+	Value* WINAPI Value::CreateLayout(Layout*) { return {}; }
+	Value* WINAPI Value::CreatePoint(int x, int y) { return {}; }
+	Value* WINAPI Value::CreateRect(int left, int top, int right, int bottom) { return {}; }
+	Value* WINAPI Value::CreateSize(int cx, int cy) { return {}; }
+	Value* WINAPI Value::CreateString(const WCHAR* psz, HINSTANCE hinstance) { return {}; }
+	Value* WINAPI Value::CreateStyleSheet(StyleSheet* ppsValue) { return {}; }
+	
+	bool Value::GetBool() { return{}; }
+	Cursor* Value::GetCursor() { return{}; }
+	Element* Value::GetElement() { return {}; }
+	DynamicArray<Element*, 0>* Value::GetElementList() { return {}; }
+	Expression* Value::GetExpression() { return {}; }
+	const Fill* Value::GetFill() { return {}; }
+	Graphic* Value::GetGraphic() { return {}; }
+	void* Value::GetImage(bool bValue) { return {}; }
+	int Value::GetInt() { return {}; }
+	Layout* Value::GetLayout() { return {}; }
+	const POINT* Value::GetPoint() { return {}; }
+	const RECT* Value::GetRect() { return {}; }
+	int Value::GetRefCount() const { return {}; }
+	const SIZE* Value::GetSize() { return {}; }
+	const WCHAR* Value::GetString() { return {}; }
+	StyleSheet* Value::GetStyleSheet() { return {}; }
+	int Value::GetType() const { return {}; }
+	ATOM Value::GetAtom() { return {}; }
+	
+	Value* WINAPI Value::GetAtomZero() { return {}; }
+	Value* WINAPI Value::GetBoolFalse() { return {}; }
+	Value* WINAPI Value::GetBoolTrue() { return {}; }
+	Value* WINAPI Value::GetColorTrans() { return {}; }
+	Value* WINAPI Value::GetCursorNull() { return {}; }
+	Value* WINAPI Value::GetElListNull() { return {}; }
+	Value* WINAPI Value::GetElementNull() { return {}; }
+	Value* WINAPI Value::GetExprNull() { return {}; }
+	Value* WINAPI Value::GetIntZero() { return {}; }
+	Value* WINAPI Value::GetLayoutNull() { return {}; }
+	Value* WINAPI Value::GetNull() { return {}; }
+	Value* WINAPI Value::GetPointZero() { return {}; }
+	Value* WINAPI Value::GetRectZero() { return {}; }
+	Value* WINAPI Value::GetSheetNull() { return {}; }
+	Value* WINAPI Value::GetSizeZero() { return {}; }
+	Value* WINAPI Value::GetStringNull() { return {}; }
+	Value* WINAPI Value::GetUnavailable() { return {}; }
+	Value* WINAPI Value::GetUnset() { return {}; }
+	bool Value::IsEqual(Value*) { return {}; }
+	
+	void Value::Release() { }
+	WCHAR* Value::ToString(WCHAR* psz, UINT c) const { return {}; }
+	void Value::_ZeroRelease() { }
+	HRESULT WINAPI Value::StrDupW(const WCHAR* pszIn, WCHAR** pszOut) { return {}; }
+	//~ End DirectUI::Value Class
 
 	ValueProvider::ValueProvider()
 	{
 	}
 
-	ValueProvider::~ValueProvider(void)
-	{
-	}
-
-	unsigned long ValueProvider::AddRef(void)
+	ULONG ValueProvider::AddRef()
 	{
 		return 0;
 	}
 
-	ProviderProxyCall ValueProvider::GetProxyCreator(void)
-	{
-		return ProviderProxyCall();
-	}
+	// ProviderProxyCall ValueProvider::GetProxyCreator()
+	// {
+	// 	return ProviderProxyCall();
+	// }
 
-	long ValueProvider::QueryInterface(GUID const &, void **)
-	{
-		return 0;
-	}
-
-	unsigned long ValueProvider::Release(void)
+	HRESULT ValueProvider::QueryInterface(REFIID riid, void** ppvObject)
 	{
 		return 0;
 	}
 
-	long ValueProvider::SetValue(unsigned short const *)
+	ULONG ValueProvider::Release()
 	{
 		return 0;
 	}
 
-	long ValueProvider::get_IsReadOnly(int *)
+	HRESULT ValueProvider::SetValue(LPCWSTR val)
 	{
 		return 0;
 	}
 
-	long ValueProvider::get_Value(unsigned short **)
+	HRESULT ValueProvider::get_IsReadOnly(BOOL* pRetVal)
 	{
 		return 0;
 	}
 
+	HRESULT ValueProvider::get_Value(BSTR* pRetVal)
+	{
+		return 0;
+	}
+	//~ End DirectUI::ValueProvider Class
+
+	//~ Begin DirectUI::ValueProxy Class
 	ValueProxy::ValueProxy(ValueProxy const &)
 	{
 	}
@@ -10108,39 +9910,41 @@ namespace DirectUI
 		return *this;
 	}
 
-	ValueProxy * ValueProxy::Create(Element *)
+	ValueProxy* ValueProxy::Create(Element* pe)
 	{
 		return nullptr;
 	}
 
-	bool ValueProxy::IsPatternSupported(Element *)
+	bool ValueProxy::IsPatternSupported(Element* pe)
 	{
 		return false;
 	}
 
-	long ValueProxy::DoMethod(int, char *)
+	HRESULT ValueProxy::DoMethod(int, char*)
 	{
 		return 0;
 	}
 
-	void ValueProxy::Init(Element *)
+	void ValueProxy::Init(Element* pe)
 	{
 	}
 
-	long ValueProxy::GetIsReadOnly(int *)
+	HRESULT ValueProxy::GetIsReadOnly(int *)
 	{
 		return 0;
 	}
 
-	long ValueProxy::GetValue(unsigned short **)
+	HRESULT ValueProxy::GetValue(WCHAR* pRetVal)
 	{
 		return 0;
 	}
 
-	long ValueProxy::SetValue(unsigned short const *)
+	HRESULT ValueProxy::SetValue(const unsigned short*)
 	{
 		return 0;
 	}
+	//~ End ValueProxy Class
+	
 	Viewer::Viewer(Viewer const &)
 	{
 	}

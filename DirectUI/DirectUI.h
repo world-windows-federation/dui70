@@ -8,6 +8,7 @@
 #include <UIAutomationCore.h>
 #include <UIAutomationCoreApi.h>
 #include <DbgHelp.h>
+#include <thumbcache.h>
 #include <XmlLite.h>
 
 #if	defined(DIRECTUI_EXPORTS)

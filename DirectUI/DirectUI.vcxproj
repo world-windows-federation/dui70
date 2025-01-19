@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\ModernProgressRing.h" />
     <ClInclude Include="accessibility.h" />
     <ClInclude Include="AccessibleButton.h" />
     <ClInclude Include="AnimationStrip.h" />

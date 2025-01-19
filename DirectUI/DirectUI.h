@@ -134,90 +134,80 @@ namespace DirectUI
 {
 	extern UILIB_API unsigned long g_dwElSlot;
 
-extern "C"
-{
-	// HRESULT WINAPI InitProcessPriv(int duiVersion, unsigned short*unk1, char unk2, bool bEnableUIAutomationProvider);
-	// @Careful: fInitCommctl is new in Windows 10
-	HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl);
-	HRESULT WINAPI UnInitProcessPriv(HMODULE hModule);
-	EXTERN_C HRESULT WINAPI InitThread(UINT nThreadMode);
-	void WINAPI UnInitThread();
+	extern "C"
+	{
+		// HRESULT WINAPI InitProcessPriv(int duiVersion, unsigned short*unk1, char unk2, bool bEnableUIAutomationProvider);
+		// @Careful: fInitCommctl is new in Windows 10
+		HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl);
+		HRESULT WINAPI UnInitProcessPriv(HMODULE hModule);
+		EXTERN_C HRESULT WINAPI InitThread(UINT nThreadMode);
+		void WINAPI UnInitThread();
 
-	HRESULT WINAPI CreateDUIWrapper(Element* pe, IUnknown** ppunk);
-	HRESULT WINAPI CreateDUIWrapperEx(Element* pe, IXProviderCP* pprovCP, IUnknown** ppunk);
-	HRESULT WINAPI CreateDUIWrapperFromResource(HINSTANCE hRes, const WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, IUnknown** ppunk);
+		HRESULT WINAPI CreateDUIWrapper(Element* pe, IUnknown** ppunk);
+		HRESULT WINAPI CreateDUIWrapperEx(Element* pe, IXProviderCP* pprovCP, IUnknown** ppunk);
+		HRESULT WINAPI CreateDUIWrapperFromResource(HINSTANCE hRes, const WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, IUnknown** ppunk);
 
-	// int WINAPI GetScreenDPI();
+		// int WINAPI GetScreenDPI();
 
-	HRESULT WINAPI RegisterAllControls();
-	HRESULT WINAPI RegisterBaseControls();
-	HRESULT WINAPI RegisterBrowserControls();
-	HRESULT WINAPI RegisterCommonControls();
-	HRESULT WINAPI RegisterExtendedControls();
-	HRESULT WINAPI RegisterMacroControls();
-	HRESULT WINAPI RegisterMiscControls();
-	HRESULT WINAPI RegisterStandardControls();
-	HRESULT WINAPI RegisterXControls();
+		HRESULT WINAPI RegisterAllControls();
+		HRESULT WINAPI RegisterBaseControls();
+		HRESULT WINAPI RegisterBrowserControls();
+		HRESULT WINAPI RegisterCommonControls();
+		HRESULT WINAPI RegisterExtendedControls();
+		HRESULT WINAPI RegisterMacroControls();
+		HRESULT WINAPI RegisterMiscControls();
+		HRESULT WINAPI RegisterStandardControls();
+		HRESULT WINAPI RegisterXControls();
 
-	int WINAPI StartMessagePump();
-	int WINAPI StopMessagePump();
+		BOOL WINAPI StartMessagePump();
+		void WINAPI StopMessagePump();
+	
+		ATOM WINAPI StrToID(const WCHAR* psz);
+		CHAR* WINAPI UnicodeToMultiByte(const WCHAR* pszUnicode, int cChars, int* pMultiBytes);
+		WCHAR* WINAPI MultiByteToUnicode(WCHAR* pszMulti, int dBytes, int* pUniChars);
 
+		BOOL WINAPI IsAnimationsEnabled();
+		bool WINAPI IsPalette(HWND hwnd);
+		BOOL WINAPI IsUIAutomationProviderEnabled();
+		int WINAPI DUIDrawShadowText(HDC hdc, const WCHAR* pszText, int cch, RECT* prc, DWORD dwFlags, COLORREF crText);
 
-	ATOM WINAPI StrToID(const WCHAR* psz);
+		void WINAPI BlurBitmap(UINT* plBitmapBits, int cx, int cy, int cxRow, COLORREF crFill);
+		void WINAPI BlurBitmapNormal(UINT* prgb, int cx, int cy, int cxRow, COLORREF crFill);
+		
+		HBRUSH WINAPI BrushFromEnumI(int c);
+		COLORREF WINAPI ColorFromEnumI(int c);
+		COLORREF WINAPI ARGBColorEnumI(int c);
 
+		DWORD* WINAPI DisableAnimations();
+		int WINAPI DrawShadowTextEx(HDC hdc, const WCHAR *pszText, int cch, RECT* prc, DWORD dwFlags, COLORREF crText, COLORREF crShadow, int ixOffset, int iyOffset, BYTE bInitialAlpha, BOOL fAPIInit);
+		Element* WINAPI ElementFromGadget(HGADGET hGadget);
+		DWORD* WINAPI EnableAnimations();
+		void WINAPI FlushThemeHandles(WPARAM wParam);
+	
+		void WINAPI ForceDebugBreak();
 
-	int WINAPI UnicodeToMultiByte(UCString lpWideCharStr, int cchWideChar, int unk);
-	int WINAPI MultiByteToUnicode(LPCSTR lpMultiByteStr, int cbMultiByte, int unk);
+		IDataEntry* WINAPI GetElementDataEntry(Element* pe);
+		Macro* WINAPI GetElementMacro(Element* pe);
+		void* WINAPI GetFontCache();
 
-	BOOL WINAPI IsAnimationsEnabled();
-	int WINAPI IsPalette(HWND hWnd);
-	BOOL WINAPI IsUIAutomationProviderEnabled();
+		HRESULT WINAPI GetThemeHandle(const WCHAR* pszClass, HTHEME *phTheme);
+	
+		HRESULT WINAPI HrSysAllocString(const OLECHAR* psz, BSTR* ppbstrOut);
+		HRESULT WINAPI HStrDup(const WCHAR* pszSrc, WCHAR** ppszOut);
+	
+		BOOL WINAPI InitPreprocessor();
 
-	int WINAPI DUIDrawShadowText(HDC hdcDest, UCString lpchText, int cchText, LPRECT hdcSrc, UINT format, COLORREF dwTextColor);
+		HRESULT WINAPI SetDefAction(Element* pe, DWORD oleacc);
 
-	int WINAPI BlurBitmap(void*, void*, void*, void*, void*);
+	
+		BOOL WINAPI UiaHideOnGetObject(HWND hwnd, WPARAM wParam, LPARAM lParam);
+		HANDLE WINAPI UiaOnDestroySink(HWND hwnd);
+		HRESULT WINAPI UiaOnGetObject(Element* pe, WPARAM wParam, LPARAM lParam, bool* pfHandled, int* plResult);
+		BOOL WINAPI UiaOnToolTip(Element* pe, DWORD dwFlags);
 
-	HBRUSH WINAPI BrushFromEnumI(_In_ int Index);
-
-	DWORD WINAPI ColorFromEnumI(_In_ int Index);
-
-	LPVOID WINAPI DisableAnimations();
-	int WINAPI DrawShadowTextEx(HDC hdc, const WCHAR *lpchText, int cchText, LPRECT hdcSrc, UINT format, COLORREF dwTextColor, COLORREF dwBkColor, int a9, int a10, COLORREF a11, int a12);
-	void* WINAPI ElementFromGadget(void*);
-	LPVOID WINAPI EnableAnimations();
-	void WINAPI FlushThemeHandles(unsigned int);
-
-	//此函数仅调用DebugBreak，将程序中断
-	void WINAPI ForceDebugBreak();
-
-	IDataEntry* WINAPI GetElementDataEntry(Element* pe);
-	Macro* WINAPI GetElementMacro(int a1);
-	LPVOID WINAPI GetFontCache();
-
-	HRESULT WINAPI GetThemeHandle(LPCWSTR, void **);
-
-	//此函数调用SysAllocString，并返回ppStr
-	HRESULT WINAPI HrSysAllocString(OLECHAR *psz, BSTR* ppStr);
-
-	//此函数用于复制lpString字符串，并返回ppStr
-	HRESULT WINAPI HStrDup(LPCWSTR lpString, LPCWSTR* ppStr);
-
-	//此函数是空实现，无任何作用
-	BOOL WINAPI InitPreprocessor();
-
-	HRESULT WINAPI SetDefAction(Element *a1, _In_  DWORD dwRole);
-
-	BOOL WINAPI UiaHideOnGetObject(_In_ HWND hWnd, int a2, int a3);
-
-	//调用RemoveProp 返回举个句柄
-	HANDLE WINAPI UiaOnDestroySink(_In_ HWND hWnd);
-	HRESULT WINAPI UiaOnGetObject(void* *a1, int a2, InvokeHelper *a3, int a4, int a5);
-	BOOL WINAPI UiaOnToolTip(Element *, DWORD);
-
-	void WINAPI NotifyAccessibilityEvent(DWORD event, Element *);
-	void *WINAPI PreprocessBuffer(LPCWSTR Src, SIZE_T cSrc, BOOLEAN a3);
-	HGDIOBJ WINAPI ProcessAlphaBitmapI(HBITMAP hgdiobj);
-	void WINAPI PurgeThemeHandles();
-}
-
+		void WINAPI NotifyAccessibilityEvent(DWORD dwEvent, Element* pe); // TODO: Element* pe is supposed to be ModernProgressRing
+		WCHAR* WINAPI PreprocessBuffer(const WCHAR* pszBuf, UINT cchBuf, bool fInsertMainResId);
+		HBITMAP WINAPI ProcessAlphaBitmapI(HBITMAP hbmSource);
+		void WINAPI PurgeThemeHandles();
+	}
 }

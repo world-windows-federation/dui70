@@ -282,26 +282,26 @@ namespace DirectUI
 	DuiAccessible::~DuiAccessible()
 	{
 	}
-	void DuiAccessible::Initialize(Element *)
+	void DuiAccessible::Initialize(Element* pe)
 	{
 	}
-	HRESULT DuiAccessible::Create(Element *, DuiAccessible **)
+	HRESULT DuiAccessible::Create(Element* pe, DuiAccessible **)
 	{
 		return E_NOTIMPL;
 	}
-	Element * DuiAccessible::GetAccessibleParent(Element *)
+	Element * DuiAccessible::GetAccessibleParent(Element* pe)
 	{
 		return nullptr;
 	}
-	HRESULT DuiAccessible::AccNavigate(Element *, long, Element **)
+	HRESULT DuiAccessible::AccNavigate(Element* pe, long, Element** ppe)
 	{
 		return E_NOTIMPL;
 	}
-	HRESULT DuiAccessible::Disconnect(void)
+	HRESULT DuiAccessible::Disconnect()
 	{
 		return E_NOTIMPL;
 	}
-	HRESULT DuiAccessible::QueryInterface(REFIID riid, void ** ppvObject)
+	HRESULT DuiAccessible::QueryInterface(REFIID riid, void** ppvObject)
 	{
 		return E_NOTIMPL;
 	}
@@ -313,7 +313,7 @@ namespace DirectUI
 	{
 		return 0;
 	}
-	HRESULT DuiAccessible::GetTypeInfoCount(UINT * pctinfo)
+	HRESULT DuiAccessible::GetTypeInfoCount(UINT* pctinfo)
 	{
 		return E_NOTIMPL;
 	}
@@ -321,7 +321,7 @@ namespace DirectUI
 	{
 		return E_NOTIMPL;
 	}
-	HRESULT DuiAccessible::GetIDsOfNames(REFIID riid, LPOLESTR * rgszNames, UINT cNames, LCID lcid, DISPID * rgDispId)
+	HRESULT DuiAccessible::GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId)
 	{
 		return E_NOTIMPL;
 	}
@@ -329,23 +329,23 @@ namespace DirectUI
 	{
 		return E_NOTIMPL;
 	}
-	HRESULT DuiAccessible::GetIdentityString(DWORD dwIDChild, BYTE ** ppIDString, DWORD * pdwIDStringLen)
+	HRESULT DuiAccessible::GetIdentityString(DWORD dwIDChild, BYTE** ppIDString, DWORD * pdwIDStringLen)
 	{
 		return E_NOTIMPL;
 	}
-	HRESULT DuiAccessible::get_accParent(IDispatch **)
+	HRESULT DuiAccessible::get_accParent(IDispatch** ppdispParent)
 	{
 		return E_NOTIMPL;
 	}
-	HRESULT DuiAccessible::get_accChildCount(long *)
+	HRESULT DuiAccessible::get_accChildCount(long* pcountChildren)
 	{
 		return E_NOTIMPL;
 	}
-	HRESULT DuiAccessible::get_accChild(VARIANT, IDispatch **)
+	HRESULT DuiAccessible::get_accChild(VARIANT varChild, IDispatch **ppdispChild)
 	{
 		return E_NOTIMPL;
 	}
-	HRESULT DuiAccessible::get_accName(VARIANT, BSTR *)
+	HRESULT DuiAccessible::get_accName(VARIANT varChild, BSTR *)
 	{
 		return E_NOTIMPL;
 	}

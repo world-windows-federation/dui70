@@ -122,6 +122,8 @@
 #include "RichText.h"
 #include "TouchButton.h"
 #include "TouchCheckBox.h"
+#include "TouchScrollBar.h"
+#include "TouchScrollViewer.h"
 
 #include "CClassFactory.h"
 

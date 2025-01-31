@@ -1,5 +1,7 @@
 #pragma once
 
+typedef const DirectUI::PropertyInfo* (WINAPI *PropertyProcT)();
+
 namespace DirectUI
 {
 	struct UpdateCache
@@ -23,55 +25,55 @@ namespace DirectUI
 
 		long Initialize(unsigned int, Element*, unsigned long*);
 		static long WINAPI Create(unsigned int, Element*parent, unsigned long*, Element**out);
-		static long WINAPI UnRegister(struct IClassInfo**);
+		static long WINAPI UnRegister(IClassInfo**);
 
 
-		Element * GetParent(void);
+		Element * GetParent();
 		RECT const * GetPadding(Value * *);
-		bool GetOverhang(void);
-		Element * GetMouseWithinChild(void);
-		bool GetMouseWithin(void);
-		bool GetMouseFocused(void);
+		bool GetOverhang();
+		Element * GetMouseWithinChild();
+		bool GetMouseWithin();
+		bool GetMouseFocused();
 		SIZE const * GetMinSize(Value * *);
 		RECT const * GetMargin(Value * *);
 		POINT const * GetLocation(Value * *);
-		int GetLayoutPos(void);
+		int GetLayoutPos();
 		Layout * GetLayout(Value * *);
-		Element * GetKeyWithinChild(void);
-		bool GetKeyWithin(void);
-		int GetIndex(void);
+		Element * GetKeyWithinChild();
+		bool GetKeyWithin();
+		int GetIndex();
 		Element * GetImmediateChild(Element *);
-		unsigned short GetID(void);
-		bool GetHighDPI(void);
-		int GetHeight(void);
-		int GetForegroundStdColor(void);
-		struct DirectUI::Fill const * GetForegroundColor(Value * *);
-		int GetFontWeight(void);
-		int GetFontStyle(void);
-		int GetFontSize(void);
-		int GetFontQuality(void);
+		unsigned short GetID();
+		bool GetHighDPI();
+		int GetHeight();
+		int GetForegroundStdColor();
+		DirectUI::Fill const * GetForegroundColor(Value * *);
+		int GetFontWeight();
+		int GetFontStyle();
+		int GetFontSize();
+		int GetFontQuality();
 		unsigned short const * GetFontFace(Value * *);
 		unsigned short const * GetFont(Value * *);
-		static CRITICAL_SECTION * __stdcall GetFactoryLock(void);
+		static CRITICAL_SECTION * __stdcall GetFactoryLock();
 		SIZE const * GetExtent(Value * *);
 		long GetEncodedContentString(unsigned short *, UINT_PTR);
-		bool GetEnabled(void);
+		bool GetEnabled();
 
-		int GetDPI(void);
-		HGADGET GetDisplayNode(void);
-		int GetDirection(void);
-		SIZE const * GetDesiredSize(void);
-		DeferCycle * GetDeferObject(void);
+		int GetDPI();
+		HGADGET GetDisplayNode();
+		int GetDirection();
+		SIZE const * GetDesiredSize();
+		DeferCycle * GetDeferObject();
 		unsigned short const * GetContentString(Value * *);
-		int GetContentAlign(void);
-		int GetColorize(void);
+		int GetContentAlign();
+		int GetColorize();
 		bool GetClickablePoint(POINT *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
+		static IClassInfo * __stdcall GetClassInfoPtr();
 		unsigned short const * GetClass(Value * *);
 		DynamicArray<Element *, 0> * GetChildren(Value * *);
 		RECT const * GetBorderThickness(Value * *);
-		int GetBorderStyle(void);
-		int GetBorderStdColor(void);
+		int GetBorderStyle();
+		int GetBorderStdColor();
 
 		
 
@@ -80,8 +82,8 @@ namespace DirectUI
 		unsigned long WINAPI AddRef();
 		static UID WINAPI AnimationChange();
 
-		void BroadcastEvent(struct Event*);
-		void Detach(class DeferCycle*);
+		void BroadcastEvent(Event*);
+		void Detach(DeferCycle*);
 
 		//1
 		virtual bool IsRTLReading();
@@ -91,20 +93,20 @@ namespace DirectUI
 
 
 		//3
-		virtual UCString GetContentStringAsDisplayed(class Value**);
+		virtual UCString GetContentStringAsDisplayed(Value**);
 
 		//4
-		virtual bool OnPropertyChanging(PropertyInfo*, int, class Value*, class Value*);
-		virtual bool OnPropertyChanging(const PropertyInfo*, int, class Value*, class Value*);
+		virtual bool OnPropertyChanging(PropertyInfo*, int, Value*, Value*);
+		virtual bool OnPropertyChanging(const PropertyInfo*, int, Value*, Value*);
 		//5
 		//6
 		virtual void OnPropertyChanged(PropertyInfo*, int, Value*, Value*);
-		virtual void OnPropertyChanged(const PropertyInfo*, int, class Value*, class Value*);
+		virtual void OnPropertyChanged(const PropertyInfo*, int, Value*, Value*);
 		//7
 		//8
 		virtual void OnGroupChanged(int, bool);
 		//9
-		virtual void OnInput(struct InputEvent*);
+		virtual void OnInput(InputEvent*);
 		//10
 		virtual void OnKeyFocusMoved(Element*, Element*);
 		//11
@@ -117,7 +119,7 @@ namespace DirectUI
 		virtual void Paint(HDC, RECT const*, RECT const*, RECT*, RECT*);
 
 		//15
-		virtual SIZE GetContentSize(int, int, class Surface*);
+		virtual SIZE GetContentSize(int, int, Surface*);
 
 		//16
 		virtual long Add(Element**, unsigned int);
@@ -131,11 +133,11 @@ namespace DirectUI
 		virtual long Remove(Element**, unsigned int);
 
 		//19
-		virtual Element* GetAdjacent(Element*, int, const struct NavReference*, unsigned long);
+		virtual Element* GetAdjacent(Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags);
 
 		//20
 		virtual bool EnsureVisible(int, int, int, int);
-		virtual void SetKeyFocus(void);
+		virtual void SetKeyFocus();
 
 		virtual long AddBehavior(IDuiBehavior* behavior);
 		virtual long RemoveBehavior(IDuiBehavior* behavior);
@@ -157,9 +159,9 @@ namespace DirectUI
 		void EnableUiaEvents(bool);
 		void EndDefer(unsigned long);
 		bool EnsureVisible(unsigned int);
-		bool EnsureVisible(void);
+		bool EnsureVisible();
 		Element* FindDescendent(ATOM id);
-		void FireEvent(struct Event*, bool, bool);
+		void FireEvent(Event* pEvent, bool fFull, bool fUseSpecifiedTarget);
 
 		bool GetAbsorbsShortcut();
 		UCString GetAccDefAction(Value**);
@@ -257,8 +259,8 @@ namespace DirectUI
 		int GetTooltipMaxWidth();
 		Element* GetTopLevel();
 		float GetTreeAlphaLevel();
-		Value* GetValue( const PropertyInfo* (WINAPI*)(void), int, UpdateCache*);
-		Value* GetValue(const PropertyInfo*, int, UpdateCache*);
+		Value* GetValue(PropertyProcT pPropertyProc, int iIndex, UpdateCache* puc);
+		Value* GetValue(const PropertyInfo* ppi, int iIndex, UpdateCache* puc);
 		bool GetVisible();
 		int GetWidth();
 		bool GetWindowActive();
@@ -314,8 +316,8 @@ namespace DirectUI
 		unsigned long WINAPI Release();
 		long Remove(Element*);
 		long RemoveAll();
-		void RemoveListener(struct IElementListener*);
-		long RemoveLocalValue( const PropertyInfo* (WINAPI*)(void));
+		void RemoveListener(IElementListener*);
+		long RemoveLocalValue( const PropertyInfo* (WINAPI*)());
 		long RemoveLocalValue(const PropertyInfo*);
 
 		long SetAbsorbsShortcut(bool);
@@ -367,7 +369,7 @@ namespace DirectUI
 		long SetForegroundStdColor(int);
 		long SetHeight(int);
 		long SetID(UCString);
-		long SetLayout(class Layout*);
+		long SetLayout(Layout*);
 		long SetLayoutPos(int);
 		long SetMargin(int, int, int, int);
 		long SetMinSize(int, int);
@@ -381,8 +383,8 @@ namespace DirectUI
 		long SetTextGlowSize(int);
 		long SetTooltip(bool);
 		long SetTooltipMaxWidth(int);
-		long SetValue( const PropertyInfo* (WINAPI*)(void), int, Value*);
-		long SetValue(const PropertyInfo*, int, Value*);
+		long SetValue(PropertyProcT pPropertyProc, int iIndex, Value* pv);
+		long SetValue(const PropertyInfo* ppi, int iIndex, Value* pv);
 		long SetVisible(bool);
 		long SetWidth(int);
 		long SetWindowActive(bool);
@@ -395,9 +397,9 @@ namespace DirectUI
 		DeferCycle* TestDeferObject();
 		bool UiaEvents();
 		void UpdateLayout();
-		static void WINAPI _AddDependency(Element*, const PropertyInfo*, int, struct DepRecs*, DeferCycle*, long*);
+		static void WINAPI _AddDependency(Element*, const PropertyInfo*, int, DepRecs*, DeferCycle*, long*);
 		void _ClearNeedsLayout();
-		static long WINAPI _DisplayNodeCallback(HGADGET, void*, struct EventMsg*);
+		static long WINAPI _DisplayNodeCallback(HGADGET, void*, EventMsg*);
 		void _EndOptimizedLayoutQ();
 		int _GetChangesUpdatePass();
 		unsigned int _GetNeedsLayout();
@@ -405,16 +407,16 @@ namespace DirectUI
 		static int WINAPI _MarkElementForLayout(Element*, unsigned int);
 		static bool WINAPI _SetGroupChanges(Element*, int, DeferCycle*);
 		int _SetNeedsLayout(unsigned int);
-		void _StartOptimizedLayoutQ(void);
+		void _StartOptimizedLayoutQ();
 		static void WINAPI _TransferGroupFlags(Element*, int);
 		SIZE _UpdateDesiredSize(int, int, Surface*);
 		void _UpdateLayoutPosition(int, int);
 		void _UpdateLayoutSize(int, int);
 		static PropertyInfo const * __stdcall EnabledProp();
-		int GetAlpha(void);
-		int GetAnimation(void);
+		int GetAlpha();
+		int GetAnimation();
 		Fill const * GetBackgroundColor(Value * *);
-		int GetBackgroundStdColor(void);
+		int GetBackgroundStdColor();
 		Fill const * GetBorderColor(Value * *);
 	protected:
 		//24
@@ -469,9 +471,9 @@ protected:
 		static void WINAPI _FlushLayout(Element*, DeferCycle*);
 		static void WINAPI _InvalidateCachedDSConstraints(Element*);
 		void _OnFontPropChanged(Value*);
-		long _RemoveLocalValue( const PropertyInfo* (WINAPI*)(void), bool);
+		long _RemoveLocalValue( const PropertyInfo* (WINAPI*)(), bool);
 		long _RemoveLocalValue(const PropertyInfo*, bool);
-		long _SetValue( const PropertyInfo* (WINAPI*)(void), int, Value*, bool);
+		long _SetValue( const PropertyInfo* (WINAPI*)(), int, Value*, bool);
 		long _SetValue(const PropertyInfo*, int, Value*, bool);
 private:
 		Element* FindDescendentWorker(unsigned short);
@@ -485,21 +487,21 @@ private:
 		bool TrySparsePattern(LPPOINT, const RECT&);
 		void _BroadcastEventWorker(Event*);
 		int _CachedValueIsEqual(const PropertyInfo*, Element*);
-		void _GetBuriedSheetDependencies(const PropertyInfo*, Element*, struct DepRecs*, DeferCycle*, long*);
+		void _GetBuriedSheetDependencies(const PropertyInfo*, Element*, DepRecs*, DeferCycle*, long*);
 		void _UpdatePropertyInCache(const PropertyInfo*);
 		static void WINAPI _VoidPCNotifyTree(int, DeferCycle*);
 		
 
 		void _FlushDS(DeferCycle*);
 		Value* _GetComputedValue(const PropertyInfo*, UpdateCache*);
-		long _GetDependencies(const PropertyInfo*, int, struct DepRecs*, int, Value*, DeferCycle*);
+		long _GetDependencies(const PropertyInfo*, int, DepRecs*, int, Value*, DeferCycle*);
 		Value* _GetLocalValue(const PropertyInfo*);
 		Value* _GetLocalValueFromVM(const PropertyInfo*);
 		Value* _GetSpecifiedValue(const PropertyInfo*, UpdateCache*);
 		Value* _GetSpecifiedValueIgnoreCache(const PropertyInfo*);
 		void _InheritProperties();
 		long _PostSourceChange();
-		long _PreSourceChange( const PropertyInfo* (WINAPI*)(void), int, Value*, Value*);
+		long _PreSourceChange( const PropertyInfo* (WINAPI*)(), int, Value*, Value*);
 		long _PreSourceChange(const PropertyInfo*, int, Value*, Value*);
 
 		unsigned int GetCommonDrawTextFlags(int);
@@ -516,7 +518,7 @@ private:
 		int _iGCSlot;
 		int _iGCLPSlot;
 		int _iPCTail;
-		struct DeferCycle *_pDeferCycle;
+		DeferCycle *_pDeferCycle;
 		// Internal::ListenerData *_pld;
 		void *_pld;
 		Element *_peInitialParent;
@@ -588,7 +590,7 @@ private:
 	{
 	public:
 		ElementProxy(ElementProxy const &);
-		ElementProxy(void);
+		ElementProxy();
 		ElementProxy & operator=(ElementProxy const &);
 
 		static ElementProxy * __stdcall Create(Element *);
@@ -608,7 +610,7 @@ private:
 		long IsPatternSupported(Schema::Pattern, bool *);
 		long Navigate(NavigateDirection, IRawElementProviderFragment**);
 		long SetString(VARIANT *, UCString (Element::*)(Value * *));
-		int _UsesUIAProxies(void);
+		int _UsesUIAProxies();
 
 		//2
 		virtual void Init(Element *);
@@ -627,7 +629,7 @@ private:
 		ElementProvider(const ElementProvider&) = delete;
 		virtual ~ElementProvider();
 
-		static long WINAPI Create(Element*, class InvokeHelper*, ElementProvider**out);
+		static long WINAPI Create(Element*, InvokeHelper*, ElementProvider**out);
 
 		long DoInvokeArgs(int, ProviderProxyCall, char*);
 		const Element* GetElementKey();
@@ -642,7 +644,7 @@ private:
 
 		//IRawElementProviderSimple
 		virtual /* [propget] */ HRESULT STDMETHODCALLTYPE get_ProviderOptions(
-			/* [retval][out] */ __RPC__out enum ProviderOptions *pRetVal);
+			/* [retval][out] */ __RPC__out ProviderOptions *pRetVal);
 
 		virtual HRESULT STDMETHODCALLTYPE GetPatternProvider(
 			/* [in] */ PATTERNID patternId,
@@ -657,8 +659,8 @@ private:
 
 		//IRawElementProviderFragment
 		virtual HRESULT STDMETHODCALLTYPE Navigate(
-			/* [in] */ enum NavigateDirection direction,
-			/* [retval][out] */ __RPC__deref_out_opt IRawElementProviderFragment **pRetVal);
+			/* [in] */ NavigateDirection direction,
+			           /* [retval][out] */ __RPC__deref_out_opt IRawElementProviderFragment **pRetVal);
 
 		virtual HRESULT STDMETHODCALLTYPE GetRuntimeId(
 			/* [retval][out] */ __RPC__deref_out_opt SAFEARRAY * *pRetVal);
@@ -669,7 +671,7 @@ private:
 		virtual HRESULT STDMETHODCALLTYPE GetEmbeddedFragmentRoots(
 			/* [retval][out] */ __RPC__deref_out_opt SAFEARRAY * *pRetVal);
 
-		virtual HRESULT STDMETHODCALLTYPE SetFocus(void);
+		virtual HRESULT STDMETHODCALLTYPE SetFocus();
 
 		virtual /* [propget] */ HRESULT STDMETHODCALLTYPE get_FragmentRoot(
 			/* [retval][out] */ __RPC__deref_out_opt IRawElementProviderFragmentRoot **pRetVal);

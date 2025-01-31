@@ -1,37 +1,66 @@
 #pragma once
 
+typedef class UID (WINAPI *UIDPROC)();
+
 class UID
 {
 public:
 	// user defined ctor
 	// to enable correct return by outptr sematics
 	// https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170#return-values
-	UID() { }
+	UID() : _address(nullptr)
+	{
+	}
 
-	BYTE *_address{};
+	UID(const BYTE* address) : _address(address)
+	{
+	}
+
+	UID(UIDPROC proc) : _address(proc()._address)
+	{
+	}
+
+	const BYTE* _address;
 };
 
-inline bool operator==(UID id, UID( (*ev)(void))) {
-	UID z;
-	auto p = ev();
-	return id._address == p._address;
+inline bool operator==(const UID& lhs, const UID& rhs)
+{
+	return lhs._address == rhs._address;
 }
+
+inline bool operator==(const UID& lhs, const UIDPROC& rhs)
+{
+	return lhs._address == rhs()._address;
+}
+
+DECLARE_HANDLE(HACTION);
+DECLARE_HANDLE(HGADGET);
 
 struct GMA_ACTIONINFO
 {
-
+	HACTION hact;
+	void* pvData;
+	float flDuration;
+	float flProgress;
+	int cEvent;
+	int cPeriods;
+	BOOL fFinished;
 };
 
 typedef struct tagGMSG
 {
+	ULONG cbSize;
+	int nMsg;
+	HGADGET hgadMsg;
 } GMSG, *LPGMSG;
 
-
-DECLARE_HANDLE(HGADGET);
-
-struct EventMsg
+struct MethodMsg : GMSG
 {
+};
 
+struct EventMsg : MethodMsg
+{
+	UINT nMsgFlags;
 };
 
 
@@ -40,6 +69,7 @@ struct EventMsg
 namespace DirectUI
 {
 	// TODO: are these even in dui or custom by Seven-Mile?
+	// TODO(Amrsatrio): no they are not, they are custom by Seven-Mile
 	typedef unsigned short UChar;
 	typedef UChar* UString;
 	typedef const unsigned short* UCString;

@@ -1,11 +1,13 @@
 #pragma once
 
+typedef DirectUI::Value* (WINAPI *DefaultValueProcT)();
+
 namespace DirectUI
 {
-	
 	struct Fill
 	{
 		BYTE dType;
+
 		union
 		{
 			struct
@@ -44,28 +46,29 @@ namespace DirectUI
 
 		struct
 		{
-			BYTE dImgType: 3;
-			BYTE dMode: 4;
-			bool bFlip: 1;
-			bool bRTLGraphic: 1;
-			bool bFreehImage: 1;
-			bool bSharedResource: 1;
-			
+			BYTE dImgType : 3;
+			BYTE dMode : 4;
+			bool bFlip : 1;
+			bool bRTLGraphic : 1;
+			bool bFreehImage : 1;
+			bool bSharedResource : 1;
+
 			union
 			{
 				BYTE dAlpha;
+
 				struct
 				{
-					BYTE r: 8;
-					BYTE g: 8;
-					BYTE b: 8;
+					BYTE r : 8;
+					BYTE g : 8;
+					BYTE b : 8;
 				} rgbTrans;
 			};
 		} BlendMode;
-		
+
 		HINSTANCE hResLoad;
 		const WCHAR* lpszName;
-		//ScaledSIZE scaledSize; //TODO: Implement DirectUI::ScaledSIZE
+		ScaledSIZE scaledSize;
 		float fScaleFactor;
 	};
 
@@ -90,10 +93,10 @@ namespace DirectUI
 		const WCHAR* pszName;
 		int fFlags;
 		int fGroups;
-		const int *pValidValues;
-		const DirectUI::EnumMap* pEnumMaps;
-		DirectUI::Value* (*DefaultProc)();
-		DirectUI::PropertyInfoData* pData;
+		const int* pValidValues;
+		const EnumMap* pEnumMaps;
+		DefaultValueProcT DefaultProc;
+		PropertyInfoData* pData;
 	};
 
 	struct DepRecs
@@ -104,12 +107,10 @@ namespace DirectUI
 
 	struct UILIB_API NavReference
 	{
-	public:
-		NavReference() = delete;
-		NavReference(const NavReference&) = delete;
-		~NavReference() = delete;
+		void Init(Element* pe, RECT* prc);
 
-		void Init(Element* pe, RECT*);
-		NavReference& operator=(NavReference const &);
+		UINT cbSize;
+		Element* pe;
+		RECT* prc;
 	};
 }

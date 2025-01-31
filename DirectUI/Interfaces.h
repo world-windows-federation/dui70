@@ -2,46 +2,47 @@
 
 namespace DirectUI
 {
-	struct IElementListener
+	class Value;
+	struct PropertyInfo;
+
+	struct DECLSPEC_NOVTABLE IElementListener
 	{
-	public:
 		//0
-		virtual void OnListenerAttach(class Element* elem) = 0;
+		virtual void OnListenerAttach(Element* peFrom) = 0;
 		//1
-		virtual void OnListenerDetach(class Element* elem) = 0;
+		virtual void OnListenerDetach(Element* peFrom) = 0;
 		//2 returns false to cancel
-		virtual bool OnPropertyChanging(class Element* elem, const struct PropertyInfo *prop, int unk, class Value *before, class Value *after) = 0;
+		virtual bool OnListenedPropertyChanging(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) = 0;
 		//3
-		virtual void OnListenedPropertyChanged(class Element* elem, const struct PropertyInfo *prop, int type, class Value *before, class Value *after) = 0;
+		virtual void OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) = 0;
 		//4
-		virtual void OnListenedInput(class Element* elem, struct InputEvent *event) = 0;
+		virtual void OnListenedInput(Element* peFrom, InputEvent* pInput) = 0;
 		//5
-		virtual void OnListenedEvent(class Element* elem, struct Event *event) = 0;
+		virtual void OnListenedEvent(Element* peFrom, Event* pEvent) = 0;
 	};
 
 	struct UILIB_API IClassInfo
 	{
+		IClassInfo& operator=(const IClassInfo&) = delete;
 
-		IClassInfo&operator=(const IClassInfo&) = delete;
-
-		virtual void AddRef(void) = 0;
-		virtual int Release(void) = 0;
-		virtual HRESULT CreateInstance(Element *,ULONG *,Element * *) = 0;
-		virtual const PropertyInfo * EnumPropertyInfo(UINT) = 0;
-		virtual const PropertyInfo * GetByClassIndex(UINT) = 0;
-		virtual unsigned int GetPICount(void) const = 0;
-		virtual unsigned int GetGlobalIndex(void) const = 0;
-		virtual IClassInfo * GetBaseClass(void) = 0;
+		virtual void AddRef() = 0;
+		virtual int Release() = 0;
+		virtual HRESULT CreateInstance(Element*, ULONG*, Element**) = 0;
+		virtual const PropertyInfo* EnumPropertyInfo(UINT) = 0;
+		virtual const PropertyInfo* GetByClassIndex(UINT) = 0;
+		virtual unsigned int GetPICount() const = 0;
+		virtual unsigned int GetGlobalIndex() const = 0;
+		virtual IClassInfo* GetBaseClass() = 0;
 		virtual UCString GetName() const = 0;
-		virtual bool IsValidProperty(struct PropertyInfo const *) const = 0;
-		virtual bool IsSubclassOf(IClassInfo *) const = 0;
-		virtual void Destroy(void) = 0;
-		virtual HINSTANCE GetModule(void) const = 0;
-		virtual bool IsGlobal(void) const = 0;
-		virtual void AddChild(void) = 0;
-		virtual void RemoveChild(void) = 0;
-		virtual int GetChildren(void) const = 0;
-		virtual void AssertPIZeroRef(void) const = 0;
+		virtual bool IsValidProperty(PropertyInfo const*) const = 0;
+		virtual bool IsSubclassOf(IClassInfo*) const = 0;
+		virtual void Destroy() = 0;
+		virtual HINSTANCE GetModule() const = 0;
+		virtual bool IsGlobal() const = 0;
+		virtual void AddChild() = 0;
+		virtual void RemoveChild() = 0;
+		virtual int GetChildren() const = 0;
+		virtual void AssertPIZeroRef() const = 0;
 
 		//virtual ~IClassInfo();
 	};
@@ -49,62 +50,61 @@ namespace DirectUI
 	struct UILIB_API IDataEntry
 	{
 	public:
-		IDataEntry(IDataEntry const &);
-		IDataEntry(void);
-		virtual ~IDataEntry(void);
+		IDataEntry(const IDataEntry&);
+		IDataEntry();
+		virtual ~IDataEntry();
 
 		virtual HRESULT GetProperty(const WCHAR*, WCHAR**, bool*) = 0;
 		virtual void* GetActual() = 0;
 
-		IDataEntry & operator=(IDataEntry const &);
+		IDataEntry& operator=(const IDataEntry&);
 	};
 
 	class DECLSPEC_NOVTABLE IProxy
 	{
 	public:
-		virtual long DoMethod(int, char *) = 0;
+		virtual long DoMethod(int, char*) = 0;
 
 	protected:
-		virtual void Init(Element *) = 0;
+		virtual void Init(Element*) = 0;
 	};
 
 	class UILIB_API Proxy
 	{
 	public:
-		Proxy(Proxy const &);
-		Proxy(void);
-		virtual ~Proxy(void);
-		Proxy & operator=(Proxy const &);
+		Proxy(const Proxy&);
+		Proxy();
+		virtual ~Proxy();
+		Proxy& operator=(const Proxy&);
 
-		static long __stdcall SyncCallback(struct HGADGET__ *, void *, struct EventMsg *);
+		static long __stdcall SyncCallback(HGADGET__*, void*, EventMsg*);
 
 	protected:
-		void Invoke(unsigned int, void *);
-		virtual void OnInvoke(unsigned int, void *);
-
+		void Invoke(unsigned int, void*);
+		virtual void OnInvoke(unsigned int, void*);
 	};
 
 	class UILIB_API ProviderProxy : public IProxy
 	{
 	public:
-		ProviderProxy(ProviderProxy const &);
-		ProviderProxy & operator=(ProviderProxy const &);
+		ProviderProxy(const ProviderProxy&);
+		ProviderProxy& operator=(const ProviderProxy&);
 
 	protected:
-		ProviderProxy(void);
-		virtual void Init(class Element *);
+		ProviderProxy();
+		virtual void Init(Element*);
 	};
 
-	typedef class ProviderProxy* (__stdcall * ProviderProxyCall)(class Element *);
+	typedef ProviderProxy* (__stdcall*ProviderProxyCall)(Element*);
 
 	class UILIB_API IProvider
 	{
 	public:
-		IProvider(IProvider const &);
-		IProvider(void);
-		IProvider & operator=(IProvider const &);
+		IProvider(const IProvider&);
+		IProvider();
+		IProvider& operator=(const IProvider&);
 
-		virtual ProviderProxyCall GetProxyCreator(void) = 0;
+		virtual ProviderProxyCall GetProxyCreator() = 0;
 	};
 
 	class UILIB_API RefcountBase
@@ -112,7 +112,7 @@ namespace DirectUI
 	public:
 		RefcountBase();
 		RefcountBase(const RefcountBase&) = delete;
-		RefcountBase&operator=(const RefcountBase&) = delete;
+		RefcountBase& operator=(const RefcountBase&) = delete;
 
 		virtual ~RefcountBase();
 
@@ -124,7 +124,7 @@ namespace DirectUI
 	template <class X, class Y, int i>
 	class PatternProvider
 		: public RefcountBase
-		, public IProvider
+		  , public IProvider
 		//, public Y
 	{
 	public:
@@ -134,22 +134,23 @@ namespace DirectUI
 		virtual ~PatternProvider();
 
 		static long WINAPI Create(class ElementProvider*, IUnknown**);
-		virtual void Init(class ElementProvider*);
+		virtual void Init(ElementProvider*);
 		//IProvider
-		virtual ProviderProxyCall GetProxyCreator(void);
+		virtual ProviderProxyCall GetProxyCreator();
+
 	protected:
 		long DoInvoke(int, ...);
-	private:
 
+	private:
 	};
 
 
 	struct UILIB_API ISBLeak
 	{
 	public:
-		ISBLeak(ISBLeak const &);
-		ISBLeak(void);
-		ISBLeak & operator=(ISBLeak const &);
+		ISBLeak(const ISBLeak&);
+		ISBLeak();
+		ISBLeak& operator=(const ISBLeak&);
 
 		virtual void T1() = 0;
 		virtual void T2() = 0;
@@ -159,33 +160,33 @@ namespace DirectUI
 	class UILIB_API IXProviderCP
 	{
 	public:
-		IXProviderCP(IXProviderCP const &);
-		IXProviderCP(void);
-		IXProviderCP & operator=(IXProviderCP const &);
+		IXProviderCP(const IXProviderCP&);
+		IXProviderCP();
+		IXProviderCP& operator=(const IXProviderCP&);
 
-		virtual long CreateDUICP(class HWNDElement *, HWND, HWND, class Element * *, class DUIXmlParser * *) = 0;
-		virtual long CreateParserCP(class DUIXmlParser * *) = 0;
-		virtual void DestroyCP(void) = 0;
+		virtual long CreateDUICP(class HWNDElement*, HWND, HWND, Element**, class DUIXmlParser**) = 0;
+		virtual long CreateParserCP(DUIXmlParser**) = 0;
+		virtual void DestroyCP() = 0;
 	};
 
 	class UILIB_API IXElementCP
 	{
 	public:
-		IXElementCP(IXElementCP const &);
-		IXElementCP(void);
-		IXElementCP & operator=(IXElementCP const &);
+		IXElementCP(const IXElementCP&);
+		IXElementCP();
+		IXElementCP& operator=(const IXElementCP&);
 
-		virtual HWND GetNotificationSinkHWND(void) = 0;
+		virtual HWND GetNotificationSinkHWND() = 0;
 	};
 
 	struct UILIB_API IDataEngine
 	{
 	public:
-		IDataEngine(IDataEngine const &);
-		IDataEngine(void);
-		IDataEngine & operator=(IDataEngine const &);
+		IDataEngine(const IDataEngine&);
+		IDataEngine();
+		IDataEngine& operator=(const IDataEngine&);
 
-		virtual ~IDataEngine(void);
+		virtual ~IDataEngine();
 
 		virtual UINT GetSize() = 0;
 		virtual IDataEntry* GetEntry(UINT) = 0;
@@ -194,11 +195,11 @@ namespace DirectUI
 	class UILIB_API StyleSheet
 	{
 	public:
-		StyleSheet(StyleSheet const &);
-		StyleSheet(void);
-		StyleSheet & operator=(StyleSheet const &);
+		StyleSheet(const StyleSheet&);
+		StyleSheet();
+		StyleSheet& operator=(const StyleSheet&);
 
-		static long __stdcall Create(StyleSheet * *);
+		static long __stdcall Create(StyleSheet**);
 
 		virtual void T1() = 0;
 		virtual void T2() = 0;
@@ -209,9 +210,51 @@ namespace DirectUI
 		virtual void T7() = 0;
 		virtual void T8() = 0;
 	};
-
 }
 
-struct UILIB_API IDuiBehavior {
+namespace DuiBehaviorFilters
+{
+	enum Flags
+	{
+		None = 0x0,
+		Hosted = 0x1,
+		UnHosted = 0x2,
+		PropertyChanging = 0x4,
+		PropertyChanged = 0x8,
+		Input = 0x10,
+		KeyFocusMoved = 0x20,
+		Events = 0x40,
+		Layout = 0x80,
+		Paint = 0x100,
+		GetAdjacent = 0x200,
+		DisplayNodeCallback = 0x400,
+	};
+}
 
+DEFINE_ENUM_FLAG_OPERATORS(DuiBehaviorFilters::Flags);
+
+namespace DirectUI
+{
+	struct NavReference;
+}
+
+MIDL_INTERFACE("70650a6d-8987-4d93-9b1d-aceb9d92f485")
+IDuiBehavior : IUnknown
+{
+	virtual HRESULT STDMETHODCALLTYPE Init(DirectUI::Value*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE GetCallbackFilters(DuiBehaviorFilters::Flags*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnAttach(DirectUI::Element*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnDetach(DirectUI::Element*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnHosted(DirectUI::Element*, DirectUI::Element*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnUnHosted(DirectUI::Element*, DirectUI::Element*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnPropertyChanging(DirectUI::Element*, const DirectUI::PropertyInfo*, int, DirectUI::Value*, DirectUI::Value*, int*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnPropertyChanged(DirectUI::Element*, const DirectUI::PropertyInfo*, int, DirectUI::Value*, DirectUI::Value*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnInput(DirectUI::Element*, DirectUI::InputEvent*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnKeyFocusMoved(DirectUI::Element*, DirectUI::Element*, DirectUI::Element*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnEvent(DirectUI::Element*, DirectUI::Event*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnDoLayout(DirectUI::Element*, int, int) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnUpdateDesiredSize(DirectUI::Element*, int, int, DirectUI::Surface*, tagSIZE*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnPaint(DirectUI::Element*, HDC, const RECT*, const RECT*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnGetAdjacent(DirectUI::Element*, int, const DirectUI::NavReference*, DWORD, DirectUI::Element**) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnDisplayNodeCallback(DirectUI::Element*, EventMsg*) = 0;
 };

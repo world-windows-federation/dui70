@@ -1,9 +1,58 @@
 #pragma once
 
+enum DynamicScaleValue
+{
+	DSV_None = 0x0,
+
+	DSV_Int = 0x1,
+
+	DSV_Float = 0x1,
+
+	DSV_Left = 0x1,
+	DSV_Top = 0x2,
+	DSV_Right = 0x4,
+	DSV_Bottom = 0x8,
+
+	DSV_Height = 0x1,
+	DSV_Width = 0x2,
+
+	DSV_X = 0x1,
+	DSV_Y = 0x2,
+};
+
+DEFINE_ENUM_FLAG_OPERATORS(DynamicScaleValue);
+
 namespace DirectUI
 {
+	struct ScaledSIZE : SIZE
+	{
+		DynamicScaleValue dynamicScaleValue;
+	};
 
-	enum class ValueType : int {
+	struct ScaledInt
+	{
+		int i;
+		DynamicScaleValue dynamicScaleValue;
+	};
+
+	struct ScaledFloat
+	{
+		float fl;
+		DynamicScaleValue dynamicScaleValue;
+	};
+
+	struct ScaledRECT : RECT
+	{
+		DynamicScaleValue dynamicScaleValue;
+	};
+
+	struct ScaledPOINT : POINT
+	{
+		DynamicScaleValue dynamicScaleValue;
+	};
+
+	enum class ValueType : int
+	{
 		Unavailable = -2,
 		Unset = -1,
 		Null = 0,
@@ -29,8 +78,8 @@ namespace DirectUI
 	class UILIB_API Value
 	{
 	public:
-		Value& operator=(const Value &);
-		
+		Value& operator=(const Value&);
+
 		void AddRef();
 
 		static Value* WINAPI CreateAtom(ATOM atom);
@@ -47,21 +96,21 @@ namespace DirectUI
 		static Value* WINAPI CreateElementRef(Element* pe);
 		static Value* WINAPI CreateEncodedString(const WCHAR* pszValue);
 		static Value* WINAPI CreateExpression(Expression* pexValue);
-		static Value* WINAPI CreateFill(const struct Fill &Fill);
-		
+		static Value* WINAPI CreateFill(const struct Fill& Fill);
+
 		static Value* WINAPI CreateGraphic(HBITMAP hBitmap, BYTE dBlendMode, UINT dBlendValue, bool bFlip, bool bRTL, bool bPreMultiplied);
 		static Value* WINAPI CreateGraphic(HENHMETAFILE hEnhMetaFile, HENHMETAFILE hAltEnhMetaFile);
 		static Value* WINAPI CreateGraphic(HICON hIcon, bool bFlip, bool bRTL, bool bShared);
 		static Value* WINAPI CreateGraphic(ISharedBitmap* pBitmap, BYTE dBlendMode, UINT dBlendValue);
-		static Value* WINAPI CreateGraphic(const WCHAR* pszICO, int DIRECTUISCALEDSIZEPLACEHOLDER, HINSTANCE hResLoad, bool bFlip, bool bRTL);
+		static Value* WINAPI CreateGraphic(const WCHAR* pszICO, ScaledSIZE szDesired, HINSTANCE hResLoad, bool bFlip, bool bRTL);
 		static Value* WINAPI CreateGraphic(const WCHAR* pszBMP, BYTE dBlendMode, UINT dBlendValue, int cx, int cy, HINSTANCE hResLoad, bool bFlip, bool bRTL);
 		static Value* WINAPI CreateGraphic(const WCHAR* pszICO, int cxDesired, int cyDesired, HINSTANCE hResLoad, bool bFlip, bool bRTL);
-		
-		static Value* WINAPI CreateInt(int dValue);
+
+		static Value* WINAPI CreateInt(int dValue, DynamicScaleValue dsv = DSV_None);
 		static Value* WINAPI CreateLayout(class Layout*);
-		static Value* WINAPI CreatePoint(int x, int y);
-		static Value* WINAPI CreateRect(int left, int top, int right, int bottom);
-		static Value* WINAPI CreateSize(int cx, int cy);
+		static Value* WINAPI CreatePoint(int x, int y, DynamicScaleValue dsv = DSV_None);
+		static Value* WINAPI CreateRect(int left, int top, int right, int bottom, DynamicScaleValue dsv = DSV_None);
+		static Value* WINAPI CreateSize(int cx, int cy, DynamicScaleValue dsv = DSV_None);
 		static Value* WINAPI CreateString(const WCHAR* pszValue, HINSTANCE hInstance);
 		static Value* WINAPI CreateStyleSheet(StyleSheet* ppsValue);
 
@@ -106,6 +155,7 @@ namespace DirectUI
 		bool IsEqual(Value*);
 		void Release();
 		WCHAR* ToString(WCHAR* psz, UINT c) const;
+
 	private:
 		void _ZeroRelease();
 		static HRESULT WINAPI StrDupW(const WCHAR* pszIn, WCHAR** pszOut);
@@ -117,15 +167,15 @@ namespace DirectUI
 	{
 	public:
 		ValueProvider();
-		
-		//ProviderProxyCall GetProxyCreator() override;
-		
+
+		ProviderProxyCall GetProxyCreator() override;
+
 		//~ Begin IUnknown Interface
 		STDMETHODIMP QueryInterface(REFIID riid, void** ppvObject) override;
 		STDMETHODIMP_(ULONG) AddRef() override;
 		STDMETHODIMP_(ULONG) Release() override;
 		//~ End IUnknow Interface
-		
+
 		//~ Begin IValueProvider Interface
 		STDMETHODIMP SetValue(LPCWSTR val) override;
 		STDMETHODIMP get_Value(BSTR* pRetVal) override;
@@ -136,9 +186,9 @@ namespace DirectUI
 	class UILIB_API ValueProxy : IProxy
 	{
 	public:
-		ValueProxy(ValueProxy const &);
+		ValueProxy(ValueProxy const&);
 		ValueProxy();
-		ValueProxy & operator=(ValueProxy const &);
+		ValueProxy& operator=(ValueProxy const&);
 		static ValueProxy* WINAPI Create(Element* pe);
 		static bool WINAPI IsPatternSupported(Element* pe);
 
@@ -150,6 +200,6 @@ namespace DirectUI
 	private:
 		HRESULT GetIsReadOnly(int*);
 		HRESULT GetValue(WCHAR* pRetVal);
-		HRESULT SetValue(unsigned short const *);
+		HRESULT SetValue(unsigned short const*);
 	};
 }

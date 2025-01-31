@@ -212,6 +212,17 @@ namespace DirectUI
 	};
 }
 
+class CSafeElementListenerCB : public DirectUI::IElementListener
+{
+public:
+	void OnListenerAttach(DirectUI::Element* peFrom) override {}
+	void OnListenerDetach(DirectUI::Element* peFrom) override {}
+	bool OnListenedPropertyChanging(DirectUI::Element* peFrom, const DirectUI::PropertyInfo* ppi, int iIndex, DirectUI::Value* pvOld, DirectUI::Value* pvNew) override { return true; }
+	void OnListenedPropertyChanged(DirectUI::Element* peFrom, const DirectUI::PropertyInfo* ppi, int iIndex, DirectUI::Value* pvOld, DirectUI::Value* pvNew) override {}
+	void OnListenedInput(DirectUI::Element* peFrom, DirectUI::InputEvent* pInput) override {}
+	void OnListenedEvent(DirectUI::Element* peFrom, DirectUI::Event* pEvent) override {}
+};
+
 namespace DuiBehaviorFilters
 {
 	enum Flags

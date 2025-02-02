@@ -118,12 +118,15 @@
 #include "XElement.h"
 #include "XProvider.h"
 #include "BrowserSelection.h"
-
 #include "RichText.h"
+
+// Touch elements
 #include "TouchButton.h"
 #include "TouchCheckBox.h"
+#include "TouchHWNDElement.h"
 #include "TouchScrollBar.h"
 #include "TouchScrollViewer.h"
+#include "TouchTooltip.h"
 
 #include "CClassFactory.h"
 

@@ -255,6 +255,7 @@
     <ClInclude Include="TouchCheckBox.h" />
     <ClInclude Include="TouchScrollBar.h" />
     <ClInclude Include="TouchScrollViewer.h" />
+    <ClInclude Include="TouchTooltip.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="UnknownElement.h" />
     <ClInclude Include="Value.h" />
@@ -273,6 +274,9 @@
   <ItemGroup>
     <Text Include="msdef.txt" />
     <Text Include="msdef64.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TouchHWNDElement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

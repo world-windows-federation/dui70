@@ -2470,21 +2470,13 @@ namespace DirectUI
 	{
 	}
 
-	template<typename T>
-	DUIXmlParser::FunctionDefinition<T> & DUIXmlParser::FunctionDefinition<T>::operator=(const DUIXmlParser::FunctionDefinition<T> &)
+	/*template<typename T>
+	DUIXmlParser::FunctionDefinition<T> & DUIXmlParser::FunctionDefinition<T>::operator=(const FunctionDefinition<T> &)
 	{
 		// TODO: 在此处插入 return 语句
 		return *this;
-	}
-
-	DUIXmlParser::FunctionDefinition<unsigned long> const* __ptr32 const DUIXmlParser::s_fdClr = NULL;
-	DUIXmlParser::FunctionDefinition<Value*> const* __ptr32 const DUIXmlParser::s_fdFill = NULL;
-	DUIXmlParser::FunctionDefinition<Value*> const* __ptr32 const DUIXmlParser::s_fdGraphic = NULL;
-	DUIXmlParser::FunctionDefinition<int> const* __ptr32 const DUIXmlParser::s_fdInt = NULL;
-	DUIXmlParser::FunctionDefinition<RECT> const* __ptr32 const DUIXmlParser::s_fdRect = NULL;
-	DUIXmlParser::FunctionDefinition<Value*> const* __ptr32 const DUIXmlParser::s_fdString = NULL;
-
-
+	}*/
+	
 	NativeHWNDHost::NativeHWNDHost(const NativeHWNDHost &)
 	{
 	}

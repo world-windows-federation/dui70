@@ -19,4 +19,3 @@ namespace DirectUI
 		virtual void T3() = 0;
 		virtual void T4() = 0;
 	};
-}

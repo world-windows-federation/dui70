@@ -2,186 +2,225 @@
 
 namespace DirectUI
 {
+    struct TILE
+    {
+        unsigned long long uiID;
+        RECT rcArea;
+        DynamicArray<CSafeElementPtr<Element>*, 0>* pspelElements;
+    };
+    
     class TouchScrollViewer : public BaseScrollViewer
     {
     public:
-        UID ManipulationStarting();
-        UID ManipulationStarted();
-        UID ManipulationDelta();
-        UID ManipulationCompleted();
-        UID SemanticChange();
-        UID SnapshotTransformElement();
-        UID ReleaseSnapshot();
-        UID MapContentVisuals();
-        UID SetContactNeeded();
-        UID SetContactNotify();
-        UID UpdateView();
-        UID UpdateContentSize();
-
-        HRESULT Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+        UILIB_API static UID ManipulationStarting();
+        UILIB_API static UID ManipulationStarted();
+        UILIB_API static UID ManipulationDelta();
+        UILIB_API static UID ManipulationCompleted();
+        UILIB_API static UID SemanticChange();
+        UILIB_API static UID SnapshotTransformElement();
+        UILIB_API static UID ReleaseSnapshot();
+        UILIB_API static UID MapContentVisuals();
+        UILIB_API static UID SetContactNeeded();
+        UILIB_API static UID SetContactNotify();
+        UILIB_API static UID UpdateView();
+        UILIB_API static UID UpdateContentSize();
+        
+        UILIB_API static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
         HRESULT Initialize(Element* pParent, DWORD* pdwDeferCookie);
 
-        void OnInput(InputEvent* pInput);
-        void OnPropertyChanged(PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
+        void OnInput(InputEvent* pInput) override;
+        void OnPropertyChanged(PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+        
         bool IsLayered();
-
-        //bool IsContentElement(Element* ); - doesnt exist?
+        bool IsContentElement(Element* );
 
     protected:
-        void OnHosted(Element* peNewHost);
-        void OnUnHosted(Element* peOldHost);
-        void OnGroupChanged(int fGroups, bool bLowPri);
+        void OnHosted(Element* peNewHost) override;
+        void OnUnHosted(Element* peOldHost) override;
+        void OnGroupChanged(int fGroups, bool bLowPri) override;
 
     public:
-        void OnListenedPropertyChanged(Element* peFrom, PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
-        PropertyInfo* InteractionModeProp();
-        PropertyInfo* SnapModeProp();
-        PropertyInfo* AllowArrowOutProp();
-        PropertyInfo* ScrollPaddingProp();
-        PropertyInfo* SnapIntervalXProp();
-        PropertyInfo* SnapOffsetXProp();
-        PropertyInfo* SnapPointCollectionXProp();
-        PropertyInfo* SnapIntervalYProp();
-        PropertyInfo* SnapOffsetYProp();
-        PropertyInfo* SnapPointCollectionYProp();
-        PropertyInfo* ManipulationVerticalAlignmentProp();
-        PropertyInfo* ManipulationHorizontalAlignmentProp();
-        PropertyInfo* LinkIndicatorsToContentProp();
-        PropertyInfo* ZoomMinimumProp();
-        PropertyInfo* ZoomMaximumProp();
+        void OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+        
+        static const PropertyInfo* WINAPI InteractionModeProp();
+        UILIB_API static const PropertyInfo* WINAPI SnapModeProp();
+        static const PropertyInfo* WINAPI AllowArrowOutProp();
+        
+        UILIB_API static const PropertyInfo* WINAPI ScrollPaddingProp();
+        UILIB_API static const PropertyInfo* WINAPI SnapIntervalXProp();
+        UILIB_API static const PropertyInfo* WINAPI SnapOffsetXProp();
+        UILIB_API static const PropertyInfo* WINAPI SnapPointCollectionXProp();
+        UILIB_API static const PropertyInfo* WINAPI SnapIntervalYProp();
+        UILIB_API static const PropertyInfo* WINAPI SnapOffsetYProp();
+        UILIB_API static const PropertyInfo* WINAPI SnapPointCollectionYProp();
+        
+        UILIB_API static const PropertyInfo* WINAPI ManipulationVerticalAlignmentProp();
+        UILIB_API static const PropertyInfo* WINAPI ManipulationHorizontalAlignmentProp();
+        
+        static const PropertyInfo* WINAPI LinkIndicatorsToContentProp();
+        static const PropertyInfo* WINAPI ZoomMinimumProp();
+        static const PropertyInfo* WINAPI ZoomMaximumProp();
 
-        int GetInteractionMode();
-        HRESULT SetInteractionMode(int v);
+        UILIB_API int GetInteractionMode();
+        UILIB_API HRESULT SetInteractionMode(int v);
 
-        int GetSnapMode();
-        HRESULT SetSnapMode(int v);
+        UILIB_API int GetSnapMode();
+        UILIB_API HRESULT SetSnapMode(int v);
 
-        bool GetAllowArrowOut();
-        HRESULT SetAllowArrowOut(bool v);
+        UILIB_API bool GetAllowArrowOut();
+        UILIB_API HRESULT SetAllowArrowOut(bool v);
 
-        RECT* GetScrollPadding(Value** ppv);
-        HRESULT SetScrollPadding(int l, int t, int r, int b);
+        UILIB_API const RECT* GetScrollPadding(Value** ppv);
+        UILIB_API HRESULT SetScrollPadding(int l, int t, int r, int b);
 
-        float GetZoomMinimum();
-        HRESULT SetZoomMinimum(float v);
+        UILIB_API float GetZoomMinimum();
+        UILIB_API HRESULT SetZoomMinimum(float v);
 
-        float GetZoomMaximum();
-        HRESULT SetZoomMaximum(float v);
+        UILIB_API float GetZoomMaximum();
+        UILIB_API HRESULT SetZoomMaximum(float v);
 
-        float GetSnapIntervalX();
-        float GetSnapOffsetX();
-        DynamicArray<double, 0>* GetSnapPointCollectionX(Value** ppv);
-        float GetSnapIntervalY();
-        float GetSnapOffsetY();
-        DynamicArray<double, 0>* GetSnapPointCollectionY(Value** ppv);
-        bool GetLinkIndicatorsToContent();
+        UILIB_API float GetSnapIntervalX();
+        UILIB_API float GetSnapOffsetX();
+        UILIB_API DynamicArray<double, 0>* GetSnapPointCollectionX(Value** ppv);
+        
+        UILIB_API float GetSnapIntervalY();
+        UILIB_API float GetSnapOffsetY();
+        UILIB_API DynamicArray<double, 0>* GetSnapPointCollectionY(Value** ppv);
+        
+        UILIB_API bool GetLinkIndicatorsToContent();
 
-        HRESULT SetSnapIntervalX(float v);
-        HRESULT SetSnapOffsetX(float v);
-        HRESULT SetSnapPointCollectionX(double const* rgdbl , int cdbl);
-        HRESULT SetSnapPointCollectionX(DynamicArray<double, 0>* v);
-        HRESULT SetSnapIntervalY(float v);
-        HRESULT SetSnapOffsetY(float v);
-        HRESULT SetSnapPointCollectionY(double const* rgdbl, int cdbl);
-        HRESULT SetSnapPointCollectionY(DynamicArray<double, 0>* v);
-        HRESULT SetLinkIndicatorsToContent(bool v);
-        HRESULT SetContact(UINT uiPointerID, bool fRelease);
+        UILIB_API HRESULT SetSnapIntervalX(float v);
+        UILIB_API HRESULT SetSnapOffsetX(float v);
+        UILIB_API HRESULT SetSnapPointCollectionX(const double* rgdbl , int cdbl);
+        UILIB_API HRESULT SetSnapPointCollectionX(DynamicArray<double, 0>* v);
 
-        HRESULT ZoomToRect(const RECT* pcrcTarget, bool fAnimate);
-        bool CanPerformManualVisualSwap();
-        bool IsManualVisualSwapInProgress();
-        HRESULT ZoomToRectManualVisualSwap(float left, float top, float right, float bottom, const int* pnHorizontalDelta, float panX, float panY, float scaleDestination, bool fAnimate);
-        HRESULT PrepareManualSwapDeferredZoomToRect(const RECT* pcrcTarget, const float* ppanX, const float* ppanY, float* centerXOverride, float* centerYOverride, float scaleDestination);
-        HRESULT ExecuteManualSwapDeferredZoomToRect(bool fAnimate);
-        HRESULT SetSuppressSetContact(bool fDisable);
-        HRESULT ResetManipulations();
-        HRESULT ResetInputState();
-        HRESULT SetVirtualizeElements(bool fVirtualize);
-        void SetDisableOffscreenCaching(bool fDisableOffscreen);
-        int GetManipulationVerticalAlignment();
-        HRESULT SetManipulationVerticalAlignment(int v);
-        int GetManipulationHorizontalAlignment();
-        HRESULT SetManipulationHorizontalAlignment(int v);
-        HRESULT SetDelegateEventHandler(IUnknown* punk);
-        HRESULT GetVScrollbar(Element** ppeScrollbar);
-        HRESULT GetHScrollbar(Element** ppeScrollbar);
-        void GetInertiaEndpointVisibleRect(RECT* );
-        float GetInertiaEndpointZoomLevel(float);
-        void GetVisibleRect(RECT*);
-        void GetPredictedVisibleRect(RECT*);
-        bool GetMouseWithinHorizontalScrollRegion();
-        HRESULT SetScrollControlHost(Element*);
-        void GetTranslatedTileRects(RECT*, unsigned int*, unsigned int);
-        bool IsTileMember(unsigned int, Element*);
-        bool IsCrossfadeInProgress();
-        HRESULT OverrideZoomThreshold(float, float, int);
-        float GetContentCrossfadeOpacity();
+        UILIB_API HRESULT SetSnapIntervalY(float v);
+        UILIB_API HRESULT SetSnapOffsetY(float v);
+        UILIB_API HRESULT SetSnapPointCollectionY(const double* rgdbl, int cdbl);
+        UILIB_API HRESULT SetSnapPointCollectionY(DynamicArray<double, 0>* v);
+        
+        UILIB_API HRESULT SetLinkIndicatorsToContent(bool v);
+        UILIB_API HRESULT SetContact(UINT uiPointerID, bool fRelease);
+
+        UILIB_API HRESULT ZoomToRect(const RECT* pcrcTarget, bool fAnimate);
+        UILIB_API bool CanPerformManualVisualSwap();
+        UILIB_API bool IsManualVisualSwapInProgress();
+        UILIB_API HRESULT ZoomToRectManualVisualSwap(float left, float top, float right, float bottom, const int* pnHorizontalDelta, float panX, float panY, float scaleDestination, bool fAnimate);
+        
+        UILIB_API HRESULT PrepareManualSwapDeferredZoomToRect(const RECT* pcrcTarget, const float* ppanX, const float* ppanY, float* centerXOverride, float* centerYOverride, float scaleDestination);
+        UILIB_API HRESULT ExecuteManualSwapDeferredZoomToRect(bool fAnimate);
+        
+        UILIB_API HRESULT SetSuppressSetContact(bool fDisable);
+        UILIB_API HRESULT ResetManipulations();
+        UILIB_API HRESULT ResetInputState();
+        
+        UILIB_API HRESULT SetVirtualizeElements(bool fVirtualize);
+        UILIB_API void SetDisableOffscreenCaching(bool fDisableOffscreen);
+        
+        UILIB_API int GetManipulationVerticalAlignment();
+        UILIB_API HRESULT SetManipulationVerticalAlignment(int v);
+        UILIB_API int GetManipulationHorizontalAlignment();
+        UILIB_API HRESULT SetManipulationHorizontalAlignment(int v);
+        
+        UILIB_API HRESULT SetDelegateEventHandler(IUnknown* punk);
+        
+        UILIB_API HRESULT GetVScrollbar(Element** ppeScrollbar);
+        UILIB_API HRESULT GetHScrollbar(Element** ppeScrollbar);
+        
+        UILIB_API void GetInertiaEndpointVisibleRect(RECT* pRectEndpoint);
+        UILIB_API float GetInertiaEndpointZoomLevel(float defaultZoomLevel);
+        
+        UILIB_API void GetVisibleRect(RECT* pRectVisibleRegion);
+        UILIB_API void GetPredictedVisibleRect(RECT* pRectVisibleRegion);
+        
+        UILIB_API bool GetMouseWithinHorizontalScrollRegion();
+        
+        UILIB_API HRESULT SetScrollControlHost(Element* peHost);
+        
+        UILIB_API void GetTranslatedTileRects(RECT* prgrcTranslatedTiles, UINT* prguiIds, UINT uiBufferSize);
+        UILIB_API bool IsTileMember(UINT uiTileID, Element* pe);
+        UILIB_API bool IsCrossfadeInProgress();
+
+        
+        UILIB_API HRESULT OverrideZoomThreshold(float upperThresholdDelta, float lowerThresholdDelta, int flags);
+        UILIB_API float GetContentCrossfadeOpacity();
+        
         bool IsManipulationConfigured();
         bool IsManipulating();
         bool IsPerformingSemanticZoom();
+        
         TouchScrollViewer();
-        ~TouchScrollViewer();
-        void ProcessAnimationEvent(struct DirectUI::AnimateScrollEvent*);
-        IClassInfo* GetClassInfoPtr();
-        void SetClassInfoPtr(IClassInfo*);
+        ~TouchScrollViewer() override;
+        void ProcessAnimationEvent(AnimateScrollEvent*);
+        
+        UILIB_API static IClassInfo* WINAPI GetClassInfoPtr();
+        void SetClassInfoPtr(IClassInfo*); // TODO: FINDME
 
     private:
         IClassInfo* s_pClassInfo;
 
     public:
-        IClassInfo* GetClassInfoW();
-        HRESULT Register();
-        HRESULT OnViewportStatusChanged(struct IDirectManipulationViewport*, enum DIRECTMANIPULATION_STATUS, DIRECTMANIPULATION_STATUS);
+        IClassInfo* GetClassInfoW() override; // TODO: FINDME
+        HRESULT Register(); // TODO: FINDME
+        
+        virtual HRESULT OnViewportStatusChanged(IDirectManipulationViewport*, DIRECTMANIPULATION_STATUS current, DIRECTMANIPULATION_STATUS previous);
         HRESULT OnViewportUpdated(IDirectManipulationViewport*);
-        HRESULT OnContentUpdated(IDirectManipulationViewport*, struct IDirectManipulationContent*);
-        struct IDirectManipulationManager* GetManipulationManager();
+        HRESULT OnContentUpdated(IDirectManipulationViewport*, IDirectManipulationContent*);
+        IDirectManipulationManager* GetManipulationManager();
         IDirectManipulationViewport* GetManipulationViewport(bool);
-        struct IDirectManipulationCompositor* GetManipulationCompositor();
-        HRESULT CreateTile(RECT*, unsigned int*);
-        HRESULT RemoveTile(unsigned int);
+        IDirectManipulationCompositor* GetManipulationCompositor();
+        
+        HRESULT CreateTile(const RECT* pcrcRect, UINT* puiTileID);
+        HRESULT RemoveTile(UINT uiTileID);
+        
         void InvalidateVirtualizedContainers();
-        bool IsVirtualizedContainerInvalidationPending();
-        void SetVirtualizeUsingElementPosition(bool);
-        void NewChildElementsAdded();
+        bool IsVirtualizedContainerInvalidationPending(); // TODO: FINDME
+        void SetVirtualizeUsingElementPosition(bool); // TODO: FINDME
+        
+        UILIB_API void NewChildElementsAdded();
         void InvalidateChangedChildElements();
         HRESULT OnContentLayoutUpdated();
-        HRESULT TelemetrySetDescription(wchar_t*);
+        UILIB_API HRESULT TelemetrySetDescription(const WCHAR* pszDescription);
 
     protected:
-        HRESULT EnableManipulations(bool);
+        HRESULT EnableManipulations(bool fEnable);
         HRESULT InitializeManipulationHelper();
         HRESULT InitializeViewport();
         void ReleaseViewport();
-        void _ResetManipulations(Element*);
-        HRESULT SetMessage(MSG*, bool*);
-        void OnEvent(Event*);
-        void OnKeyFocusMoved(Element*, Element*);
-        void OnMouseFocusMoved(Element*, Element*);
+        void _ResetManipulations(Element* peContent);
+        HRESULT SetMessage(const MSG* pMsg, bool* pbHandled);
+        
+        void OnEvent(Event* pEvent) override;
+        void OnKeyFocusMoved(Element* peFrom, Element* peTo) override;
+        void OnMouseFocusMoved(Element* peFrom, Element* peTo) override;
 
     private:
-        bool _SetElementContentVisualTransform(Element*, float, float, float, float, float, float);
-        void _MapVisuals(float, float, float, float, bool);
+        bool _SetElementContentVisualTransform(Element* pElement, float _11, float _12, float _21, float _22, float _31, float _32); // Olive6841: Any clue what these arguments mean?
+        void _MapVisuals(float newTargetX, float newTargetY, float xOffset, float yOffset, bool fAllowSubpixelMapping);
 
     protected:
-        HRESULT CreateScrollBars();
-        HRESULT AddChildren();
-
+        virtual HRESULT CreateScrollBars();
+        virtual HRESULT AddChildren();
+        
     public:
         BaseScrollBar* GetHScroll();
 
     protected:
-        TouchScrollBar* GetHScroll();
+        virtual TouchScrollBar* GetHScroll(); // TODO: FIXME
 
     public:
         BaseScrollBar* GetVScroll();
 
     protected:
-        TouchScrollBar* GetVScroll();
-        void _SetLastInputType(unsigned int);
-        unsigned int MessageCallback(tagGMSG*);
-        void OnDestroy();
+        virtual TouchScrollBar* GetVScroll(); // TODO: FIXME
+        
+        void _SetLastInputType(unsigned int); // TODO: FINDME
+        
+        UINT MessageCallback(GMSG* pMsg) override;
+        void OnDestroy() override;
+        
         void _OnManipulationStart();
-        void _OnManipulationDelta(float, float, float, float, float);
+        void _OnManipulationDelta(float panX, float panY, float scale, float centerX, float centerY);
         void _OnManipulationComplete();
         void _OnRequestManualVisualSwap(float, float, float, float, float);
         void _OnManualVisualSwapComplete();
@@ -244,17 +283,17 @@ namespace DirectUI
         void _RestoreScrollbarsIfNeeded();
         void _HideScrollbarsForSemanticZoom();
         void _DetectKeyboardInput();
-        enum DIRECTMANIPULATION_CONFIGURATION _GetManipulationConfiguration(int);
+        DIRECTMANIPULATION_CONFIGURATION _GetManipulationConfiguration(int);
         HRESULT _UpdateManipulationConfiguration(int, int);
-        HRESULT _SetSnapPointBehavior(struct IDirectManipulationPrimaryContent*, enum DIRECTMANIPULATION_MOTION_TYPES, float, float);
+        HRESULT _SetSnapPointBehavior(struct IDirectManipulationPrimaryContent*, DIRECTMANIPULATION_MOTION_TYPES, float, float);
         HRESULT _SetSnapPointCoordinate(IDirectManipulationPrimaryContent*, DIRECTMANIPULATION_MOTION_TYPES);
         HRESULT _UpdateContentSnapPoints(DIRECTMANIPULATION_MOTION_TYPES, PropertyInfo*);
         HRESULT _UpdateContentSnapPoints(DIRECTMANIPULATION_MOTION_TYPES, PropertyInfo*, PropertyInfo*);
         HRESULT _UpdateContentSnapInterval(DIRECTMANIPULATION_MOTION_TYPES, PropertyInfo*, PropertyInfo*);
         HRESULT _UpdateZoomBoundaries(PropertyInfo*, PropertyInfo*);
-        HRESULT _UpdateSnapType(DIRECTMANIPULATION_MOTION_TYPES, enum DIRECTMANIPULATION_SNAPPOINT_TYPE);
-        HRESULT _SetManipulationVerticalAlignment(enum DIRECTMANIPULATION_VERTICALALIGNMENT);
-        HRESULT _SetManipulationHorizontalAlignment(enum DIRECTMANIPULATION_HORIZONTALALIGNMENT);
+        HRESULT _UpdateSnapType(DIRECTMANIPULATION_MOTION_TYPES, DIRECTMANIPULATION_SNAPPOINT_TYPE);
+        HRESULT _SetManipulationVerticalAlignment(DIRECTMANIPULATION_VERTICALALIGNMENT);
+        HRESULT _SetManipulationHorizontalAlignment(DIRECTMANIPULATION_HORIZONTALALIGNMENT);
         HRESULT _UpdateContentSize();
         HRESULT _UpdateViewportSize();
         void _TranslateSnapPoints();
@@ -279,7 +318,7 @@ namespace DirectUI
         POINT _positionContentOverride;
         int _nOverrideContentSize;
         WCHAR* _pszTelemetryDescription;
-        class DirectUI::ManipulationHelper* _pManipulationHelper;
+        ManipulationHelper* _pManipulationHelper;
         IDirectManipulationCompositor* _pManipulationCompositor;
         IDirectManipulationViewport* _pManipulationViewport;
         bool _fInitializedForRealContent;
@@ -317,7 +356,7 @@ namespace DirectUI
         long _lHorizScrollEventDistance;
         TouchScrollBar* _peHScroll;
         TouchScrollBar* _peVScroll;
-        class DirectUI::SemanticController* _pSemanticController;
+        SemanticController* _pSemanticController;
         bool _fDeleting;
         bool _fProcessContentSizeUpdates;
         bool _fNeedInitialMouseLocation;
@@ -332,8 +371,5 @@ namespace DirectUI
         UID _InvalidateVirtualizedContainersEvent();
         bool _fIsPerformingSemanticZoom;
         bool _fWasAsMouseBeforeSemanticZoom;
-
-    public:
-        void __local_vftable_ctor_closure();
     };
 }

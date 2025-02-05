@@ -124,26 +124,21 @@ namespace DirectUI
 		BaseScrollViewer(BaseScrollViewer const &);
 		BaseScrollViewer();
 		//0
-		virtual ~BaseScrollViewer();
+		~BaseScrollViewer() override;
 		BaseScrollViewer & operator=(BaseScrollViewer const &);
 
 		long Initialize(Element*, unsigned long*);
 
 		//1
-		virtual bool OnListenedPropertyChanging(Element*, const PropertyInfo*, int, Value*, Value*);
-
+		bool OnListenedPropertyChanging(Element*, const PropertyInfo*, int, Value*, Value*) override;
 		//2
 		virtual void OnPropertyChanged(const PropertyInfo*, int, Value*, Value*);
-
 		//3
 		virtual void OnInput(InputEvent*);
-
 		//4
 		virtual void OnEvent(Event*);
-
 		//5
 		virtual long Add(Element**, unsigned int);
-
 		//6
 		virtual IClassInfo* GetClassInfoW();
 		int GetPinning();

@@ -216,6 +216,7 @@
     <ClInclude Include="layout.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Macro.h" />
+    <ClInclude Include="ManipulationHelper.h" />
     <ClInclude Include="misc.h" />
     <ClInclude Include="Movie.h" />
     <ClInclude Include="NativeHWNDHost.h" />
@@ -244,6 +245,7 @@
     <ClInclude Include="SelectorNoDefault.h" />
     <ClInclude Include="SelectorSelection.h" />
     <ClInclude Include="SelectorSelectionItem.h" />
+    <ClInclude Include="SemanticController.h" />
     <ClInclude Include="StyledScrollViewer.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="TableItem.h" />

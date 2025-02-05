@@ -119,6 +119,8 @@
 #include "XProvider.h"
 #include "BrowserSelection.h"
 #include "RichText.h"
+#include "SemanticController.h"
+#include "ManipulationHelper.h"
 
 // Touch elements
 #include "TouchButton.h"

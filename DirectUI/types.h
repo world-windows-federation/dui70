@@ -70,6 +70,7 @@ namespace DirectUI
 {
 	// TODO: are these even in dui or custom by Seven-Mile?
 	// TODO(Amrsatrio): no they are not, they are custom by Seven-Mile
+	// TODO: Nuke every reference to these...
 	typedef unsigned short UChar;
 	typedef UChar* UString;
 	typedef const unsigned short* UCString;

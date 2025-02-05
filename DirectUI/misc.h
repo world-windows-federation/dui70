@@ -34,7 +34,7 @@ namespace DirectUI
 		CRITICAL_SECTION* _pacs;
 	};
 
-	template <class T, int>
+	template <class T, int Unk = 0>
 	class DynamicArray;
 
 	class UILIB_API Expression

@@ -252,20 +252,20 @@ namespace DirectUI
 MIDL_INTERFACE("70650a6d-8987-4d93-9b1d-aceb9d92f485")
 IDuiBehavior : IUnknown
 {
-	virtual HRESULT STDMETHODCALLTYPE Init(DirectUI::Value*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE GetCallbackFilters(DuiBehaviorFilters::Flags*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnAttach(DirectUI::Element*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnDetach(DirectUI::Element*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnHosted(DirectUI::Element*, DirectUI::Element*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnUnHosted(DirectUI::Element*, DirectUI::Element*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnPropertyChanging(DirectUI::Element*, const DirectUI::PropertyInfo*, int, DirectUI::Value*, DirectUI::Value*, int*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnPropertyChanged(DirectUI::Element*, const DirectUI::PropertyInfo*, int, DirectUI::Value*, DirectUI::Value*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnInput(DirectUI::Element*, DirectUI::InputEvent*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnKeyFocusMoved(DirectUI::Element*, DirectUI::Element*, DirectUI::Element*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnEvent(DirectUI::Element*, DirectUI::Event*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnDoLayout(DirectUI::Element*, int, int) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnUpdateDesiredSize(DirectUI::Element*, int, int, DirectUI::Surface*, tagSIZE*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnPaint(DirectUI::Element*, HDC, const RECT*, const RECT*) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnGetAdjacent(DirectUI::Element*, int, const DirectUI::NavReference*, DWORD, DirectUI::Element**) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnDisplayNodeCallback(DirectUI::Element*, EventMsg*) = 0;
+	virtual HRESULT STDMETHODCALLTYPE Init(DirectUI::Value* pvArgs) = 0;
+	virtual HRESULT STDMETHODCALLTYPE GetCallbackFilters(DuiBehaviorFilters::Flags* pFilters) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnAttach(DirectUI::Element* pe) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnDetach(DirectUI::Element* pe) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnHosted(DirectUI::Element* peFrom, DirectUI::Element* pe) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnUnHosted(DirectUI::Element* peFrom, DirectUI::Element* peOldHost) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnPropertyChanging(DirectUI::Element* peFrom, const DirectUI::PropertyInfo* ppi, int iIndex, DirectUI::Value* pvOld, DirectUI::Value* pvNew, BOOL* pfAllowProcess) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnPropertyChanged(DirectUI::Element* peFrom, const DirectUI::PropertyInfo* ppi, int iIndex, DirectUI::Value* pvOld, DirectUI::Value* pvNew) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnInput(DirectUI::Element* peFrom, DirectUI::InputEvent* pInput) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnKeyFocusMoved(DirectUI::Element* peFrom, DirectUI::Element* peOld, DirectUI::Element* peNew) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnEvent(DirectUI::Element* peFrom, DirectUI::Event* pEvent) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnDoLayout(DirectUI::Element* peFrom, int dWidth, int dHeight) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnUpdateDesiredSize(DirectUI::Element* peFrom, int dConstW, int dConstH, DirectUI::Surface* psrf, SIZE* pszDesired) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnPaint(DirectUI::Element* peFrom, HDC hdc, const RECT* prcGadgetPxl, const RECT* prcInvalidPxl) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnGetAdjacent(DirectUI::Element* peFrom, int iNavDir, const DirectUI::NavReference* pnr, DWORD dwFlags, DirectUI::Element** ppeTo) = 0;
+	virtual HRESULT STDMETHODCALLTYPE OnDisplayNodeCallback(DirectUI::Element* peFrom, EventMsg* pGMsg) = 0;
 };

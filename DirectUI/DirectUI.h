@@ -24,6 +24,8 @@
 #include "AutoLock.h"
 #include "AutoThread.h"
 #include "AutoVariant.h"
+#include "SafeElementPtr.h"
+#include "SimpleTimer.h"
 #include "Value.h"
 
 #include "Primitives.h"

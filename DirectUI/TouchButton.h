@@ -55,27 +55,27 @@ namespace DirectUI
 		UILIB_API static UID MultipleClick();
 		UILIB_API static UID RightClick();
 
-		UILIB_API static PropertyInfo* PressedProp();
+		UILIB_API static const PropertyInfo* PressedProp();
 		UILIB_API bool GetPressed();
 		UILIB_API HRESULT SetPressed(bool v);
 
-		UILIB_API static PropertyInfo* CapturedProp();
+		UILIB_API static const PropertyInfo* CapturedProp();
 		UILIB_API bool GetCaptured();
 		UILIB_API HRESULT SetCaptured(bool v);
 
-		UILIB_API static PropertyInfo* HandleEnterProp();
+		UILIB_API static const PropertyInfo* HandleEnterProp();
 		UILIB_API bool GetHandleEnter();
 		UILIB_API HRESULT SetHandleEnter(bool v);
 
-		UILIB_API static PropertyInfo* ShowKeyFocusProp();
+		UILIB_API static const PropertyInfo* ShowKeyFocusProp();
 		UILIB_API bool GetShowKeyFocus();
 		UILIB_API HRESULT SetShowKeyFocus(bool v);
 
-		UILIB_API static PropertyInfo* TreatRightMouseButtonAsLeftProp();
+		UILIB_API static const PropertyInfo* TreatRightMouseButtonAsLeftProp();
 		UILIB_API bool GetTreatRightMouseButtonAsLeft();
 		UILIB_API HRESULT SetTreatRightMouseButtonAsLeft(bool v);
 
-		UILIB_API static PropertyInfo* HandleGlobalEnterProp();
+		UILIB_API static const PropertyInfo* HandleGlobalEnterProp();
 		UILIB_API bool GetHandleGlobalEnter();
 		UILIB_API HRESULT SetHandleGlobalEnter(bool v);
 

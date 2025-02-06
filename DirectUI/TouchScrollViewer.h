@@ -45,9 +45,9 @@ namespace DirectUI
 		HRESULT Initialize(Element* pParent, DWORD* pdwDeferCookie);
 
 		void OnInput(InputEvent* pInput) override;
-		void OnPropertyChanged(PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
 
-		bool IsLayered();
+		bool IsLayered() const { return _fLayered; }
 		bool IsContentElement(Element*);
 
 	protected:

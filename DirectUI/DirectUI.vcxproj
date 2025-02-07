@@ -157,14 +157,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="accessibility.h" />
+    <ClInclude Include="Accessibility.h" />
     <ClInclude Include="AccessibleButton.h" />
     <ClInclude Include="AnimationStrip.h" />
     <ClInclude Include="AutoButton.h" />
     <ClInclude Include="AutoLock.h" />
     <ClInclude Include="AutoVariant.h" />
     <ClInclude Include="AutoThread.h" />
-    <ClInclude Include="base.h" />
+    <ClInclude Include="Base.h" />
     <ClInclude Include="Bind.h" />
     <ClInclude Include="BorderLayout.h" />
     <ClInclude Include="Browser.h" />
@@ -197,7 +197,7 @@
     <ClInclude Include="Edit.h" />
     <ClInclude Include="Element.h" />
     <ClInclude Include="ElementWithHWND.h" />
-    <ClInclude Include="event.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Expandable.h" />
     <ClInclude Include="ExpandCollapse.h" />
@@ -207,26 +207,26 @@
     <ClInclude Include="FontCheckOut.h" />
     <ClInclude Include="GridItem.h" />
     <ClInclude Include="Grid.h" />
-    <ClInclude Include="host.h" />
+    <ClInclude Include="Host.h" />
     <ClInclude Include="HWNDElement.h" />
     <ClInclude Include="HWNDHost.h" />
     <ClInclude Include="Interfaces.h" />
     <ClInclude Include="InvokeHelper.h" />
-    <ClInclude Include="layout.h" />
+    <ClInclude Include="Layout.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="ManipulationHelper.h" />
-    <ClInclude Include="misc.h" />
+    <ClInclude Include="Misc.h" />
     <ClInclude Include="Movie.h" />
     <ClInclude Include="NativeHWNDHost.h" />
     <ClInclude Include="Navigator.h" />
     <ClInclude Include="NavScoring.h" />
     <ClInclude Include="Page.h" />
-    <ClInclude Include="parser.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Progress.h" />
     <ClInclude Include="PromptText.h" />
-    <ClInclude Include="provider.h" />
+    <ClInclude Include="Provider.h" />
     <ClInclude Include="PText.h" />
     <ClInclude Include="PushButton.h" />
     <ClInclude Include="RadioButtonGlyph.h" />
@@ -261,7 +261,7 @@
     <ClInclude Include="TouchScrollBar.h" />
     <ClInclude Include="TouchScrollViewer.h" />
     <ClInclude Include="TouchTooltip.h" />
-    <ClInclude Include="types.h" />
+    <ClInclude Include="Types.h" />
     <ClInclude Include="UnknownElement.h" />
     <ClInclude Include="Value.h" />
     <ClInclude Include="Viewer.h" />

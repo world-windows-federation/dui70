@@ -93,7 +93,7 @@ namespace DirectUI
 
 
 		//3
-		virtual UCString GetContentStringAsDisplayed(Value**);
+		virtual const WCHAR* GetContentStringAsDisplayed(Value**);
 
 		//4
 		virtual bool OnPropertyChanging(PropertyInfo*, int, Value*, Value*);

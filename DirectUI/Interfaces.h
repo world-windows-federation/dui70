@@ -33,11 +33,11 @@ namespace DirectUI
 		virtual unsigned int GetPICount() const = 0;
 		virtual unsigned int GetGlobalIndex() const = 0;
 		virtual IClassInfo* GetBaseClass() = 0;
-		virtual UCString GetName() const = 0;
+		virtual const WCHAR* GetName() const = 0;
 		virtual bool IsValidProperty(PropertyInfo const*) const = 0;
 		virtual bool IsSubclassOf(IClassInfo*) const = 0;
 		virtual void Destroy() = 0;
-		virtual HINSTANCE GetModule() const = 0;
+		virtual HMODULE GetModule() const = 0;
 		virtual bool IsGlobal() const = 0;
 		virtual void AddChild() = 0;
 		virtual void RemoveChild() = 0;
@@ -49,7 +49,6 @@ namespace DirectUI
 
 	struct UILIB_API IDataEntry
 	{
-	public:
 		IDataEntry(const IDataEntry&);
 		IDataEntry();
 		virtual ~IDataEntry();
@@ -246,7 +245,13 @@ DEFINE_ENUM_FLAG_OPERATORS(DuiBehaviorFilters::Flags);
 
 namespace DirectUI
 {
-	struct NavReference;
+	struct NavReference
+	{
+		void Init(Element*, RECT*);
+		UINT cbSize;
+		Element* pe;
+		RECT* prc;
+	};
 }
 
 MIDL_INTERFACE("70650a6d-8987-4d93-9b1d-aceb9d92f485")

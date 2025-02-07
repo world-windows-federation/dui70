@@ -157,7 +157,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\ModernProgressRing.h" />
     <ClInclude Include="accessibility.h" />
     <ClInclude Include="AccessibleButton.h" />
     <ClInclude Include="AnimationStrip.h" />
@@ -226,6 +225,7 @@
     <ClInclude Include="parser.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Progress.h" />
+    <ClInclude Include="PromptText.h" />
     <ClInclude Include="provider.h" />
     <ClInclude Include="PText.h" />
     <ClInclude Include="PushButton.h" />
@@ -255,6 +255,9 @@
     <ClInclude Include="Toggle.h" />
     <ClInclude Include="TouchButton.h" />
     <ClInclude Include="TouchCheckBox.h" />
+    <ClInclude Include="TouchEdit2.h" />
+    <ClInclude Include="TouchEditBase.h" />
+    <ClInclude Include="TouchEditInner.h" />
     <ClInclude Include="TouchScrollBar.h" />
     <ClInclude Include="TouchScrollViewer.h" />
     <ClInclude Include="TouchTooltip.h" />

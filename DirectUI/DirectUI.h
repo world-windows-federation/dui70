@@ -10,6 +10,7 @@
 #include <DbgHelp.h>
 #include <thumbcache.h>
 #include <XmlLite.h>
+#include <InputScope.h> // for InputScope enum
 
 #if	defined(DIRECTUI_EXPORTS)
 #define UILIB_API __declspec(dllexport)
@@ -123,6 +124,7 @@
 #include "RichText.h"
 #include "SemanticController.h"
 #include "ManipulationHelper.h"
+#include "PromptText.h"
 
 // Touch elements
 #include "TouchButton.h"
@@ -131,6 +133,10 @@
 #include "TouchScrollBar.h"
 #include "TouchScrollViewer.h"
 #include "TouchTooltip.h"
+
+#include "TouchEditBase.h"
+#include "TouchEditInner.h"
+#include "TouchEdit2.h"
 
 #include "CClassFactory.h"
 

@@ -656,7 +656,7 @@ namespace DirectUI
 	{
 		return false;
 	}
-	UCString Element::GetContentStringAsDisplayed(Value**)
+	const WCHAR* Element::GetContentStringAsDisplayed(Value**)
 	{
 		return nullptr;
 	}
@@ -5615,7 +5615,7 @@ namespace DirectUI
 	{
 		return SIZE();
 	}
-	unsigned short const * Edit::GetContentStringAsDisplayed(Value **)
+	const WCHAR* Edit::GetContentStringAsDisplayed(Value **)
 	{
 		return nullptr;
 	}
@@ -9623,7 +9623,7 @@ namespace DirectUI
 	{
 		return nullptr;
 	}
-	unsigned short const * TextGraphic::GetContentStringAsDisplayed(Value **)
+	const WCHAR* TextGraphic::GetContentStringAsDisplayed(Value **)
 	{
 		return nullptr;
 	}

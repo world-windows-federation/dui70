@@ -906,6 +906,14 @@ namespace DirectUI
 		GMODIFIER_ALT = (GMODIFIER_LALT | GMODIFIER_RALT),
 	};
 
+	enum ActiveState
+	{
+		AS_HIDDEN = 0,
+		AS_REST = 1,
+		AS_MOUSE = 2,
+		AS_PAN = 3,
+	};
+
 	struct Event
 	{
 		Element* peTarget;

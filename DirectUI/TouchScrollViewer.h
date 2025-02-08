@@ -8,14 +8,6 @@ interface IDirectManipulationViewport;
 
 namespace DirectUI
 {
-	enum ActiveState
-	{
-		AS_HIDDEN = 0,
-		AS_REST = 1,
-		AS_MOUSE = 2,
-		AS_PAN = 3,
-	};
-
 	struct TILE
 	{
 		UINT64 uiID;

@@ -34,7 +34,7 @@ namespace DirectUI
 		TEKNC_None = 1
 	};
 
-	class TouchEditBase : Element
+	class TouchEditBase : public Element
 	{
 	public:
 		UILIB_API static UID WINAPI Enter();

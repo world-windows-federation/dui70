@@ -85,7 +85,7 @@ namespace DirectUI
 		int _iIndex;
 		int _iGlobalIndex;
 		IClassInfo* _pciOwner;
-		long _cRef;
+		LONG _cRef;
 	};
 
 	struct PropertyInfo
@@ -103,14 +103,5 @@ namespace DirectUI
 	{
 		int iDepPos;
 		int cDepCnt;
-	};
-
-	struct UILIB_API NavReference
-	{
-		void Init(Element* pe, RECT* prc);
-
-		UINT cbSize;
-		Element* pe;
-		RECT* prc;
 	};
 }

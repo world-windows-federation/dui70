@@ -1,6 +1,5 @@
 #pragma once
 
-// TODO: ITouchTooltipEventSink
 // TODO: CIHMCallback
 // TODO: CSafeElementListenerPtr
 
@@ -24,91 +23,105 @@ namespace DirectUI
         THEF_DisableTooltips = 16
     };
 
-    class UILIB_API TouchHWNDElement : HWNDElement
+    // NOTE: 56 exports for DirectUI::TouchHWNDElement
+    class TouchHWNDElement : public HWNDElement
     {
     public:
-        static HRESULT WINAPI Create(HWND hwndParent, bool fDblBuffer, UINT nCreate, Element* peParent, DWORD* pdwDeferCookie, Element** ppe);
-        static UID TooltipTimerStarting();
-        static UID TextTooltipShowing();
-        static UID RichTooltipShowing();
-        static UID ForwardingWindowMessage();
-        static UID ProcessingKeyboardNavigation();
-        static UID ScaleChanged();
-        static UID MonitorPowerSettingsChange();
-        static UID IHMNotify();
+        UILIB_API static HRESULT WINAPI Create(HWND hwndParent, bool fDblBuffer, UINT nCreate, Element* peParent, DWORD* pdwDeferCookie, Element** ppe);
+        
+        UILIB_API static UID WINAPI TooltipTimerStarting();
+        UILIB_API static UID WINAPI TextTooltipShowing();
+        UILIB_API static UID WINAPI RichTooltipShowing();
+        UILIB_API static UID WINAPI ForwardingWindowMessage();
+        UILIB_API static UID WINAPI ProcessingKeyboardNavigation();
+        UILIB_API static UID WINAPI ScaleChanged();
+        UILIB_API static UID WINAPI MonitorPowerSettingsChange();
+        UILIB_API static UID WINAPI IHMNotify();
 
-        static const PropertyInfo* FlagsProp();
-        TouchHWNDElementFlags GetFlags();
-        HRESULT SetFlags(TouchHWNDElementFlags v, TouchHWNDElementFlags vmask);
+        UILIB_API static const PropertyInfo* WINAPI FlagsProp();
+        UILIB_API TouchHWNDElementFlags GetFlags();
+        UILIB_API HRESULT SetFlags(TouchHWNDElementFlags v, TouchHWNDElementFlags vmask);
 
-        static const PropertyInfo* WindowAccessGradientColorProp();
-        Value* GetWindowAccessGradientColor();
-        HRESULT SetWindowAccessGradientColor(Value* v);
-        static const PropertyInfo* TooltipMaximumLineCountProp();
-        int GetTooltipMaximumLineCount();
-        HRESULT SetTooltipMaximumLineCount(int v);
-        static const PropertyInfo* LightDismissIHMProp();
-        bool GetLightDismissIHM();
-        HRESULT SetLightDismissIHM(bool v);
-        HRESULT Initialize(HWND hwndParent, bool fDblBuffer, UINT nCreate, Element* peParent, DWORD* pdwDeferCookie);
+        UILIB_API static const PropertyInfo* WINAPI WindowAccessGradientColorProp();
+        UILIB_API Value* GetWindowAccessGradientColor();
+        UILIB_API HRESULT SetWindowAccessGradientColor(Value* v);
+        
+        UILIB_API static const PropertyInfo* WINAPI TooltipMaximumLineCountProp();
+        UILIB_API int GetTooltipMaximumLineCount();
+        UILIB_API HRESULT SetTooltipMaximumLineCount(int v);
+        
+        UILIB_API static const PropertyInfo* WINAPI LightDismissIHMProp();
+        UILIB_API bool GetLightDismissIHM();
+        UILIB_API HRESULT SetLightDismissIHM(bool v);
 
-        virtual UINT MessageCallback(GMSG* pGMsg);
-        virtual void OnInput(InputEvent* pInput);
-        virtual void OnEvent(Event* pEvent);
-        virtual void OnKeyFocusMoved(Element* peFrom, Element* peTo);
-        virtual void OnPropertyChanged(const PropertyInfo*, int iIndex, Value* pvOld, Value* pvNew);
+        // ReSharper disable once CppHidingFunction
+        UILIB_API HRESULT Initialize(HWND hwndParent, bool fDblBuffer, UINT nCreate, Element* peParent, DWORD* pdwDeferCookie);
 
-        virtual LRESULT WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-        virtual bool IsMSAAEnabled();
-        virtual void OnDestroy();
-        //void UpdateTooltip(Element*);
-        //void ActivateTooltip(Element*, unsigned long);
-        //void RemoveTooltip(Element*);
+        UILIB_API UINT MessageCallback(GMSG* pGMsg) override;
+        
+        UILIB_API void OnInput(InputEvent* pInput) override;
+        UILIB_API void OnEvent(Event* pEvent) override;
+        UILIB_API void OnKeyFocusMoved(Element* peFrom, Element* peTo) override;
+        UILIB_API void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
 
-        HRESULT StartRichTooltipTimer(enum TOUCHTOOLTIP_INPUT touchTooltipInput);
-        HRESULT ShowRichTooltip(TOUCHTOOLTIP_INPUT touchTooltipInput, enum TOUCHTOOLTIP_OPTION_FLAGS touchTooltipOptions, Element* peTooltipContents);
+        UILIB_API LRESULT WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
+        UILIB_API bool IsMSAAEnabled() override;
+        
+        UILIB_API void OnDestroy() override;
+        UILIB_API void UpdateTooltip(Element* pe) override;
+        UILIB_API void ActivateTooltip(Element*, DWORD dwFlags) override;
+        UILIB_API void RemoveTooltip(Element* pe) override;
 
-        HRESULT HideTouchTooltip();
-        HRESULT RegisterForMonitorPowerChanges();
-        HRESULT UnregisterForMonitorPowerChanges();
-        bool ShouldUsePerMonitorScaling();
-        void UsePerMonitorScaling(HMONITOR hMon);
-        HRESULT RegisterForIHMChanges();
-        void UnregisterForIHMChanges();
-        HRESULT GetIHMRect(RECT* prc);
-        IHMState GetIHMState();
-        HRESULT DismissIHMAsync();
-        void RegisterForAnimationStatusChanges();
-        void UnregisterForAnimationStatusChanges();
-        bool IsRegisteredForAnimationStatusChanges();
+        UILIB_API HRESULT StartRichTooltipTimer(TOUCHTOOLTIP_INPUT touchTooltipInput);
+        UILIB_API HRESULT ShowRichTooltip(TOUCHTOOLTIP_INPUT touchTooltipInput, TOUCHTOOLTIP_OPTION_FLAGS touchTooltipOptions, Element* peTooltipContents);
+        UILIB_API HRESULT HideTouchTooltip();
+        
+        UILIB_API HRESULT RegisterForMonitorPowerChanges();
+        UILIB_API HRESULT UnregisterForMonitorPowerChanges();
+        
+        UILIB_API bool ShouldUsePerMonitorScaling();
+        UILIB_API void UsePerMonitorScaling(HMONITOR hMon);
+        
+        UILIB_API HRESULT RegisterForIHMChanges();
+        UILIB_API void UnregisterForIHMChanges();
+        
+        UILIB_API HRESULT GetIHMRect(RECT* prc);
+        UILIB_API IHMState GetIHMState();
+        UILIB_API HRESULT DismissIHMAsync();
+        
+        UILIB_API void RegisterForAnimationStatusChanges();
+        UILIB_API void UnregisterForAnimationStatusChanges();
+        UILIB_API bool IsRegisteredForAnimationStatusChanges();
 
-        IClassInfo* GetClassInfoPtr(); // Cant find this...
-        void SetClassInfoPtr(IClassInfo*); // or this...
+        UILIB_API static IClassInfo* GetClassInfoPtr();
+        static void SetClassInfoPtr(IClassInfo* pClass);
 
     private:
-        IClassInfo* s_pClassInfo;
+        static IClassInfo* s_pClassInfo;
 
     public:
-        IClassInfo* GetClassInfoW() override;
-        static HRESULT WINAPI Register();
-        TouchHWNDElement();
-        ~TouchHWNDElement();
+        UILIB_API IClassInfo* GetClassInfoW() override;
+        
+        UILIB_API static HRESULT WINAPI Register();
+        
+        UILIB_API TouchHWNDElement();
+        UILIB_API ~TouchHWNDElement() override;
 
     protected:
-        virtual void _OnUIStateChanged(WCHAR wUIStateOld, WCHAR wUIStateNew);
-        void _ClearTooltipState();
-        void _DestroyTooltip();
+        UILIB_API virtual void _OnUIStateChanged(WCHAR wUIStateOld, WCHAR wUIStateNew);
+        UILIB_API void _ClearTooltipState();
+        UILIB_API void _DestroyTooltip();
 
     private:
         static bool WINAPI _IsElementContentTruncated(RichText* pe);
-        UID _DismissIHM(); // Cant find
+        UID _DismissIHM();
         void _OnIHMNotify(IHMState ihmstate);
         HRESULT _EnsureTooltip();
 
         Element* _TargetElementFromEventInfo(Element* peTarget, const POINT* ppt);
 
         void _SetActiveTooltipElement(Element* pe, TOUCHTOOLTIP_INPUT touchTooltipInput);
-        void _OnTooltipTimerFired(TOUCHTOOLTIP_INPUT touchTooltipInput, enum TOUCHTOOLTIP_TYPE touchTooltipType, enum TOUCHTOOLTIP_DELAY touchTooltipDelay); // Last argument name is guessed based on the other names
+        void _OnTooltipTimerFired(TOUCHTOOLTIP_INPUT touchTooltipInput, TOUCHTOOLTIP_TYPE touchTooltipType, TOUCHTOOLTIP_DELAY touchTooltipDelay);
         HRESULT _ShowTooltipForElement(TOUCHTOOLTIP_INPUT touchTooltipInput, Element* pe);
         DEVICE_SCALE_FACTOR _UpdateImmersiveScaleFactor();
         void _UpdateChildrenForAcceleratorDisplayChange(Element* pe);
@@ -117,8 +130,8 @@ namespace DirectUI
         void _FireScaleChangeEvent();
         void _UpdateImmersiveScaleFactorAndMaybeFireScaleChangeEvent();
         void _OnListenerDetach(Element* pe);
-        class CSafeElementListenerPtr<Element> _speWithTooltip;
-        struct ITouchTooltip* _pTooltip;
+        CSafeElementListenerPtr<Element> _speWithTooltip;
+        ITouchTooltip* _pTooltip;
         POINT _ptLastMousePosition;
         UINT _nLastPointerID;
         POINT _ptLastPointerPosition;
@@ -126,11 +139,11 @@ namespace DirectUI
         DWORD _dwScaleChangeCookie;
         HMONITOR _hMonitorForScaling;
         HWND _hwndScaleChange;
-        enum TOUCHTOOLTIP_CREATE_FLAGS _touchTooltipCreateFlags;
+        TOUCHTOOLTIP_CREATE_FLAGS _touchTooltipCreateFlags;
         UINT _cMonitorRegistrations;
-        void* _hPower;
+        HPOWERNOTIFY _hPower;
         UINT _cIHMRegistrations;
-        class DirectUI::CIHMCallback* _pIHMCallback;
+        CIHMCallback* _pIHMCallback;
         UINT _cAnimationStatusRegistrations;
         bool _fDismissIHMOnEvent;
         bool _fDismissIHMEventPosted;
@@ -142,8 +155,8 @@ namespace DirectUI
             static HRESULT WINAPI s_CreateInstance(TouchHWNDElement* peTouchHWNDElement, REFIID riid, void** ppv);
 
             //~ Begin ITouchTooltipEventSink Interface
-            virtual HRESULT STDMETHODCALLTYPE OnTooltipTimerFired(TOUCHTOOLTIP_INPUT touchTooltipInput, TOUCHTOOLTIP_TYPE touchTooltipType, TOUCHTOOLTIP_DELAY touchTooltipDelay);
-            virtual HRESULT STDMETHODCALLTYPE OnTooltipHidden();
+            STDMETHODIMP OnTooltipTimerFired(TOUCHTOOLTIP_INPUT touchTooltipInput, TOUCHTOOLTIP_TYPE touchTooltipType, TOUCHTOOLTIP_DELAY touchTooltipDelay) override;
+            STDMETHODIMP OnTooltipHidden() override;
             //~ End ITouchTooltipEventSink Interface
 
             //~ Begin IElementListener Interface
@@ -151,12 +164,12 @@ namespace DirectUI
             //~ End IElementListener Interface
 
         protected:
-            _GUID* s_rgpIID[0];
+            static GUID* s_rgpIID[0];
             ~TooltipEventSink();
-            HRESULT SetTouchHWNDElement(TouchHWNDElement*); // Cant find this
+            HRESULT SetTouchHWNDElement(TouchHWNDElement*);
 
         private:
-            class CSafeElementListenerPtr<TouchHWNDElement> _speTouchHWNDElement;
+            CSafeElementListenerPtr<TouchHWNDElement> _speTouchHWNDElement;
 
         public:
             TooltipEventSink();
@@ -166,6 +179,7 @@ namespace DirectUI
         {
         public:
             void SetTouchHWNDElement(TouchHWNDElement*);
+            
             STDMETHODIMP_(void) OnListenerDetach(Element*) override;
 
         private:

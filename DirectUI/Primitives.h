@@ -34,7 +34,7 @@ namespace DirectUI
 
 	struct Cursor
 	{
-		HICON hCursor;
+		HCURSOR hCursor;
 	};
 
 	struct Graphic

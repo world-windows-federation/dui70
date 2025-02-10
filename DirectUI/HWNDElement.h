@@ -25,7 +25,7 @@ namespace DirectUI
 		virtual void UpdateTooltip(Element*);
 
 		//6
-		virtual void ActivateTooltip(Element*, unsigned long);
+		virtual void ActivateTooltip(Element*, DWORD);
 		//7
 		virtual void RemoveTooltip(Element*);
 

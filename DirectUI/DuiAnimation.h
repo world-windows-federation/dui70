@@ -621,6 +621,22 @@ namespace DirectUI
 		virtual HRESULT STDMETHODCALLTYPE AddScale(int nStoryboardId, Element* peToScale, POINTFLOAT ptflOrigin, POINTFLOAT ptflScale, int nOrderNumber, int nCustomDuration) = 0;
 	};
 
+	class PVLAnimation
+	{
+	public:
+		UILIB_API static UID WINAPI NotifyStart();
+		UILIB_API static UID WINAPI NotifyComplete();
+		UILIB_API static UID WINAPI NotifyImplicit();
+		UILIB_API static UID WINAPI NotifyStoryboardComplete();
+		UILIB_API static UID WINAPI ManualStoryboardVerify();
+		UILIB_API static UID WINAPI ReflowStyle();
+		UILIB_API static UID WINAPI CustomReflowHint();
+		UILIB_API static UID WINAPI CustomDragDropScalingHint();
+		UILIB_API static UID WINAPI CustomTapHint();
+		UILIB_API static UID WINAPI TriggeredAnimationComplete();
+		UILIB_API static UID WINAPI AnimationStatusChange();
+	};
+
 	class PVLLauncherAnimationTriggers : public IDuiLauncherAnimationTriggers
 	{
 	public:
@@ -641,7 +657,7 @@ namespace DirectUI
 		//~ End IDuiLauncherAnimationTriggers Interface
 
 	protected:
-		static GUID* s_rgpIID[];
+		static const IID* const s_rgpIID[];
 
 	public:
 		PVLLauncherAnimationTriggers(PVLLauncherAnimationTriggers&);

@@ -164,7 +164,7 @@ namespace DirectUI
             //~ End IElementListener Interface
 
         protected:
-            static GUID* s_rgpIID[0];
+            static const IID* const s_rgpIID[];
             ~TooltipEventSink();
             HRESULT SetTouchHWNDElement(TouchHWNDElement*);
 

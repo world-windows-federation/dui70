@@ -1,5 +1,8 @@
 ﻿#pragma once
 
+struct ITextDocument;
+class ITextServices;
+
 namespace DirectUI
 {
 	enum TouchEditTextMode
@@ -10,16 +13,16 @@ namespace DirectUI
 
 	enum TouchEditFilteredKeyComboFlags
 	{
-		TEFKCF_None = 0,
-		TEFKCF_Ctrl_C = 1,
-		TEFKCF_Ctrl_V = 2,
-		TEFKCF_Ctrl_X = 4,
-		TEFKCF_Shift_Ins = 8,
-		TEFKCF_Ctrl_Ins = 16,
-		TEFKCF_Ctrl_Del = 32,
-		TEFKCF_Copy = 17,
-		TEFKCF_Cut = 36,
-		TEFKCF_Paste = 10
+		TEFKCF_None = 0x0,
+		TEFKCF_Ctrl_C = 0x1,
+		TEFKCF_Ctrl_V = 0x2,
+		TEFKCF_Ctrl_X = 0x4,
+		TEFKCF_Shift_Ins = 0x8,
+		TEFKCF_Ctrl_Ins = 0x10,
+		TEFKCF_Ctrl_Del = 0x20,
+		TEFKCF_Copy = TEFKCF_Ctrl_C | TEFKCF_Ctrl_Ins,
+		TEFKCF_Cut = TEFKCF_Ctrl_X | TEFKCF_Ctrl_Del,
+		TEFKCF_Paste = TEFKCF_Ctrl_V | TEFKCF_Shift_Ins
 	};
 
 	enum TouchEditPasswordRevealMode
@@ -130,19 +133,19 @@ namespace DirectUI
 
 		UILIB_API const WCHAR* GetContentStringAsDisplayed(Value** ppv) override;
 
-		UILIB_API HRESULT Insert(Element** /*__formal*/, UINT cCount, UINT cCounta) override; // TODO: figure out if __formal is anything special
+		UILIB_API HRESULT Insert(Element** ppe, UINT cCount, UINT cCounta) override;
 		UILIB_API void SetKeyFocus() override;
 
-		UILIB_API virtual HRESULT GetTextDocument(struct ITextDocument**); // TODO: amrsatrio please check this
-		UILIB_API virtual HRESULT GetTextServices(class ITextServices**); // TODO: amrsatrio please check this
-		UILIB_API virtual HRESULT RefreshContent(); // TODO: amrsatrio please check this
+		UILIB_API virtual HRESULT GetTextDocument(ITextDocument** pptd);
+		UILIB_API virtual HRESULT GetTextServices(ITextServices** ppts);
+		UILIB_API virtual HRESULT RefreshContent();
 
 		UILIB_API virtual HRESULT FinalizeCurrentIMEComposition();
 		UILIB_API virtual HRESULT GetControllerFor(IUnknown**);
 
-		TouchEditBase(TouchEditBase*);
-		TouchEditBase(TouchEditBase&);
 		TouchEditBase();
+		TouchEditBase(const TouchEditBase&) = default;
+		TouchEditBase(TouchEditBase&&) = default;
 
 		enum PasswordReveal
 		{
@@ -161,9 +164,5 @@ namespace DirectUI
 	private:
 		PasswordReveal _reveal;
 		bool _fSavedModified;
-
-	public:
-		TouchEditBase& operator=(TouchEditBase*);
-		TouchEditBase& operator=(TouchEditBase&);
 	};
 }

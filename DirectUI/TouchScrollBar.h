@@ -17,7 +17,6 @@ namespace DirectUI
 
 		UILIB_API static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-
 		// ReSharper disable once CppHidingFunction
 		UILIB_API HRESULT Initialize(bool fBuildSubTree, Element* pParent, DWORD* pdwDeferCookie);
 
@@ -27,13 +26,13 @@ namespace DirectUI
 		UILIB_API void OnHosted(Element* peNewHost) override;
 
 		UILIB_API void _SelfLayoutDoLayout(int cx, int cy) override;
-		UILIB_API SIZE _SelfLayoutUpdateDesiredSize(int, int, Surface* psrf) override;
+		UILIB_API SIZE _SelfLayoutUpdateDesiredSize(int dConstW, int dConstH, Surface* psrf) override;
 
 		UILIB_API TouchScrollBar();
 		UILIB_API ~TouchScrollBar() override;
 
 		UILIB_API static IClassInfo* WINAPI GetClassInfoPtr();
-		void SetClassInfoPtr(IClassInfo*);
+		static void SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;
@@ -68,26 +67,27 @@ namespace DirectUI
 		void _SetPositionOrStop(int docPos);
 		HRESULT _FadeAnimation(Element* peToFade, UINT uiState);
 		HRESULT _CreateAndAddInnerRichText(Element* peParent, const WCHAR* pszID, const WCHAR* ppRichText, Element** ppRichTexta);
-		void _OnListenedPropertyChanged(Element*, PropertyInfo*, int, Value*, Value*);
+		void _OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
 
-		class InnerTouchScrollBarListener : public CSafeElementListenerCB // TODO: this might need some fixing
+		class InnerTouchScrollBarListener : public CSafeElementListenerCB
 		{
 		public:
-			InnerTouchScrollBarListener(InnerTouchScrollBarListener*);
-			InnerTouchScrollBarListener(InnerTouchScrollBarListener&);
 			InnerTouchScrollBarListener();
+			InnerTouchScrollBarListener(const InnerTouchScrollBarListener&) = default;
+			InnerTouchScrollBarListener(InnerTouchScrollBarListener&&) noexcept = default;
+
 			void SetTouchScrollbar(TouchScrollBar*);
-			virtual void OnListenedPropertyChanged(Element*, PropertyInfo*, int, Value*, Value*);
+
+			//~ Begin DirectUI::IElementListener Interface
+			void OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+			//~ End DirectUI::IElementListener Interface
 
 		private:
 			TouchScrollBar* _peTouchScrollbar;
-
-		public:
-			InnerTouchScrollBarListener& operator=(InnerTouchScrollBarListener*);
-			InnerTouchScrollBarListener& operator=(InnerTouchScrollBarListener&);
 		};
 
 		InnerTouchScrollBarListener _innerListener;
+
 		void _GetThumbSize(int nTrackSize, int* pnDisplaySize, int* pnProportionalSize);
 		HRESULT _UpdateIndicatorTransforms(bool fForceUpdate);
 		HRESULT _UpdateIndicatorTransforms(float flScaleFactor);
@@ -115,7 +115,7 @@ namespace DirectUI
 		float _flOffsetDelta;
 		float _flScaleFactor;
 		RECT _rcViewport;
-		class CSafeElementListenerPtr<Element> _speLineUpRichText;
-		class CSafeElementListenerPtr<Element> _speLineDownRichText;
+		CSafeElementListenerPtr<Element> _speLineUpRichText;
+		CSafeElementListenerPtr<Element> _speLineDownRichText;
 	};
 }

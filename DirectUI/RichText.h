@@ -38,7 +38,7 @@ namespace DirectUI
 	{
 	public:
 		UILIB_API static IClassInfo* GetClassInfoPtr();
-		static void SetClassInfoPtr(IClassInfo* pClassInfo);
+		static void SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;

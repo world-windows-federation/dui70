@@ -161,7 +161,7 @@ namespace DirectUI
 		void ProcessAnimationEvent(AnimateScrollEvent*);
 
 		UILIB_API static IClassInfo* WINAPI GetClassInfoPtr();
-		void SetClassInfoPtr(IClassInfo* pClass);
+		static void SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;

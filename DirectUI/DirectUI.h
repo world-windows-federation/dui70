@@ -125,6 +125,7 @@
 #include "SemanticController.h"
 #include "ManipulationHelper.h"
 #include "PromptText.h"
+#include "DuiAnimation.h"
 
 // Touch elements
 #include "TouchButton.h"

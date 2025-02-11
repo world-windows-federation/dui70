@@ -193,6 +193,7 @@
     <ClInclude Include="CVScrollBar.h" />
     <ClInclude Include="DialogElement.h" />
     <ClInclude Include="DirectUI.h" />
+    <ClInclude Include="DuiAnimation.h" />
     <ClInclude Include="DuiNavigate.h" />
     <ClInclude Include="Edit.h" />
     <ClInclude Include="Element.h" />

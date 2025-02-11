@@ -9,6 +9,12 @@ namespace DirectUI
 		// ??
 	};
 
+	struct ElementIndexPair
+	{
+		Element* pElement;
+		UINT uIndex;
+	};
+	
 	//32位数据结构大小 0x80
 	class UILIB_API Element
 	{

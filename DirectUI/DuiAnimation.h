@@ -641,7 +641,7 @@ namespace DirectUI
 		//~ End IDuiLauncherAnimationTriggers Interface
 
 	protected:
-		static GUID* s_rgpIID[0];
+		static GUID* s_rgpIID[];
 
 	public:
 		PVLLauncherAnimationTriggers(PVLLauncherAnimationTriggers&);

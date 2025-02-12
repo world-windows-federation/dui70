@@ -29,7 +29,7 @@ namespace DirectUI
 		XProvider(void);
 
 
-		virtual long  CreateDUI(IXElementCP*, HWND*);
+		virtual long __stdcall CreateDUI(IXElementCP*, HWND*);
 		virtual long __stdcall SetParameter(GUID const&, void*);
 		virtual long __stdcall GetDesiredSize(int, int, SIZE*);
 		virtual long __stdcall IsDescendent(Element*, bool*);

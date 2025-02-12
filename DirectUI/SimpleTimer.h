@@ -1,19 +1,5 @@
 ﻿#pragma once
 
-typedef void (CALLBACK *ACTIONPROC)(GMA_ACTIONINFO*);
-
-struct GMA_ACTION
-{
-    DWORD cbSize;
-    float flDelay;
-    float flDuration;
-    float flPeriod;
-    UINT cRepeat;
-    DWORD dwPause;
-    ACTIONPROC pfnProc;
-    void* pvData;
-};
-
 namespace DirectUI
 {
     enum DUI_TIMER_REPEAT_OPTION
@@ -45,12 +31,7 @@ namespace DirectUI
 
         ~SimpleTimer()
         {
-            if (_hAction)
-            {
-                DeleteHandle(_hAction);
-                _hAction = nullptr;
-            }
-
+            Stop();
             delete _pInvoker;
         }
 

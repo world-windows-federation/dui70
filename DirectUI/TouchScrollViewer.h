@@ -212,16 +212,16 @@ namespace DirectUI
 		HRESULT AddChildren() override;
 
 	public:
-		BaseScrollBar* GetHScroll() override;
+		BaseScrollBar* BaseScrollViewer::GetHScroll() override;
 
 	protected:
-		virtual TouchScrollBar* GetHScroll(); // Ignore the error on Rider
+		virtual TouchScrollBar* TouchScrollViewer_GetHScroll(); // OG name: GetHScroll
 
 	public:
-		BaseScrollBar* GetVScroll() override;
+		BaseScrollBar* BaseScrollViewer::GetVScroll() override;
 
 	protected:
-		virtual TouchScrollBar* GetVScroll(); // Ignore the error on Rider
+		virtual TouchScrollBar* TouchScrollViewer_GetVScroll(); // OG name: GetVScroll
 
 		void _SetLastInputType(UINT nLastInputType);
 

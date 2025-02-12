@@ -90,7 +90,7 @@ namespace DirectUI
 		UILIB_API static HRESULT Register();
 
 		UILIB_API TouchButton();
-		TouchButton(const TouchButton&) = delete;
+		TouchButton(const TouchButton&) = default;
 
 		// ReSharper disable once CppHidingFunction
 		UILIB_API HRESULT Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
@@ -109,8 +109,8 @@ namespace DirectUI
 		public:
 			TouchButtonListenerHelper();
 
-			TouchButtonListenerHelper(TouchButtonListenerHelper&) = delete;
-			TouchButtonListenerHelper(TouchButtonListenerHelper&&) noexcept = delete;
+			TouchButtonListenerHelper(const TouchButtonListenerHelper&) = default;
+			TouchButtonListenerHelper(TouchButtonListenerHelper&&) noexcept = default;
 
 			void SetThisElement(TouchButton* peTouchButton);
 

@@ -38,7 +38,7 @@ namespace DirectUI
 		static IClassInfo* s_pClassInfo;
 
 	public:
-		UILIB_API IClassInfo* WINAPI GetClassInfoW() override;
+		UILIB_API IClassInfo* GetClassInfoW() override;
 		UILIB_API static HRESULT Register();
 
 		UILIB_API ActiveState GetActiveState();

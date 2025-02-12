@@ -11,6 +11,13 @@
 #include <thumbcache.h>
 #include <XmlLite.h>
 #include <InputScope.h> // for InputScope enum
+#include <intsafe.h>
+
+#ifdef _DEBUG
+#include <crtdbg.h>
+#endif
+
+#include "../DUser/DUser.h"
 
 #if	defined(DIRECTUI_EXPORTS)
 #define UILIB_API __declspec(dllexport)
@@ -140,11 +147,12 @@
 #include "TouchEdit2.h"
 
 #include "CClassFactory.h"
+#include "ElementProviderManager.h"
 
 //UnknownElement
 
-UILIB_API void WINAPI DumpDuiTree(DirectUI::Element *, int);
-UILIB_API void WINAPI DumpDuiProperties(DirectUI::Element *);
+UILIB_API void WINAPI DumpDuiTree(DirectUI::Element* pe, BOOL fShowProperties);
+UILIB_API void WINAPI DumpDuiProperties(DirectUI::Element* pe);
 
 namespace DirectUI
 {
@@ -177,7 +185,7 @@ namespace DirectUI
 
 		BOOL WINAPI StartMessagePump();
 		void WINAPI StopMessagePump();
-	
+
 		ATOM WINAPI StrToID(const WCHAR* psz);
 		CHAR* WINAPI UnicodeToMultiByte(const WCHAR* pszUnicode, int cChars, int* pMultiBytes);
 		WCHAR* WINAPI MultiByteToUnicode(WCHAR* pszMulti, int dBytes, int* pUniChars);
@@ -189,7 +197,7 @@ namespace DirectUI
 
 		void WINAPI BlurBitmap(UINT* plBitmapBits, int cx, int cy, int cxRow, COLORREF crFill);
 		void WINAPI BlurBitmapNormal(UINT* prgb, int cx, int cy, int cxRow, COLORREF crFill);
-		
+
 		HBRUSH WINAPI BrushFromEnumI(int c);
 		COLORREF WINAPI ColorFromEnumI(int c);
 		COLORREF WINAPI ARGBColorEnumI(int c);
@@ -199,7 +207,7 @@ namespace DirectUI
 		Element* WINAPI ElementFromGadget(HGADGET hGadget);
 		DWORD* WINAPI EnableAnimations();
 		void WINAPI FlushThemeHandles(WPARAM wParam);
-	
+
 		void WINAPI ForceDebugBreak();
 
 		IDataEntry* WINAPI GetElementDataEntry(Element* pe);
@@ -207,15 +215,14 @@ namespace DirectUI
 		void* WINAPI GetFontCache();
 
 		HRESULT WINAPI GetThemeHandle(const WCHAR* pszClass, HTHEME *phTheme);
-	
+
 		HRESULT WINAPI HrSysAllocString(const OLECHAR* psz, BSTR* ppbstrOut);
 		HRESULT WINAPI HStrDup(const WCHAR* pszSrc, WCHAR** ppszOut);
-	
+
 		BOOL WINAPI InitPreprocessor();
 
 		HRESULT WINAPI SetDefAction(Element* pe, DWORD oleacc);
 
-	
 		BOOL WINAPI UiaHideOnGetObject(HWND hwnd, WPARAM wParam, LPARAM lParam);
 		HANDLE WINAPI UiaOnDestroySink(HWND hwnd);
 		HRESULT WINAPI UiaOnGetObject(Element* pe, WPARAM wParam, LPARAM lParam, bool* pfHandled, int* plResult);

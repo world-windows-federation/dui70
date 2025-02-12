@@ -245,9 +245,10 @@ DEFINE_ENUM_FLAG_OPERATORS(DuiBehaviorFilters::Flags);
 
 namespace DirectUI
 {
-	struct NavReference
+	struct UILIB_API NavReference
 	{
-		void Init(Element*, RECT*);
+		void Init(Element* pe, RECT* prc);
+
 		UINT cbSize;
 		Element* pe;
 		RECT* prc;

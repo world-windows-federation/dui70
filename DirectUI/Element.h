@@ -1,5 +1,7 @@
 #pragma once
 
+#include "InvokeHelper.h"
+
 typedef const DirectUI::PropertyInfo* (WINAPI *PropertyProcT)();
 
 namespace DirectUI
@@ -701,23 +703,4 @@ private:
 		virtual long Init(Element*, InvokeHelper*);
 		long DoInvoke(int, ...);
 	};
-
-	class UILIB_API ElementProviderManager
-	{
-	public:
-		ElementProviderManager & operator=(ElementProviderManager const &);
-
-		static long WINAPI Add(ElementProvider *);
-		static void WINAPI Close();
-		static ElementProvider *WINAPI Find(Element *);
-		static long WINAPI Init();
-		static void WINAPI Remove(ElementProvider *);
-
-		static CRITICAL_SECTION g_cs;
-	private:
-		static bool WINAPI FindProviderCallback(ElementProvider *, void *);
-
-		static UiaArray<ElementProvider *> * g_pArrayPprv;
-	};
-
 }

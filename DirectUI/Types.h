@@ -33,36 +33,6 @@ inline bool operator==(const UID& lhs, const UIDPROC& rhs)
 	return lhs._address == rhs()._address;
 }
 
-DECLARE_HANDLE(HACTION);
-DECLARE_HANDLE(HGADGET);
-
-struct GMA_ACTIONINFO
-{
-	HACTION hact;
-	void* pvData;
-	float flDuration;
-	float flProgress;
-	int cEvent;
-	int cPeriods;
-	BOOL fFinished;
-};
-
-typedef struct tagGMSG
-{
-	ULONG cbSize;
-	int nMsg;
-	HGADGET hgadMsg;
-} GMSG, *LPGMSG;
-
-struct MethodMsg : GMSG
-{
-};
-
-struct EventMsg : MethodMsg
-{
-	UINT nMsgFlags;
-};
-
 
 
 //forward declares
@@ -74,7 +44,7 @@ namespace DirectUI
 	typedef unsigned short UChar;
 	typedef UChar* UString;
 	typedef const unsigned short* UCString;
-	static_assert(std::is_same_v<wchar_t, unsigned short>, "Please enable \"Treat WChar_t As Built in Type\" in the project settings");
+	// static_assert(std::is_same_v<wchar_t, unsigned short>, "Please enable \"Treat WChar_t As Built in Type\" in the project settings");
 
 
 	typedef class ProviderProxy* (__stdcall * ProviderProxyCall)(class Element *);

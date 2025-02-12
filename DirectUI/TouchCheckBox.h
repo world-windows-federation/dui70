@@ -4,8 +4,8 @@ namespace DirectUI
 {
 	enum CheckedStateFlags
 	{
-		CheckedStateFlags_NONE,
-		CheckedStateFlags_CHECKED
+		CSF_Unchecked = 0,
+		CSF_Checked = 1,
 	};
 
 	class TouchCheckBox : public TouchButton

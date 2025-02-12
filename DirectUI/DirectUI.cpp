@@ -12999,6 +12999,7 @@ void TouchButton::FireClickEvent(UINT cClick, UINT uModifiers, ClickDevice click
 void TouchButton::FireRightClickEvent(UINT uModifiers, POINT* ppt) STUB_VOID;
 TouchButton::TouchButtonListenerHelper::TouchButtonListenerHelper() STUB_VOID
 void TouchButton::TouchButtonListenerHelper::OnListenedInput(Element* peFrom, InputEvent* pInput) STUB_VOID;
+
 HRESULT TouchCheckBox::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 HRESULT TouchCheckBox::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 void TouchCheckBox::Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) STUB_VOID;
@@ -13020,4 +13021,4 @@ TouchCheckBox::TouchCheckBox() STUB_VOID;
 HRESULT TouchCheckBox::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
 TouchCheckBox::~TouchCheckBox() STUB_VOID;
 
-}
+} // namespace DirectUI

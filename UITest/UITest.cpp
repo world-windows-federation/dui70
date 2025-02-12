@@ -63,7 +63,7 @@ struct EventListener : IElementListener
 
 	handler_t f;
 
-	EventListener(handler_t f) : f(f)
+	EventListener(const handler_t& f) : f(f)
 	{
 	}
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef _DEBUG
 #define DUI_ASSERT(msg) \
 	{ \
 		HMODULE hModule = GetModuleHandleW(L"ntdll.dll"); \
@@ -20,6 +21,10 @@
 	{ \
 	   DUI_ASSERT("(" #expr ")\r\n" msg "\r\n"); \
 	}
+#else
+#define DUI_ASSERT(msg)
+#define DUI_ASSERT_EXPR(expr, msg)
+#endif
 
 namespace DirectUI
 {

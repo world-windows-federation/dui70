@@ -12,10 +12,7 @@
 #include <XmlLite.h>
 #include <InputScope.h> // for InputScope enum
 #include <intsafe.h>
-
-#ifdef _DEBUG
 #include <crtdbg.h>
-#endif
 
 #include "../DUser/DUser.h"
 
@@ -38,12 +35,13 @@
 
 #include "Primitives.h"
 #include "Parser.h"
-#include "element.h"
+#include "Element.h"
 #include "Browser.h"
 #include "Bind.h"
 #include "AnimationStrip.h"
 #include "Button.h"
 #include "Base.h"
+#include "ClassInfo.h"
 #include "AccessibleButton.h"
 #include "AutoButton.h"
 #include "PushButton.h"
@@ -82,7 +80,6 @@
 #include "Combobox.h"
 #include "DuiNavigate.h"
 #include "Edit.h"
-#include "Element.h"
 #include "EventManager.h"
 #include "ExpandCollapse.h"
 #include "Expando.h"
@@ -146,7 +143,6 @@
 #include "TouchEditInner.h"
 #include "TouchEdit2.h"
 
-#include "CClassFactory.h"
 #include "ElementProviderManager.h"
 
 //UnknownElement
@@ -228,7 +224,7 @@ namespace DirectUI
 		HRESULT WINAPI UiaOnGetObject(Element* pe, WPARAM wParam, LPARAM lParam, bool* pfHandled, int* plResult);
 		BOOL WINAPI UiaOnToolTip(Element* pe, DWORD dwFlags);
 
-		void WINAPI NotifyAccessibilityEvent(DWORD dwEvent, Element* pe); // TODO: Element* pe is supposed to be ModernProgressRing
+		void WINAPI NotifyAccessibilityEvent(DWORD dwEvent, Element* pe);
 		WCHAR* WINAPI PreprocessBuffer(const WCHAR* pszBuf, UINT cchBuf, bool fInsertMainResId);
 		HBITMAP WINAPI ProcessAlphaBitmapI(HBITMAP hbmSource);
 		void WINAPI PurgeThemeHandles();

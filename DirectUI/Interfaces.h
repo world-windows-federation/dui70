@@ -21,21 +21,19 @@ namespace DirectUI
 		virtual void OnListenedEvent(Element* peFrom, Event* pEvent) = 0;
 	};
 
-	struct UILIB_API IClassInfo
+	struct DECLSPEC_NOVTABLE IClassInfo
 	{
-		IClassInfo& operator=(const IClassInfo&) = delete;
-
 		virtual void AddRef() = 0;
 		virtual int Release() = 0;
-		virtual HRESULT CreateInstance(Element*, ULONG*, Element**) = 0;
-		virtual const PropertyInfo* EnumPropertyInfo(UINT) = 0;
-		virtual const PropertyInfo* GetByClassIndex(UINT) = 0;
-		virtual unsigned int GetPICount() const = 0;
-		virtual unsigned int GetGlobalIndex() const = 0;
+		virtual HRESULT CreateInstance(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) = 0;
+		virtual const PropertyInfo* EnumPropertyInfo(UINT nEnum) = 0;
+		virtual const PropertyInfo* GetByClassIndex(UINT iIndex) = 0;
+		virtual UINT GetPICount() const = 0;
+		virtual UINT GetGlobalIndex() const = 0;
 		virtual IClassInfo* GetBaseClass() = 0;
 		virtual const WCHAR* GetName() const = 0;
-		virtual bool IsValidProperty(PropertyInfo const*) const = 0;
-		virtual bool IsSubclassOf(IClassInfo*) const = 0;
+		virtual bool IsValidProperty(const PropertyInfo* ppi) const = 0;
+		virtual bool IsSubclassOf(IClassInfo* pci) const = 0;
 		virtual void Destroy() = 0;
 		virtual HMODULE GetModule() const = 0;
 		virtual bool IsGlobal() const = 0;
@@ -43,20 +41,14 @@ namespace DirectUI
 		virtual void RemoveChild() = 0;
 		virtual int GetChildren() const = 0;
 		virtual void AssertPIZeroRef() const = 0;
-
-		//virtual ~IClassInfo();
 	};
 
 	struct UILIB_API IDataEntry
 	{
-		IDataEntry(const IDataEntry&);
-		IDataEntry();
-		virtual ~IDataEntry();
+		virtual ~IDataEntry() = default;
 
 		virtual HRESULT GetProperty(const WCHAR*, WCHAR**, bool*) = 0;
 		virtual void* GetActual() = 0;
-
-		IDataEntry& operator=(const IDataEntry&);
 	};
 
 	class DECLSPEC_NOVTABLE IProxy
@@ -79,8 +71,8 @@ namespace DirectUI
 		static long __stdcall SyncCallback(HGADGET__*, void*, EventMsg*);
 
 	protected:
-		void Invoke(unsigned int, void*);
-		virtual void OnInvoke(unsigned int, void*);
+		void Invoke(UINT, void*);
+		virtual void OnInvoke(UINT, void*);
 	};
 
 	class UILIB_API ProviderProxy : public IProxy

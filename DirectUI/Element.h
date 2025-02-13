@@ -8,7 +8,6 @@ namespace DirectUI
 {
 	struct UpdateCache
 	{
-		// ??
 	};
 
 	struct ElementIndexPair

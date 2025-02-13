@@ -127,8 +127,8 @@ namespace DirectUI
 		UILIB_API static HRESULT Register();
 		UILIB_API static HRESULT Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		UILIB_API bool OnPropertyChanging(PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
-		UILIB_API void OnPropertyChanged(PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+		UILIB_API bool OnPropertyChanging(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+		UILIB_API void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
 		UILIB_API bool IsContentProtected() override;
 
 		UILIB_API const WCHAR* GetContentStringAsDisplayed(Value** ppv) override;

@@ -133,6 +133,11 @@ void DumpClassInfo(IClassInfo* info)
 	}
 }
 
+namespace DirectUI
+{
+	class CClassFactory;
+}
+
 long (*RealClassFactoryRegister)(CClassFactory*, IClassInfo*) = nullptr;
 
 HRESULT HookedRegister(CClassFactory* self, IClassInfo* info)

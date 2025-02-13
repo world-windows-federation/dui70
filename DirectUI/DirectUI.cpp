@@ -15,266 +15,62 @@ namespace DirectUI
 
 DWORD g_dwElSlot;
 
-extern "C" {
-HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl)
+extern "C"
 {
-	return 0;
-}
 
-HRESULT WINAPI UnInitProcessPriv(HMODULE hModule)
-{
-	return S_OK;
-}
-
-HRESULT WINAPI InitThread(UINT nThreadMode)
-{
-	return S_OK;
-}
-
-void WINAPI UnInitThread()
-{
-}
-
-HRESULT WINAPI CreateDUIWrapper(Element* pe, IUnknown** ppunk)
-{
-	return S_OK;
-}
-
-HRESULT WINAPI CreateDUIWrapperEx(Element* pe, IXProviderCP* pprovCP, IUnknown** ppunk)
-{
-	return S_OK;
-}
-
-HRESULT WINAPI CreateDUIWrapperFromResource(HINSTANCE hRes, const WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, IUnknown** ppunk)
-{
-	return S_OK;
-}
-
-HRESULT WINAPI GetScreenDPI()
-{
-	return S_OK;
-}
-
-HRESULT WINAPI RegisterAllControls()
-{
-	return S_OK;
-}
-
-HRESULT WINAPI RegisterBaseControls()
-{
-	return S_OK;
-}
-
-HRESULT WINAPI RegisterBrowserControls()
-{
-	return S_OK;
-}
-
-HRESULT WINAPI RegisterCommonControls()
-{
-	return S_OK;
-}
-
-HRESULT WINAPI RegisterExtendedControls()
-{
-	return S_OK;
-}
-
-HRESULT WINAPI RegisterMacroControls()
-{
-	return S_OK;
-}
-
-HRESULT WINAPI RegisterMiscControls()
-{
-	return S_OK;
-}
-
-HRESULT WINAPI RegisterStandardControls()
-{
-	return S_OK;
-}
-
-HRESULT WINAPI RegisterXControls()
-{
-	return S_OK;
-}
-
-BOOL WINAPI StartMessagePump()
-{
-	return FALSE;
-}
-
-void WINAPI StopMessagePump()
-{
-	PostQuitMessage(0);
-}
-
-ATOM WINAPI StrToID(const WCHAR* psz)
-{
-	return 0;
-}
-
-CHAR* WINAPI UnicodeToMultiByte(const WCHAR* pszUnicode, int cChars, int* pMultiBytes)
-{
-	return LPSTR();
-}
-
-WCHAR* WINAPI MultiByteToUnicode(WCHAR* pszMulti, int dBytes, int* pUniChars)
-{
-	return LPWSTR();
-}
-
-BOOL WINAPI IsAnimationsEnabled()
-{
-	return 0;
-}
-
-bool WINAPI IsPalette(HWND hwnd)
-{
-	return 0;
-}
-
-BOOL WINAPI IsUIAutomationProviderEnabled()
-{
-	return 0;
-}
-
-int WINAPI DUIDrawShadowText(HDC hdc, const WCHAR* pszText, int cch, RECT* prc, DWORD dwFlags, COLORREF crText)
-{
-	return DrawShadowTextEx(hdc, pszText, cch, prc, dwFlags, crText, 0, 2, 2, 0x64u, 1);
-}
-
-void WINAPI BlurBitmap(UINT* plBitmapBits, int cx, int cy, int cxRow, COLORREF crFill)
-{
-	return BlurBitmapNormal(plBitmapBits, cx, cy, cxRow, crFill);
-}
-
-void WINAPI BlurBitmapNormal(UINT* prgb, int cx, int cy, int cxRow, COLORREF crFill)
-{
-}
-
-HBRUSH WINAPI BrushFromEnumI(int c)
-{
-	return HBRUSH();
-}
-
-COLORREF WINAPI ARGBColorFromEnumI(int c)
-{
-	return 0;
-}
-
-COLORREF WINAPI ColorFromEnumI(int c)
-{
-	return ARGBColorFromEnumI(c) & 0xFFFFFF;
-}
-
-DWORD* WINAPI DisableAnimations()
-{
-	return nullptr;
-}
-
-int WINAPI DrawShadowTextEx(HDC hdc, const WCHAR* pszText, int cch, RECT* prc, DWORD dwFlags, COLORREF crText, COLORREF crShadow, int ixOffset, int iyOffset, BYTE bInitialAlpha, BOOL fAPIInit)
-{
-	return 0;
-}
-
-Element* WINAPI ElementFromGadget(HGADGET hGadget)
-{
-	return nullptr;
-}
-
-DWORD* WINAPI EnableAnimations()
-{
-	return nullptr;
-}
-
-void WINAPI FlushThemeHandles(WPARAM wParam)
-{
-}
-
-void WINAPI ForceDebugBreak()
-{
-}
-
-IDataEntry* WINAPI GetElementDataEntry(Element* pe)
-{
-	return 0;
-}
-
-Macro* WINAPI GetElementMacro(Element* pe)
-{
-	return nullptr;
-}
-
-void* WINAPI GetFontCache()
-{
-	return LPVOID();
-}
-
-HRESULT WINAPI GetThemeHandle(const WCHAR* pszClass, HTHEME* phTheme)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT WINAPI HrSysAllocString(const OLECHAR* psz, BSTR* pbstrOut)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT WINAPI HStrDup(const WCHAR* pszSrc, WCHAR** ppszOut)
-{
-	return E_NOTIMPL;
-}
-
-BOOL WINAPI InitPreprocessor()
-{
-	return 0;
-}
-
-HRESULT WINAPI SetDefAction(Element* pe, DWORD oleacc)
-{
-	return E_NOTIMPL;
-}
-
-BOOL WINAPI UiaHideOnGetObject(HWND hwnd, WPARAM wParam, LPARAM lParam)
-{
-	return 0;
-}
-
-HANDLE WINAPI UiaOnDestroySink(HWND hwnd)
-{
-	return HANDLE();
-}
-
-HRESULT WINAPI UiaOnGetObject(Element* pe, WPARAM wParam, LPARAM lParam, bool* pfHandled, int* plResult)
-{
-	return E_NOTIMPL;
-}
-
-BOOL WINAPI UiaOnToolTip(Element* pe, DWORD dwFlags)
-{
-	return 0;
-}
-
-// TODO: implement DirectUI::ModernProgressRing
-void WINAPI NotifyAccessibilityEvent(DWORD dwEvent, Element* pe)
-{
-}
-
-WCHAR* WINAPI PreprocessBuffer(const WCHAR* pszBuf, UINT cchBuf, bool fInsertMainResId)
-{
-	return nullptr;
-}
-
-HBITMAP WINAPI ProcessAlphaBitmapI(HBITMAP hbmSource)
-{
-	return {};
-}
-
-void WINAPI PurgeThemeHandles()
-{
-}
+HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl) STUB_ZERO;
+HRESULT WINAPI UnInitProcessPriv(HMODULE hModule) STUB_ZERO;
+HRESULT WINAPI InitThread(UINT nThreadMode) STUB_ZERO;
+void WINAPI UnInitThread() STUB_VOID;
+HRESULT WINAPI CreateDUIWrapper(Element* pe, IUnknown** ppunk) STUB_ZERO;
+HRESULT WINAPI CreateDUIWrapperEx(Element* pe, IXProviderCP* pprovCP, IUnknown** ppunk) STUB_ZERO;
+HRESULT WINAPI CreateDUIWrapperFromResource(HINSTANCE hRes, const WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, IUnknown** ppunk) STUB_ZERO;
+HRESULT WINAPI GetScreenDPI() STUB_ZERO;
+HRESULT WINAPI RegisterAllControls() STUB_ZERO;
+HRESULT WINAPI RegisterBaseControls() STUB_ZERO;
+HRESULT WINAPI RegisterBrowserControls() STUB_ZERO;
+HRESULT WINAPI RegisterCommonControls() STUB_ZERO;
+HRESULT WINAPI RegisterExtendedControls() STUB_ZERO;
+HRESULT WINAPI RegisterMacroControls() STUB_ZERO;
+HRESULT WINAPI RegisterMiscControls() STUB_ZERO;
+HRESULT WINAPI RegisterStandardControls() STUB_ZERO;
+HRESULT WINAPI RegisterXControls() STUB_ZERO;
+BOOL WINAPI StartMessagePump() STUB_ZERO;
+void WINAPI StopMessagePump() STUB_VOID;
+ATOM WINAPI StrToID(const WCHAR* psz) STUB_ZERO;
+CHAR* WINAPI UnicodeToMultiByte(const WCHAR* pszUnicode, int cChars, int* pMultiBytes) STUB_ZERO;
+WCHAR* WINAPI MultiByteToUnicode(WCHAR* pszMulti, int dBytes, int* pUniChars) STUB_ZERO;
+BOOL WINAPI IsAnimationsEnabled() STUB_ZERO;
+bool WINAPI IsPalette(HWND hwnd) STUB_ZERO;
+BOOL WINAPI IsUIAutomationProviderEnabled() STUB_ZERO;
+int WINAPI DUIDrawShadowText(HDC hdc, const WCHAR* pszText, int cch, RECT* prc, DWORD dwFlags, COLORREF crText) STUB_ZERO;
+void WINAPI BlurBitmap(UINT* plBitmapBits, int cx, int cy, int cxRow, COLORREF crFill) STUB_VOID;
+void WINAPI BlurBitmapNormal(UINT* prgb, int cx, int cy, int cxRow, COLORREF crFill) STUB_VOID;
+HBRUSH WINAPI BrushFromEnumI(int c) STUB_ZERO;
+COLORREF WINAPI ARGBColorFromEnumI(int c) STUB_ZERO;
+COLORREF WINAPI ColorFromEnumI(int c) STUB_ZERO;
+DWORD* WINAPI DisableAnimations() STUB_ZERO;
+int WINAPI DrawShadowTextEx(HDC hdc, const WCHAR* pszText, int cch, RECT* prc, DWORD dwFlags, COLORREF crText, COLORREF crShadow, int ixOffset, int iyOffset, BYTE bInitialAlpha, BOOL fAPIInit) STUB_ZERO;
+Element* WINAPI ElementFromGadget(HGADGET hGadget) STUB_ZERO;
+DWORD* WINAPI EnableAnimations() STUB_ZERO;
+void WINAPI FlushThemeHandles(WPARAM wParam) STUB_VOID;
+void WINAPI ForceDebugBreak() STUB_VOID;
+IDataEntry* WINAPI GetElementDataEntry(Element* pe) STUB_ZERO;
+Macro* WINAPI GetElementMacro(Element* pe) STUB_ZERO;
+void* WINAPI GetFontCache() STUB_ZERO;
+HRESULT WINAPI GetThemeHandle(const WCHAR* pszClass, HTHEME* phTheme) STUB_ZERO;
+HRESULT WINAPI HrSysAllocString(const OLECHAR* psz, BSTR* pbstrOut) STUB_ZERO;
+HRESULT WINAPI HStrDup(const WCHAR* pszSrc, WCHAR** ppszOut) STUB_ZERO;
+BOOL WINAPI InitPreprocessor() STUB_ZERO;
+HRESULT WINAPI SetDefAction(Element* pe, DWORD oleacc) STUB_ZERO;
+BOOL WINAPI UiaHideOnGetObject(HWND hwnd, WPARAM wParam, LPARAM lParam) STUB_ZERO;
+HANDLE WINAPI UiaOnDestroySink(HWND hwnd) STUB_ZERO;
+HRESULT WINAPI UiaOnGetObject(Element* pe, WPARAM wParam, LPARAM lParam, bool* pfHandled, int* plResult) STUB_ZERO;
+BOOL WINAPI UiaOnToolTip(Element* pe, DWORD dwFlags) STUB_ZERO;
+void WINAPI NotifyAccessibilityEvent(DWORD dwEvent, Element* pe) STUB_VOID;
+WCHAR* WINAPI PreprocessBuffer(const WCHAR* pszBuf, UINT cchBuf, bool fInsertMainResId) STUB_ZERO;
+HBITMAP WINAPI ProcessAlphaBitmapI(HBITMAP hbmSource) STUB_ZERO;
+void WINAPI PurgeThemeHandles() STUB_VOID;
 
 } // extern "C"
 
@@ -4332,113 +4128,27 @@ void AnimationStrip::UnloadCommonControlExports()
 
 IClassInfo* AnimationStrip::s_pClassInfo;
 
-ClassInfoBase::ClassInfoBase(ClassInfoBase const&)
-{
-}
-
-ClassInfoBase::ClassInfoBase()
-{
-}
-
-ClassInfoBase::~ClassInfoBase()
-{
-}
-
-ClassInfoBase& ClassInfoBase::operator=(ClassInfoBase const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-void ClassInfoBase::AddRef()
-{
-}
-
-int ClassInfoBase::Release()
-{
-	return 0;
-}
-
-const PropertyInfo* ClassInfoBase::EnumPropertyInfo(unsigned int)
-{
-	return nullptr;
-}
-
-const PropertyInfo* ClassInfoBase::GetByClassIndex(unsigned int)
-{
-	return nullptr;
-}
-
-unsigned int ClassInfoBase::GetPICount() const
-{
-	return 0;
-}
-
-unsigned int ClassInfoBase::GetGlobalIndex() const
-{
-	return 0;
-}
-
-UCString ClassInfoBase::GetName() const
-{
-	return UCString();
-}
-
-bool ClassInfoBase::IsValidProperty(const PropertyInfo*) const
-{
-	return false;
-}
-
-bool ClassInfoBase::IsSubclassOf(IClassInfo*) const
-{
-	return false;
-}
-
-void ClassInfoBase::Destroy()
-{
-}
-
-HINSTANCE ClassInfoBase::GetModule() const
-{
-	return HINSTANCE();
-}
-
-bool ClassInfoBase::IsGlobal() const
-{
-	return false;
-}
-
-void ClassInfoBase::AddChild()
-{
-}
-
-void ClassInfoBase::RemoveChild()
-{
-}
-
-int ClassInfoBase::GetChildren() const
-{
-	return 0;
-}
-
-void ClassInfoBase::AssertPIZeroRef() const
-{
-}
-
-bool WINAPI ClassInfoBase::ClassExist(IClassInfo**, const PropertyInfo* const *, unsigned int, IClassInfo*, HINSTANCE, UCString, bool)
-{
-	return false;
-}
-
-long ClassInfoBase::Initialize(HINSTANCE, UCString, bool, const PropertyInfo* const *, unsigned int)
-{
-	return 0;
-}
-
-long ClassInfoBase::Register()
-{
-	return 0;
-}
+ClassInfoBase::ClassInfoBase() STUB_VOID;
+ClassInfoBase::~ClassInfoBase() STUB_VOID;
+HRESULT ClassInfoBase::Initialize(HINSTANCE hModule, const WCHAR* pszName, bool fGlobal, const PropertyInfo* const* ppPI, UINT cPI) STUB_ZERO;
+HRESULT ClassInfoBase::Register() STUB_ZERO;
+bool ClassInfoBase::ClassExist(IClassInfo** ppCI, const PropertyInfo* const* ppPI, UINT cPI, IClassInfo* pCIBase, HMODULE hModule, const WCHAR* pszName, bool fGlobal) STUB_ZERO;
+void ClassInfoBase::AddRef() STUB_VOID;
+int ClassInfoBase::Release() STUB_ZERO;
+const PropertyInfo* ClassInfoBase::EnumPropertyInfo(UINT) STUB_ZERO;
+const PropertyInfo* ClassInfoBase::GetByClassIndex(UINT) STUB_ZERO;
+UINT ClassInfoBase::GetPICount() const STUB_ZERO;
+UINT ClassInfoBase::GetGlobalIndex() const STUB_ZERO;
+UCString ClassInfoBase::GetName() const STUB_ZERO;
+bool ClassInfoBase::IsValidProperty(const PropertyInfo* ppi) const STUB_ZERO;
+bool ClassInfoBase::IsSubclassOf(IClassInfo* pci) const STUB_ZERO;
+void ClassInfoBase::Destroy() STUB_VOID;
+HINSTANCE ClassInfoBase::GetModule() const STUB_ZERO;
+bool ClassInfoBase::IsGlobal() const STUB_ZERO;
+void ClassInfoBase::AddChild() STUB_VOID;
+void ClassInfoBase::RemoveChild() STUB_VOID;
+int ClassInfoBase::GetChildren() const STUB_ZERO;
+void ClassInfoBase::AssertPIZeroRef() const STUB_VOID;
 
 BaseScrollBar::BaseScrollBar(BaseScrollBar const&)
 {
@@ -6619,16 +6329,7 @@ bool DialogElement::IsButtonEnabledAndVisible(Element*)
 
 IClassInfo* DialogElement::s_pClassInfo;
 
-Element* DuiNavigate::Navigate(Element*, DynamicArray<Element*, 0>*, int)
-{
-	return nullptr;
-}
-
-DuiNavigate& DuiNavigate::operator=(DuiNavigate const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
+Element* DuiNavigate::Navigate(Element* peFrom, DynamicArray<Element*>* pelConsider, int nNavDir) STUB_ZERO;
 
 Edit::Edit(Edit const&)
 {
@@ -12368,137 +12069,31 @@ HWND XElement::GetNotificationSinkHWND(void)
 
 IClassInfo* XElement::s_pClassInfo;
 
-XProvider::XProvider(XProvider const&)
-{
-}
-
-XProvider::XProvider()
-{
-}
-
-XProvider::~XProvider(void)
-{
-}
-
-XProvider& XProvider::operator=(XProvider const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long XProvider::Create(Element*, IXProviderCP*, XProvider**)
-{
-	return 0;
-}
-
-long XProvider::CreateParser(DUIXmlParser**)
-{
-	return 0;
-}
-
-long XProvider::Initialize(Element*, IXProviderCP*)
-{
-	return 0;
-}
-
-unsigned long XProvider::AddRef(void)
-{
-	return 0;
-}
-
-long XProvider::CanSetFocus(bool*)
-{
-	return 0;
-}
-
-int XProvider::ClickDefaultButton(void)
-{
-	return 0;
-}
-
-long XProvider::CreateDUI(IXElementCP*, HWND*)
-{
-	return 0;
-}
-
-long XProvider::CreateXBaby(DirectUI::IXElementCP*, HWND, Element*, unsigned long*, IXBaby**)
-{
-	return 0;
-}
-
-int XProvider::FindElementWithShortcutAndDoDefaultAction(unsigned short, int)
-{
-	return 0;
-}
-
-long XProvider::ForceThemeChange(UINT_PTR, LONG_PTR)
-{
-	return 0;
-}
-
-long XProvider::GetDesiredSize(int, int, SIZE*)
-{
-	return 0;
-}
-
-long XProvider::GetHostedElementID(unsigned short*)
-{
-	return 0;
-}
-
-long XProvider::IsDescendent(Element*, bool*)
-{
-	return 0;
-}
-
-long XProvider::Navigate(int, bool*)
-{
-	return 0;
-}
-
-long XProvider::QueryInterface(GUID const&, void**)
-{
-	return 0;
-}
-
-unsigned long XProvider::Release(void)
-{
-	return 0;
-}
-
-long XProvider::SetButtonClassAcceptsEnterKey(bool)
-{
-	return 0;
-}
-
-long XProvider::SetDefaultButtonTracking(bool)
-{
-	return 0;
-}
-
-long XProvider::SetFocus(Element*)
-{
-	return 0;
-}
-
-long XProvider::SetParameter(GUID const&, void*)
-{
-	return 0;
-}
-
-long XProvider::SetRegisteredDefaultButton(Element*)
-{
-	return 0;
-}
-
-Element* XProvider::GetRoot(void)
-{
-	return nullptr;
-}
-
-void XProvider::SetHandleEnterKey(bool)
-{
-}
+HRESULT XProvider::QueryInterface(REFIID iid, void** ppv) STUB_ZERO;
+ULONG XProvider::AddRef() STUB_ZERO;
+ULONG XProvider::Release() STUB_ZERO;
+HRESULT XProvider::CreateDUI(IXElementCP* pcp, HWND* phwnd) STUB_ZERO;
+HRESULT XProvider::SetParameter(REFGUID, void*) STUB_ZERO;
+HRESULT XProvider::GetDesiredSize(int cxConstraint, int cyConstraint, SIZE* ps) STUB_ZERO;
+HRESULT XProvider::IsDescendent(Element* pe, bool* pbHandled) STUB_ZERO;
+HRESULT XProvider::SetFocus(Element* pe) STUB_ZERO;
+HRESULT XProvider::Navigate(int iNavDir, bool* pbHandled) STUB_ZERO;
+HRESULT XProvider::CanSetFocus(bool* pfCanSetFocus) STUB_ZERO;
+BOOL XProvider::FindElementWithShortcutAndDoDefaultAction(WCHAR ch, BOOL fSysKey) STUB_ZERO;
+HRESULT XProvider::GetHostedElementID(ATOM* patomID) STUB_ZERO;
+HRESULT XProvider::ForceThemeChange(WPARAM wParam, LPARAM lParam) STUB_ZERO;
+HRESULT XProvider::SetDefaultButtonTracking(bool fEnabled) STUB_ZERO;
+BOOL XProvider::ClickDefaultButton() STUB_ZERO;
+HRESULT XProvider::SetRegisteredDefaultButton(Element* peDefaultButton) STUB_ZERO;
+HRESULT XProvider::SetButtonClassAcceptsEnterKey(bool fEnabled) STUB_ZERO;
+HRESULT XProvider::Create(Element* pe, IXProviderCP* pprovCP, XProvider** ppxp) STUB_ZERO;
+HRESULT XProvider::Initialize(Element* pe, IXProviderCP* pprovCP) STUB_ZERO;
+HRESULT XProvider::CreateXBaby(IXElementCP* pcp, HWND hwndParent, Element* pParent, DWORD* pdwDeferCookie, IXBaby** ppIXBaby) STUB_ZERO;
+HRESULT XProvider::CreateParser(DUIXmlParser** ppParser) STUB_ZERO;
+XProvider::XProvider() STUB_VOID;
+XProvider::~XProvider() STUB_VOID;
+Element* XProvider::GetRoot() STUB_ZERO;
+void XProvider::SetHandleEnterKey(bool fHandle) STUB_VOID;
 
 ElementProvider::ElementProvider()
 {
@@ -12875,31 +12470,6 @@ long BrowserSelectionProxy::GetSelection(SAFEARRAY**)
 {
 	return 0;
 }
-
-IDataEntry::IDataEntry()
-{
-}
-
-IDataEntry::IDataEntry(IDataEntry const&)
-{
-}
-
-IDataEntry::~IDataEntry(void)
-{
-}
-
-IDataEntry& IDataEntry::operator=(IDataEntry const&)
-{
-	return *this;
-}
-
-//HRESULT CClassFactory::Create(unsigned int, Element *, unsigned long *, Element * *) {
-//	return S_OK;
-//}
-
-//HRESULT CClassFactory::Register(IClassInfo *) {
-//	return S_OK;
-//}
 
 IClassInfo* RichText::GetClassInfoPtr() STUB_ZERO;
 IClassInfo* RichText::GetClassInfoW() STUB_ZERO;

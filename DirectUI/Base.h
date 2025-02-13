@@ -2,64 +2,6 @@
 
 namespace DirectUI
 {
-	class UILIB_API ClassInfoBase //: IClassInfo
-	{
-	public:
-		ClassInfoBase(ClassInfoBase const &);
-		ClassInfoBase();
-		ClassInfoBase & operator=(ClassInfoBase const &);
-
-		//0
-		virtual void AddRef();
-		//1
-		virtual int Release();
-
-		//2
-		virtual HRESULT WINAPI CreateInstance(Element*, unsigned long*, Element** ) = 0;
-
-		//3
-		virtual const PropertyInfo* EnumPropertyInfo(unsigned int);
-		//4
-		virtual const PropertyInfo* GetByClassIndex(unsigned int);
-		//5
-		virtual unsigned int GetPICount() const;
-		//6
-		virtual unsigned int GetGlobalIndex() const;
-
-		//NULL
-		virtual IClassInfo* WINAPI GetBaseClass() = 0;
-
-		//6
-		virtual UCString GetName() const;
-		//7
-		virtual bool IsValidProperty(const PropertyInfo*) const;
-		//8
-		virtual bool IsSubclassOf(IClassInfo*) const;
-		//9
-		virtual void Destroy();
-		//10
-		virtual HINSTANCE GetModule() const;
-		//11
-		virtual bool IsGlobal() const;
-
-		//12
-		virtual void AddChild();
-		//13
-		virtual void RemoveChild();
-		//14
-		virtual int GetChildren() const;
-		//15
-		virtual void AssertPIZeroRef() const;
-
-		virtual ~ClassInfoBase() ;
-
-		static bool WINAPI ClassExist(IClassInfo**, const PropertyInfo* const*, unsigned int, IClassInfo*, HINSTANCE, UCString, bool);
-		long Initialize(HINSTANCE, UCString name, bool hasPropertyInfo, const PropertyInfo* const* properties, unsigned int properties_count);
-		long Register();
-	//private:
-		char data[0x10];
-	};
-
 	class Viewer;
 
 	class UILIB_API BaseScrollBar

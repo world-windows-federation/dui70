@@ -2,11 +2,9 @@
 
 namespace DirectUI
 {
-	class DuiNavigate
+	class UILIB_API DuiNavigate
 	{
 	public:
-		DuiNavigate& operator=(DuiNavigate const&);
-
-		UILIB_API static Element* WINAPI Navigate(Element* peFrom, DynamicArray<Element*>* pelConsider, int nNavDir);
+		static Element* WINAPI Navigate(Element* peFrom, DynamicArray<Element*>* pelConsider, int nNavDir);
 	};
 }

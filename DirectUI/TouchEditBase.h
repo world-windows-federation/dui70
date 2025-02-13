@@ -133,7 +133,7 @@ namespace DirectUI
 
 		UILIB_API const WCHAR* GetContentStringAsDisplayed(Value** ppv) override;
 
-		UILIB_API HRESULT Insert(Element** ppe, UINT cCount, UINT cCounta) override;
+		UILIB_API HRESULT Insert(Element** ppe, UINT cCount, UINT iInsertIdx) override;
 		UILIB_API void SetKeyFocus() override;
 
 		UILIB_API virtual HRESULT GetTextDocument(ITextDocument** pptd);

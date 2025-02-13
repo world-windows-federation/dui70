@@ -436,1880 +436,435 @@ const PropertyInfo* WINAPI Button::PressedProp()
 
 IClassInfo* Button::s_pClassInfo;
 
-Element::Element()
-{
-}
-
-Element::Element(const Element&)
-{
-}
-
-Element::~Element()
-{
-}
-
-Element& Element::operator=(const Element&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long Element::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-long WINAPI Element::Create(unsigned int, Element* parent, unsigned long*, Element** out)
-{
-	return 0;
-}
-
-bool Element::IsRTLReading()
-{
-	return false;
-}
-
-bool Element::IsContentProtected()
-{
-	return false;
-}
-
-long WINAPI Element::UnRegister(IClassInfo**)
-{
-	return 0;
-}
-
-Element* Element::GetParent(void)
-{
-	return nullptr;
-}
-
-RECT const* Element::GetPadding(Value**)
-{
-	return nullptr;
-}
-
-bool Element::GetOverhang(void)
-{
-	return false;
-}
-
-Element* Element::GetMouseWithinChild(void)
-{
-	return nullptr;
-}
-
-bool Element::GetMouseWithin(void)
-{
-	return false;
-}
-
-bool Element::GetMouseFocused(void)
-{
-	return false;
-}
-
-SIZE const* Element::GetMinSize(Value**)
-{
-	return nullptr;
-}
-
-RECT const* Element::GetMargin(Value**)
-{
-	return nullptr;
-}
-
-POINT const* Element::GetLocation(Value**)
-{
-	return nullptr;
-}
-
-int Element::GetLayoutPos(void)
-{
-	return 0;
-}
-
-Layout* Element::GetLayout(Value**)
-{
-	return nullptr;
-}
-
-Element* Element::GetKeyWithinChild(void)
-{
-	return nullptr;
-}
-
-bool Element::GetKeyWithin(void)
-{
-	return false;
-}
-
-const WCHAR* Element::GetContentStringAsDisplayed(Value**)
-{
-	return nullptr;
-}
-
-Element* Element::GetUiaFocusDelegate()
-{
-	return nullptr;
-}
-
-long Element::AddBehavior(IDuiBehavior* behavior)
-{
-	return E_NOTIMPL;
-}
-
-long Element::RemoveBehavior(IDuiBehavior* behavior)
-{
-	return E_NOTIMPL;
-}
-
-void Element::GetImmersiveFocusRectOffsets(RECT*)
-{
-}
-
-bool Element::OnPropertyChanging(const PropertyInfo*, int, Value*, Value*)
-{
-	return false;
-}
-
-bool Element::OnPropertyChanging(PropertyInfo*, int, Value*, Value*)
-{
-	return false;
-}
-
-void Element::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-void Element::OnPropertyChanged(PropertyInfo*, int, Value*, Value*)
-{
-}
-
-void Element::OnGroupChanged(int, bool)
-{
-}
-
-void Element::OnInput(InputEvent*)
-{
-}
-
-void Element::OnKeyFocusMoved(Element*, Element*)
-{
-}
-
-void Element::OnMouseFocusMoved(Element*, Element*)
-{
-}
-
-void Element::OnDestroy()
-{
-}
-
-void Element::OnEvent(Event*)
-{
-}
-
-void Element::Paint(HDC, RECT const*, RECT const*, RECT*, RECT*)
-{
-}
-
-SIZE Element::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-long Element::Add(Element**, unsigned int)
-{
-	return 0;
-}
-
-long Element::Add(Element*)
-{
-	return 0;
-}
-
-long Element::AddListener(IElementListener*)
-{
-	return 0;
-}
-
-unsigned long WINAPI Element::AddRef()
-{
-	return 0;
-}
-
-UID WINAPI Element::AnimationChange()
-{
-	return UID();
-}
-
-void Element::BroadcastEvent(Event*)
-{
-}
-
-void Element::Detach(DeferCycle*)
-{
-}
-
-long Element::Insert(Element**, unsigned int, unsigned int)
-{
-	return 0;
-}
-
-long Element::Remove(Element**, unsigned int)
-{
-	return 0;
-}
-
-Element* Element::GetAdjacent(Element*, int, const NavReference*, unsigned long)
-{
-	return nullptr;
-}
-
-bool Element::EnsureVisible(int, int, int, int)
-{
-	return false;
-}
-
-void Element::SetKeyFocus(void)
-{
-}
-
-unsigned int Element::MessageCallback(GMSG*)
-{
-	return 0;
-}
-
-long Element::QueryInterface(GUID const&, void**)
-{
-	return 0;
-}
-
-void Element::_SelfLayoutDoLayout(int, int)
-{
-}
-
-SIZE Element::_SelfLayoutUpdateDesiredSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-long Element::Destroy(bool)
-{
-	return 0;
-}
-
-long Element::DestroyAll(bool)
-{
-	return 0;
-}
-
-void Element::DoubleBuffered(bool)
-{
-}
-
-void Element::EnableUiaEvents(bool)
-{
-}
-
-void Element::EndDefer(unsigned long)
-{
-}
-
-bool Element::EnsureVisible(unsigned int)
-{
-	return false;
-}
-
-bool Element::EnsureVisible(void)
-{
-	return false;
-}
-
-Element* Element::FindDescendent(ATOM id)
-{
-	return nullptr;
-}
-
-void Element::FireEvent(Event*, bool, bool)
-{
-}
-
-bool Element::GetAbsorbsShortcut()
-{
-	return false;
-}
-
-UCString Element::GetAccDefAction(Value**)
-{
-	return nullptr;
-}
-
-UCString Element::GetAccDesc(Value**)
-{
-	return nullptr;
-}
-
-UCString Element::GetAccHelp(Value**)
-{
-	return nullptr;
-}
-
-UCString Element::GetAccItemStatus(Value**)
-{
-	return nullptr;
-}
-
-UCString Element::GetAccItemType(Value**)
-{
-	return nullptr;
-}
-
-UCString Element::GetAccName(Value**)
-{
-	return nullptr;
-}
-
-UCString Element::GetAccNameAsDisplayed(Value**)
-{
-	return nullptr;
-}
-
-UCString Element::GetAccValue(Value**)
-{
-	return nullptr;
-}
-
-int Element::GetAccRole()
-{
-	return 0;
-}
-
-int Element::GetAccState()
-{
-	return 0;
-}
-
-bool Element::GetAccessible()
-{
-	return false;
-}
-
-int Element::GetActive()
-{
-	return 0;
-}
-
-Element* Element::GetRoot()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AbsorbsShortcutProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AccDefActionProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AccDescProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AccHelpProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AccItemStatusProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AccItemTypeProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AccNameProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AccRoleProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AccStateProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AccValueProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AccessibleProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::ActiveProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AlphaProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::AnimationProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::BackgroundProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::BorderColorProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::BorderStyleProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::BorderThicknessProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::ChildrenProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::ClassProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::CompositedTextProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::ContentAlignProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::ContentProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::CursorProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::CustomProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::DPIProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::DirectionProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::DesiredSizeProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::ExtentProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::ForegroundProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::FontFaceProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::FontProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::FontQualityProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::FontSizeProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::FontStyleProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::FontWeightProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::KeyFocusedProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::KeyWithinProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::LastDSConstProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::LayoutPosProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::LayoutProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::LocationProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::HeightProp()
-{
-	return nullptr;
-}
-
-PropertyInfo const* __stdcall Element::EnabledProp()
-{
-	return nullptr;
-}
-
-int Element::GetAlpha(void)
-{
-	return 0;
-}
-
-int Element::GetAnimation(void)
-{
-	return 0;
-}
-
-Fill const* Element::GetBackgroundColor(Value**)
-{
-	return nullptr;
-}
-
-int Element::GetBackgroundStdColor(void)
-{
-	return 0;
-}
-
-Fill const* Element::GetBorderColor(Value**)
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::HighDPIProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::IDProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::MinSizeProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::MouseFocusedProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::MouseWithinProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::OverhangProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::PaddingProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::ParentProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::PosInLayoutProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::SelectedProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::ShadowIntensityProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::SheetProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::ShortcutProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::SizeInLayoutProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::TextGlowSizeProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::TooltipMaxWidthProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::TooltipProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::VisibleProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::WidthProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::WindowActiveProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::XProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Element::YProp()
-{
-	return nullptr;
-}
-
-long Element::GetRootRelativeBounds(LPRECT)
-{
-	return 0;
-}
-
-bool Element::GetSelected()
-{
-	return false;
-}
-
-int Element::GetShadowIntensity()
-{
-	return 0;
-}
-
-StyleSheet* Element::GetSheet()
-{
-	return nullptr;
-}
-
-int Element::GetShortcut()
-{
-	return 0;
-}
-
-unsigned short Element::GetShortcutChar()
-{
-	return 0;
-}
-
-int Element::GetTextGlowSize()
-{
-	return 0;
-}
-
-bool Element::GetTooltip()
-{
-	return false;
-}
-
-int Element::GetTooltipMaxWidth()
-{
-	return 0;
-}
-
-Element* Element::GetTopLevel()
-{
-	return nullptr;
-}
-
-float Element::GetTreeAlphaLevel()
-{
-	return 0.0f;
-}
-
-Value *Element::GetValue(const PropertyInfo * (WINAPI*)(
-void
-)
-,
-int
-,
-UpdateCache*
-)
-	{
-		return nullptr;
-	}
-Value* Element::GetValue(const PropertyInfo*, int, UpdateCache*)
-{
-	return nullptr;
-}
-
-bool Element::GetVisible()
-{
-	return false;
-}
-
-int Element::GetWidth()
-{
-	return 0;
-}
-
-bool Element::GetWindowActive()
-{
-	return false;
-}
-
-int Element::GetX()
-{
-	return 0;
-}
-
-int Element::GetY()
-{
-	return 0;
-}
-
-bool Element::HasAnimation()
-{
-	return false;
-}
-
-bool Element::HasBorder()
-{
-	return false;
-}
-
-bool Element::HasChildren()
-{
-	return false;
-}
-
-bool Element::HasContent()
-{
-	return false;
-}
-
-bool Element::HasLayout()
-{
-	return false;
-}
-
-bool Element::HasMargin()
-{
-	return false;
-}
-
-bool Element::HasPadding()
-{
-	return false;
-}
-
-void WINAPI Element::InitDefaultFontSize()
-{
-}
-
-UID WINAPI Element::KeyboardNavigate()
-{
-	return UID();
-}
-
-long Element::Insert(Element*, unsigned int)
-{
-	return 0;
-}
-
-void Element::InvokeAnimation(int, unsigned int)
-{
-}
-
-void Element::InvokeAnimation(unsigned int, unsigned int, float, float, bool)
-{
-}
-
-bool Element::IsCompositedText()
-{
-	return false;
-}
-
-bool Element::IsDefaultCAlign()
-{
-	return false;
-}
-
-bool Element::IsDefaultCursor()
-{
-	return false;
-}
-
-bool Element::IsDescendent(Element*)
-{
-	return false;
-}
-
-bool Element::IsDestroyed()
-{
-	return false;
-}
-
-bool Element::IsHosted()
-{
-	return false;
-}
-
-bool Element::IsRTL()
-{
-	return false;
-}
-
-int Element::IsRoot()
-{
-	return 0;
-}
-
-bool Element::IsSelfLayout()
-{
-	return false;
-}
-
-bool Element::IsValidAccessor(const PropertyInfo*, int, bool)
-{
-	return false;
-}
-
-bool WINAPI Element::IsValidValue(const PropertyInfo*, Value*)
-{
-	return false;
-}
-
-bool Element::IsWordWrap()
-{
-	return false;
-}
-
-void Element::MapElementPoint(Element*, POINT const*, LPPOINT)
-{
-}
-
-const PropertyInfo* Element::MarginProp()
-{
-	return nullptr;
-}
-
-void Element::MarkNeedsDSUpdate()
-{
-}
-
-bool Element::NeedsDSUpdate()
-{
-	return false;
-}
-
-void Element::PaintBackground(HDC, Value*, RECT const&, RECT const&, RECT const&, RECT const&)
-{
-}
-
-void Element::PaintBorder(HDC, Value*, RECT*, RECT const&)
-{
-}
-
-void Element::PaintContent(HDC, RECT const*)
-{
-}
-
-void Element::PaintFocusRect(HDC, RECT const*, RECT const*)
-{
-}
-
-void Element::PaintStringContent(HDC, RECT const*, Value*, int)
-{
-}
-
-void Element::PostEvent(Event*)
-{
-}
-
-long Element::QueueDefaultAction()
-{
-	return 0;
-}
-
-long WINAPI Element::Register()
-{
-	return 0;
-}
-
-unsigned long WINAPI Element::Release()
-{
-	return 0;
-}
-
-long Element::Remove(Element*)
-{
-	return 0;
-}
-
-long Element::RemoveAll()
-{
-	return 0;
-}
-
-void Element::RemoveListener(IElementListener*)
-{
-}
-
-long Element::RemoveLocalValue(const PropertyInfo * (WINAPI*)(
-void
-)
-)
-	{
-		return 0;
-	}
-long Element::RemoveLocalValue(const PropertyInfo*)
-{
-	return 0;
-}
-
-long Element::SetAbsorbsShortcut(bool)
-{
-	return 0;
-}
-
-long Element::SetAccDefAction(UCString)
-{
-	return 0;
-}
-
-long Element::SetAccDesc(UCString)
-{
-	return 0;
-}
-
-long Element::SetAccHelp(UCString)
-{
-	return 0;
-}
-
-long Element::SetAccItemStatus(UCString)
-{
-	return 0;
-}
-
-long Element::SetAccItemType(UCString)
-{
-	return 0;
-}
-
-long Element::SetAccName(UCString)
-{
-	return 0;
-}
-
-long Element::SetAccRole(int)
-{
-	return 0;
-}
-
-long Element::SetAccState(int)
-{
-	return 0;
-}
-
-long Element::SetAccValue(UCString)
-{
-	return 0;
-}
-
-long Element::SetAccessible(bool)
-{
-	return 0;
-}
-
-long Element::SetActive(int)
-{
-	return 0;
-}
-
-long Element::SetAlpha(int)
-{
-	return 0;
-}
-
-long Element::SetAnimation(int)
-{
-	return 0;
-}
-
-long Element::SetBackgroundColor(Fill const&)
-{
-	return 0;
-}
-
-long Element::SetBackgroundColor(unsigned long)
-{
-	return 0;
-}
-
-long Element::SetBackgroundColor(unsigned long, unsigned long, unsigned char)
-{
-	return 0;
-}
-
-long Element::SetBackgroundColor(unsigned long, unsigned long, unsigned long, unsigned char)
-{
-	return 0;
-}
-
-long Element::SetBackgroundColor(UCString, int, int)
-{
-	return 0;
-}
-
-long Element::SetBackgroundStdColor(int)
-{
-	return 0;
-}
-
-long Element::SetBorderColor(unsigned long)
-{
-	return 0;
-}
-
-long Element::SetBorderGradientColor(unsigned long, unsigned long, unsigned char)
-{
-	return 0;
-}
-
-long Element::SetBorderStdColor(int)
-{
-	return 0;
-}
-
-long Element::SetBorderStyle(int)
-{
-	return 0;
-}
-
-long Element::SetBorderThickness(int, int, int, int)
-{
-	return 0;
-}
-
-long Element::SetClass(UCString)
-{
-	return 0;
-}
-
-void WINAPI Element::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long Element::SetCompositedText(bool)
-{
-	return 0;
-}
-
-long Element::SetContentAlign(int)
-{
-	return 0;
-}
-
-long Element::SetContentGraphic(UCString, unsigned char, unsigned int)
-{
-	return 0;
-}
-
-long Element::SetContentGraphic(UCString, unsigned short, unsigned short)
-{
-	return 0;
-}
-
-long Element::SetContentString(UCString)
-{
-	return 0;
-}
-
-long Element::SetCursor(UCString)
-{
-	return 0;
-}
-
-long Element::SetCursorHandle(HICON)
-{
-	return 0;
-}
-
-long Element::SetDirection(int)
-{
-	return 0;
-}
-
-long Element::SetEnabled(bool)
-{
-	return 0;
-}
-
-long Element::SetEncodedContentString(UCString)
-{
-	return 0;
-}
-
-long Element::SetFont(UCString)
-{
-	return 0;
-}
-
-long Element::SetFontFace(UCString)
-{
-	return 0;
-}
-
-long Element::SetFontQuality(int)
-{
-	return 0;
-}
-
-long Element::SetFontSize(int)
-{
-	return 0;
-}
-
-long Element::SetFontStyle(int)
-{
-	return 0;
-}
-
-long Element::SetFontWeight(int)
-{
-	return 0;
-}
-
-long Element::SetForegroundColor(unsigned long)
-{
-	return 0;
-}
-
-long Element::SetForegroundColor(unsigned long, unsigned long, unsigned char)
-{
-	return 0;
-}
-
-long Element::SetForegroundColor(unsigned long, unsigned long, unsigned long, unsigned char)
-{
-	return 0;
-}
-
-long Element::SetForegroundStdColor(int)
-{
-	return 0;
-}
-
-long Element::SetHeight(int)
-{
-	return 0;
-}
-
-long Element::SetID(UCString)
-{
-	return 0;
-}
-
-long Element::SetLayout(Layout*)
-{
-	return 0;
-}
-
-long Element::SetLayoutPos(int)
-{
-	return 0;
-}
-
-long Element::SetMargin(int, int, int, int)
-{
-	return 0;
-}
-
-long Element::SetMinSize(int, int)
-{
-	return 0;
-}
-
-long Element::SetOverhang(bool)
-{
-	return 0;
-}
-
-long Element::SetPadding(int, int, int, int)
-{
-	return 0;
-}
-
-long Element::SetSelected(bool)
-{
-	return 0;
-}
-
-long Element::SetShadowIntensity(int)
-{
-	return 0;
-}
-
-long Element::SetSheet(StyleSheet*)
-{
-	return 0;
-}
-
-long Element::SetShortcut(int)
-{
-	return 0;
-}
-
-long Element::SetStdCursor(int)
-{
-	return 0;
-}
-
-long Element::SetTextGlowSize(int)
-{
-	return 0;
-}
-
-long Element::SetTooltip(bool)
-{
-	return 0;
-}
-
-long Element::SetTooltipMaxWidth(int)
-{
-	return 0;
-}
-
-long Element::SetValue(const PropertyInfo * (WINAPI*)(
-void
-)
-,
-int
-,
-Value*
-)
-	{
-		return 0;
-	}
-long Element::SetValue(const PropertyInfo*, int, Value*)
-{
-	return 0;
-}
-
-long Element::SetVisible(bool)
-{
-	return 0;
-}
-
-long Element::SetWidth(int)
-{
-	return 0;
-}
-
-long Element::SetWindowActive(bool)
-{
-	return 0;
-}
-
-long Element::SetX(int)
-{
-	return 0;
-}
-
-long Element::SetY(int)
-{
-	return 0;
-}
-
-long Element::SortChildren(int (*)(void const*, void const*))
-{
-	return 0;
-}
-
-void Element::StartDefer(unsigned long*)
-{
-}
-
-void Element::StopAnimation(unsigned int)
-{
-}
-
-DeferCycle* Element::TestDeferObject()
-{
-	return nullptr;
-}
-
-bool Element::UiaEvents()
-{
-	return false;
-}
-
-void Element::UpdateLayout()
-{
-}
-
-void WINAPI Element::_AddDependency(Element*, const PropertyInfo*, int, DepRecs*, DeferCycle*, long*)
-{
-}
-
-void Element::_ClearNeedsLayout()
-{
-}
-
-long WINAPI Element::_DisplayNodeCallback(HGADGET__*, void*, EventMsg*)
-{
-	return 0;
-}
-
-void Element::_EndOptimizedLayoutQ()
-{
-}
-
-int Element::_GetChangesUpdatePass()
-{
-	return 0;
-}
-
-unsigned int Element::_GetNeedsLayout()
-{
-	return 0;
-}
-
-int WINAPI Element::_MarkElementForDS(Element*)
-{
-	return 0;
-}
-
-int WINAPI Element::_MarkElementForLayout(Element*, unsigned int)
-{
-	return 0;
-}
-
-bool WINAPI Element::_SetGroupChanges(Element*, int, DeferCycle*)
-{
-	return false;
-}
-
-int Element::_SetNeedsLayout(unsigned int)
-{
-	return 0;
-}
-
-void Element::_StartOptimizedLayoutQ(void)
-{
-}
-
-void WINAPI Element::_TransferGroupFlags(Element*, int)
-{
-}
-
-tagSIZE Element::_UpdateDesiredSize(int, int, Surface*)
-{
-	return tagSIZE();
-}
-
-void Element::_UpdateLayoutPosition(int, int)
-{
-}
-
-void Element::_UpdateLayoutSize(int, int)
-{
-}
-
-void Element::OnHosted(Element*)
-{
-}
-
-void Element::OnUnHosted(Element*)
-{
-}
-
-void Element::UpdateTooltip(Element*)
-{
-}
-
-void Element::ActivateTooltip(Element*, unsigned long)
-{
-}
-
-void Element::RemoveTooltip(Element*)
-{
-}
-
-bool Element::GetKeyFocused()
-{
-	return false;
-}
-
-int Element::GetIndex(void)
-{
-	return 0;
-}
-
-Element* Element::GetImmediateChild(Element*)
-{
-	return nullptr;
-}
-
-unsigned short Element::GetID(void)
-{
-	return 0;
-}
-
-bool Element::GetHighDPI(void)
-{
-	return false;
-}
-
-int Element::GetHeight(void)
-{
-	return 0;
-}
-
-int Element::GetForegroundStdColor(void)
-{
-	return 0;
-}
-
-DirectUI::Fill const* Element::GetForegroundColor(Value**)
-{
-	return nullptr;
-}
-
-int Element::GetFontWeight(void)
-{
-	return 0;
-}
-
-int Element::GetFontStyle(void)
-{
-	return 0;
-}
-
-int Element::GetFontSize(void)
-{
-	return 0;
-}
-
-int Element::GetFontQuality(void)
-{
-	return 0;
-}
-
-unsigned short const* Element::GetFontFace(Value**)
-{
-	return nullptr;
-}
-
-unsigned short const* Element::GetFont(Value**)
-{
-	return nullptr;
-}
-
-CRITICAL_SECTION* Element::GetFactoryLock(void)
-{
-	return nullptr;
-}
-
-SIZE const* Element::GetExtent(Value**)
-{
-	return nullptr;
-}
-
-long Element::GetEncodedContentString(unsigned short*, UINT_PTR)
-{
-	return 0;
-}
-
-bool Element::GetEnabled(void)
-{
-	return false;
-}
-
-int Element::GetDPI(void)
-{
-	return 0;
-}
-
-HGADGET Element::GetDisplayNode(void)
-{
-	return HGADGET();
-}
-
-int Element::GetDirection(void)
-{
-	return 0;
-}
-
-SIZE const* Element::GetDesiredSize(void)
-{
-	return nullptr;
-}
-
-DeferCycle* Element::GetDeferObject(void)
-{
-	return nullptr;
-}
-
-unsigned short const* Element::GetContentString(Value**)
-{
-	return nullptr;
-}
-
-int Element::GetContentAlign(void)
-{
-	return 0;
-}
-
-int Element::GetColorize(void)
-{
-	return 0;
-}
-
-bool Element::GetClickablePoint(POINT*)
-{
-	return false;
-}
-
-IClassInfo* Element::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-unsigned short const* Element::GetClass(Value**)
-{
-	return nullptr;
-}
-
-DynamicArray<Element*, 0>* Element::GetChildren(Value**)
-{
-	return nullptr;
-}
-
-RECT const* Element::GetBorderThickness(Value**)
-{
-	return nullptr;
-}
-
-int Element::GetBorderStyle(void)
-{
-	return 0;
-}
-
-int Element::GetBorderStdColor(void)
-{
-	return 0;
-}
-
-IClassInfo* Element::GetClassInfoW()
-{
-	return nullptr;
-}
-
-long Element::GetAccessibleImpl(IAccessible**)
-{
-	return 0;
-}
-
-long Element::DefaultAction()
-{
-	return 0;
-}
-
-HRESULT Element::GetElementProviderImpl(InvokeHelper*, ElementProvider* *)
-{
-	return E_NOTIMPL;
-}
-
-void Element::HandleUiaDestroyListener()
-{
-}
-
-void Element::HandleUiaPropertyListener(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-void Element::HandleUiaPropertyChangingListener(const PropertyInfo*)
-{
-}
-
-void Element::HandleUiaEventListener(Event*)
-{
-}
-
-void Element::MarkHosted()
-{
-}
-
-void Element::MarkSelfLayout()
-{
-}
-
-void WINAPI Element::_FlushLayout(Element*, DeferCycle*)
-{
-}
-
-void WINAPI Element::_InvalidateCachedDSConstraints(Element*)
-{
-}
-
-void Element::_OnFontPropChanged(Value*)
-{
-}
-
-long Element::_RemoveLocalValue(const PropertyInfo * (WINAPI*)(
-void
-)
-,
-bool
-)
-	{
-		return 0;
-	}
-long Element::_RemoveLocalValue(const PropertyInfo*, bool)
-{
-	return 0;
-}
-
-long Element::_SetValue(const PropertyInfo * (WINAPI*)(
-void
-)
-,
-int
-,
-Value*
-,
-bool
-)
-	{
-		return 0;
-	}
-long Element::_SetValue(const PropertyInfo*, int, Value*, bool)
-{
-	return 0;
-}
-
-Element* Element::FindDescendentWorker(unsigned short)
-{
-	return nullptr;
-}
-
-void Element::_SyncBackground()
-{
-}
-
-void Element::_SyncRedrawStyle()
-{
-}
-
-void Element::_SyncVisible()
-{
-}
-
-bool Element::IsPointValid(double, double)
-{
-	return false;
-}
-
-unsigned short* Element::RemoveShortcutFromName(UCString)
-{
-	return nullptr;
-}
-
-bool Element::TryLinePattern(LPPOINT, const RECT&)
-{
-	return false;
-}
-
-bool Element::TryPattern(double, double, LPPOINT, const RECT&)
-{
-	return false;
-}
-
-bool Element::TrySparsePattern(LPPOINT, const RECT&)
-{
-	return false;
-}
-
-void Element::_BroadcastEventWorker(Event*)
-{
-}
-
-int Element::_CachedValueIsEqual(const PropertyInfo*, Element*)
-{
-	return 0;
-}
-
-void Element::_GetBuriedSheetDependencies(const PropertyInfo*, Element*, DepRecs*, DeferCycle*, long*)
-{
-}
-
-void Element::_UpdatePropertyInCache(const PropertyInfo*)
-{
-}
-
-void WINAPI Element::_VoidPCNotifyTree(int, DeferCycle*)
-{
-}
-
-void Element::_FlushDS(DeferCycle*)
-{
-}
-
-Value* Element::_GetComputedValue(const PropertyInfo*, UpdateCache*)
-{
-	return nullptr;
-}
-
-long Element::_GetDependencies(const PropertyInfo*, int, DepRecs*, int, Value*, DeferCycle*)
-{
-	return 0;
-}
-
-Value* Element::_GetLocalValue(const PropertyInfo*)
-{
-	return nullptr;
-}
-
-Value* Element::_GetLocalValueFromVM(const PropertyInfo*)
-{
-	return nullptr;
-}
-
-Value* Element::_GetSpecifiedValue(const PropertyInfo*, UpdateCache*)
-{
-	return nullptr;
-}
-
-Value* Element::_GetSpecifiedValueIgnoreCache(const PropertyInfo*)
-{
-	return nullptr;
-}
-
-void Element::_InheritProperties()
-{
-}
-
-long Element::_PostSourceChange()
-{
-	return 0;
-}
-
-long Element::_PreSourceChange(const PropertyInfo * (WINAPI*)(
-void
-)
-,
-int
-,
-Value*
-,
-Value*
-)
-	{
-		return 0;
-	}
-long Element::_PreSourceChange(const PropertyInfo*, int, Value*, Value*)
-{
-	return 0;
-}
-
-unsigned int Element::GetCommonDrawTextFlags(int)
-{
-	return 0;
-}
-
+HRESULT Element::Create(UINT nCreate, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT Element::Destroy(bool fDelayed) STUB_ZERO;
+HRESULT Element::DestroyAll(bool fDelayed) STUB_ZERO;
+Element::Element() STUB_VOID;
+Element::~Element() STUB_VOID;
+HRESULT Element::Initialize(UINT nCreate, Element* peInitialParent, DWORD* pdwDeferCookie) STUB_ZERO;
+Value* Element::GetRawValue(const PropertyInfo* ppi, int iIndex, UpdateCache* puc) STUB_ZERO;
+Value* Element::GetValue(const PropertyInfo* ppi, int iIndex, UpdateCache* puc) STUB_ZERO;
+Value* Element::GetValue(PropertyProcT pPropertyProc, int iIndex, UpdateCache* puc) STUB_ZERO;
+HRESULT Element::SetValue(const PropertyInfo* ppi, int iIndex, Value* pv) STUB_ZERO;
+HRESULT Element::SetValue(PropertyProcT pPropertyProc, int iIndex, Value* pv) STUB_ZERO;
+HRESULT Element::RemoveLocalValue(const PropertyInfo* ppi) STUB_ZERO;
+HRESULT Element::RemoveLocalValue(PropertyProcT pPropertyProc) STUB_ZERO;
+void Element::StartDefer(DWORD* pdwDeferCookie) STUB_VOID;
+void Element::EndDefer(DWORD dwDeferCookie) STUB_VOID;
+void Element::UpdateLayout() STUB_VOID;
+DeferCycle* Element::GetDeferObject() STUB_ZERO;
+DeferCycle* Element::TestDeferObject() STUB_ZERO;
+bool Element::IsValidAccessor(const PropertyInfo* ppi, int iIndex, bool bSetting) STUB_ZERO;
+bool Element::IsValidValue(const PropertyInfo* ppi, Value* pv) STUB_ZERO;
+bool Element::IsRTL() STUB_ZERO;
+bool Element::IsRTLReading() STUB_ZERO;
+bool Element::IsContentProtected() STUB_ZERO;
+const WCHAR* Element::GetContentStringAsDisplayed(Value** ppv) STUB_ZERO;
+const WCHAR* Element::GetAccNameAsDisplayed(Value** ppv) STUB_ZERO;
+bool Element::OnPropertyChanging(PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
+bool Element::OnPropertyChanging(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
+void Element::OnPropertyChanged(PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void Element::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void Element::OnGroupChanged(int fGroups, bool bLowPri) STUB_VOID;
+void Element::OnInput(InputEvent* pInput) STUB_VOID;
+void Element::OnKeyFocusMoved(Element* peFrom, Element* peTo) STUB_VOID;
+void Element::OnMouseFocusMoved(Element* peFrom, Element* peTo) STUB_VOID;
+void Element::OnDestroy() STUB_VOID;
+void Element::FireEvent(Event* pEvent, bool fFull, bool fUseSpecifiedTarget) STUB_VOID;
+void Element::BroadcastEvent(Event* pEvent) STUB_VOID;
+void Element::OnEvent(Event* pEvent) STUB_VOID;
+void Element::Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) STUB_VOID;
+void Element::PaintContent(HDC hDC, const RECT* prcContent) STUB_VOID;
+void Element::PaintStringContent(HDC hDC, const RECT* prcContent, Value* pvContent, int dCAlign) STUB_VOID;
+void Element::PaintFocusRect(HDC hDC, const RECT* prcBounds, const RECT* prcContent) STUB_VOID;
+void Element::PaintBorder(HDC hDC, Value* pvBackgnd, RECT* prcPaint, const RECT& rcBorder) STUB_VOID;
+void Element::PaintBackground(HDC hDC, Value* pvBackgnd, const RECT& rcBounds, const RECT& rcInvalid, const RECT& rcPadding, const RECT& rcBorder) STUB_VOID;
+void Element::PaintEdgeHighlight(HDC hDC, const RECT& rcPaint, const RECT& rcInvalid) STUB_VOID;
+SIZE Element::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+float Element::GetTreeAlphaLevel() STUB_ZERO;
+HRESULT Element::Add(Element** ppe, UINT cCount) STUB_ZERO;
+HRESULT Element::Add(Element* pe) STUB_ZERO;
+HRESULT Element::Add(Element* pe, CompareCallback lpfnCompare) STUB_ZERO;
+HRESULT Element::Insert(Element** ppe, UINT cCount, UINT iInsertIdx) STUB_ZERO;
+HRESULT Element::Insert(Element* pe, UINT iInsertIdx) STUB_ZERO;
+HRESULT Element::SortChildren(CompareCallback lpfnCompare) STUB_ZERO;
+HRESULT Element::ShiftChild(UINT iOldIndex, UINT iNewIndex) STUB_ZERO;
+HRESULT Element::Remove(Element** ppe, UINT cCount) STUB_ZERO;
+HRESULT Element::Remove(Element* pe) STUB_ZERO;
+HRESULT Element::RemoveAll() STUB_ZERO;
+Element* Element::FindDescendent(ATOM atomID) STUB_ZERO;
+void Element::MapElementPoint(Element* peFrom, const POINT* pptFrom, POINT* pptTo) STUB_VOID;
+Element* Element::GetImmediateChild(Element* peFrom) STUB_ZERO;
+bool Element::IsDescendent(Element* pe) STUB_ZERO;
+Element* Element::GetAdjacent(Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+Element* Element::GetKeyWithinChild() STUB_ZERO;
+Element* Element::GetMouseWithinChild() STUB_ZERO;
+bool Element::EnsureVisible(int x, int y, int cx, int cy) STUB_ZERO;
+bool Element::EnsureVisible() STUB_ZERO;
+bool Element::EnsureVisible(UINT uChild) STUB_ZERO;
+void Element::SetKeyFocus() STUB_VOID;
+HRESULT Element::AddListener(IElementListener* pel) STUB_ZERO;
+void Element::RemoveListener(IElementListener* pel) STUB_VOID;
+HRESULT Element::AddBehavior(IDuiBehavior* pBehavior) STUB_ZERO;
+HRESULT Element::RemoveBehavior(IDuiBehavior* pBehavior) STUB_ZERO;
+void Element::InvokeAnimation(int dAni, UINT nTypeMask) STUB_VOID;
+void Element::InvokeAnimation(UINT nTypes, UINT nInterpol, float flDuration, float flDelay, bool fPushToChildren) STUB_VOID;
+void Element::StopAnimation(UINT nTypes) STUB_VOID;
+UINT Element::MessageCallback(GMSG* pgMsg) STUB_ZERO;
+SIZE Element::_UpdateDesiredSize(int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+void Element::_UpdateLayoutPosition(int dX, int dY) STUB_VOID;
+void Element::_UpdateLayoutSize(int dWidth, int dHeight) STUB_VOID;
+void Element::_StartOptimizedLayoutQ() STUB_VOID;
+void Element::_EndOptimizedLayoutQ() STUB_VOID;
+UINT Element::_GetNeedsLayout() STUB_ZERO;
+bool Element::_SetGroupChanges(Element* pe, int fGroups, DeferCycle* pdc) STUB_ZERO;
+void Element::_TransferGroupFlags(Element* pe, int fGroups) STUB_VOID;
+int Element::_SetNeedsLayout(UINT fNeedsLayout) STUB_ZERO;
+int Element::_MarkElementForLayout(Element* pe, UINT fNeedsLayout) STUB_ZERO;
+int Element::_MarkElementForDS(Element* pe) STUB_ZERO;
+void Element::_ClearNeedsLayout() STUB_VOID;
+void Element::_AddDependency(Element* pe, const PropertyInfo* ppi, int iIndex, DepRecs* pdr, DeferCycle* pdc, HRESULT* phr) STUB_VOID;
+HRESULT Element::_DisplayNodeCallback(HGADGET hgadCur, void* pvCur, EventMsg* pGMsg) STUB_ZERO;
+HRESULT Element::QueryInterface(REFIID riid, void** ppvObject) STUB_ZERO;
+ULONG Element::AddRef() STUB_ZERO;
+ULONG Element::Release() STUB_ZERO;
+int Element::_GetChangesUpdatePass() STUB_ZERO;
+void Element::Detach(DeferCycle* pdc) STUB_VOID;
+bool Element::UiaEvents() STUB_ZERO;
+void Element::EnableUiaEvents(bool fEnable) STUB_VOID;
+bool Element::GetClickablePoint(POINT* ptClick) STUB_ZERO;
+void Element::GetImmersiveFocusRectOffsets(RECT* prc) STUB_VOID;
+Element* Element::FindDescendentWorker(ATOM atomID) STUB_ZERO;
+void Element::_GetBuriedSheetDependencies(const PropertyInfo* ppi, Element* peNewParent, DepRecs* pdr, DeferCycle* pdc, HRESULT* phr) STUB_VOID;
+HRESULT Element::_GetDependencies(const PropertyInfo* ppi, int iIndex, DepRecs* pdr, int iPCSrcRoot, Value* pvNewRoot, DeferCycle* pdc) STUB_ZERO;
+void Element::_VoidPCNotifyTree(int iPCPos, DeferCycle* pdc) STUB_VOID;
+int Element::_CachedValueIsEqual(const PropertyInfo* ppi, Element* peParent) STUB_ZERO;
+Value* Element::_GetLocalValueFromVM(const PropertyInfo* ppi) STUB_ZERO;
+Value* Element::_GetLocalValue(const PropertyInfo* ppi) STUB_ZERO;
+Value* Element::_GetSpecifiedValueIgnoreCache(const PropertyInfo* ppi) STUB_ZERO;
+Value* Element::_GetSpecifiedValue(const PropertyInfo* ppi, UpdateCache* puc) STUB_ZERO;
+Value* Element::_GetComputedValue(const PropertyInfo* ppi, UpdateCache* puc) STUB_ZERO;
+void Element::_UpdatePropertyInCache(const PropertyInfo* ppi) STUB_VOID;
+void Element::_InheritProperties() STUB_VOID;
+void Element::_FlushDS(DeferCycle*) STUB_VOID;
+HRESULT Element::_PreSourceChange(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
+HRESULT Element::_PreSourceChange(PropertyProcT proc, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
+HRESULT Element::_PostSourceChange() STUB_ZERO;
+void Element::_BroadcastEventWorker(Event* pEvent) STUB_VOID;
+void Element::_PostEvent(Event* pEvent, int nMsg) STUB_VOID;
+bool Element::s_HandleDUIEventMessage(Element* pe, EventMsg* pEventMsg) STUB_ZERO;
+UINT Element::GetCommonDrawTextFlags(int dCAlign) STUB_ZERO;
+WCHAR* Element::RemoveShortcutFromName(const WCHAR* pszName) STUB_ZERO;
+void Element::_SyncVisible() STUB_VOID;
+void Element::_SyncBackground() STUB_VOID;
+void Element::_SyncRedrawStyle() STUB_VOID;
+bool Element::IsPointValid(double x, double y) STUB_ZERO;
+bool Element::TryLinePattern(POINT* pt, const RECT& rcParent) STUB_ZERO;
+bool Element::TryPattern(double x, double y, POINT* pt, const RECT& rcParent) STUB_ZERO;
+bool Element::TrySparsePattern(POINT* pt, const RECT& rcParent) STUB_ZERO;
+HRESULT Element::_SetRelPixValue(const PropertyInfo* ppi, int nValue) STUB_ZERO;
+HRESULT Element::_SetRelPixRect(const PropertyInfo* ppi, int l, int t, int r, int b) STUB_ZERO;
+HRESULT Element::GetTheme(const WCHAR* pszClass, HTHEME* phTheme) STUB_ZERO;
+void Element::_FlushLayout(Element* pe, DeferCycle* pdc) STUB_VOID;
+void Element::_InvalidateCachedDSConstraints(Element* pe) STUB_VOID;
+void Element::_SelfLayoutDoLayout(int cx, int cy) STUB_VOID;
+SIZE Element::_SelfLayoutUpdateDesiredSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+HRESULT Element::_SetValue(const PropertyInfo* ppi, int iIndex, Value* pv, bool fInternalCall) STUB_ZERO;
+HRESULT Element::_SetValue(PropertyProcT pPropertyProc, int iIndex, Value* pv, bool fInternalCall) STUB_ZERO;
+HRESULT Element::_RemoveLocalValue(const PropertyInfo* ppi, bool fInternalCall) STUB_ZERO;
+HRESULT Element::_RemoveLocalValue(PropertyProcT pPropertyProc, bool fInternalCall) STUB_ZERO;
+void Element::OnHosted(Element* peNewRoot) STUB_VOID;
+void Element::OnUnHosted(Element* peOldRoot) STUB_VOID;
+void Element::MarkHosted() STUB_VOID;
+void Element::MarkSelfLayout() STUB_VOID;
+void Element::UpdateTooltip(Element* pe) STUB_VOID;
+void Element::ActivateTooltip(Element* pe, DWORD dwFlags) STUB_VOID;
+void Element::RemoveTooltip(Element* pe) STUB_VOID;
+void Element::_OnFontPropChanged(Value* pvFont) STUB_VOID;
+void Element::MarkNeedsDSUpdate() STUB_VOID;
+bool Element::NeedsDSUpdate() STUB_ZERO;
+void Element::DoubleBuffered(bool fEnabled) STUB_VOID;
+int Element::IsRoot() STUB_ZERO;
+Element* Element::GetRoot() STUB_ZERO;
+Element* Element::GetTopLevel() STUB_ZERO;
+HRESULT Element::GetRootRelativeBounds(RECT* prc) STUB_ZERO;
+RTL_CRITICAL_SECTION* Element::GetFactoryLock() STUB_ZERO;
+UID Element::KeyboardNavigate() STUB_ZERO;
+UID Element::AnimationChange() STUB_ZERO;
+UID Element::DCompDeviceRebuilt() STUB_ZERO;
+const PropertyInfo* Element::ParentProp() STUB_ZERO;
+const PropertyInfo* Element::ChildrenProp() STUB_ZERO;
+const PropertyInfo* Element::VisibleProp() STUB_ZERO;
+const PropertyInfo* Element::WidthProp() STUB_ZERO;
+const PropertyInfo* Element::HeightProp() STUB_ZERO;
+const PropertyInfo* Element::LocationProp() STUB_ZERO;
+const PropertyInfo* Element::ExtentProp() STUB_ZERO;
+const PropertyInfo* Element::XProp() STUB_ZERO;
+const PropertyInfo* Element::YProp() STUB_ZERO;
+const PropertyInfo* Element::PosInLayoutProp() STUB_ZERO;
+const PropertyInfo* Element::SizeInLayoutProp() STUB_ZERO;
+const PropertyInfo* Element::DesiredSizeProp() STUB_ZERO;
+const PropertyInfo* Element::LastDSConstProp() STUB_ZERO;
+const PropertyInfo* Element::LayoutProp() STUB_ZERO;
+const PropertyInfo* Element::LayoutPosProp() STUB_ZERO;
+const PropertyInfo* Element::BorderThicknessProp() STUB_ZERO;
+const PropertyInfo* Element::BorderStyleProp() STUB_ZERO;
+const PropertyInfo* Element::BorderColorProp() STUB_ZERO;
+const PropertyInfo* Element::PaddingProp() STUB_ZERO;
+const PropertyInfo* Element::MarginProp() STUB_ZERO;
+const PropertyInfo* Element::ForegroundProp() STUB_ZERO;
+const PropertyInfo* Element::BackgroundProp() STUB_ZERO;
+const PropertyInfo* Element::ContentProp() STUB_ZERO;
+const PropertyInfo* Element::FontFaceProp() STUB_ZERO;
+const PropertyInfo* Element::FontSizeProp() STUB_ZERO;
+const PropertyInfo* Element::FontWeightProp() STUB_ZERO;
+const PropertyInfo* Element::FontStyleProp() STUB_ZERO;
+const PropertyInfo* Element::FontQualityProp() STUB_ZERO;
+const PropertyInfo* Element::ActiveProp() STUB_ZERO;
+const PropertyInfo* Element::ContentAlignProp() STUB_ZERO;
+const PropertyInfo* Element::KeyFocusedProp() STUB_ZERO;
+const PropertyInfo* Element::KeyWithinProp() STUB_ZERO;
+const PropertyInfo* Element::MouseFocusedProp() STUB_ZERO;
+const PropertyInfo* Element::MouseWithinProp() STUB_ZERO;
+const PropertyInfo* Element::ClassProp() STUB_ZERO;
+const PropertyInfo* Element::IDProp() STUB_ZERO;
+const PropertyInfo* Element::SheetProp() STUB_ZERO;
+const PropertyInfo* Element::SelectedProp() STUB_ZERO;
+const PropertyInfo* Element::AlphaProp() STUB_ZERO;
+const PropertyInfo* Element::AnimationProp() STUB_ZERO;
+const PropertyInfo* Element::CursorProp() STUB_ZERO;
+const PropertyInfo* Element::DirectionProp() STUB_ZERO;
+const PropertyInfo* Element::AccessibleProp() STUB_ZERO;
+const PropertyInfo* Element::AccRoleProp() STUB_ZERO;
+const PropertyInfo* Element::AccStateProp() STUB_ZERO;
+const PropertyInfo* Element::AccNameProp() STUB_ZERO;
+const PropertyInfo* Element::AccDescProp() STUB_ZERO;
+const PropertyInfo* Element::AccValueProp() STUB_ZERO;
+const PropertyInfo* Element::AccDefActionProp() STUB_ZERO;
+const PropertyInfo* Element::AccHelpProp() STUB_ZERO;
+const PropertyInfo* Element::AccItemTypeProp() STUB_ZERO;
+const PropertyInfo* Element::AccItemStatusProp() STUB_ZERO;
+const PropertyInfo* Element::ShortcutProp() STUB_ZERO;
+const PropertyInfo* Element::EnabledProp() STUB_ZERO;
+const PropertyInfo* Element::MinSizeProp() STUB_ZERO;
+const PropertyInfo* Element::OverhangProp() STUB_ZERO;
+const PropertyInfo* Element::TooltipProp() STUB_ZERO;
+const PropertyInfo* Element::TooltipMaxWidthProp() STUB_ZERO;
+const PropertyInfo* Element::FontProp() STUB_ZERO;
+const PropertyInfo* Element::WindowActiveProp() STUB_ZERO;
+const PropertyInfo* Element::AbsorbsShortcutProp() STUB_ZERO;
+const PropertyInfo* Element::CompositedTextProp() STUB_ZERO;
+const PropertyInfo* Element::TextGlowSizeProp() STUB_ZERO;
+const PropertyInfo* Element::HighDPIProp() STUB_ZERO;
+const PropertyInfo* Element::DPIProp() STUB_ZERO;
+const PropertyInfo* Element::CustomProp() STUB_ZERO;
+const PropertyInfo* Element::ShadowIntensityProp() STUB_ZERO;
+const PropertyInfo* Element::EdgeHighlightThicknessProp() STUB_ZERO;
+const PropertyInfo* Element::EdgeHighlightColorProp() STUB_ZERO;
+const PropertyInfo* Element::ScaleFactorProp() STUB_ZERO;
+const PropertyInfo* Element::UsesDesktopPerMonitorScalingProp() STUB_ZERO;
+HGADGET Element::GetDisplayNode() STUB_ZERO;
+int Element::GetIndex() STUB_ZERO;
+bool Element::IsDestroyed() STUB_ZERO;
+bool Element::IsHosted() STUB_ZERO;
+bool Element::IsSelfLayout() STUB_ZERO;
+bool Element::IsBehaviorLayout() const STUB_ZERO;
+bool Element::HasChildren() STUB_ZERO;
+bool Element::HasLayout() STUB_ZERO;
+bool Element::HasBorder() STUB_ZERO;
+bool Element::HasPadding() STUB_ZERO;
+bool Element::HasMargin() STUB_ZERO;
+bool Element::HasContent() STUB_ZERO;
+bool Element::IsDefaultCAlign() STUB_ZERO;
+bool Element::IsWordWrap() STUB_ZERO;
+bool Element::HasAnimation() STUB_ZERO;
+bool Element::IsDefaultCursor() STUB_ZERO;
+bool Element::HasEdgeHighlight() STUB_ZERO;
+bool Element::HasPVLAnimationState(UINT dState) STUB_ZERO;
+void Element::GetRenderBorderThickness(RECT* prc) STUB_VOID;
+void Element::GetRenderPadding(RECT* prc) STUB_VOID;
+void Element::GetRenderMargin(RECT* prc) STUB_VOID;
+void Element::GetRenderEdgeHighlightThickness(RECT* prc) STUB_VOID;
+void Element::GetRenderMinSize(SIZE* prc) STUB_VOID;
+Element* Element::GetParent() STUB_ZERO;
+bool Element::GetVisible() STUB_ZERO;
+int Element::GetWidth() STUB_ZERO;
+int Element::GetHeight() STUB_ZERO;
+DynamicArray<Element*>* Element::GetChildren(Value** ppv) STUB_ZERO;
+int Element::GetX() STUB_ZERO;
+int Element::GetY() STUB_ZERO;
+Layout* Element::GetLayout(Value** ppv) STUB_ZERO;
+int Element::GetLayoutPos() STUB_ZERO;
+RECT* Element::GetBorderThickness(Value** ppv) STUB_ZERO;
+int Element::GetBorderStyle() STUB_ZERO;
+int Element::GetBorderStdColor() STUB_ZERO;
+Fill* Element::GetBorderColor(Value** ppv) STUB_ZERO;
+RECT* Element::GetPadding(Value** ppv) STUB_ZERO;
+RECT* Element::GetMargin(Value** ppv) STUB_ZERO;
+POINT* Element::GetLocation(Value** ppv) STUB_ZERO;
+SIZE* Element::GetExtent(Value** ppv) STUB_ZERO;
+SIZE* Element::GetDesiredSize() STUB_ZERO;
+int Element::GetForegroundStdColor() STUB_ZERO;
+Fill* Element::GetForegroundColor(Value** ppv) STUB_ZERO;
+int Element::GetBackgroundStdColor() STUB_ZERO;
+Fill* Element::GetBackgroundColor(Value** ppv) STUB_ZERO;
+RECT* Element::GetEdgeHighlightThickness(Value** ppv) STUB_ZERO;
+Fill* Element::GetEdgeHighlightColor(Value** ppv) STUB_ZERO;
+float Element::GetElementScaleFactor() STUB_ZERO;
+WCHAR* Element::GetContentString(Value** ppv) STUB_ZERO;
+HRESULT Element::GetEncodedContentString(WCHAR*, size_t cchString) STUB_ZERO;
+size_t Element::GetEncodedContentStringLength() STUB_ZERO;
+WCHAR* Element::GetFontFace(Value** ppv) STUB_ZERO;
+int Element::GetFontSize() STUB_ZERO;
+int Element::GetFontWeight() STUB_ZERO;
+int Element::GetFontStyle() STUB_ZERO;
+int Element::GetFontQuality() STUB_ZERO;
+bool Element::IsCompositedText() STUB_ZERO;
+int Element::GetTextGlowSize() STUB_ZERO;
+int Element::GetActive() STUB_ZERO;
+int Element::GetContentAlign() STUB_ZERO;
+bool Element::GetKeyFocused() STUB_ZERO;
+bool Element::GetKeyWithin() STUB_ZERO;
+bool Element::GetMouseFocused() STUB_ZERO;
+bool Element::GetMouseWithin() STUB_ZERO;
+WCHAR* Element::GetClass(Value** ppv) STUB_ZERO;
+ATOM Element::GetID() STUB_ZERO;
+StyleSheet* Element::GetSheet() STUB_ZERO;
+bool Element::GetSelected() STUB_ZERO;
+int Element::GetAlpha() STUB_ZERO;
+bool Element::GetPreserveAlphaChannel() const STUB_ZERO;
+void Element::SetPreserveAlphaChannel(bool fPreserveAlpha) STUB_VOID;
+int Element::GetAnimation() STUB_ZERO;
+int Element::GetPVLAnimationState() STUB_ZERO;
+int Element::GetDirection() STUB_ZERO;
+bool Element::GetAccessible() STUB_ZERO;
+int Element::GetAccRole() STUB_ZERO;
+int Element::GetAccState() STUB_ZERO;
+WCHAR* Element::GetAccName(Value** ppv) STUB_ZERO;
+WCHAR* Element::GetAccDesc(Value** ppv) STUB_ZERO;
+WCHAR* Element::GetAccValue(Value** ppv) STUB_ZERO;
+WCHAR* Element::GetAccDefAction(Value** ppv) STUB_ZERO;
+WCHAR* Element::GetAccHelp(Value** ppv) STUB_ZERO;
+WCHAR* Element::GetAccItemType(Value** ppv) STUB_ZERO;
+WCHAR* Element::GetAccItemStatus(Value** ppv) STUB_ZERO;
+int Element::GetShortcut() STUB_ZERO;
+bool Element::GetEnabled() STUB_ZERO;
+SIZE* Element::GetMinSize(Value** ppv) STUB_ZERO;
+bool Element::GetOverhang() STUB_ZERO;
+bool Element::GetTooltip() STUB_ZERO;
+int Element::GetTooltipMaxWidth() STUB_ZERO;
+WCHAR* Element::GetFont(Value** ppv) STUB_ZERO;
+int Element::GetColorize() STUB_ZERO;
+bool Element::GetWindowActive() STUB_ZERO;
+bool Element::GetAbsorbsShortcut() STUB_ZERO;
+bool Element::GetHighDPI() STUB_ZERO;
+int Element::GetDPI() STUB_ZERO;
+int Element::GetShadowIntensity() STUB_ZERO;
+void Element::SetLayoutCompletionNotify(bool v) STUB_VOID;
+void Element::SetPVLAnimationState(int v) STUB_VOID;
+HRESULT Element::SetVisible(bool v) STUB_ZERO;
+HRESULT Element::SetWidth(int v) STUB_ZERO;
+HRESULT Element::SetHeight(int v) STUB_ZERO;
+HRESULT Element::SetRelPixWidth(int v) STUB_ZERO;
+HRESULT Element::SetRelPixHeight(int v) STUB_ZERO;
+HRESULT Element::SetX(int v) STUB_ZERO;
+HRESULT Element::SetY(int v) STUB_ZERO;
+HRESULT Element::SetLayout(Layout* v) STUB_ZERO;
+HRESULT Element::SetLayoutPos(int v) STUB_ZERO;
+HRESULT Element::SetBorderThickness(int l, int t , int r, int b) STUB_ZERO;
+HRESULT Element::SetBorderStyle(int v) STUB_ZERO;
+HRESULT Element::SetBorderStdColor(int v) STUB_ZERO;
+HRESULT Element::SetBorderColor(COLORREF cr) STUB_ZERO;
+HRESULT Element::SetBorderGradientColor(COLORREF cr0, COLORREF cr1, BYTE dType) STUB_ZERO;
+HRESULT Element::SetPadding(int l, int t, int r, int b) STUB_ZERO;
+HRESULT Element::SetRelPixPadding(int l, int t, int r, int b) STUB_ZERO;
+HRESULT Element::SetMargin(int l, int t, int r, int b) STUB_ZERO;
+HRESULT Element::SetRelPixMargin(int l, int t, int r, int b) STUB_ZERO;
+HRESULT Element::SetForegroundStdColor(int v) STUB_ZERO;
+HRESULT Element::SetForegroundColor(COLORREF cr) STUB_ZERO;
+HRESULT Element::SetForegroundColor(COLORREF cr0, COLORREF cr1, BYTE dType) STUB_ZERO;
+HRESULT Element::SetForegroundColor(COLORREF cr0, COLORREF cr1, COLORREF cr2, BYTE dType) STUB_ZERO;
+HRESULT Element::SetBackgroundStdColor(int v) STUB_ZERO;
+HRESULT Element::SetBackgroundColor(COLORREF cr) STUB_ZERO;
+HRESULT Element::SetBackgroundColor(COLORREF cr0, COLORREF cr1, BYTE dType) STUB_ZERO;
+HRESULT Element::SetBackgroundColor(COLORREF cr0, COLORREF cr1, COLORREF cr2, BYTE dType) STUB_ZERO;
+HRESULT Element::SetBackgroundColor(const Fill& fill) STUB_ZERO;
+HRESULT Element::SetBackgroundColor(const WCHAR* pszClassName, int iPartId, int iStateId) STUB_ZERO;
+HRESULT Element::SetContentString(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetEncodedContentString(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetContentGraphic(const WCHAR* v, BYTE dBlendMode, UINT dBlendValue) STUB_ZERO;
+HRESULT Element::SetContentGraphic(const WCHAR* v, WORD cxDesired, WORD cyDesired) STUB_ZERO;
+HRESULT Element::SetFontFace(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetFontSize(int v) STUB_ZERO;
+HRESULT Element::SetFontWeight(int v) STUB_ZERO;
+HRESULT Element::SetFontStyle(int v) STUB_ZERO;
+HRESULT Element::SetFontQuality(int v) STUB_ZERO;
+HRESULT Element::SetActive(int v) STUB_ZERO;
+HRESULT Element::SetCompositedText(bool v) STUB_ZERO;
+HRESULT Element::SetTextGlowSize(int v) STUB_ZERO;
+HRESULT Element::SetContentAlign(int v) STUB_ZERO;
+HRESULT Element::SetClass(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetID(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetSheet(StyleSheet* v) STUB_ZERO;
+HRESULT Element::SetSelected(bool v) STUB_ZERO;
+HRESULT Element::SetAlpha(int v) STUB_ZERO;
+HRESULT Element::SetAnimation(int v) STUB_ZERO;
+HRESULT Element::SetStdCursor(int v) STUB_ZERO;
+HRESULT Element::SetCursor(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetCursorHandle(HCURSOR hCursor) STUB_ZERO;
+HRESULT Element::SetDirection(int v) STUB_ZERO;
+HRESULT Element::SetAccessible(bool v) STUB_ZERO;
+HRESULT Element::SetAccRole(int v) STUB_ZERO;
+HRESULT Element::SetAccState(int v) STUB_ZERO;
+HRESULT Element::SetAccName(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetAccDesc(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetAccValue(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetAccDefAction(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetAccHelp(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetAccItemType(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetAccItemStatus(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetShortcut(int v) STUB_ZERO;
+HRESULT Element::SetEnabled(bool v) STUB_ZERO;
+HRESULT Element::SetMinSize(int cx, int cy) STUB_ZERO;
+HRESULT Element::SetOverhang(bool v) STUB_ZERO;
+HRESULT Element::SetTooltip(bool v) STUB_ZERO;
+HRESULT Element::SetTooltipMaxWidth(int v) STUB_ZERO;
+HRESULT Element::SetFont(const WCHAR* v) STUB_ZERO;
+HRESULT Element::SetWindowActive(bool v) STUB_ZERO;
+HRESULT Element::SetAbsorbsShortcut(bool v) STUB_ZERO;
+HRESULT Element::SetEdgeHighlightThickness(int l, int t, int r, int b) STUB_ZERO;
+HRESULT Element::SetEdgeHighlightColor(COLORREF cr) STUB_ZERO;
+WCHAR Element::GetShortcutChar() STUB_ZERO;
+HRESULT Element::SetShadowIntensity(int v) STUB_ZERO;
+IClassInfo* Element::GetClassInfoPtr() STUB_ZERO;
+void Element::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Element::s_pClassInfo;
+IClassInfo* Element::GetClassInfoW() STUB_ZERO;
+HRESULT Element::Register() STUB_ZERO;
+HRESULT Element::UnRegister(IClassInfo** ppClassInfo) STUB_ZERO;
+HRESULT Element::GetAccessibleImpl(IAccessible** ppAccessible) STUB_ZERO;
+HRESULT Element::QueueDefaultAction() STUB_ZERO;
+HRESULT Element::DefaultAction() STUB_ZERO;
+HRESULT Element::GetUIAElementProvider(REFIID riid, void** ppv) STUB_ZERO;
+HRESULT Element::GetElementProviderImpl(InvokeHelper* pih, ElementProvider** ppprv) STUB_ZERO;
+void Element::HandleUiaDestroyListener() STUB_VOID;
+void Element::HandleUiaPropertyListener(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void Element::HandleUiaPropertyChangingListener(const PropertyInfo* ppi) STUB_VOID;
+void Element::HandleUiaEventListener(Event* pEvent) STUB_VOID;
+Element* Element::GetUiaFocusDelegate() STUB_ZERO;
+void Element::SetOverrideScaleFactor(float flscale) STUB_VOID;
+void Element::_Fill(HDC hDC, DWORD crFill, int left, int top, int right, int bottom, bool fForceOpaque) STUB_VOID;
+
+class __Element_Check final : public Element
+{
+#ifdef _WIN64
+	static_assert(sizeof(Element) == 0xC8);
+	static_assert(__builtin_offsetof(Element, _rootWindowForTheming) == 0xC0);
+#else
+	static_assert(sizeof(Element) == 0x84);
+	static_assert(__builtin_offsetof(Element, _rootWindowForTheming) == 0x80);
+#endif
+};
 
 ElementWithHWND::ElementWithHWND(const ElementWithHWND&)
 {
@@ -10670,11 +9225,6 @@ UID Selector::SelectionChange(void)
 PropertyInfo const* Selector::SelectionProp(void)
 {
 	return nullptr;
-}
-
-long Element::GetUIAElementProvider(GUID const&, void** param2)
-{
-	return 0;
 }
 
 void Selector::SetClassInfoPtr(IClassInfo*)

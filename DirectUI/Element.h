@@ -15,582 +15,584 @@ namespace DirectUI
 		Element* pElement;
 		UINT uIndex;
 	};
-	
-	//32位数据结构大小 0x80
+
+	class BehaviorStore;
+
+	template <typename TKey, typename TValue>
+	class BTreeLookup
+	{
+	};
+
+	namespace Internal
+	{
+		struct ListenerData;
+	}
+
+	class DuiAccessible;
+
+	typedef int (__cdecl *CompareCallback)(const void*, const void*);
+
 	class UILIB_API Element
 	{
 	public:
-		char fields[0x500];
-
+		static HRESULT Create(UINT nCreate, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT Destroy(bool fDelayed);
+		static HRESULT DestroyAll(bool fDelayed);
 
 		Element();
-		Element(const Element&);
-		//0
+		Element(const Element&) = default;
+
 		virtual ~Element();
 
-		Element& operator=(const Element &);
+		HRESULT Initialize(UINT nCreate, Element* peInitialParent, DWORD* pdwDeferCookie);
 
-		long Initialize(unsigned int, Element*, unsigned long*);
-		static long WINAPI Create(unsigned int, Element*parent, unsigned long*, Element**out);
-		static long WINAPI UnRegister(IClassInfo**);
+		Value* GetRawValue(const PropertyInfo* ppi, int iIndex, UpdateCache* puc); // TODO Check when was this added
 
+		Value* GetValue(const PropertyInfo* ppi, int iIndex, UpdateCache* puc);
+		Value* GetValue(PropertyProcT pPropertyProc, int iIndex, UpdateCache* puc);
 
-		Element * GetParent();
-		RECT const * GetPadding(Value * *);
-		bool GetOverhang();
-		Element * GetMouseWithinChild();
-		bool GetMouseWithin();
-		bool GetMouseFocused();
-		SIZE const * GetMinSize(Value * *);
-		RECT const * GetMargin(Value * *);
-		POINT const * GetLocation(Value * *);
-		int GetLayoutPos();
-		Layout * GetLayout(Value * *);
-		Element * GetKeyWithinChild();
-		bool GetKeyWithin();
-		int GetIndex();
-		Element * GetImmediateChild(Element *);
-		unsigned short GetID();
-		bool GetHighDPI();
-		int GetHeight();
-		int GetForegroundStdColor();
-		DirectUI::Fill const * GetForegroundColor(Value * *);
-		int GetFontWeight();
-		int GetFontStyle();
-		int GetFontSize();
-		int GetFontQuality();
-		unsigned short const * GetFontFace(Value * *);
-		unsigned short const * GetFont(Value * *);
-		static CRITICAL_SECTION * __stdcall GetFactoryLock();
-		SIZE const * GetExtent(Value * *);
-		long GetEncodedContentString(unsigned short *, UINT_PTR);
-		bool GetEnabled();
+		HRESULT SetValue(const PropertyInfo* ppi, int iIndex, Value* pv);
+		HRESULT SetValue(PropertyProcT pPropertyProc, int iIndex, Value* pv);
 
-		int GetDPI();
-		HGADGET GetDisplayNode();
-		int GetDirection();
-		SIZE const * GetDesiredSize();
-		DeferCycle * GetDeferObject();
-		unsigned short const * GetContentString(Value * *);
-		int GetContentAlign();
-		int GetColorize();
-		bool GetClickablePoint(POINT *);
-		static IClassInfo * __stdcall GetClassInfoPtr();
-		unsigned short const * GetClass(Value * *);
-		DynamicArray<Element *, 0> * GetChildren(Value * *);
-		RECT const * GetBorderThickness(Value * *);
-		int GetBorderStyle();
-		int GetBorderStdColor();
+		HRESULT RemoveLocalValue(const PropertyInfo* ppi);
+		HRESULT RemoveLocalValue(PropertyProcT pPropertyProc);
 
-		
+		void StartDefer(DWORD* pdwDeferCookie);
+		void EndDefer(DWORD dwDeferCookie);
+		void UpdateLayout();
 
-		long AddListener(IElementListener*);
+		DeferCycle* GetDeferObject();
+		DeferCycle* TestDeferObject();
 
-		unsigned long WINAPI AddRef();
-		static UID WINAPI AnimationChange();
+		bool IsValidAccessor(const PropertyInfo* ppi, int iIndex, bool bSetting);
+		static bool IsValidValue(const PropertyInfo* ppi, Value* pv);
 
-		void BroadcastEvent(Event*);
-		void Detach(DeferCycle*);
-
-		//1
+		bool IsRTL();
 		virtual bool IsRTLReading();
-
-		//2
 		virtual bool IsContentProtected();
+		virtual const WCHAR* GetContentStringAsDisplayed(Value** ppv);
+		const WCHAR* GetAccNameAsDisplayed(Value** ppv);
 
+		virtual bool OnPropertyChanging(PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
+		virtual bool OnPropertyChanging(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
+		virtual void OnPropertyChanged(PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
+		virtual void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
 
-		//3
-		virtual const WCHAR* GetContentStringAsDisplayed(Value**);
-
-		//4
-		virtual bool OnPropertyChanging(PropertyInfo*, int, Value*, Value*);
-		virtual bool OnPropertyChanging(const PropertyInfo*, int, Value*, Value*);
-		//5
-		//6
-		virtual void OnPropertyChanged(PropertyInfo*, int, Value*, Value*);
-		virtual void OnPropertyChanged(const PropertyInfo*, int, Value*, Value*);
-		//7
-		//8
-		virtual void OnGroupChanged(int, bool);
-		//9
-		virtual void OnInput(InputEvent*);
-		//10
-		virtual void OnKeyFocusMoved(Element*, Element*);
-		//11
-		virtual void OnMouseFocusMoved(Element*, Element*);
-		//12
+		virtual void OnGroupChanged(int fGroups, bool bLowPri);
+		virtual void OnInput(InputEvent* pInput);
+		virtual void OnKeyFocusMoved(Element* peFrom, Element* peTo);
+		virtual void OnMouseFocusMoved(Element* peFrom, Element* peTo);
 		virtual void OnDestroy();
-		//13
-		virtual void OnEvent(Event*);
-		//14
-		virtual void Paint(HDC, RECT const*, RECT const*, RECT*, RECT*);
 
-		//15
-		virtual SIZE GetContentSize(int, int, Surface*);
+		void FireEvent(Event* pEvent, bool fFull, bool fUseSpecifiedTarget);
+		void BroadcastEvent(Event* pEvent);
+		virtual void OnEvent(Event* pEvent);
 
-		//16
-		virtual long Add(Element**, unsigned int);
+		virtual void Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent);
+		void PaintContent(HDC hDC, const RECT* prcContent);
+		void PaintStringContent(HDC hDC, const RECT* prcContent, Value* pvContent, int dCAlign);
+		void PaintFocusRect(HDC hDC, const RECT* prcBounds, const RECT* prcContent);
+		void PaintBorder(HDC hDC, Value* pvBackgnd, RECT* prcPaint, const RECT& rcBorder);
+		void PaintBackground(HDC hDC, Value* pvBackgnd, const RECT& rcBounds, const RECT& rcInvalid, const RECT& rcPadding, const RECT& rcBorder);
+		void PaintEdgeHighlight(HDC hDC, const RECT& rcPaint, const RECT& rcInvalid); // TODO Check when was this added
 
+		virtual SIZE GetContentSize(int dConstW, int dConstH, Surface* psrf);
+
+		float GetTreeAlphaLevel();
+
+		virtual HRESULT Add(Element** ppe, UINT cCount);
 		HRESULT Add(Element* pe);
-		//long Add(Element*, int(__cdecl*)(const void*, const void*));
+		HRESULT Add(Element* pe, CompareCallback lpfnCompare); // TODO Check when was this added
 
-		//17
-		virtual long Insert(Element**, unsigned int, unsigned int);
-		//18
-		virtual long Remove(Element**, unsigned int);
+		virtual HRESULT Insert(Element** ppe, UINT cCount, UINT iInsertIdx);
+		HRESULT Insert(Element* pe, UINT iInsertIdx);
 
-		//19
+		HRESULT SortChildren(CompareCallback lpfnCompare);
+		HRESULT ShiftChild(UINT iOldIndex, UINT iNewIndex); // TODO Check when was this added
+
+		virtual HRESULT Remove(Element** ppe, UINT cCount);
+		HRESULT Remove(Element* pe);
+		HRESULT RemoveAll();
+
+		Element* FindDescendent(ATOM atomID);
+		void MapElementPoint(Element* peFrom, const POINT* pptFrom, POINT* pptTo);
+		Element* GetImmediateChild(Element* peFrom);
+		bool IsDescendent(Element* pe);
 		virtual Element* GetAdjacent(Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags);
+		Element* GetKeyWithinChild();
+		Element* GetMouseWithinChild();
 
-		//20
-		virtual bool EnsureVisible(int, int, int, int);
+		virtual bool EnsureVisible(int x, int y, int cx, int cy);
+		bool EnsureVisible();
+		bool EnsureVisible(UINT uChild);
+
 		virtual void SetKeyFocus();
 
-		virtual long AddBehavior(IDuiBehavior* behavior);
-		virtual long RemoveBehavior(IDuiBehavior* behavior);
+		HRESULT AddListener(IElementListener* pel);
+		void RemoveListener(IElementListener* pel);
 
-		//21
+		virtual HRESULT AddBehavior(IDuiBehavior* pBehavior);
+		virtual HRESULT RemoveBehavior(IDuiBehavior* pBehavior);
 
-		//22
-		virtual unsigned int MessageCallback(GMSG*);
+		void InvokeAnimation(int dAni, UINT nTypeMask);
+		void InvokeAnimation(UINT nTypes, UINT nInterpol, float flDuration, float flDelay, bool fPushToChildren);
+		void StopAnimation(UINT nTypes);
 
-		//23
-		virtual long WINAPI QueryInterface(GUID const &, void**);
+		virtual UINT MessageCallback(GMSG* pgMsg);
 
-		virtual void GetImmersiveFocusRectOffsets(RECT*);
-
-
-		long Destroy(bool);
-		long DestroyAll(bool);
-		void DoubleBuffered(bool);
-		void EnableUiaEvents(bool);
-		void EndDefer(unsigned long);
-		bool EnsureVisible(unsigned int);
-		bool EnsureVisible();
-		Element* FindDescendent(ATOM id);
-		void FireEvent(Event* pEvent, bool fFull, bool fUseSpecifiedTarget);
-
-		bool GetAbsorbsShortcut();
-		UCString GetAccDefAction(Value**);
-		UCString GetAccDesc(Value**);
-		UCString GetAccHelp(Value**);
-		UCString GetAccItemStatus(Value**);
-		UCString GetAccItemType(Value**);
-		UCString GetAccName(Value**);
-		UCString GetAccNameAsDisplayed(Value**);
-		UCString GetAccValue(Value**);
-
-		int GetAccRole();
-		int GetAccState();
-		bool GetAccessible();
-		int GetActive();
-		Element* GetRoot();
-
-		// Properties? wtf is this
-
-		static const PropertyInfo* WINAPI AbsorbsShortcutProp();
-		static const PropertyInfo* WINAPI AccDefActionProp();
-		static const PropertyInfo* WINAPI AccDescProp();
-		static const PropertyInfo* WINAPI AccHelpProp();
-		static const PropertyInfo* WINAPI AccItemStatusProp();
-		static const PropertyInfo* WINAPI AccItemTypeProp();
-		static const PropertyInfo* WINAPI AccNameProp();
-		static const PropertyInfo* WINAPI AccRoleProp();
-		static const PropertyInfo* WINAPI AccStateProp();
-		static const PropertyInfo* WINAPI AccValueProp();
-		static const PropertyInfo* WINAPI AccessibleProp();
-		static const PropertyInfo* WINAPI ActiveProp();
-		static const PropertyInfo* WINAPI AlphaProp();
-		static const PropertyInfo* WINAPI AnimationProp();
-		static const PropertyInfo* WINAPI BackgroundProp();
-		static const PropertyInfo* WINAPI BorderColorProp();
-		static const PropertyInfo* WINAPI BorderStyleProp();
-		static const PropertyInfo* WINAPI BorderThicknessProp();
-		static const PropertyInfo* WINAPI ChildrenProp();
-		static const PropertyInfo* WINAPI ClassProp();
-		static const PropertyInfo* WINAPI CompositedTextProp();
-		static const PropertyInfo* WINAPI ContentAlignProp();
-
-		static const PropertyInfo* WINAPI ContentProp();
-		static const PropertyInfo* WINAPI CursorProp();
-		static const PropertyInfo* WINAPI CustomProp();
-		static const PropertyInfo* WINAPI DPIProp();
-		static const PropertyInfo* WINAPI DirectionProp();
-		static const PropertyInfo* WINAPI DesiredSizeProp();
-		static const PropertyInfo* WINAPI ExtentProp();
-		static const PropertyInfo* WINAPI ForegroundProp();
-		static const PropertyInfo* WINAPI FontFaceProp();
-		static const PropertyInfo* WINAPI FontProp();
-		static const PropertyInfo* WINAPI FontQualityProp();
-		static const PropertyInfo* WINAPI FontSizeProp();
-		static const PropertyInfo* WINAPI FontStyleProp();
-		static const PropertyInfo* WINAPI FontWeightProp();
-		static const PropertyInfo* WINAPI KeyFocusedProp();
-		static const PropertyInfo* WINAPI KeyWithinProp();
-		static const PropertyInfo* WINAPI LastDSConstProp();
-		static const PropertyInfo* WINAPI LayoutPosProp();
-		static const PropertyInfo* WINAPI LayoutProp();
-		static const PropertyInfo* WINAPI LocationProp();
-		static const PropertyInfo* WINAPI HeightProp();
-		static const PropertyInfo* WINAPI HighDPIProp();
-		static const PropertyInfo* WINAPI IDProp();
-		static const PropertyInfo* WINAPI MinSizeProp();
-		static const PropertyInfo* WINAPI MouseFocusedProp();
-		static const PropertyInfo* WINAPI MouseWithinProp();
-		static const PropertyInfo* WINAPI OverhangProp();
-		static const PropertyInfo* WINAPI PaddingProp();
-		static const PropertyInfo* WINAPI ParentProp();
-		static const PropertyInfo* WINAPI PosInLayoutProp();
-		static const PropertyInfo* WINAPI SelectedProp();
-		static const PropertyInfo* WINAPI ShadowIntensityProp();
-		static const PropertyInfo* WINAPI SheetProp();
-		static const PropertyInfo* WINAPI ShortcutProp();
-		static const PropertyInfo* WINAPI SizeInLayoutProp();
-		static const PropertyInfo* WINAPI TextGlowSizeProp();
-		static const PropertyInfo* WINAPI TooltipMaxWidthProp();
-		static const PropertyInfo* WINAPI TooltipProp();
-		static const PropertyInfo* WINAPI VisibleProp();
-		static const PropertyInfo* WINAPI WidthProp();
-		static const PropertyInfo* WINAPI WindowActiveProp();
-		static const PropertyInfo* WINAPI XProp();
-		static const PropertyInfo* WINAPI YProp();
-
-		long GetRootRelativeBounds(LPRECT);
-		bool GetSelected();
-		int GetShadowIntensity();
-		StyleSheet* GetSheet();
-		int GetShortcut();
-		UChar GetShortcutChar();
-		int GetTextGlowSize();
-		bool GetTooltip();
-		int GetTooltipMaxWidth();
-		Element* GetTopLevel();
-		float GetTreeAlphaLevel();
-		Value* GetValue(PropertyProcT pPropertyProc, int iIndex, UpdateCache* puc);
-		Value* GetValue(const PropertyInfo* ppi, int iIndex, UpdateCache* puc);
-		bool GetVisible();
-		int GetWidth();
-		bool GetWindowActive();
-		int GetX();
-		int GetY();
-
-		bool HasAnimation();
-		bool HasBorder();
-		bool HasChildren();
-		bool HasContent();
-		bool HasLayout();
-		bool HasMargin();
-		bool HasPadding();
-		static void WINAPI InitDefaultFontSize();
-		static UID WINAPI KeyboardNavigate();
-
-		long Insert(Element*, unsigned int);
-		
-		void InvokeAnimation(int, unsigned int);
-		void InvokeAnimation(unsigned int, unsigned int, float, float, bool);
-		bool IsCompositedText();
-		
-		bool IsDefaultCAlign();
-		bool IsDefaultCursor();
-		bool IsDescendent(Element*);
-		bool IsDestroyed();
-		bool IsHosted();
-		bool IsRTL();
-		
-		int IsRoot();
-		bool IsSelfLayout();
-		bool IsValidAccessor(const PropertyInfo*, int, bool);
-		static bool WINAPI IsValidValue(const PropertyInfo*, Value*);
-		bool IsWordWrap();
-		void MapElementPoint(Element*, POINT const*, LPPOINT);
-		static const PropertyInfo* WINAPI MarginProp();
-
-		void MarkNeedsDSUpdate();
-		bool NeedsDSUpdate();
-
-		
-		
-
-		void PaintBackground(HDC, Value*, RECT const &, RECT const &, RECT const &, RECT const &);
-		void PaintBorder(HDC, Value*, RECT*, RECT const &);
-		void PaintContent(HDC, RECT const*);
-		void PaintFocusRect(HDC, RECT const*, RECT const*);
-		void PaintStringContent(HDC, RECT const*, Value*, int);
-
-		void PostEvent(Event*);
-		long QueueDefaultAction();
-		static long WINAPI Register();
-		unsigned long WINAPI Release();
-		long Remove(Element*);
-		long RemoveAll();
-		void RemoveListener(IElementListener*);
-		long RemoveLocalValue( const PropertyInfo* (WINAPI*)());
-		long RemoveLocalValue(const PropertyInfo*);
-
-		long SetAbsorbsShortcut(bool);
-		long SetAccDefAction(UCString);
-		long SetAccDesc(UCString);
-		long SetAccHelp(UCString);
-		long SetAccItemStatus(UCString);
-		long SetAccItemType(UCString);
-		long SetAccName(UCString);
-		long SetAccRole(int);
-		long SetAccState(int);
-		long SetAccValue(UCString);
-		long SetAccessible(bool);
-		long SetActive(int);
-		long SetAlpha(int);
-		long SetAnimation(int);
-		long SetBackgroundColor(Fill const &);
-		long SetBackgroundColor(unsigned long);
-		long SetBackgroundColor(unsigned long, unsigned long, unsigned char);
-		long SetBackgroundColor(unsigned long, unsigned long, unsigned long, unsigned char);
-		long SetBackgroundColor(UCString, int, int);
-		long SetBackgroundStdColor(int);
-		long SetBorderColor(unsigned long);
-		long SetBorderGradientColor(unsigned long, unsigned long, unsigned char);
-		long SetBorderStdColor(int);
-		long SetBorderStyle(int);
-		long SetBorderThickness(int, int, int, int);
-		long SetClass(UCString);
-		static void WINAPI SetClassInfoPtr(IClassInfo*);
-		long SetCompositedText(bool);
-		long SetContentAlign(int);
-		long SetContentGraphic(UCString, unsigned char, unsigned int);
-		long SetContentGraphic(UCString, unsigned short, unsigned short);
-		long SetContentString(UCString);
-		long SetCursor(UCString);
-		long SetCursorHandle(HICON);
-		long SetDirection(int v);
-		long SetEnabled(bool);
-		long SetEncodedContentString(UCString);
-		long SetFont(UCString);
-		long SetFontFace(UCString);
-		long SetFontQuality(int);
-		long SetFontSize(int);
-		long SetFontStyle(int);
-		long SetFontWeight(int);
-		long SetForegroundColor(unsigned long);
-		long SetForegroundColor(unsigned long, unsigned long, unsigned char);
-		long SetForegroundColor(unsigned long, unsigned long, unsigned long, unsigned char);
-		long SetForegroundStdColor(int);
-		long SetHeight(int);
-		long SetID(UCString);
-		long SetLayout(Layout*);
-		long SetLayoutPos(int);
-		long SetMargin(int, int, int, int);
-		long SetMinSize(int, int);
-		long SetOverhang(bool);
-		long SetPadding(int, int, int, int);
-		long SetSelected(bool);
-		long SetShadowIntensity(int);
-		long SetSheet(StyleSheet*);
-		long SetShortcut(int);
-		long SetStdCursor(int);
-		long SetTextGlowSize(int);
-		long SetTooltip(bool);
-		long SetTooltipMaxWidth(int);
-		long SetValue(PropertyProcT pPropertyProc, int iIndex, Value* pv);
-		long SetValue(const PropertyInfo* ppi, int iIndex, Value* pv);
-		long SetVisible(bool);
-		long SetWidth(int);
-		long SetWindowActive(bool);
-		long SetX(int);
-		long SetY(int);
-
-		long SortChildren(int (*)(void const*, void const*));
-		void StartDefer(unsigned long*);
-		void StopAnimation(unsigned int);
-		DeferCycle* TestDeferObject();
-		bool UiaEvents();
-		void UpdateLayout();
-		static void WINAPI _AddDependency(Element*, const PropertyInfo*, int, DepRecs*, DeferCycle*, long*);
-		void _ClearNeedsLayout();
-		static long WINAPI _DisplayNodeCallback(HGADGET, void*, EventMsg*);
-		void _EndOptimizedLayoutQ();
-		int _GetChangesUpdatePass();
-		unsigned int _GetNeedsLayout();
-		static int WINAPI _MarkElementForDS(Element*);
-		static int WINAPI _MarkElementForLayout(Element*, unsigned int);
-		static bool WINAPI _SetGroupChanges(Element*, int, DeferCycle*);
-		int _SetNeedsLayout(unsigned int);
+		SIZE _UpdateDesiredSize(int cxConstraint, int cyConstraint, Surface* psrf);
+		void _UpdateLayoutPosition(int dX, int dY);
+		void _UpdateLayoutSize(int dWidth, int dHeight);
 		void _StartOptimizedLayoutQ();
-		static void WINAPI _TransferGroupFlags(Element*, int);
-		SIZE _UpdateDesiredSize(int, int, Surface*);
-		void _UpdateLayoutPosition(int, int);
-		void _UpdateLayoutSize(int, int);
-		static PropertyInfo const * __stdcall EnabledProp();
-		int GetAlpha();
-		int GetAnimation();
-		Fill const * GetBackgroundColor(Value * *);
-		int GetBackgroundStdColor();
-		Fill const * GetBorderColor(Value * *);
-	protected:
-		//24
-		virtual void _SelfLayoutDoLayout(int, int);
+		void _EndOptimizedLayoutQ();
+		UINT _GetNeedsLayout();
+		static bool _SetGroupChanges(Element* pe, int fGroups, DeferCycle* pdc);
+		static void _TransferGroupFlags(Element* pe, int fGroups);
+		int _SetNeedsLayout(UINT fNeedsLayout);
+		static int _MarkElementForLayout(Element* pe, UINT fNeedsLayout);
+		static int _MarkElementForDS(Element* pe);
+		void _ClearNeedsLayout();
+		static void _AddDependency(Element* pe, const PropertyInfo* ppi, int iIndex, DepRecs* pdr, DeferCycle* pdc, HRESULT* phr);
+		static HRESULT _DisplayNodeCallback(HGADGET hgadCur, void* pvCur, EventMsg* pGMsg);
 
-		//25
-		virtual SIZE _SelfLayoutUpdateDesiredSize(int, int, Surface*);
+		virtual STDMETHODIMP QueryInterface(REFIID riid, void** ppvObject);
+		STDMETHODIMP_(ULONG) AddRef(); // @Note: Not virtual
+		STDMETHODIMP_(ULONG) Release(); // @Note: Not virtual
 
-		//26
-		virtual void OnHosted(Element*);
-		//27
-		virtual void OnUnHosted(Element*);
-		//28
-		virtual void UpdateTooltip(Element*);
-		//29
-		virtual void ActivateTooltip(Element*, unsigned long);
-		//30
-		virtual void RemoveTooltip(Element*);
-public:
+		int _GetChangesUpdatePass();
+		void Detach(DeferCycle* pdc);
+		bool UiaEvents();
+		void EnableUiaEvents(bool fEnable);
+		bool GetClickablePoint(POINT* ptClick);
+		virtual void GetImmersiveFocusRectOffsets(RECT* prc);
 
-		//31
-		virtual bool GetKeyFocused();
-
-		//32
-		virtual IClassInfo* GetClassInfoW();
-		//33
-		virtual long GetAccessibleImpl(IAccessible**);
-
-		//34
-		virtual long DefaultAction();
-		virtual long GetUIAElementProvider(GUID const&, void** param2);
-		//35
-		virtual HRESULT GetElementProviderImpl(class InvokeHelper *, ElementProvider * *);
-
-
-		//36
-		virtual void HandleUiaDestroyListener();
-		//37
-		virtual void HandleUiaPropertyListener(const PropertyInfo*, int, Value*, Value*);
-		//38
-		virtual void HandleUiaPropertyChangingListener(const PropertyInfo*);
-		//39
-		virtual void HandleUiaEventListener(Event*);
-
-		virtual Element* GetUiaFocusDelegate();
-
-		
-protected:
-
-		void MarkHosted();
-		void MarkSelfLayout();
-		static void WINAPI _FlushLayout(Element*, DeferCycle*);
-		static void WINAPI _InvalidateCachedDSConstraints(Element*);
-		void _OnFontPropChanged(Value*);
-		long _RemoveLocalValue( const PropertyInfo* (WINAPI*)(), bool);
-		long _RemoveLocalValue(const PropertyInfo*, bool);
-		long _SetValue( const PropertyInfo* (WINAPI*)(), int, Value*, bool);
-		long _SetValue(const PropertyInfo*, int, Value*, bool);
-private:
-		Element* FindDescendentWorker(unsigned short);
+	private:
+		Element* FindDescendentWorker(ATOM atomID);
+		void _GetBuriedSheetDependencies(const PropertyInfo* ppi, Element* peNewParent, DepRecs* pdr, DeferCycle* pdc, HRESULT* phr);
+		HRESULT _GetDependencies(const PropertyInfo* ppi, int iIndex, DepRecs* pdr, int iPCSrcRoot, Value* pvNewRoot, DeferCycle* pdc);
+		static void _VoidPCNotifyTree(int iPCPos, DeferCycle* pdc);
+		int _CachedValueIsEqual(const PropertyInfo* ppi, Element* peParent);
+		Value* _GetLocalValueFromVM(const PropertyInfo* ppi);
+		Value* _GetLocalValue(const PropertyInfo* ppi);
+		Value* _GetSpecifiedValueIgnoreCache(const PropertyInfo* ppi);
+		Value* _GetSpecifiedValue(const PropertyInfo* ppi, UpdateCache* puc);
+		Value* _GetComputedValue(const PropertyInfo* ppi, UpdateCache* puc);
+		void _UpdatePropertyInCache(const PropertyInfo* ppi);
+		void _InheritProperties();
+		void _FlushDS(DeferCycle*);
+		HRESULT _PreSourceChange(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
+		HRESULT _PreSourceChange(PropertyProcT proc, int iIndex, Value* pvOld, Value* pvNew);
+		HRESULT _PostSourceChange();
+		void _BroadcastEventWorker(Event* pEvent);
+		void _PostEvent(Event* pEvent, int nMsg); // TODO Check when was this added
+		static bool CALLBACK s_HandleDUIEventMessage(Element* pe, EventMsg* pEventMsg); // TODO Check when was this added
+		UINT GetCommonDrawTextFlags(int dCAlign);
+		WCHAR* RemoveShortcutFromName(const WCHAR* pszName);
+		void _SyncVisible();
 		void _SyncBackground();
 		void _SyncRedrawStyle();
-		void _SyncVisible();
-		bool IsPointValid(double, double);
-		unsigned short* RemoveShortcutFromName(UCString);
-		bool TryLinePattern(LPPOINT, const RECT&);
-		bool TryPattern(double, double, LPPOINT, const RECT&);
-		bool TrySparsePattern(LPPOINT, const RECT&);
-		void _BroadcastEventWorker(Event*);
-		int _CachedValueIsEqual(const PropertyInfo*, Element*);
-		void _GetBuriedSheetDependencies(const PropertyInfo*, Element*, DepRecs*, DeferCycle*, long*);
-		void _UpdatePropertyInCache(const PropertyInfo*);
-		static void WINAPI _VoidPCNotifyTree(int, DeferCycle*);
-		
+		bool IsPointValid(double x, double y);
+		bool TryLinePattern(POINT* pt, const RECT& rcParent);
+		bool TryPattern(double x, double y, POINT* pt, const RECT& rcParent);
+		bool TrySparsePattern(POINT* pt, const RECT& rcParent);
+		HRESULT _SetRelPixValue(const PropertyInfo* ppi, int nValue); // TODO Check when was this added
+		HRESULT _SetRelPixRect(const PropertyInfo* ppi, int l, int t, int r, int b); // TODO Check when was this added
+		HRESULT GetTheme(const WCHAR* pszClass, HTHEME* phTheme); // TODO Check when was this added
 
-		void _FlushDS(DeferCycle*);
-		Value* _GetComputedValue(const PropertyInfo*, UpdateCache*);
-		long _GetDependencies(const PropertyInfo*, int, DepRecs*, int, Value*, DeferCycle*);
-		Value* _GetLocalValue(const PropertyInfo*);
-		Value* _GetLocalValueFromVM(const PropertyInfo*);
-		Value* _GetSpecifiedValue(const PropertyInfo*, UpdateCache*);
-		Value* _GetSpecifiedValueIgnoreCache(const PropertyInfo*);
-		void _InheritProperties();
-		long _PostSourceChange();
-		long _PreSourceChange( const PropertyInfo* (WINAPI*)(), int, Value*, Value*);
-		long _PreSourceChange(const PropertyInfo*, int, Value*, Value*);
+	protected:
+		static void _FlushLayout(Element* pe, DeferCycle* pdc);
+		static void _InvalidateCachedDSConstraints(Element* pe);
+		virtual void _SelfLayoutDoLayout(int cx, int cy);
+		virtual SIZE _SelfLayoutUpdateDesiredSize(int dConstW, int dConstH, Surface* psrf);
+		HRESULT _SetValue(const PropertyInfo* ppi, int iIndex, Value* pv, bool fInternalCall);
+		HRESULT _SetValue(PropertyProcT pPropertyProc, int iIndex, Value* pv, bool fInternalCall);
+		HRESULT _RemoveLocalValue(const PropertyInfo* ppi, bool fInternalCall);
+		HRESULT _RemoveLocalValue(PropertyProcT pPropertyProc, bool fInternalCall);
+		virtual void OnHosted(Element* peNewRoot);
+		virtual void OnUnHosted(Element* peOldRoot);
+		void MarkHosted();
+		void MarkSelfLayout();
+		virtual void UpdateTooltip(Element* pe);
+		virtual void ActivateTooltip(Element* pe, DWORD dwFlags);
+		virtual void RemoveTooltip(Element* pe);
+		void _OnFontPropChanged(Value* pvFont);
 
-		unsigned int GetCommonDrawTextFlags(int);
+	public:
+		void MarkNeedsDSUpdate();
+		bool NeedsDSUpdate();
+		void DoubleBuffered(bool fEnabled);
+		int IsRoot();
+		Element* GetRoot();
+		Element* GetTopLevel();
+		HRESULT GetRootRelativeBounds(RECT* prc);
 
+		static RTL_CRITICAL_SECTION* GetFactoryLock();
 
+		static UID KeyboardNavigate();
+		static UID AnimationChange();
+		static UID DCompDeviceRebuilt(); // TODO Check when was this added
 
-		static IClassInfo*s_pClassInfo;
+		static const PropertyInfo* ParentProp();
+		static const PropertyInfo* ChildrenProp();
+		static const PropertyInfo* VisibleProp();
+		static const PropertyInfo* WidthProp();
+		static const PropertyInfo* HeightProp();
+		static const PropertyInfo* LocationProp();
+		static const PropertyInfo* ExtentProp();
+		static const PropertyInfo* XProp();
+		static const PropertyInfo* YProp();
+		static const PropertyInfo* PosInLayoutProp();
+		static const PropertyInfo* SizeInLayoutProp();
+		static const PropertyInfo* DesiredSizeProp();
+		static const PropertyInfo* LastDSConstProp();
+		static const PropertyInfo* LayoutProp();
+		static const PropertyInfo* LayoutPosProp();
+		static const PropertyInfo* BorderThicknessProp();
+		static const PropertyInfo* BorderStyleProp();
+		static const PropertyInfo* BorderColorProp();
+		static const PropertyInfo* PaddingProp();
+		static const PropertyInfo* MarginProp();
+		static const PropertyInfo* ForegroundProp();
+		static const PropertyInfo* BackgroundProp();
+		static const PropertyInfo* ContentProp();
+		static const PropertyInfo* FontFaceProp();
+		static const PropertyInfo* FontSizeProp();
+		static const PropertyInfo* FontWeightProp();
+		static const PropertyInfo* FontStyleProp();
+		static const PropertyInfo* FontQualityProp();
+		static const PropertyInfo* ActiveProp();
+		static const PropertyInfo* ContentAlignProp();
+		static const PropertyInfo* KeyFocusedProp();
+		static const PropertyInfo* KeyWithinProp();
+		static const PropertyInfo* MouseFocusedProp();
+		static const PropertyInfo* MouseWithinProp();
+		static const PropertyInfo* ClassProp();
+		static const PropertyInfo* IDProp();
+		static const PropertyInfo* SheetProp();
+		static const PropertyInfo* SelectedProp();
+		static const PropertyInfo* AlphaProp();
+		static const PropertyInfo* AnimationProp();
+		static const PropertyInfo* CursorProp();
+		static const PropertyInfo* DirectionProp();
+		static const PropertyInfo* AccessibleProp();
+		static const PropertyInfo* AccRoleProp();
+		static const PropertyInfo* AccStateProp();
+		static const PropertyInfo* AccNameProp();
+		static const PropertyInfo* AccDescProp();
+		static const PropertyInfo* AccValueProp();
+		static const PropertyInfo* AccDefActionProp();
+		static const PropertyInfo* AccHelpProp();
+		static const PropertyInfo* AccItemTypeProp();
+		static const PropertyInfo* AccItemStatusProp();
+		static const PropertyInfo* ShortcutProp();
+		static const PropertyInfo* EnabledProp();
+		static const PropertyInfo* MinSizeProp();
+		static const PropertyInfo* OverhangProp();
+		static const PropertyInfo* TooltipProp();
+		static const PropertyInfo* TooltipMaxWidthProp();
+		static const PropertyInfo* FontProp();
+		static const PropertyInfo* WindowActiveProp();
+		static const PropertyInfo* AbsorbsShortcutProp();
+		static const PropertyInfo* CompositedTextProp();
+		static const PropertyInfo* TextGlowSizeProp();
+		static const PropertyInfo* HighDPIProp();
+		static const PropertyInfo* DPIProp();
+		static const PropertyInfo* CustomProp();
+		static const PropertyInfo* ShadowIntensityProp();
+		static const PropertyInfo* EdgeHighlightThicknessProp(); // TODO Check when was this added
+		static const PropertyInfo* EdgeHighlightColorProp(); // TODO Check when was this added
+		static const PropertyInfo* ScaleFactorProp(); // TODO Check when was this added
+		static const PropertyInfo* UsesDesktopPerMonitorScalingProp(); // TODO Check when was this added
 
+	protected:
 		HGADGET _hgDisplayNode;
-		struct BehaviorStore *_pBehaviorStore;
+		BehaviorStore* _pBehaviorStore;
+
+	private:
 		int _iIndex;
-		// struct BTreeLookup<PropertyInfo const *,Value *> *_pvmLocal;
-		void *_pvmLocal;
+		BTreeLookup<const PropertyInfo*, Value*>* _pvmLocal;
 		int _iGCSlot;
 		int _iGCLPSlot;
 		int _iPCTail;
-		DeferCycle *_pDeferCycle;
-		// Internal::ListenerData *_pld;
-		void *_pld;
-		Element *_peInitialParent;
-		Element *_peLocParent;
-		tagPOINT _ptLocPosInLayt;
-		tagSIZE _sizeLocSizeInLayt;
-		tagSIZE _sizeLocLastDSConst;
-		tagSIZE _sizeLocDesiredSize;
+		DeferCycle* _pDeferCycle;
+		Internal::ListenerData* _pld;
+		Element* _peInitialParent;
+		Element* _peLocParent;
+		POINT _ptLocPosInLayt;
+		SIZE _sizeLocSizeInLayt;
+		SIZE _sizeLocLastDSConst;
+		SIZE _sizeLocDesiredSize;
 		int _dSpecLayoutPos;
-		Value *_pvSpecSheet;
+		Value* _pvSpecSheet;
 		int _dSpecAlpha;
 		int _dPVLAnimationState;
 		ATOM _atomSpecID;
+
 		struct _BitMap
 		{
-			__int8 bLocKeyWithin : 1;
-			__int8 bLocMouseWithin : 1;
-			__int8 bCmpVisible : 1;
-			__int8 bSpecVisible : 1;
-			__int8 bSpecSelected : 1;
-			__int8 bSpecKeyFocused : 1;
-			__int8 bSpecMouseFocused : 1;
-			__int8 bSpecAccessible : 1;
-			__int8 bSpecEnabled : 1;
-			__int8 bHasChildren : 1;
-			__int8 bHasLayout : 1;
-			__int8 bHasBorder : 1;
-			__int8 bHasPadding : 1;
-			__int8 bHasMargin : 1;
-			__int8 bHasContent : 1;
-			__int8 bDefaultCAlign : 1;
-			__int8 bWordWrap : 1;
-			__int8 bHasAnimation : 1;
-			__int8 bDefaultCursor : 1;
-			__int8 bDefaultBorderColor : 1;
-			__int8 bDefaultForeground : 1;
-			__int8 bDefaultFontWeight : 1;
-			__int8 bDefaultFontStyle : 1;
-			__int8 bDefaultFontQuality : 1;
-			__int8 bSelfLayout : 1;
-			__int8 bNeedsDSUpdate : 1;
-			__int8 bDestroyed : 1;
-			__int8 bHosted : 1;
-			__int8 bHasTooltip : 1;
-			__int8 bCompositedText : 1;
-			__int8 bUiaEvents : 1;
-			__int8 bPreserveAlphaChannel : 1;
-			unsigned __int32 fNeedsLayout : 2;
-			unsigned __int32 fSpecActive : 4;
-			unsigned __int32 nSpecDirection : 1;
-			unsigned __int32 nUseDefaultFontSize : 1;
-			unsigned __int32 bHasEdgeHighlight : 1;
-			unsigned __int32 nGetsLayoutCompleteGC : 1;
-			unsigned __int32 fFontSizeInRP : 1;
-			unsigned __int32 nScaleFactor : 10;
-			unsigned __int32 bUsesDesktopPerMonitorScaling : 1;
+			bool bLocKeyWithin : 1;
+			bool bLocMouseWithin : 1;
+			bool bCmpVisible : 1;
+			bool bSpecVisible : 1;
+			bool bSpecSelected : 1;
+			bool bSpecKeyFocused : 1;
+			bool bSpecMouseFocused : 1;
+			bool bSpecAccessible : 1;
+			bool bSpecEnabled : 1;
+			bool bHasChildren : 1;
+			bool bHasLayout : 1;
+			bool bHasBorder : 1;
+			bool bHasPadding : 1;
+			bool bHasMargin : 1;
+			bool bHasContent : 1;
+			bool bDefaultCAlign : 1;
+			bool bWordWrap : 1;
+			bool bHasAnimation : 1;
+			bool bDefaultCursor : 1;
+			bool bDefaultBorderColor : 1;
+			bool bDefaultForeground : 1;
+			bool bDefaultFontWeight : 1;
+			bool bDefaultFontStyle : 1;
+			bool bDefaultFontQuality : 1;
+			bool bSelfLayout : 1;
+			bool bNeedsDSUpdate : 1;
+			bool bDestroyed : 1;
+			bool bHosted : 1;
+			bool bHasTooltip : 1;
+			bool bCompositedText : 1;
+			bool bUiaEvents : 1;
+			bool bPreserveAlphaChannel : 1;
+			UINT fNeedsLayout : 2;
+			UINT fSpecActive : 4;
+			UINT nSpecDirection : 1;
+			UINT nUseDefaultFontSize : 1;
+			UINT bHasEdgeHighlight : 1;
+			UINT nGetsLayoutCompleteGC : 1;
+			UINT fFontSizeInRP : 1;
+			UINT nScaleFactor : 10;
+			UINT bUsesDesktopPerMonitorScaling : 1;
 		};
+
 		_BitMap _fBit;
 		int _dSpecFontSize;
-		Value *_pvSpecFontFace;
-		Value *_pvSpecBackground;
-		class DuiAccessible *_pDuiAccessible;
-		// struct Element::Impl *_pImpl;
-		void *_pImpl;
+		Value* _pvSpecFontFace;
+		Value* _pvSpecBackground;
+
+	public:
+		DuiAccessible* _pDuiAccessible;
+
+		HGADGET GetDisplayNode();
+		int GetIndex();
+		bool IsDestroyed();
+		bool IsHosted();
+		bool IsSelfLayout();
+		bool IsBehaviorLayout() const; // TODO Check when was this added
+		bool HasChildren();
+		bool HasLayout();
+		bool HasBorder();
+		bool HasPadding();
+		bool HasMargin();
+		bool HasContent();
+		bool IsDefaultCAlign();
+		bool IsWordWrap();
+		bool HasAnimation();
+		bool IsDefaultCursor();
+		bool HasEdgeHighlight(); // TODO Check when was this added
+		bool HasPVLAnimationState(UINT dState); // TODO Check when was this added
+		void GetRenderBorderThickness(RECT* prc); // TODO Check when was this added
+		void GetRenderPadding(RECT* prc); // TODO Check when was this added
+		void GetRenderMargin(RECT* prc); // TODO Check when was this added
+		void GetRenderEdgeHighlightThickness(RECT* prc); // TODO Check when was this added
+		void GetRenderMinSize(SIZE* prc); // TODO Check when was this added
+		Element* GetParent();
+		bool GetVisible();
+		int GetWidth();
+		int GetHeight();
+		DynamicArray<Element*>* GetChildren(Value** ppv);
+		int GetX();
+		int GetY();
+		Layout* GetLayout(Value** ppv);
+		int GetLayoutPos();
+		RECT* GetBorderThickness(Value** ppv);
+		int GetBorderStyle();
+		int GetBorderStdColor();
+		Fill* GetBorderColor(Value** ppv);
+		RECT* GetPadding(Value** ppv);
+		RECT* GetMargin(Value** ppv);
+		POINT* GetLocation(Value** ppv);
+		SIZE* GetExtent(Value** ppv);
+		SIZE* GetDesiredSize();
+		int GetForegroundStdColor();
+		Fill* GetForegroundColor(Value** ppv);
+		int GetBackgroundStdColor();
+		Fill* GetBackgroundColor(Value** ppv);
+		RECT* GetEdgeHighlightThickness(Value** ppv); // TODO Check when was this added
+		Fill* GetEdgeHighlightColor(Value** ppv); // TODO Check when was this added
+		float GetElementScaleFactor(); // TODO Check when was this added
+		WCHAR* GetContentString(Value** ppv);
+		HRESULT GetEncodedContentString(WCHAR*, size_t cchString);
+		size_t GetEncodedContentStringLength(); // TODO Check when was this added
+		WCHAR* GetFontFace(Value** ppv);
+		int GetFontSize();
+		int GetFontWeight();
+		int GetFontStyle();
+		int GetFontQuality();
+		bool IsCompositedText();
+		int GetTextGlowSize();
+		int GetActive();
+		int GetContentAlign();
+		virtual bool GetKeyFocused();
+		bool GetKeyWithin();
+		bool GetMouseFocused();
+		bool GetMouseWithin();
+		WCHAR* GetClass(Value** ppv);
+		ATOM GetID();
+		StyleSheet* GetSheet();
+		bool GetSelected();
+		int GetAlpha();
+		bool GetPreserveAlphaChannel() const; // TODO Check when was this added
+		void SetPreserveAlphaChannel(bool fPreserveAlpha); // TODO Check when was this added
+		int GetAnimation();
+		int GetPVLAnimationState(); // TODO Check when was this added
+		int GetDirection();
+		bool GetAccessible();
+		int GetAccRole();
+		int GetAccState();
+		WCHAR* GetAccName(Value** ppv);
+		WCHAR* GetAccDesc(Value** ppv);
+		WCHAR* GetAccValue(Value** ppv);
+		WCHAR* GetAccDefAction(Value** ppv);
+		WCHAR* GetAccHelp(Value** ppv);
+		WCHAR* GetAccItemType(Value** ppv);
+		WCHAR* GetAccItemStatus(Value** ppv);
+		int GetShortcut();
+		bool GetEnabled();
+		SIZE* GetMinSize(Value** ppv);
+		bool GetOverhang();
+		bool GetTooltip();
+		int GetTooltipMaxWidth();
+		WCHAR* GetFont(Value** ppv);
+		int GetColorize();
+		bool GetWindowActive();
+		bool GetAbsorbsShortcut();
+		bool GetHighDPI();
+		int GetDPI();
+		int GetShadowIntensity();
+
+		void SetLayoutCompletionNotify(bool v); // TODO Check when was this added
+		void SetPVLAnimationState(int v); // TODO Check when was this added
+		HRESULT SetVisible(bool v);
+		HRESULT SetWidth(int v);
+		HRESULT SetHeight(int v);
+		HRESULT SetRelPixWidth(int v); // TODO Check when was this added
+		HRESULT SetRelPixHeight(int v); // TODO Check when was this added
+		HRESULT SetX(int v);
+		HRESULT SetY(int v);
+		HRESULT SetLayout(Layout* v);
+		HRESULT SetLayoutPos(int v);
+		HRESULT SetBorderThickness(int l, int t , int r, int b);
+		HRESULT SetBorderStyle(int v);
+		HRESULT SetBorderStdColor(int v);
+		HRESULT SetBorderColor(COLORREF cr);
+		HRESULT SetBorderGradientColor(COLORREF cr0, COLORREF cr1, BYTE dType);
+		HRESULT SetPadding(int l, int t, int r, int b);
+		HRESULT SetRelPixPadding(int l, int t, int r, int b); // TODO Check when was this added
+		HRESULT SetMargin(int l, int t, int r, int b);
+		HRESULT SetRelPixMargin(int l, int t, int r, int b); // TODO Check when was this added
+		HRESULT SetForegroundStdColor(int v);
+		HRESULT SetForegroundColor(COLORREF cr);
+		HRESULT SetForegroundColor(COLORREF cr0, COLORREF cr1, BYTE dType);
+		HRESULT SetForegroundColor(COLORREF cr0, COLORREF cr1, COLORREF cr2, BYTE dType);
+		HRESULT SetBackgroundStdColor(int v);
+		HRESULT SetBackgroundColor(COLORREF cr);
+		HRESULT SetBackgroundColor(COLORREF cr0, COLORREF cr1, BYTE dType);
+		HRESULT SetBackgroundColor(COLORREF cr0, COLORREF cr1, COLORREF cr2, BYTE dType);
+		HRESULT SetBackgroundColor(const Fill& fill);
+		HRESULT SetBackgroundColor(const WCHAR* pszClassName, int iPartId, int iStateId);
+		HRESULT SetContentString(const WCHAR* v);
+		HRESULT SetEncodedContentString(const WCHAR* v);
+		HRESULT SetContentGraphic(const WCHAR* v, BYTE dBlendMode, UINT dBlendValue);
+		HRESULT SetContentGraphic(const WCHAR* v, WORD cxDesired, WORD cyDesired);
+		HRESULT SetFontFace(const WCHAR* v);
+		HRESULT SetFontSize(int v);
+		HRESULT SetFontWeight(int v);
+		HRESULT SetFontStyle(int v);
+		HRESULT SetFontQuality(int v);
+		HRESULT SetActive(int v);
+		HRESULT SetCompositedText(bool v);
+		HRESULT SetTextGlowSize(int v);
+		HRESULT SetContentAlign(int v);
+		HRESULT SetClass(const WCHAR* v);
+		HRESULT SetID(const WCHAR* v);
+		HRESULT SetSheet(StyleSheet* v);
+		HRESULT SetSelected(bool v);
+		HRESULT SetAlpha(int v);
+		HRESULT SetAnimation(int v);
+		HRESULT SetStdCursor(int v);
+		HRESULT SetCursor(const WCHAR* v);
+		HRESULT SetCursorHandle(HCURSOR hCursor);
+		HRESULT SetDirection(int v);
+		HRESULT SetAccessible(bool v);
+		HRESULT SetAccRole(int v);
+		HRESULT SetAccState(int v);
+		HRESULT SetAccName(const WCHAR* v);
+		HRESULT SetAccDesc(const WCHAR* v);
+		HRESULT SetAccValue(const WCHAR* v);
+		HRESULT SetAccDefAction(const WCHAR* v);
+		HRESULT SetAccHelp(const WCHAR* v);
+		HRESULT SetAccItemType(const WCHAR* v);
+		HRESULT SetAccItemStatus(const WCHAR* v);
+		HRESULT SetShortcut(int v);
+		HRESULT SetEnabled(bool v);
+		HRESULT SetMinSize(int cx, int cy);
+		HRESULT SetOverhang(bool v);
+		HRESULT SetTooltip(bool v);
+		HRESULT SetTooltipMaxWidth(int v);
+		HRESULT SetFont(const WCHAR* v);
+		HRESULT SetWindowActive(bool v);
+		HRESULT SetAbsorbsShortcut(bool v);
+		HRESULT SetEdgeHighlightThickness(int l, int t, int r, int b); // TODO Check when was this added
+		HRESULT SetEdgeHighlightColor(COLORREF cr); // TODO Check when was this added
+		// ReSharper disable once CppHiddenFunction
+		WCHAR GetShortcutChar();
+		HRESULT SetShadowIntensity(int v);
+
+		static IClassInfo* GetClassInfoPtr();
+		static void SetClassInfoPtr(IClassInfo* pClass);
+
+	private:
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		virtual IClassInfo* GetClassInfoW();
+
+		static HRESULT Register();
+		static HRESULT UnRegister(IClassInfo** ppClassInfo);
+		virtual HRESULT GetAccessibleImpl(IAccessible** ppAccessible);
+		HRESULT QueueDefaultAction();
+		virtual HRESULT DefaultAction();
+		virtual HRESULT GetUIAElementProvider(REFIID riid, void** ppv);
+		virtual HRESULT GetElementProviderImpl(InvokeHelper* pih, ElementProvider** ppprv);
+		virtual void HandleUiaDestroyListener();
+		virtual void HandleUiaPropertyListener(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
+		virtual void HandleUiaPropertyChangingListener(const PropertyInfo* ppi);
+		virtual void HandleUiaEventListener(Event* pEvent);
+		virtual Element* GetUiaFocusDelegate();
+
+		void SetOverrideScaleFactor(float flscale); // TODO Check when was this added
+
+	protected:
+		void _Fill(HDC hDC, DWORD crFill, int left, int top, int right, int bottom, bool fForceOpaque); // TODO Check when was this added
+
+	private:
+		class Impl
+		{
+		};
+
+		Impl* _pImpl;
 		HWND _rootWindowForTheming;
+
+		friend class __Element_Check;
 	};
 
 	class UILIB_API ElementProxy : public IProxy
@@ -645,8 +647,8 @@ private:
 
 
 		//IUnknown
-		virtual unsigned long WINAPI AddRef();
-		virtual unsigned long WINAPI Release();
+		virtual ULONG WINAPI AddRef();
+		virtual ULONG WINAPI Release();
 		virtual long WINAPI QueryInterface(const GUID&, void**);
 
 		//IRawElementProviderSimple

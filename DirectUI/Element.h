@@ -36,14 +36,16 @@ namespace DirectUI
 	{
 	public:
 		static HRESULT Create(UINT nCreate, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
-		static HRESULT Destroy(bool fDelayed);
-		static HRESULT DestroyAll(bool fDelayed);
+
+		HRESULT Destroy(bool fDelayed);
+		HRESULT DestroyAll(bool fDelayed);
 
 		Element();
 		Element(const Element&) = default;
 
 		virtual ~Element();
 
+		// ReSharper disable once CppHiddenFunction
 		HRESULT Initialize(UINT nCreate, Element* peInitialParent, DWORD* pdwDeferCookie);
 
 		Value* GetRawValue(const PropertyInfo* ppi, int iIndex, UpdateCache* puc); // TODO Check when was this added

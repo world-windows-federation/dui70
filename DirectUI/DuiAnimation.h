@@ -35,8 +35,6 @@ namespace DirectUI
 	{
 		CSafeElementPtr<Element> spElement;
 		UINT uIndex;
-		SafeElementIndexPair();
-		~SafeElementIndexPair();
 	};
 
 	struct ElementOffsetPair
@@ -50,8 +48,6 @@ namespace DirectUI
 		HGADGET hgad;
 		CSafeElementPtr<Element> speTarget;
 		DWORD dwTicket;
-		ElementGadgetTicketPair();
-		~ElementGadgetTicketPair();
 	};
 
 	struct PANI_FromToElement
@@ -126,8 +122,6 @@ namespace DirectUI
 	struct ClipRectWithElement : PVLAnimationClip
 	{
 		CSafeElementPtr<Element> speTarget;
-		ClipRectWithElement();
-		~ClipRectWithElement();
 	};
 
 	struct PVLAnimationRotation
@@ -187,7 +181,6 @@ namespace DirectUI
 		int nManualSBID;
 		int nInsertionIndex;
 		bool fLauncherTriggered;
-		PVLAnimationNotifyEvent();
 	};
 
 	struct PVLAnimationActionSpaceEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation, PVLAnimationRotation3D
@@ -200,8 +193,6 @@ namespace DirectUI
 		CSafeElementPtr<Element> speLogoPane;
 		CSafeElementPtr<Element> speLogoPaneVCrossbar;
 		DEVICE_SCALE_FACTOR scaleFactor;
-		PVLAnimationActionSpaceEvent();
-		~PVLAnimationActionSpaceEvent();
 	};
 
 	struct PVLAnimationAddEvent : PVLAnimationNotifyEvent
@@ -211,8 +202,6 @@ namespace DirectUI
 		int nLayoutPos;
 		bool fFilter;
 		bool fIgnoreDelay;
-		PVLAnimationAddEvent();
-		~PVLAnimationAddEvent();
 	};
 
 	struct PVLAnimationBadgeUpdateEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation
@@ -220,8 +209,6 @@ namespace DirectUI
 		CSafeElementPtr<Element> speOldBadge;
 		CSafeElementPtr<Element> speNewBadge;
 		POINT ptOffset;
-		PVLAnimationBadgeUpdateEvent();
-		~PVLAnimationBadgeUpdateEvent();
 	};
 
 	struct PVLAnimationContentTransitionEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation
@@ -231,8 +218,6 @@ namespace DirectUI
 		CSafeElementPtr<Element> speParent;
 		POINT ptOffset;
 		int nLayoutPos;
-		PVLAnimationContentTransitionEvent();
-		~PVLAnimationContentTransitionEvent();
 	};
 
 	struct PVLAnimationCrossfadeEvent : PVLAnimationNotifyEvent
@@ -246,8 +231,6 @@ namespace DirectUI
 		bool fDestroy;
 		bool fInplace;
 		bool fCollection;
-		PVLAnimationCrossfadeEvent();
-		~PVLAnimationCrossfadeEvent();
 	};
 
 	struct PVLAnimationCustomDragDropScalingHintEvent : Event
@@ -255,7 +238,6 @@ namespace DirectUI
 		bool fDrag;
 		POINTFLOAT ptflScaleFactor;
 		POINTFLOAT ptflScaleOrigin;
-		PVLAnimationCustomDragDropScalingHintEvent();
 	};
 
 	struct PVLAnimationCustomReflowHintEvent : Event
@@ -279,13 +261,11 @@ namespace DirectUI
 		int nMaxTowerHeight;
 		POINT ptExtraPortalingDistance;
 		int nStaggerOrder;
-		PVLAnimationCustomReflowHintEvent();
 	};
 
 	struct PVLAnimationCustomTapHintEvent : Event
 	{
 		RECT rcTileBounds;
-		PVLAnimationCustomTapHintEvent();
 	};
 
 	struct PVLAnimationDeleteEvent : PVLAnimationNotifyEvent
@@ -295,8 +275,6 @@ namespace DirectUI
 		bool fCollection;
 		bool fDestroy;
 		bool fFilter;
-		PVLAnimationDeleteEvent();
-		~PVLAnimationDeleteEvent();
 	};
 
 	struct PVLAnimationDragEvent : PVLAnimationNotifyEvent, PVLAnimationScale, PVLAnimationClip
@@ -309,8 +287,6 @@ namespace DirectUI
 		POINT ptContact;
 		bool fUseCustomScale;
 		bool fAnimatingTowerClip;
-		PVLAnimationDragEvent();
-		~PVLAnimationDragEvent();
 	};
 
 	struct PVLAnimationDropEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation, PVLAnimationScale, PVLAnimationClip
@@ -325,16 +301,12 @@ namespace DirectUI
 		int nLayoutPos;
 		bool fUseCustomScale;
 		bool fAnimatingTowerClip;
-		PVLAnimationDropEvent();
-		~PVLAnimationDropEvent();
 	};
 
 	struct PVLAnimationEntranceEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation
 	{
 		DynamicArray<CSafeElementPtr<Element>*>* pspelToEnter;
 		DynamicArray<POINT>* pdaOffsets;
-		PVLAnimationEntranceEvent();
-		~PVLAnimationEntranceEvent();
 	};
 
 	struct PVLAnimationExpandCollapseEvent : PVLAnimationNotifyEvent, PVLAnimationClip
@@ -346,8 +318,6 @@ namespace DirectUI
 		int nLayoutPos;
 		bool fConsiderAsClip;
 		bool fInterruptCollapse;
-		PVLAnimationExpandCollapseEvent();
-		~PVLAnimationExpandCollapseEvent();
 	};
 
 	struct PVLAnimationFadeEvent : PVLAnimationNotifyEvent, PVLAnimationAlpha
@@ -357,16 +327,12 @@ namespace DirectUI
 		bool fCollection;
 		bool fLeaveElementsVisible;
 		int nOrderNumber;
-		PVLAnimationFadeEvent();
-		~PVLAnimationFadeEvent();
 	};
 
 	struct PVLAnimationLaunchEvent : PVLAnimationNotifyEvent, PVLAnimationScale
 	{
 		CSafeElementPtr<Element> speToLaunch;
 		DynamicArray<CSafeElementPtr<Element>*>* pspelRemaining;
-		PVLAnimationLaunchEvent();
-		~PVLAnimationLaunchEvent();
 	};
 
 	struct PVLAnimationLauncherEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation, PVLAnimationScale, PVLAnimationZOrder
@@ -383,8 +349,6 @@ namespace DirectUI
 		CSafeElementPtr<Element> speSearchBox;
 		POINT ptOffsetLauncher;
 		POINT ptOffsetTower;
-		PVLAnimationLauncherEvent();
-		~PVLAnimationLauncherEvent();
 	};
 
 	struct PVLAnimationManualStoryboard : PVLAnimationNotifyEvent
@@ -393,8 +357,6 @@ namespace DirectUI
 		int nManualStoryboardId;
 		CSafeElementPtr<Element> speFinishNotify;
 		bool fVerified;
-		PVLAnimationManualStoryboard();
-		~PVLAnimationManualStoryboard();
 	};
 
 	struct PVLAnimationMoveEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation
@@ -404,8 +366,6 @@ namespace DirectUI
 		CSafeElementPtr<Element> speCurrentParent;
 		int nIndex;
 		bool fTopMost;
-		PVLAnimationMoveEvent();
-		~PVLAnimationMoveEvent();
 	};
 
 	struct PVLAnimationNotifyCompleteEvent : PVLAnimationNotifyEvent
@@ -414,16 +374,12 @@ namespace DirectUI
 		PVLAnimationNotifyEvent* panEvent;
 		bool fForceUpdateIfDumped;
 		CSafeElementPtr<Element> speNotify;
-		PVLAnimationNotifyCompleteEvent();
-		~PVLAnimationNotifyCompleteEvent();
 	};
 
 	struct PVLAnimationNudgeEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation
 	{
 		DynamicArray<CSafeElementPtr<Element>*>* pspelToNudge;
 		DynamicArray<POINT>* pdaOffsets;
-		PVLAnimationNudgeEvent();
-		~PVLAnimationNudgeEvent();
 	};
 
 	struct PVLAnimationParentChangeEvent : PVLAnimationNotifyEvent
@@ -431,8 +387,6 @@ namespace DirectUI
 		CSafeElementPtr<Element> speReparentTarget;
 		CSafeElementPtr<Element> speOldParent;
 		CSafeElementPtr<Element> speNewParent;
-		PVLAnimationParentChangeEvent();
-		~PVLAnimationParentChangeEvent();
 	};
 
 	struct PVLAnimationPopEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation
@@ -442,16 +396,12 @@ namespace DirectUI
 		POINT ptOffset;
 		bool fLayoutAlreadySet;
 		bool fUseCurrentOpacity;
-		PVLAnimationPopEvent();
-		~PVLAnimationPopEvent();
 	};
 
 	struct PVLAnimationReflowEvent : PVLAnimationNotifyEvent, PVLAnimationSize
 	{
 		CSafeElementPtr<Element> speContainer;
 		bool fUseNewSize;
-		PVLAnimationReflowEvent();
-		~PVLAnimationReflowEvent();
 	};
 
 	struct PVLAnimationReflowStyleEvent : Event
@@ -460,7 +410,6 @@ namespace DirectUI
 		bool fSetReflowStyle;
 		int nNewReflowStyle;
 		int nCurrentReflowStlye;
-		PVLAnimationReflowStyleEvent();
 	};
 
 	struct PVLAnimationRepositionEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation
@@ -474,16 +423,12 @@ namespace DirectUI
 		CSafeElementPtr<Element> speAttached;
 		bool fProcessed;
 		ElementGadgetTicketPair* pegtpValidation;
-		PVLAnimationRepositionEvent();
-		~PVLAnimationRepositionEvent();
 	};
 
 	struct PVLAnimationResizeEvent : PVLAnimationNotifyEvent, PVLAnimationSize
 	{
 		CSafeElementPtr<Element> speToResize;
 		bool fReverse;
-		PVLAnimationResizeEvent();
-		~PVLAnimationResizeEvent();
 	};
 
 	struct PVLAnimationRevealHideEvent : PVLAnimationNotifyEvent, PVLAnimationClip
@@ -494,8 +439,6 @@ namespace DirectUI
 		CSafeElementPtr<Element> speContent;
 		RECT rcContentClip;
 		bool fReveal;
-		PVLAnimationRevealHideEvent();
-		~PVLAnimationRevealHideEvent();
 	};
 
 	struct PVLAnimationScaleEvent : PVLAnimationNotifyEvent, PVLAnimationScale
@@ -503,8 +446,6 @@ namespace DirectUI
 		CSafeElementPtr<Element> speToScale;
 		int nOrderNumber;
 		int nCustomDuration;
-		PVLAnimationScaleEvent();
-		~PVLAnimationScaleEvent();
 	};
 
 	struct PVLAnimationSessionEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation, PVLAnimationScale, PVLAnimationZOrder
@@ -528,8 +469,6 @@ namespace DirectUI
 		CSafeElementPtr<Element> speLoginUserTile;
 		CSafeElementPtr<Element> speLoginUserText;
 		POINT ptOffsetLogonUI;
-		PVLAnimationSessionEvent();
-		~PVLAnimationSessionEvent();
 	};
 
 	struct PVLAnimationSlideEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation
@@ -542,8 +481,6 @@ namespace DirectUI
 		bool fLayoutAlreadySet;
 		bool fAffected;
 		bool fPositionAlreadySet;
-		PVLAnimationSlideEvent();
-		~PVLAnimationSlideEvent();
 	};
 
 	struct PVLAnimationSwipeEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation
@@ -551,8 +488,6 @@ namespace DirectUI
 		CSafeElementPtr<Element> speToSwipe;
 		POINT ptOffset;
 		CSafeElementPtr<Element> speCheckmark;
-		PVLAnimationSwipeEvent();
-		~PVLAnimationSwipeEvent();
 	};
 
 	struct PVLAnimationTapEvent : PVLAnimationNotifyEvent, PVLAnimationScale, PVLAnimationRotation3D
@@ -562,8 +497,6 @@ namespace DirectUI
 		UINT uiVersion;
 		POINT ptContact;
 		bool fSkipScaleTransform;
-		PVLAnimationTapEvent();
-		~PVLAnimationTapEvent();
 	};
 
 	MIDL_INTERFACE("0372C617-AEB1-4BCC-8703-DAD13E0C7D8A")
@@ -642,7 +575,7 @@ namespace DirectUI
 	public:
 		static HRESULT WINAPI Startup();
 		static void Shutdown();
-		PVLLauncherAnimationTriggers* GetInstance();
+		static PVLLauncherAnimationTriggers* GetInstance();
 
 		//~ Begin IDuiLauncherAnimationTriggers Interface
 		STDMETHODIMP TriggerTap(Element* peToTap, UINT uiState, POINT ptContact, UINT uiVersion, DWORD* pdwCookie) override;
@@ -660,7 +593,7 @@ namespace DirectUI
 		static const IID* const s_rgpIID[];
 
 	public:
-		PVLLauncherAnimationTriggers(PVLLauncherAnimationTriggers&);
+		PVLLauncherAnimationTriggers(const PVLLauncherAnimationTriggers&) = delete;
 
 	protected:
 		PVLLauncherAnimationTriggers();
@@ -669,8 +602,5 @@ namespace DirectUI
 	private:
 		static PVLLauncherAnimationTriggers* s_pLauncherInstance;
 		bool _fDestroyed;
-
-	public:
-		PVLLauncherAnimationTriggers& operator=(PVLLauncherAnimationTriggers&);
 	};
 }

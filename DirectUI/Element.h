@@ -415,26 +415,26 @@ namespace DirectUI
 		int GetY();
 		Layout* GetLayout(Value** ppv);
 		int GetLayoutPos();
-		RECT* GetBorderThickness(Value** ppv);
+		const RECT* GetBorderThickness(Value** ppv);
 		int GetBorderStyle();
 		int GetBorderStdColor();
-		Fill* GetBorderColor(Value** ppv);
-		RECT* GetPadding(Value** ppv);
-		RECT* GetMargin(Value** ppv);
-		POINT* GetLocation(Value** ppv);
-		SIZE* GetExtent(Value** ppv);
-		SIZE* GetDesiredSize();
+		const Fill* GetBorderColor(Value** ppv);
+		const RECT* GetPadding(Value** ppv);
+		const RECT* GetMargin(Value** ppv);
+		const POINT* GetLocation(Value** ppv);
+		const SIZE* GetExtent(Value** ppv);
+		const SIZE* GetDesiredSize();
 		int GetForegroundStdColor();
-		Fill* GetForegroundColor(Value** ppv);
+		const Fill* GetForegroundColor(Value** ppv);
 		int GetBackgroundStdColor();
-		Fill* GetBackgroundColor(Value** ppv);
-		RECT* GetEdgeHighlightThickness(Value** ppv); // TODO Check when was this added
-		Fill* GetEdgeHighlightColor(Value** ppv); // TODO Check when was this added
+		const Fill* GetBackgroundColor(Value** ppv);
+		const RECT* GetEdgeHighlightThickness(Value** ppv); // TODO Check when was this added
+		const Fill* GetEdgeHighlightColor(Value** ppv); // TODO Check when was this added
 		float GetElementScaleFactor(); // TODO Check when was this added
-		WCHAR* GetContentString(Value** ppv);
+		const WCHAR* GetContentString(Value** ppv);
 		HRESULT GetEncodedContentString(WCHAR*, size_t cchString);
 		size_t GetEncodedContentStringLength(); // TODO Check when was this added
-		WCHAR* GetFontFace(Value** ppv);
+		const WCHAR* GetFontFace(Value** ppv);
 		int GetFontSize();
 		int GetFontWeight();
 		int GetFontStyle();
@@ -447,7 +447,7 @@ namespace DirectUI
 		bool GetKeyWithin();
 		bool GetMouseFocused();
 		bool GetMouseWithin();
-		WCHAR* GetClass(Value** ppv);
+		const WCHAR* GetClass(Value** ppv);
 		ATOM GetID();
 		StyleSheet* GetSheet();
 		bool GetSelected();
@@ -460,20 +460,20 @@ namespace DirectUI
 		bool GetAccessible();
 		int GetAccRole();
 		int GetAccState();
-		WCHAR* GetAccName(Value** ppv);
-		WCHAR* GetAccDesc(Value** ppv);
-		WCHAR* GetAccValue(Value** ppv);
-		WCHAR* GetAccDefAction(Value** ppv);
-		WCHAR* GetAccHelp(Value** ppv);
-		WCHAR* GetAccItemType(Value** ppv);
-		WCHAR* GetAccItemStatus(Value** ppv);
+		const WCHAR* GetAccName(Value** ppv);
+		const WCHAR* GetAccDesc(Value** ppv);
+		const WCHAR* GetAccValue(Value** ppv);
+		const WCHAR* GetAccDefAction(Value** ppv);
+		const WCHAR* GetAccHelp(Value** ppv);
+		const WCHAR* GetAccItemType(Value** ppv);
+		const WCHAR* GetAccItemStatus(Value** ppv);
 		int GetShortcut();
 		bool GetEnabled();
-		SIZE* GetMinSize(Value** ppv);
+		const SIZE* GetMinSize(Value** ppv);
 		bool GetOverhang();
 		bool GetTooltip();
 		int GetTooltipMaxWidth();
-		WCHAR* GetFont(Value** ppv);
+		const WCHAR* GetFont(Value** ppv);
 		int GetColorize();
 		bool GetWindowActive();
 		bool GetAbsorbsShortcut();

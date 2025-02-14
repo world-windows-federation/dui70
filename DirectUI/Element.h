@@ -102,18 +102,18 @@ namespace DirectUI
 
 		float GetTreeAlphaLevel();
 
-		virtual HRESULT Add(Element** ppe, UINT cCount);
 		HRESULT Add(Element* pe);
+		virtual HRESULT Add(Element** ppe, UINT cCount);
 		HRESULT Add(Element* pe, CompareCallback lpfnCompare); // TODO Check when was this added
 
-		virtual HRESULT Insert(Element** ppe, UINT cCount, UINT iInsertIdx);
 		HRESULT Insert(Element* pe, UINT iInsertIdx);
+		virtual HRESULT Insert(Element** ppe, UINT cCount, UINT iInsertIdx);
 
 		HRESULT SortChildren(CompareCallback lpfnCompare);
 		HRESULT ShiftChild(UINT iOldIndex, UINT iNewIndex); // TODO Check when was this added
 
-		virtual HRESULT Remove(Element** ppe, UINT cCount);
 		HRESULT Remove(Element* pe);
+		virtual HRESULT Remove(Element** ppe, UINT cCount);
 		HRESULT RemoveAll();
 
 		Element* FindDescendent(ATOM atomID);
@@ -124,9 +124,9 @@ namespace DirectUI
 		Element* GetKeyWithinChild();
 		Element* GetMouseWithinChild();
 
-		virtual bool EnsureVisible(int x, int y, int cx, int cy);
 		bool EnsureVisible();
 		bool EnsureVisible(UINT uChild);
+		virtual bool EnsureVisible(int x, int y, int cx, int cy);
 
 		virtual void SetKeyFocus();
 
@@ -168,6 +168,9 @@ namespace DirectUI
 		bool GetClickablePoint(POINT* ptClick);
 		virtual void GetImmersiveFocusRectOffsets(RECT* prc);
 
+		template <typename T>
+		void PostEvent(T* pEvent) { _PostEvent(pEvent, 0x83F8); }
+
 	private:
 		Element* FindDescendentWorker(ATOM atomID);
 		void _GetBuriedSheetDependencies(const PropertyInfo* ppi, Element* peNewParent, DepRecs* pdr, DeferCycle* pdc, HRESULT* phr);
@@ -182,8 +185,8 @@ namespace DirectUI
 		void _UpdatePropertyInCache(const PropertyInfo* ppi);
 		void _InheritProperties();
 		void _FlushDS(DeferCycle*);
-		HRESULT _PreSourceChange(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
 		HRESULT _PreSourceChange(PropertyProcT proc, int iIndex, Value* pvOld, Value* pvNew);
+		HRESULT _PreSourceChange(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
 		HRESULT _PostSourceChange();
 		void _BroadcastEventWorker(Event* pEvent);
 		void _PostEvent(Event* pEvent, int nMsg); // TODO Check when was this added
@@ -506,11 +509,11 @@ namespace DirectUI
 		HRESULT SetForegroundColor(COLORREF cr0, COLORREF cr1, BYTE dType);
 		HRESULT SetForegroundColor(COLORREF cr0, COLORREF cr1, COLORREF cr2, BYTE dType);
 		HRESULT SetBackgroundStdColor(int v);
+		HRESULT SetBackgroundColor(const Fill& fill);
+		HRESULT SetBackgroundColor(const WCHAR* pszClassName, int iPartId, int iStateId);
 		HRESULT SetBackgroundColor(COLORREF cr);
 		HRESULT SetBackgroundColor(COLORREF cr0, COLORREF cr1, BYTE dType);
 		HRESULT SetBackgroundColor(COLORREF cr0, COLORREF cr1, COLORREF cr2, BYTE dType);
-		HRESULT SetBackgroundColor(const Fill& fill);
-		HRESULT SetBackgroundColor(const WCHAR* pszClassName, int iPartId, int iStateId);
 		HRESULT SetContentString(const WCHAR* v);
 		HRESULT SetEncodedContentString(const WCHAR* v);
 		HRESULT SetContentGraphic(const WCHAR* v, BYTE dBlendMode, UINT dBlendValue);

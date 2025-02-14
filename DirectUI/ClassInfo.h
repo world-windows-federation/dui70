@@ -24,7 +24,7 @@ namespace DirectUI
 		ClassInfoBase();
 		ClassInfoBase(const ClassInfoBase&) = default;
 
-		~ClassInfoBase();
+		virtual ~ClassInfoBase();
 
 		HRESULT Initialize(HINSTANCE hModule, const WCHAR* pszName, bool fGlobal, const PropertyInfo* const* ppPI, UINT cPI);
 		HRESULT Register();

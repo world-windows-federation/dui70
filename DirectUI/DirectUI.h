@@ -143,6 +143,8 @@
 #include "TouchEditInner.h"
 #include "TouchEdit2.h"
 
+#include "SemanticZoomToggle.h"
+
 #include "ElementProviderManager.h"
 
 //UnknownElement
@@ -228,5 +230,8 @@ namespace DirectUI
 		WCHAR* WINAPI PreprocessBuffer(const WCHAR* pszBuf, UINT cchBuf, bool fInsertMainResId);
 		HBITMAP WINAPI ProcessAlphaBitmapI(HBITMAP hbmSource);
 		void WINAPI PurgeThemeHandles();
+
+		HRESULT WINAPI RegisterPVLBehaviorFactory();
+		void WINAPI DUIStopPVLAnimation(Element* peAnimating, UINT nDCProperty, BOOL fFinal);
 	}
 }

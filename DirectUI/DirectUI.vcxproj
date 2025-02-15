@@ -298,6 +298,7 @@
     <ClInclude Include="SelectorSelection.h" />
     <ClInclude Include="SelectorSelectionItem.h" />
     <ClInclude Include="SemanticController.h" />
+    <ClInclude Include="SemanticZoomToggle.h" />
     <ClInclude Include="StyledScrollViewer.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="TableItem.h" />

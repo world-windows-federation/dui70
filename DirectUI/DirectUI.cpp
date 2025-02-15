@@ -71,6 +71,8 @@ void WINAPI NotifyAccessibilityEvent(DWORD dwEvent, Element* pe) STUB_VOID;
 WCHAR* WINAPI PreprocessBuffer(const WCHAR* pszBuf, UINT cchBuf, bool fInsertMainResId) STUB_ZERO;
 HBITMAP WINAPI ProcessAlphaBitmapI(HBITMAP hbmSource) STUB_ZERO;
 void WINAPI PurgeThemeHandles() STUB_VOID;
+HRESULT WINAPI RegisterPVLBehaviorFactory() STUB_ZERO;
+void WINAPI DUIStopPVLAnimation(Element* peAnimating, UINT nDCProperty, BOOL fFinal) STUB_VOID;
 
 } // extern "C"
 
@@ -11140,5 +11142,14 @@ HRESULT TouchCheckBox::Register() STUB_ZERO;
 TouchCheckBox::TouchCheckBox() STUB_VOID;
 HRESULT TouchCheckBox::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
 TouchCheckBox::~TouchCheckBox() STUB_VOID;
+
+UID SemanticZoomToggle::Toggle() STUB_ZERO;
+HRESULT SemanticZoomToggle::Register() STUB_ZERO;
+IClassInfo* SemanticZoomToggle::GetClassInfoPtr() STUB_ZERO;
+IClassInfo* SemanticZoomToggle::GetClassInfoW() override STUB_ZERO;
+HRESULT SemanticZoomToggle::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT SemanticZoomToggle::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+void SemanticZoomToggle::UpdateToggleState(SemanticZoomToggleState sztsNew, bool fEnabled) STUB_VOID;
+HRESULT SemanticZoomToggle::DefaultAction() override STUB_ZERO;
 
 } // namespace DirectUI

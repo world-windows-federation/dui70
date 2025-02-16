@@ -2,6 +2,20 @@
 
 namespace DirectUI
 {
+	// Forward declaration of unexported class
+	class DUIParsePlayer;
+	class DUIParseRecorder;
+
+	typedef HRESULT (CALLBACK* PLAYTCREATE)(int, int*, Value** ppVal);
+	typedef HRESULT (CALLBACK* PfnCreate)(ElementProvider*, IUnknown** ppunk);
+	typedef bool (CALLBACK* PfnIsPatternSupported)(Element*);
+
+	enum DynamicScaleParsing
+	{
+		DSP_None = 0,
+		DSP_Enabled = 1
+	};
+
 	typedef enum _DUI_PARSE_STATE
 	{
 		DPS_CalculateStringLength = 0,
@@ -43,12 +57,10 @@ namespace DirectUI
 		WCHAR* szVal;
 	};
 
-	typedef bool (__stdcall*Unknow3Call)(Element*);
-
-	class UILIB_API Schema
+	class Schema
 	{
 	public:
-		enum class Pattern
+		enum Pattern
 		{
 			First = 0,
 			Invoke = 0,
@@ -75,7 +87,7 @@ namespace DirectUI
 			PatternCount = 21
 		};
 
-		enum class Event
+		enum Event
 		{
 			FirstEvent = 0,
 			ToolTipOpened = 0,
@@ -101,222 +113,233 @@ namespace DirectUI
 			SystemAlert = 20,
 			EventCount = 21
 		};
+		
+		UILIB_API static HRESULT WINAPI Init();
+		UILIB_API static int LookupAccessibleRole(int, bool*);
+		UILIB_API static HRESULT WINAPI CreatePatternProvider(Pattern pattern, ElementProvider* pprv, IUnknown** ppunk);
+		UILIB_API static Pattern WINAPI PatternFromPatternId(int id);
+		UILIB_API static Event WINAPI EventFromEventId(int id);
+		UILIB_API static PfnIsPatternSupported PfnIsSupportedFromPattern(Pattern pattern);
+
+		UILIB_API static PfnUiaLookupId UiaLookupId;
+		UILIB_API static PfnUiaReturnRawElementProvider UiaReturnRawElementProvider;
+		UILIB_API static PfnUiaRaiseAutomationPropertyChangedEvent UiaRaiseAutomationPropertyChangedEvent;
+		UILIB_API static PfnUiaRaiseAutomationEvent UiaRaiseAutomationEvent;
+		UILIB_API static PfnUiaRaiseStructureChangedEvent UiaRaiseStructureChangedEvent;
+		UILIB_API static PfnUiaHostProviderFromHwnd UiaHostProviderFromHwnd;
+		
+		UILIB_API static int RuntimeIdProperty;
+		UILIB_API static int BoundingRectangleProperty;
+		UILIB_API static int ProcessIdProperty;
+		UILIB_API static int ControlTypeProperty;
+		UILIB_API static int LocalizedControlTypeProperty;
+		UILIB_API static int NameProperty;
+		UILIB_API static int AcceleratorKeyProperty;
+		UILIB_API static int AccessKeyProperty;
+		UILIB_API static int HasKeyboardFocusProperty;
+		UILIB_API static int IsKeyboardFocusableProperty;
+		UILIB_API static int IsEnabledProperty;
+		UILIB_API static int AutomationIdProperty;
+		UILIB_API static int ClassNameProperty;
+		UILIB_API static int HelpTextProperty;
+		UILIB_API static int ClickablePointProperty;
+		UILIB_API static int CultureProperty;
+		UILIB_API static int IsControlElementProperty;
+		UILIB_API static int IsContentElementProperty;
+		UILIB_API static int LabeledByProperty;
+		UILIB_API static int IsPasswordProperty;
+		UILIB_API static int NewNativeWindowHandleProperty;
+		UILIB_API static int ItemTypeProperty;
+		UILIB_API static int ItemStatusProperty;
+		UILIB_API static int IsOffscreen;
+		UILIB_API static int Orientation;
+		UILIB_API static int FrameworkId;
+		UILIB_API static int IsPeripheral;
+		UILIB_API static int Drag_IsGrabbed_Property;
+		UILIB_API static int Drag_DropEffect_Property;
+		UILIB_API static int Drag_DropEffects_Property;
+		UILIB_API static int ExpandCollapse_ExpandCollapseState_Property;
+		UILIB_API static int Grid_ColumnCount_Property;
+		UILIB_API static int Grid_RowCount_Property;
+		UILIB_API static int GridItem_Column_Property;
+		UILIB_API static int GridItem_ColumnSpan_Property;
+		UILIB_API static int GridItem_Parent_Property;
+		UILIB_API static int GridItem_Row_Property;
+		UILIB_API static int GridItem_RowSpan_Property;
+		UILIB_API static int RangeValue_IsReadOnly_Property;
+		UILIB_API static int RangeValue_LargeChange_Property;
+		UILIB_API static int RangeValue_Maximum_Property;
+		UILIB_API static int RangeValue_Minimum_Property;
+		UILIB_API static int RangeValue_SmallChange_Property;
+		UILIB_API static int RangeValue_Value_Property;
+		UILIB_API static int Scroll_HorizontalScrollPercent_Property;
+		UILIB_API static int Scroll_HorizontallyScrollable_Property;
+		UILIB_API static int Scroll_HorizontalViewSize_Property;
+		UILIB_API static int Scroll_VerticalScrollPercent_Property;
+		UILIB_API static int Scroll_VerticallyScrollable_Property;
+		UILIB_API static int Scroll_VerticalViewSize_Property;
+		UILIB_API static int Selection_CanSelectMultiple_Property;
+		UILIB_API static int Selection_IsSelectionRequired_Property;
+		UILIB_API static int Selection_Selection_Property;
+		UILIB_API static int SelectionItem_IsSelected_Property;
+		UILIB_API static int SelectionItem_SelectionContainer_Property;
+		UILIB_API static int Table_ColumnHeaders_Property;
+		UILIB_API static int Table_RowHeaders_Property;
+		UILIB_API static int Table_RowOrColumnMajor_Property;
+		UILIB_API static int TableItem_RowHeaderItems_Property;
+		UILIB_API static int TableItem_ColumnHeaderItems_Property;
+		UILIB_API static int Toggle_ToggleState_Property;
+		UILIB_API static int Value_Value_Property;
+		UILIB_API static int Value_IsReadOnly_Property;
+		UILIB_API static int NullControlType;
+		UILIB_API static int ButtonControlType;
+		UILIB_API static int CalendarControlType;
+		UILIB_API static int CheckBoxControlType;
+		UILIB_API static int ComboBoxControlType;
+		UILIB_API static int CustomControlType;
+		UILIB_API static int DataGridControlType;
+		UILIB_API static int DataItemControlType;
+		UILIB_API static int DocumentControlType;
+		UILIB_API static int EditControlType;
+		UILIB_API static int GroupControlType;
+		UILIB_API static int HeaderControlType;
+		UILIB_API static int HeaderItemControlType;
+		UILIB_API static int HyperlinkControlType;
+		UILIB_API static int ImageControlType;
+		UILIB_API static int ListControlType;
+		UILIB_API static int ListItemControlType;
+		UILIB_API static int MenuBarControlType;
+		UILIB_API static int MenuControlType;
+		UILIB_API static int MenuItemControlType;
+		UILIB_API static int PaneControlType;
+		UILIB_API static int ProgressBarControlType;
+		UILIB_API static int RadioButtonControlType;
+		UILIB_API static int ScrollBarControlType;
+		UILIB_API static int SeparatorControlType;
+		UILIB_API static int SliderControlType;
+		UILIB_API static int SpinnerControlType;
+		UILIB_API static int SplitButtonControlType;
+		UILIB_API static int StatusBarControlType;
+		UILIB_API static int TabControlType;
+		UILIB_API static int TabItemControlType;
+		UILIB_API static int TableControlType;
+		UILIB_API static int TextControlType;
+		UILIB_API static int ThumbControlType;
+		UILIB_API static int TitleBarControlType;
+		UILIB_API static int ToolBarControlType;
+		UILIB_API static int ToolTipControlType;
+		UILIB_API static int TreeControlType;
+		UILIB_API static int TreeItemControlType;
+		UILIB_API static int WindowControlType;
+		UILIB_API static int SemanticZoomControlType;
+		UILIB_API static int InvokePattern;
+		UILIB_API static int ExpandCollapsePattern;
+		UILIB_API static int GridItemPattern;
+		UILIB_API static int GridPattern;
+		UILIB_API static int RangeValuePattern;
+		UILIB_API static int ScrollPattern;
+		UILIB_API static int ScrollItemPattern;
+		UILIB_API static int SelectionItemPattern;
+		UILIB_API static int SelectionPattern;
+		UILIB_API static int TablePattern;
+		UILIB_API static int TableItemPattern;
+		UILIB_API static int TogglePattern;
+		UILIB_API static int ValuePattern;
+		UILIB_API static int DockPattern;
+		UILIB_API static int DragPattern;
+		UILIB_API static int MultipleViewPattern;
+		UILIB_API static int TextPattern;
+		UILIB_API static int TransformPattern;
+		UILIB_API static int WindowPattern;
+		UILIB_API static int ItemContainerPattern;
+		UILIB_API static int VirtualizedItemPattern;
+		UILIB_API static int ToolTipOpenedEvent;
+		UILIB_API static int ToolTipClosedEvent;
+		UILIB_API static int StructureChangedEvent;
+		UILIB_API static int MenuOpenedEvent;
+		UILIB_API static int AutomationPropertyChangedEvent;
+		UILIB_API static int AutomationFocusChangedEvent;
+		UILIB_API static int AsyncContentLoadedEvent;
+		UILIB_API static int DragDragStartEvent;
+		UILIB_API static int DragDragCompleteEvent;
+		UILIB_API static int DragDragCancelEvent;
+		UILIB_API static int MenuClosedEvent;
+		UILIB_API static int InvokeInvokedEvent;
+		UILIB_API static int SelectionItemElementAddedToSelectionEvent;
+		UILIB_API static int SelectionItemElementRemovedFromSelectionEvent;
+		UILIB_API static int SelectionItemElementSelectedEvent;
+		UILIB_API static int SelectionInvalidatedEvent;
+		UILIB_API static int TextTextSelectionChangedEvent;
+		UILIB_API static int WindowWindowOpenedEvent;
+		UILIB_API static int WindowWindowClosedEvent;
+		UILIB_API static int LayoutInvalidatedEvent;
+		UILIB_API static int SystemAlertEvent;
+
+	private:
+		UILIB_API static HRESULT WINAPI GetProcs();
+
+		struct PropertyInfo
+		{
+			int* _pPropertyId;
+			const GUID* _pguid;
+		};
+
+		static const PropertyInfo g_propertyInfoTable[];
+		UILIB_API static HRESULT WINAPI LookupPropertyInfos();
+
+		struct ControlInfo
+		{
+			int* _pControlTypeId;
+			const GUID* _pguid;
+		};
+
+		static const ControlInfo g_controlInfoTable[];
+		UILIB_API static HRESULT WINAPI LookupControlInfos();
+
+		struct PatternInfo
+		{
+			int* _pPatternId;
+			const GUID* _pguid;
+		};
+
+		static const PatternInfo g_patternInfoTable[];
+		UILIB_API static HRESULT WINAPI LookupPatternInfos();
+
+		struct EventInfo
+		{
+			int* _pEventId;
+			const GUID* _pguid;
+		};
+
+		static const EventInfo g_eventInfoTable[];
+		UILIB_API static HRESULT WINAPI LookupEventInfos();
 
 		struct RoleMap
 		{
 			int _accRole;
 			bool _fIsContentElement;
-			int* _pid;
+			const int* _pid;
 		};
 
-		struct PropertyInfo
-		{
-			int* _pPropertyId;
-			GUID* _pguid;
-		};
+		static const RoleMap _roleMapping[];
 
 		struct PatternMap
 		{
-			int* _pid;
-			HRESULT (*_pfnCreate)(ElementProvider*, IUnknown**);
-			bool (*_pfnSupported)(Element*);
+			const int* _pid;
+			PfnCreate _pfnCreate;
+			PfnIsPatternSupported _pfnSupported;;
 		};
+
+		static const PatternMap g_patternMapping[];
 
 		struct EventMap
 		{
-			int* _pid;
+			const int* _pid;
 		};
 
-		struct EventInfo
-		{
-			int* _pEventId;
-			GUID* _pguid;
-		};
-
-		struct ControlInfo
-		{
-			int* _pControlTypeId;
-			GUID* _pguid;
-		};
-
-		struct PatternInfo
-		{
-			int* _pPatternId;
-			GUID* _pguid;
-		};
-
-
-		Schema& operator=(Schema const&);
-		static HRESULT WINAPI CreatePatternProvider(Pattern, ElementProvider*, IUnknown* *);
-		static Event __stdcall EventFromEventId(int);
-		static HRESULT WINAPI Init();
-		static int __stdcall LookupAccessibleRole(int, bool*);
-		static Pattern __stdcall PatternFromPatternId(int);
-		static Unknow3Call __stdcall PfnIsSupportedFromPattern(Pattern);
-
-		static int AcceleratorKeyProperty;
-		static int AccessKeyProperty;
-		static int AsyncContentLoadedEvent;
-		static int AutomationFocusChangedEvent;
-		static int AutomationIdProperty;
-		static int AutomationPropertyChangedEvent;
-		static int BoundingRectangleProperty;
-		static int ButtonControlType;
-		static int CalendarControlType;
-		static int CheckBoxControlType;
-		static int ClassNameProperty;
-		static int ClickablePointProperty;
-		static int ComboBoxControlType;
-		static int ControlTypeProperty;
-		static int CultureProperty;
-		static int CustomControlType;
-		static int DataGridControlType;
-		static int DataItemControlType;
-		static int DockPattern;
-		static int DocumentControlType;
-		static int EditControlType;
-		static int ExpandCollapsePattern;
-		static int ExpandCollapse_ExpandCollapseState_Property;
-		static int FrameworkId;
-		static int GridItemPattern;
-		static int GridItem_ColumnSpan_Property;
-		static int GridItem_Column_Property;
-		static int GridItem_Parent_Property;
-		static int GridItem_RowSpan_Property;
-		static int GridItem_Row_Property;
-		static int GridPattern;
-		static int Grid_ColumnCount_Property;
-		static int Grid_RowCount_Property;
-		static int GroupControlType;
-		static int HasKeyboardFocusProperty;
-		static int HeaderControlType;
-		static int HeaderItemControlType;
-		static int HelpTextProperty;
-		static int HyperlinkControlType;
-		static int ImageControlType;
-		static int InvokeInvokedEvent;
-		static int InvokePattern;
-		static int IsContentElementProperty;
-		static int IsControlElementProperty;
-		static int IsEnabledProperty;
-		static int IsKeyboardFocusableProperty;
-		static int IsOffscreen;
-		static int IsPasswordProperty;
-		static int ItemContainerPattern;
-		static int ItemStatusProperty;
-		static int ItemTypeProperty;
-		static int LabeledByProperty;
-		static int LayoutInvalidatedEvent;
-		static int ListControlType;
-		static int ListItemControlType;
-		static int LocalizedControlTypeProperty;
-		static int MenuBarControlType;
-		static int MenuClosedEvent;
-		static int MenuControlType;
-		static int MenuItemControlType;
-		static int MenuOpenedEvent;
-		static int MultipleViewPattern;
-		static int NameProperty;
-		static int NewNativeWindowHandleProperty;
-		static int NullControlType;
-		static int Orientation;
-		static int PaneControlType;
-		static int ProcessIdProperty;
-		static int ProgressBarControlType;
-		static int RadioButtonControlType;
-		static int RangeValuePattern;
-		static int RangeValue_IsReadOnly_Property;
-		static int RangeValue_LargeChange_Property;
-		static int RangeValue_Maximum_Property;
-		static int RangeValue_Minimum_Property;
-		static int RangeValue_SmallChange_Property;
-		static int RangeValue_Value_Property;
-		static int RuntimeIdProperty;
-		static int ScrollBarControlType;
-		static int ScrollItemPattern;
-		static int ScrollPattern;
-		static int Scroll_HorizontalScrollPercent_Property;
-		static int Scroll_HorizontalViewSize_Property;
-		static int Scroll_HorizontallyScrollable_Property;
-		static int Scroll_VerticalScrollPercent_Property;
-		static int Scroll_VerticalViewSize_Property;
-		static int Scroll_VerticallyScrollable_Property;
-		static int SelectionInvalidatedEvent;
-		static int SelectionItemElementAddedToSelectionEvent;
-		static int SelectionItemElementRemovedFromSelectionEvent;
-		static int SelectionItemElementSelectedEvent;
-		static int SelectionItemPattern;
-		static int SelectionItem_IsSelected_Property;
-		static int SelectionItem_SelectionContainer_Property;
-		static int SelectionPattern;
-		static int Selection_CanSelectMultiple_Property;
-		static int Selection_IsSelectionRequired_Property;
-		static int Selection_Selection_Property;
-		static int SeparatorControlType;
-		static int SliderControlType;
-		static int SpinnerControlType;
-		static int SplitButtonControlType;
-		static int StatusBarControlType;
-		static int StructureChangedEvent;
-		static int TabControlType;
-		static int TabItemControlType;
-		static int TableControlType;
-		static int TableItemPattern;
-		static int TableItem_ColumnHeaderItems_Property;
-		static int TableItem_RowHeaderItems_Property;
-		static int TablePattern;
-		static int Table_ColumnHeaders_Property;
-		static int Table_RowHeaders_Property;
-		static int Table_RowOrColumnMajor_Property;
-		static int TextControlType;
-		static int TextPattern;
-		static int TextTextSelectionChangedEvent;
-		static int ThumbControlType;
-		static int TitleBarControlType;
-		static int TogglePattern;
-		static int Toggle_ToggleState_Property;
-		static int ToolBarControlType;
-		static int ToolTipClosedEvent;
-		static int ToolTipControlType;
-		static int ToolTipOpenedEvent;
-		static int TransformPattern;
-		static int TreeControlType;
-		static int TreeItemControlType;
-		static HRESULT (__stdcall*UiaHostProviderFromHwnd)(HWND hwnd, IRawElementProviderSimple** ppProvider);
-		static int (__stdcall*UiaLookupId)(AutomationIdentifierType type, const GUID* pGuid);
-		static HRESULT (__stdcall*UiaRaiseAutomationEvent)(IRawElementProviderSimple* pProvider, EVENTID id);
-		static HRESULT (__stdcall*UiaRaiseAutomationPropertyChangedEvent)(IRawElementProviderSimple* pProvider, PROPERTYID id, VARIANT oldValue, VARIANT newValue);
-		static HRESULT (__stdcall*UiaRaiseStructureChangedEvent)(IRawElementProviderSimple* pProvider, StructureChangeType structureChangeType, int* pRuntimeId, int cRuntimeIdLen);
-		static LRESULT (__stdcall*UiaReturnRawElementProvider)(HWND hwnd, WPARAM wParam, LPARAM lParam, IRawElementProviderSimple* el);
-		static int ValuePattern;
-		static int Value_IsReadOnly_Property;
-		static int Value_Value_Property;
-		static int VirtualizedItemPattern;
-		static int WindowControlType;
-		static int WindowPattern;
-		static int WindowWindowClosedEvent;
-		static int WindowWindowOpenedEvent;
-
-	private:
-		static HRESULT __stdcall LookupControlInfos();
-		static HRESULT __stdcall LookupEventInfos();
-		static HRESULT __stdcall LookupPatternInfos();
-		static HRESULT __stdcall LookupPropertyInfos();
-		static HRESULT __stdcall GetProcs();
-
-		static RoleMap const* __ptr32 const _roleMapping;
-		static ControlInfo const* __ptr32 const g_controlInfoTable;
-		static EventInfo const* __ptr32 const g_eventInfoTable;
-		static EventMap const* __ptr32 const g_eventMapping;
+		static const EventMap g_eventMapping[];
 		static bool g_fInited;
-		static PatternInfo const* __ptr32 const g_patternInfoTable;
-		static PatternMap const* __ptr32 const g_patternMapping;
-		static const PropertyInfo* __ptr32 const g_propertyInfoTable;
 	};
-
-	typedef Value* (WINAPI*GetSheetCallback)(UCString, void*);
-	typedef void (WINAPI*ParseErrorCallback)(UCString, UCString, int, void*);
-	typedef bool (WINAPI*UnknownAttrCallback)(UCString, void*);
 
 	namespace ParserTools
 	{
@@ -332,7 +355,7 @@ namespace DirectUI
 		{
 			ExprNodeType ent;
 			WCHAR* pszName;
-			unsigned int cArgs;
+			UINT cArgs;
 			ExprNode* pArgs;
 			UINT uiArgs;
 		};
@@ -382,8 +405,8 @@ namespace DirectUI
 			HRESULT InsertExprNodeT(ExprNodeType ent, int iDelta);
 			HRESULT TransferNodes(UINT uiStartT);
 			void ResetBuf();
-			DynamicArray<ExprNode, 0>* _pdaNodes;
-			DynamicArray<ExprNode, 0>* _pdaNodesT;
+			DynamicArray<ExprNode>* _pdaNodes;
+			DynamicArray<ExprNode>* _pdaNodesT;
 			WCHAR* _pszBuf;
 			WCHAR _szBuf[260];
 		};
@@ -391,14 +414,18 @@ namespace DirectUI
 
 		struct ClassicValue
 		{
-			WCHAR* pszClass;
+			const WCHAR* pszClass;
 			int iPart;
 			int iState;
 			int iProp;
-			void* pvParsed;
-			ExprNode* pen;
+			const Value* pvParsed;
+			const ExprNode* pen;
 		};
 	}
+
+	typedef Value* (CALLBACK* PXMLGETSHEETCB)(const WCHAR*, void* pContext);
+	typedef void (CALLBACK* PXMLPARSEERRORCB)(const WCHAR* pszError, const WCHAR* pszToken, int dLine, void* pContext);
+	typedef bool (CALLBACK* PUNKNOWNATTRCB)(const WCHAR*, void* pContext);
 
 	class UILIB_API DUIXmlParser
 	{
@@ -407,54 +434,123 @@ namespace DirectUI
 		DUIXmlParser();
 		virtual ~DUIXmlParser();
 
-		DUIXmlParser& operator=(const DUIXmlParser&);
-
-		// Callback defines
-		/*
-		
-		*/
-		static HRESULT WINAPI Create(_Inout_ DUIXmlParser** pXmlParser, _In_opt_ GetSheetCallback, _In_opt_ void* sheetParam, _In_opt_ ParseErrorCallback, _In_opt_ void* parseErrorParam);
-		HRESULT CreateElement(UCString, Element*, Element*, unsigned long*, Element** out);
-
+		static HRESULT WINAPI Create(DUIXmlParser** ppParserOut, PXMLGETSHEETCB pfnGetSheetCallback, void* pGetSheetContext, PXMLPARSEERRORCB pfnErrorCallback, void* pErrorContext);
 		void Destroy();
-		void EnableDesignMode();
-		GetSheetCallback GetGetSheetCallback();
-		HINSTANCE GetHInstance();
 
-		HINSTANCE GetResourceHInstance();
-		HRESULT GetSheet(UCString, Value**);
-		void* GetSheetContext();
-
-		HRESULT LookupElement(IXmlReader*, UCString, HINSTANCE, IClassInfo**);
-		HRESULT LookupElement(LINEINFO, UCString, HINSTANCE, IClassInfo**);
-
-		void SetDefaultHInstance(HINSTANCE);
-
-		void SetGetSheetCallback(GetSheetCallback, void*);
-		void SetParseErrorCallback(ParseErrorCallback, void*);
-		void SetUnknownAttrCallback(bool (__stdcall*)(UCString, void*), void*);
-
-		HRESULT SetPreprocessedXML(UCString, HINSTANCE, HINSTANCE);
-		void SetUnavailableIcon(HICON);
-
-		HRESULT SetXML(UCString szXML, HINSTANCE hModule, HINSTANCE/*0x10000000 作用未知*/);
-		
-		HRESULT SetXMLFromResource(UINT uID, HINSTANCE hModule, HINSTANCE/*0x10000000 作用未知*/);
-		HRESULT SetXMLFromResource(UCString szID, HINSTANCE hModule, HINSTANCE/*0x10000000 作用未知*/);
-
-		HRESULT UpdateSheets(Element*);
-		void _DestroyTables();
 		HRESULT _InitializeTables();
+		void _DestroyTables();
 
-		// exported for: int, unsigned long, Value*, RECT
+		HRESULT SetXML(const WCHAR* pBuffer, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance);
+		HRESULT SetPreprocessedXML(const WCHAR* pPreProcessed, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance);
+		HRESULT SetXMLFromResourceWithTheme(UINT uRCID, HINSTANCE hResInstance, HINSTANCE hResTheme, HINSTANCE hControlsInstance);
+		HRESULT SetXMLFromResource(const WCHAR* pszResource, const WCHAR* pszResType, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance);
+		HRESULT SetXMLFromResource(const WCHAR* pszResid, HINSTANCE hResInstance, HINSTANCE hControlsInstance);
+		HRESULT SetXMLFromResource(UINT uRCID, const WCHAR* pszResType, HINSTANCE hResInstance, HINSTANCE hControlsInstance);
+		HRESULT SetXMLFromResource(UINT uRCID, HINSTANCE hResInstance, HINSTANCE hControlsInstance);
+		
+		void SetRootWindowForTheming(HWND);
+		Value* GetMappedValue(WCHAR*);
+
+		HRESULT CreateElement(const WCHAR* pszResID, Element* pEleSubstitute, Element* pParent, DWORD* pdwDeferCookie, Element** ppElementOut);
+
+		HRESULT GetSheet(const WCHAR* pszResID, Value** ppValueOut);
+
+		void SetParseErrorCallback(PXMLPARSEERRORCB pfnErrorCallback, void* pContext);
+		void SetGetSheetCallback(PXMLGETSHEETCB pfnGetSheetCallback, void* pContext);
+
+		PXMLGETSHEETCB GetGetSheetCallback();
+		void* GetSheetContext();
+		void EnableDesignMode();
+		void SetUnknownAttrCallback(PUNKNOWNATTRCB pfnUnknownAttrCallback, void* pContext);
+		HINSTANCE GetResourceHInstance();
+		HINSTANCE GetHInstance();
+		HRESULT LookupElement(LINEINFO li, const WCHAR* pszElem, HINSTANCE hControlsInstance, IClassInfo** ppciOut);
+		HRESULT LookupElement(IXmlReader* pReader, const WCHAR* pszElem, HINSTANCE hInstance, IClassInfo** ppciOut);
+		HRESULT UpdateSheets(Element* pe);
+
+		void SetDefaultHInstance(HINSTANCE hInst);
+		void SetUnavailableIcon(HICON hIcon);
+		void SetScaleFactor(float scaleFactor);
+		void SetDynamicScaling(DynamicScaleParsing dsp);
+		bool IsDynamicScaling();
+		HRESULT CopySheets(DynamicArray<Value*>** ppdaSheets);
+		void SetOverrideScaleFactor(float scaleFactor);
+		bool GetOverrideScaleFactor(float* pScaleFactor);
+
+	protected:
+		HRESULT Initialize();
+		HRESULT InitializeParserFromXmlReader(IXmlReader* pReader, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance);
+
+		HRESULT ParseStyleSheets(IXmlReader* pReader);
+		HRESULT ParseStyleSheets();
+
+		HRESULT _EnterOnCurrentThread();
+		void _LeaveOnCurrentThread();
+
+		static HRESULT GetXmlLiteDll(HMODULE* phXmlLiteDll);
+		HRESULT CreateXmlReader(IXmlReader** ppReader);
+		HRESULT CreateXmlReaderFromHGLOBAL(HGLOBAL hglob, IXmlReader** ppReader);
+		HRESULT CreateXmlReaderInputWithEncodingName(IStream* pInput, const WCHAR* pszEncodingName, IUnknown** ppReaderInput);
+
+		HRESULT _SetXMLFromResource(const WCHAR* pszResource, const WCHAR* pszResType, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance, HINSTANCE hResTheme);
+		HRESULT _SetBinaryXml(const BYTE* pBuffer, UINT cbBuffer, HINSTANCE hControlsInstance);
+		HRESULT _BuildFromBinary(Element* peSub, Element* peParent, const WCHAR* pszResource, DWORD* pdwDefer, Element** ppElement);
+		HRESULT _BuildElement(IXmlReader* pReader, Element* peParent, Element** ppElement);
+		HRESULT _BuildChildren(IXmlReader* pReader, Element* peParent);
+		HRESULT _SetProperties(IXmlReader* pReader, IClassInfo* pClassInfo, Element* peTarget);
+		HRESULT _ParseLayout(const WCHAR* pszLayoutString, Value** ppvLayout);
+		HRESULT _ParseBehavior(Element* pTarget, const WCHAR* pszBehavior);
+		HRESULT _CreateValue(const WCHAR* pszValue, const PropertyInfo* pPropInfo, Value** ppValue);
+		HRESULT _GetClassForElement(IXmlReader* pReader, IClassInfo** ppClassInfo);
+		HRESULT _GetClassForElementByName(const WCHAR* pszName, IClassInfo** ppClassInfo);
+		HRESULT _GetPropertyForAttribute(IXmlReader* pReader, IClassInfo* pClassInfo, const PropertyInfo** ppPropInfo);
+		HRESULT _BuildStyles(IXmlReader* pReader);
+		HRESULT _GetValueForStyleSheet(IClassInfo* pClassInfo, const WCHAR* pszName, const WCHAR* pszValue, const PropertyInfo** ppPropInfo, Value** ppValue);
+		LINEINFO _GetLineInfo(IXmlReader* pReader);
+		HRESULT _SetupParserState(HINSTANCE hResourceInstance, HINSTANCE hControlsInstance);
+
+		HRESULT _RecordElementTrees(IXmlReader* pReader);
+		HRESULT _RecordElementWithChildren(IXmlReader* pReader, bool fEmptyElem, WCHAR** ppszElemName);
+		HRESULT _RecordInstantiateElement(IXmlReader* pReader, WCHAR** ppszElemName);
+		HRESULT _RecordSetElementProperties(IXmlReader* pReader);
+		HRESULT _RecordElementLayout(IXmlReader* pReader, const WCHAR* pszValue);
+		HRESULT _RecordElementBehaviors(IXmlReader* pReader, const WCHAR* pszValue);
+		HRESULT _RecordSetValue(IXmlReader* pReader, const WCHAR* pszName, const WCHAR* pszValue);
+		HRESULT _RecordElementStyleSheet(const WCHAR* pszSheetName, bool fIgnoreMissingSheet);
+
+		HRESULT CreateStyleSheet(IXmlReader* pReader, const WCHAR* pszSheetResid, StyleSheet** ppSheet);
+		HRESULT AddRulesToStyleSheet(IXmlReader* pReader, StyleSheet* pSheet, const WCHAR* pszSheetResid, DynamicArray<XMLParserCond>* pdaXMLConds, DynamicArray<WCHAR*>* pdaCondStrings);
+		HRESULT _ResolveStyleSheet(const WCHAR* pszReference, Value** ppvSheet, UINT* pSheetId);
+
+
+		HRESULT MapPropertyNameToPropertyInfo(LINEINFO li, IClassInfo* pci, const WCHAR* pszName, const PropertyInfo** ppInfo);
+		HRESULT GetPropValPairInfo(LINEINFO li, IClassInfo* pci, const WCHAR* pszProperty, const WCHAR* pszValue, const PropertyInfo** ppInfo, Value** ppValue);
+		HRESULT GetPropValPairInfo(IXmlReader* pReader, IClassInfo* pci, const WCHAR* pszProperty, const WCHAR* pszValue, const PropertyInfo** ppInfo, Value** ppValue);
+
+		HRESULT _ParseValue(const PropertyInfo* ppi, WCHAR* pszValue, Value** ppValue);
+
+		void SendParseError(const WCHAR* pszError, const WCHAR* pszToken, int dLine, int dCol, HRESULT hr);
+		void SendParseError(const WCHAR* pszError, const WCHAR* pszToken, IXmlReader* pReader, HRESULT hr);
+		int QuerySysMetric(int idx, bool* pfDynamicScaling);
+		const WCHAR* QuerySysMetricStr(int idx, WCHAR* pszMetric, UINT c);
+
+		
 		template <typename T>
 		struct UILIB_API FunctionDefinition
 		{
-			typedef HRESULT (DUIXmlParser::*FUNCPARSER)(const ParserTools::ExprNode*, T*, bool*);
+			typedef HRESULT (*FUNCPARSER)(const ParserTools::ExprNode* pen, T*, bool*);
 
 			const WCHAR* pszName;
 			FUNCPARSER pfnParse;
 		};
+
+		static const FunctionDefinition<int> s_fdInt[3];
+		static const FunctionDefinition<COLORREF> s_fdClr[4];
+		static const FunctionDefinition<Value*> s_fdString[4];
+		static const FunctionDefinition<ScaledRECT> s_fdRect[3];
+		static const FunctionDefinition<ScaledSIZE> s_fdSize[3];
+		static const FunctionDefinition<Value*> s_fdFill[4];
+		static const FunctionDefinition<Value*> s_fdGraphic[5];
 
 		struct NUMBER
 		{
@@ -465,114 +561,175 @@ namespace DirectUI
 		union ParsedArg
 		{
 			NUMBER number;
-			WCHAR* psz;
+			LPCWSTR psz;
 			COLORREF clr;
 			HTHEME htheme;
 			HMODULE hmod;
 			HINSTANCE hinst;
-			ParserTools::ExprNode* pen;
+			const ParserTools::ExprNode* pen;
 		};
 
-	protected:
-		HRESULT _EnterOnCurrentThread();
-		LINEINFO _GetLineInfo(IXmlReader*);
+		HRESULT ParseArgs(const ParserTools::ExprNode* pen, ParsedArg* rgpa, UINT cpa, const CHAR* pszSignature);
+		HRESULT ParseFunction(const WCHAR* pszName, const ParserTools::ExprNode* pen, ParsedArg* rgpa, UINT cpa, const CHAR* pszSignature);
 
-		HRESULT AddRulesToStyleSheet(IXmlReader*, StyleSheet*, UCString, DynamicArray<XMLParserCond, 0>*, DynamicArray<WCHAR*, 0>*);
-		HRESULT CreateLayout(const ParserTools::ExprNode*, long (WINAPI*)(int, int*, Value**));
-		HRESULT CreateStyleSheet(IXmlReader*, UCString, StyleSheet**);
-		HRESULT CreateXmlReader(IXmlReader**);
-		HRESULT CreateXmlReaderFromHGLOBAL(void*, IXmlReader**);
-		HRESULT CreateXmlReaderInputWithEncodingName(IStream*, UCString, IUnknown**);
-		HRESULT GetParserCommon(DUIXmlParser**);
-		HRESULT GetPropValPairInfo(IXmlReader*, IClassInfo*, UCString, UCString, PropertyInfo const**, Value**);
-		HRESULT GetPropValPairInfo(LINEINFO, IClassInfo*, UCString, UCString, PropertyInfo const**, Value**);
-		HRESULT GetValueParser(ParserTools::ValueParser**);
-		static HRESULT WINAPI GetXmlLiteDll(HINSTANCE*);
-		HRESULT Initialize();
-		HRESULT InitializeParserFromXmlLiteReader(IXmlReader*);
-		static bool WINAPI IsThemeClassName(const ParserTools::ExprNode*);
-		HRESULT MapPropertyEnumValue(const EnumMap*, UCString, int*);
-		HRESULT MapPropertyNameToPropertyInfo(LINEINFO, IClassInfo*, UCString, const PropertyInfo**);
-		HRESULT ParseARGBColor(const ParserTools::ExprNode*, unsigned long*);
-		HRESULT ParseArgs(const ParserTools::ExprNode*, ParsedArg*, unsigned int, const char*);
-		HRESULT ParseAtomValue(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseBoolValue(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseColor(const ParserTools::ExprNode*, unsigned long*);
-		HRESULT ParseDFCFill(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseDTBFill(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseFillValue(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseFunction(UCString, const ParserTools::ExprNode*, ParsedArg*, unsigned int, const char*);
-		HRESULT ParseGTCColor(const ParserTools::ExprNode*, unsigned long*);
-		HRESULT ParseGTFStr(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseGTMarRect(const ParserTools::ExprNode*, LPRECT);
-		HRESULT ParseGTMetInt(const ParserTools::ExprNode*, int*);
-		HRESULT ParseGradientFill(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseGraphicGraphic(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseGraphicHelper(bool, const ParserTools::ExprNode*, Value**);
-		HRESULT ParseGraphicValue(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseIconGraphic(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseImageGraphic(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseIntValue(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseLayoutValue(const ParserTools::ExprNode*);
-		HRESULT ParseLibrary(const ParserTools::ExprNode*, HINSTANCE*);
-		HRESULT ParseLiteral(const ParserTools::ExprNode*, UCString*);
-		HRESULT ParseLiteralColor(UCString, unsigned long*);
-		HRESULT ParseLiteralColorInt(UCString, int*);
-		HRESULT ParseLiteralNumber(UCString, int*);
-		HRESULT ParseMagnitude(UCString, int*);
-		HRESULT ParseNumber(const ParserTools::ExprNode*, int*);
-		HRESULT ParsePointValue(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseQuotedString(const ParserTools::ExprNode*, UCString*);
-		HRESULT ParseRGBColor(const ParserTools::ExprNode*, unsigned long*);
-		HRESULT ParseRect(const ParserTools::ExprNode*, LPRECT);
-		HRESULT ParseRectRect(const ParserTools::ExprNode*, LPRECT);
-		HRESULT ParseRectValue(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseResStr(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseResid(const ParserTools::ExprNode*, UCString*);
-		HRESULT ParseSGraphicGraphic(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseSGraphicHelper(bool, const ParserTools::ExprNode*, Value**);
-		HRESULT ParseSizeValue(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseStringValue(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseStyleSheets(IXmlReader*);
-		HRESULT ParseSysMetricInt(const ParserTools::ExprNode*, int*);
-		HRESULT ParseSysMetricStr(const ParserTools::ExprNode*, Value**);
-		HRESULT ParseTheme(const ParserTools::ExprNode*, void**);
-		static int WINAPI QuerySysMetric(int);
-		static UCString WINAPI QuerySysMetricStr(int, WCHAR*, unsigned int);
-		void ReturnValueParser(ParserTools::ValueParser*);
-		void SendParseError(UCString, UCString, int, int, long);
-		void SendParseError(UCString, UCString, IXmlReader*, long);
-		void _LeaveOnCurrentThread();
+		static bool WINAPI IsThemeClassName(const ParserTools::ExprNode* pen);
 
-		HRESULT _RecordElementLayout(IXmlReader*, UCString);
-		HRESULT _RecordElementStyleSheet(UCString, bool);
-		HRESULT _RecordElementTrees(IXmlReader*);
-		HRESULT _RecordElementWithChildren(IXmlReader*, bool, WCHAR**);
-		HRESULT _RecordInstantiateElement(IXmlReader*, WCHAR**);
-		HRESULT _RecordSetElementProperties(IXmlReader*);
-		HRESULT _RecordSetValue(IXmlReader*, UCString, UCString);
+		HRESULT ParseMagnitude(const WCHAR* pszMag, int* pMagOut, bool* pfDynamicScaling);
+		HRESULT ParseMagnitudeFloat(const WCHAR* pszMag, float* pMagOut, bool* pfDynamicScaling);
 
+		HRESULT ParseLiteralNumber(const WCHAR* psz, int* pnOut, bool* pfDynamicScaling);
+		HRESULT ParseColorInt(WCHAR*, int*);
+		HRESULT ParseLiteralColorInt(const WCHAR* pszValue, int* piOut);
+		HRESULT ParseLiteralColor(const WCHAR* pszValue, COLORREF* pclrOut);
+
+		HRESULT ParseSysMetricInt(const ParserTools::ExprNode* pen, int* piOut, bool* pfDynamicScaling);
+		HRESULT ParseGTMetInt(const ParserTools::ExprNode* pen, int* piOut, bool* pfDynamicScaling);
+
+		HRESULT ParseARGBColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut, bool* pfDynamicScaling);
+		HRESULT ParseRGBColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut, bool* pfDynamicScaling);
+		HRESULT ParseGTCColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut, bool* pfDynamicScaling);
+
+		HRESULT ParseResStr(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling);
+		HRESULT ParseSysMetricStr(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling);
+		HRESULT ParseGTFStr(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling);
+
+		HRESULT ParseRectRect(const ParserTools::ExprNode* pen, ScaledRECT* prcOut, bool* pfDynamicScaling);
+		HRESULT ParseGTMarRect(const ParserTools::ExprNode* pen, ScaledRECT* prcOut, bool* pfDynamicScaling);
+
+		HRESULT ParseSizeSize(const ParserTools::ExprNode* pen, ScaledSIZE* pszOut, bool* pfDynamicScaling);
+		HRESULT ParseGTPartSize(const ParserTools::ExprNode* pen, ScaledSIZE* pszOut, bool* pfDynamicScaling);
+
+		HRESULT ParseSGraphicHelper(bool fGraphic, const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseSGraphicGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling);
+
+		HRESULT ParseGraphicHelper(bool fGraphic, const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseGraphicGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling);
+
+		HRESULT ParseImageGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling);
+		HRESULT ParseIconGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling);
+
+		HRESULT ParseLiteral(const ParserTools::ExprNode* pen, const WCHAR** ppszOut);
+		HRESULT ParseNumber(const ParserTools::ExprNode* pen, int* pnOut, bool* pfDynamicScaling);
+		HRESULT ParseFloat(const ParserTools::ExprNode* pen, float* pflOut, bool* pfDynamicScaling);
+		HRESULT ParseColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut);
+		HRESULT ParseQuotedString(const ParserTools::ExprNode* pen, WCHAR** ppszOut);
+		HRESULT ParseResid(const ParserTools::ExprNode* pen, const WCHAR** ppszOut);
+		HRESULT ParseTheme(const ParserTools::ExprNode* pen, bool use96dpi, HTHEME* phtheme);
+		HRESULT ParseLibrary(const ParserTools::ExprNode* pen, HMODULE* phmod);
+
+		HRESULT ParseRect(const ParserTools::ExprNode* pen, ScaledRECT* prcOut);
+		HRESULT ParseSize(const ParserTools::ExprNode* pen, ScaledSIZE* pszOut);
+
+		HRESULT ParseGradientFill(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling);
+		HRESULT ParseDFCFill(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling);
+		HRESULT ParseDTBFill(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling);
+
+		HRESULT CreateLayout(const ParserTools::ExprNode* pen, PLAYTCREATE pfnCreate);
+
+		HRESULT ParseIntValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseFloatValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseBoolValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseStringValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseRectValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseSizeValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParsePointValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseFillValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseLayoutValue(const ParserTools::ExprNode* pen);
+		HRESULT ParseGraphicValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseSheetValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseAtomValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseCursorValue(const ParserTools::ExprNode* pen, Value** ppVal);
+
+		HRESULT ParseBehaviorArgValue(const ParserTools::ExprNode* pen, Value** ppVal);
+		HRESULT ParseBehavior(const ParserTools::ExprNode* pen);
+		HRESULT ParseDoubleListValue(const ParserTools::ExprNode* pen, Value** ppVal);
+
+		HRESULT MapPropertyEnumValue(const EnumMap* pMap, const WCHAR* pszValue, int* piVal);
+		HRESULT GetValueParser(ParserTools::ValueParser** ppvp);
+		void ReturnValueParser(ParserTools::ValueParser* pvp);
+		HRESULT GetParserCommon(DUIXmlParser** ppParserCommon);
+
+		HMODULE _hXmlLiteDll;
+		HINSTANCE _hControlsInstance;
+		HANDLE _hDefault;
+		HICON _hUnavailableIcon;
+
+		PXMLPARSEERRORCB _pfnErrorCB;
+		PXMLGETSHEETCB _pfnGetSheetCB;
+		PUNKNOWNATTRCB _pfnUnknownAttrCallback;
+		
+		void* _pErrorContext;
+		void* _pGetSheetContext;
+		void* _pfnUnknownAttrContext;
+
+		DynamicScaleParsing _dynamicScaleParsing;
+		float _flScaleFactor;
+		bool _fScaleFactorSet;
+		bool _fParseErrorSent;
+		bool _fDesignMode;
+		int _fThemed;
+		int _fHighContrast;
+		int _fComposited;
+		bool _fOverrideScale;
+		
+		const PropertyInfo* _ppiValue;
+		const WCHAR* _pszError;
+		
+		ParserTools::ValueParser* _pvpCache;
+		DynamicArray<Value*>* _pdaSheetList;
+		DynamicArray<Value*>* _pdaTrackedValues;
+		DUIXmlParser* _pParserCommon;
+		IXmlReader* _pCurrentReader;
+		
+		IDuiParserCache* _pParserCache;
+		IDuiBinaryReader* _pBinaryReader;
+		
+		int _nCreateDepth;
+		
+		DynamicArray<int>* _prgLayoutArgs;
+		
+		
 	private:
+		float _ScaleRelativePixels(float nRelPix);
+		int _ScaleRelativePixels(int nRelPix);
+		float _ScalePointsToPixels(float flPoint);
+		int _ScalePointsToPixels(int nPoint);
+
+		DUIParseRecorder* _pRecorder;
+		DynamicArray<DUIParsePlayer*>* _prgPlayers;
 		void SetParseState(DUI_PARSE_STATE eParseState);
+		DUI_PARSE_STATE _eParseState;
+		ResourceModuleHandles _rmhResourcesModules;
+		DWORD _dwThreadId;
+		ULONG _cRefThread;
+		HWND _rootWindowForTheming;
+
+	public:
+		DUIXmlParser& operator=(DUIXmlParser const&);
 	};
 
-	class UILIB_API DUIFactory
+	class DUIFactory
 	{
 	public:
-		DUIFactory(HWND);
-		~DUIFactory();
-		DUIFactory& operator=(DUIFactory const&);
-		HRESULT CreateParser();
-		DUIXmlParser* DetachParser();
-		DUIXmlParser* GetParser();
-		HRESULT LoadFromBuffer(const WCHAR*, UINT_PTR, const WCHAR*, Element*, unsigned long*, Element* *);
-		HRESULT LoadFromFile(const WCHAR*, const WCHAR*, Element*, unsigned long*, Element* *);
-		HRESULT LoadFromResource(HINSTANCE, const WCHAR*, const WCHAR*, Element*, unsigned long*, Element* *, const WCHAR*);
-		void SetError(const WCHAR*, ...);
+		UILIB_API DUIFactory(HWND hwnd);
+		UILIB_API ~DUIFactory();
+		UILIB_API DUIFactory& operator=(DUIFactory const&);
+
+		UILIB_API HRESULT CreateParser();
+
+		UILIB_API HRESULT LoadFromBuffer(const WCHAR* pszBuf, UINT cchBuf, const WCHAR* pszResid, Element* pParent, DWORD* pdwDeferCookie, Element** ppe);
+		UILIB_API HRESULT LoadFromFile(const WCHAR*, const WCHAR*, Element*, unsigned long*, Element* *);
+		UILIB_API HRESULT LoadFromResource(HINSTANCE, const WCHAR*, const WCHAR*, Element*, unsigned long*, Element* *, const WCHAR*);
+
+		UILIB_API void SetError(const WCHAR*, ...);
+
+		UILIB_API DUIXmlParser* DetachParser();
+		UILIB_API DUIXmlParser* GetParser();
 
 	private:
-		static void WINAPI s_XMLParseError(const WCHAR*, const WCHAR*, int, void*);
-		void ClearParser();
+		UILIB_API static void WINAPI s_XMLParseError(const WCHAR* pszError, const WCHAR* pszToken, int dLine, DUIFactory* pContext);
+		UILIB_API void ClearParser();
+
 		int _fError;
 		HINSTANCE _hInst;
 		DUIXmlParser* _pParser;

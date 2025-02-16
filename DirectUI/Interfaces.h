@@ -294,3 +294,24 @@ ITouchTooltip : IUnknown
 	virtual HRESULT STDMETHODCALLTYPE Advise(ITouchTooltipEventSink* pEventSink) = 0;
 	virtual HRESULT STDMETHODCALLTYPE Unadvise() = 0;
 };
+
+MIDL_INTERFACE("C1F02EF9-E2EB-47B2-BF2C-EEF7449FC1F6")
+IDuiBinaryReader : IUnknown
+{
+	virtual HRESULT STDMETHODCALLTYPE GetResource(UINT index, const WCHAR** ppszResid) = 0;
+	virtual HRESULT STDMETHODCALLTYPE SeekToResource(const WCHAR* pszResid) = 0;
+	virtual HRESULT STDMETHODCALLTYPE PushState() = 0;
+	virtual HRESULT STDMETHODCALLTYPE PopState() = 0;
+};
+
+MIDL_INTERFACE("B97EE329-6B9C-471F-A52A-3F99D814F17A")
+IDuiParserCache : IUnknown
+{
+	virtual HRESULT STDMETHODCALLTYPE Find(ULONG key, DirectUI::IClassInfo** ppClassInfo) = 0;
+	virtual HRESULT STDMETHODCALLTYPE Find(ULONG key, DirectUI::Value** ppValue) = 0;
+	virtual HRESULT STDMETHODCALLTYPE Store(ULONG key, DirectUI::IClassInfo* pClassInfo) = 0;
+	virtual HRESULT STDMETHODCALLTYPE Store(ULONG key, DirectUI::Value* pValue) = 0;
+	virtual HRESULT STDMETHODCALLTYPE CreateLayout(ULONG key, DirectUI::Value** ppValue) = 0;
+	virtual HRESULT STDMETHODCALLTYPE AddLayout(ULONG key, HRESULT (*)(int, int*, DirectUI::Value**), int cargs, int* pargs) = 0; // TODO: Figure out this typedef shit
+	virtual HRESULT STDMETHODCALLTYPE ClearStoredClasses() = 0;
+};

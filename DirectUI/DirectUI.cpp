@@ -1073,101 +1073,29 @@ DUIXmlParser::FunctionDefinition<T> & DUIXmlParser::FunctionDefinition<T>::opera
 	return *this;
 }*/
 
-NativeHWNDHost::NativeHWNDHost(const NativeHWNDHost&)
-{
-}
-
-NativeHWNDHost::NativeHWNDHost()
-{
-}
-
-NativeHWNDHost::~NativeHWNDHost()
-{
-}
-
-LRESULT NativeHWNDHost::WndProc(HWND, UINT, WPARAM, LPARAM)
-{
-	return LRESULT();
-}
-
-NativeHWNDHost& NativeHWNDHost::operator=(const NativeHWNDHost&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-UINT WINAPI NativeHWNDHost::AsyncDestroyMsg()
-{
-	return 0;
-}
-
-HRESULT NativeHWNDHost::Create(UCString lpClassName, UCString lpWindowName, HWND hWndParent, HICON hIcon, int x, int y, int nWidth, int nHeight, int dwExStyle, int dwStyle, HINSTANCE, UINT, NativeHWNDHost** out)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT NativeHWNDHost::Create(UCString lpWindowName, HWND hWndParent, HICON hIcon, int x, int y, int nWidth, int nHeight, int dwExStyle, int dwStyle, unsigned int, NativeHWNDHost** out)
-{
-	return E_NOTIMPL;
-}
-
-void NativeHWNDHost::Destroy()
-{
-}
-
-void NativeHWNDHost::DestroyWindow()
-{
-}
-
-Element* NativeHWNDHost::GetElement()
-{
-	return nullptr;
-}
-
-HWND NativeHWNDHost::GetHWND()
-{
-	return HWND();
-}
-
-void NativeHWNDHost::HideWindow()
-{
-}
-
-void NativeHWNDHost::Host(Element*)
-{
-}
-
-HRESULT NativeHWNDHost::Initialize(UCString lpClassName, UCString lpWindowName, HWND hWndParent, HICON hIcon, int x, int y, int nWidth, int nHeight, int dwExStyle, int dwStyle, HINSTANCE, UINT)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT NativeHWNDHost::Initialize(UCString, HWND, HICON, int, int, int, int, int, int, UINT)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT NativeHWNDHost::OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*)
-{
-	return E_NOTIMPL;
-}
-
-int NativeHWNDHost::RestoreFocus()
-{
-	return 0;
-}
-
-void NativeHWNDHost::SaveFocus()
-{
-}
-
-void NativeHWNDHost::SetDefaultFocusID(UCString)
-{
-}
-
-void NativeHWNDHost::ShowWindow(int)
-{
-}
+UINT WINAPI NativeHWNDHost::DestroyMsg() STUB_ZERO
+HRESULT WINAPI NativeHWNDHost::Create(const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO
+HRESULT WINAPI NativeHWNDHost::Create(const WCHAR* pszClassName, const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, HINSTANCE hInstance, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO
+void NativeHWNDHost::Destroy() STUB_VOID
+HWND NativeHWNDHost::GetHWND() STUB_ZERO
+Element* NativeHWNDHost::GetElement() STUB_ZERO
+void NativeHWNDHost::Host(Element* pe) STUB_VOID
+void NativeHWNDHost::ShowWindow(int iShow) STUB_VOID
+void NativeHWNDHost::HideWindow() STUB_VOID
+void NativeHWNDHost::DestroyWindow() STUB_VOID
+void NativeHWNDHost::SyncDestroyWindow() STUB_VOID
+LRESULT CALLBACK NativeHWNDHost::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO
+NativeHWNDHost::NativeHWNDHost(const NativeHWNDHost&) STUB_VOID
+NativeHWNDHost::NativeHWNDHost() STUB_VOID
+HRESULT NativeHWNDHost::Initialize(const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, UINT nOptions) STUB_ZERO
+HRESULT NativeHWNDHost::Initialize(const WCHAR* pszClassName, const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, HINSTANCE hInstance, UINT nOptions) STUB_ZERO
+NativeHWNDHost::~NativeHWNDHost() STUB_VOID
+void NativeHWNDHost::SetDefaultFocusID(const WCHAR*) STUB_VOID
+void NativeHWNDHost::SaveFocus() STUB_VOID
+int NativeHWNDHost::RestoreFocus() STUB_ZERO
+HWND NativeHWNDHost::CreateHostWindow(DWORD dwExStyle, const WCHAR* lpClassName, const WCHAR* lpWindowName, DWORD dwStyle, int nX, int nY, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) STUB_ZERO
+HRESULT NativeHWNDHost::OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO
+NativeHWNDHost& NativeHWNDHost::operator=(const NativeHWNDHost&) = default;
 
 HWNDHostAccessible::HWNDHostAccessible()
 {

@@ -151,6 +151,7 @@
 
 UILIB_API void WINAPI DumpDuiTree(DirectUI::Element* pe, BOOL fShowProperties);
 UILIB_API void WINAPI DumpDuiProperties(DirectUI::Element* pe);
+UILIB_API HRESULT WINAPI DuiCreateObject(REFCLSID rclsid, REFIID riid, void** ppv);
 
 namespace DirectUI
 {

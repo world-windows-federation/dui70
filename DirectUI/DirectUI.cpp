@@ -6,9 +6,9 @@
 #define STUB_ZERO { return {}; }
 #define STUB_VOID {}
 
-void WINAPI DumpDuiTree(DirectUI::Element* pe, BOOL fShowProperties) {}
-void WINAPI DumpDuiProperties(DirectUI::Element* pe) {}
-
+void WINAPI DumpDuiTree(DirectUI::Element* pe, BOOL fShowProperties) STUB_VOID;
+void WINAPI DumpDuiProperties(DirectUI::Element* pe) STUB_VOID;
+HRESULT WINAPI DuiCreateObject(REFCLSID rclsid, REFIID riid, void** ppv) STUB_ZERO;
 
 namespace DirectUI
 {

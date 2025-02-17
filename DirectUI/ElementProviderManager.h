@@ -48,7 +48,7 @@ namespace DirectUI
 						{
 							if (pe->GetClassInfoW()->IsSubclassOf(HWNDElement::GetClassInfoPtr()))
 							{
-								hr = HWNDElementProvider::Create(pe, pih, (HWNDElementProvider**)&pprv);
+								hr = HWNDElementProvider::Create((HWNDElement*)pe, pih, (HWNDElementProvider**)&pprv);
 							}
 							else
 							{

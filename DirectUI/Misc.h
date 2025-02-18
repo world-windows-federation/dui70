@@ -685,7 +685,7 @@ namespace DirectUI
 				_ASSERTE(false);
 			}
 
-			*ppNewItem = &_Inplace[uIndex];
+			*ppNewItem = &pThis->_Inplace[uIndex];
 			return S_OK;
 		}
 

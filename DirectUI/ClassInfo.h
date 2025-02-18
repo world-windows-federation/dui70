@@ -184,7 +184,7 @@ namespace DirectUI
 			}
 			else
 			{
-				pT->Destroy();
+				pT->Destroy(false);
 			}
 		}
 		return hr;
@@ -205,7 +205,7 @@ namespace DirectUI
 			}
 			else
 			{
-				pT->Destroy();
+				pT->Destroy(false);
 			}
 		}
 		return hr;

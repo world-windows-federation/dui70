@@ -528,7 +528,7 @@ namespace DirectUI
 		virtual HRESULT STDMETHODCALLTYPE TriggerDeleteGroup(DynamicArray<Element*>* pelToDelete, bool fDestroy, bool fFilter, DWORD* pdwCookie) = 0;
 		virtual HRESULT STDMETHODCALLTYPE TriggerAddGroup(DynamicArray<Element*>* pelToAdd, Element* peParent, DynamicArray<UINT>* pdaIndices, int nLayoutPos, bool fFilter, DWORD* pdwCookie) = 0;
 		virtual HRESULT STDMETHODCALLTYPE TriggerAddGroupMultiParent(DynamicArray<Element*>* pelParents, DynamicArray<DynamicArray<ElementIndexPair*>*>* pdaToAdd, int nLayoutPos, bool fFilter, DWORD* pdwCookie) = 0;
-		virtual HRESULT STDMETHODCALLTYPE TriggerFadeGroup(DynamicArray<Element*>* pelToFade, UINT uiState, DWORD* pdwCOokie) = 0;
+		virtual HRESULT STDMETHODCALLTYPE TriggerFadeGroup(DynamicArray<Element*>* pelToFade, UINT uiState, DWORD* pdwCookie) = 0;
 		virtual HRESULT STDMETHODCALLTYPE TriggerEntrance(DynamicArray<Element*>* pelToEnter, DynamicArray<POINT>* pdaOffsets, DWORD* pdwCookie) = 0;
 		virtual HRESULT STDMETHODCALLTYPE TriggerNudge(DynamicArray<Element*>* pelToNudge, DynamicArray<POINT>* pdaOffsets, UINT uiState, DWORD* pdwCookie) = 0;
 		virtual HRESULT STDMETHODCALLTYPE TriggerBeginStoryboard(Element* peTrapElement, int* pnStoryboardId, DWORD* pdwCookie) = 0;

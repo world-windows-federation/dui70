@@ -78,16 +78,16 @@ namespace DirectUI
 		static HRESULT StrDupW(const WCHAR* pszIn, WCHAR** pszOut);
 
 	public:
-		static Value* WINAPI CreateInt(int dValue, DynamicScaleValue dsv);
-		static Value* WINAPI CreateFloat(float flValue, DynamicScaleValue dsv);
+		static Value* WINAPI CreateInt(int dValue, DynamicScaleValue dsv = DSV_None);
+		static Value* WINAPI CreateFloat(float flValue, DynamicScaleValue dsv = DSV_None);
 		static Value* WINAPI CreateBool(bool bValue);
 		static Value* WINAPI CreateElementRef(Element* peValue);
 		static Value* WINAPI CreateElementList(DynamicArray<Element*>* peListValue);
 		static Value* WINAPI CreateString(const WCHAR* pszValue, HINSTANCE hResLoad);
 		static Value* WINAPI CreateEncodedString(const WCHAR* pszValue);
-		static Value* WINAPI CreatePoint(int x, int y, DynamicScaleValue dsv);
-		static Value* WINAPI CreateSize(int cx, int cy, DynamicScaleValue dsv);
-		static Value* WINAPI CreateRect(int left, int top, int right, int bottom, DynamicScaleValue dsv);
+		static Value* WINAPI CreatePoint(int x, int y, DynamicScaleValue dsv = DSV_None);
+		static Value* WINAPI CreateSize(int cx, int cy, DynamicScaleValue dsv = DSV_None);
+		static Value* WINAPI CreateRect(int left, int top, int right, int bottom, DynamicScaleValue dsv = DSV_None);
 
 		static Value* WINAPI CreateColor(COLORREF cr);
 		static Value* WINAPI CreateColor(COLORREF cr0, COLORREF cr1, BYTE dType);

@@ -3,7 +3,7 @@
 namespace DirectUI
 {
 	class UILIB_API TableItemProvider
-		: public PatternProvider<TableItemProvider, ITableItemProvider, 10>
+		: public PatternProvider<TableItemProvider, ITableItemProvider, Schema::Pattern::TableItem>
 		, public ITableItemProvider
 	{
 	public:

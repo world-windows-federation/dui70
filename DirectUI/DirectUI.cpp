@@ -7444,39 +7444,6 @@ void ProgressRangeValueProxy::Init(Element*)
 {
 }
 
-template <class X, class Y, int i>
-inline DirectUI::PatternProvider<X, Y, i>::PatternProvider()
-{
-}
-
-template <class X, class Y, int i>
-PatternProvider<X, Y, i>::~PatternProvider()
-{
-}
-
-template <class X, class Y, int i>
-long PatternProvider<X, Y, i>::Create(ElementProvider*, IUnknown**)
-{
-	return 0;
-}
-
-template <class X, class Y, int i>
-void PatternProvider<X, Y, i>::Init(ElementProvider*)
-{
-}
-
-template <class X, class Y, int i>
-PfnCreateProxy PatternProvider<X, Y, i>::GetProxyCreator(void)
-{
-	return PfnCreateProxy();
-}
-
-template <class X, class Y, int i>
-long PatternProvider<X, Y, i>::DoInvoke(int, ...)
-{
-	return 0;
-}
-
 XResourceProvider::XResourceProvider()
 {
 }

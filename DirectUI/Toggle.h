@@ -3,7 +3,7 @@
 namespace DirectUI
 {
 	class UILIB_API ToggleProvider
-		: public PatternProvider<ToggleProvider, IToggleProvider, 11>
+		: public PatternProvider<ToggleProvider, IToggleProvider, Schema::Pattern::Toggle>
 		, public IToggleProvider
 	{
 	public:

@@ -3,7 +3,7 @@
 namespace DirectUI
 {
 	class UILIB_API SelectionProvider
-		: public PatternProvider<SelectionProvider, ISelectionProvider, 8>
+		: public PatternProvider<SelectionProvider, ISelectionProvider, Schema::Pattern::Selection>
 		, public ISelectionProvider
 	{
 	public:

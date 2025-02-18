@@ -3,7 +3,7 @@
 namespace DirectUI
 {
 	class UILIB_API ScrollItemProvider
-		: public PatternProvider<ScrollItemProvider, IScrollItemProvider, 6>
+		: public PatternProvider<ScrollItemProvider, IScrollItemProvider, Schema::Pattern::ScrollItem>
 		, public IScrollItemProvider
 	{
 	public:

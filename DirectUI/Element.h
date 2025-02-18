@@ -1,7 +1,5 @@
 #pragma once
 
-#include "InvokeHelper.h"
-
 typedef const DirectUI::PropertyInfo* (WINAPI *PropertyProcT)();
 
 namespace DirectUI

@@ -3,7 +3,7 @@
 namespace DirectUI
 {
 	class UILIB_API GridProvider
-		: public PatternProvider<GridProvider, IGridProvider,3>
+		: public PatternProvider<GridProvider, IGridProvider, Schema::Pattern::Grid>
 		, public IGridProvider
 	{
 	public:

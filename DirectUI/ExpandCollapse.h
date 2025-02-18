@@ -4,7 +4,7 @@ namespace DirectUI
 {
 
 	class UILIB_API ExpandCollapseProvider
-		: public PatternProvider<ExpandCollapseProvider, IExpandCollapseProvider,1>
+		: public PatternProvider<ExpandCollapseProvider, IExpandCollapseProvider, Schema::Pattern::ExpandCollapse>
 		, public IExpandCollapseProvider
 	{
 	public:

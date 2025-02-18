@@ -2,9 +2,6 @@
 
 namespace DirectUI
 {
-	class Value;
-	struct PropertyInfo;
-
 	struct DECLSPEC_NOVTABLE IElementListener
 	{
 		//0
@@ -114,31 +111,6 @@ namespace DirectUI
 		long AddRef();
 		long Release();
 	};
-
-
-	template <class X, class Y, int i>
-	class PatternProvider
-		: public RefcountBase
-		  , public IProvider
-		//, public Y
-	{
-	public:
-		PatternProvider();
-		PatternProvider(const PatternProvider&) = delete;
-		PatternProvider& operator=(const PatternProvider&) = delete;
-		virtual ~PatternProvider();
-
-		static long WINAPI Create(class ElementProvider*, IUnknown**);
-		virtual void Init(ElementProvider*);
-		//IProvider
-		virtual PfnCreateProxy GetProxyCreator();
-
-	protected:
-		long DoInvoke(int, ...);
-
-	private:
-	};
-
 
 	struct UILIB_API ISBLeak
 	{

@@ -72,6 +72,12 @@ namespace DirectUI
 
 	};
 
+	class ElementProvider;
+	class InvokeHelper;
+	class Layout;
+	class Value;
+	struct PropertyInfo;
+
 	//// Misc
 	//class CritSecLock;
 	//class LinkedList;

@@ -275,6 +275,7 @@
     <ClInclude Include="NavScoring.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="Parser.h" />
+    <ClInclude Include="PatternProvider.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Progress.h" />
     <ClInclude Include="PromptText.h" />
@@ -315,6 +316,7 @@
     <ClInclude Include="TouchScrollViewer.h" />
     <ClInclude Include="TouchTooltip.h" />
     <ClInclude Include="Types.h" />
+    <ClInclude Include="UiaSchema.h" />
     <ClInclude Include="UnknownElement.h" />
     <ClInclude Include="Value.h" />
     <ClInclude Include="Viewer.h" />

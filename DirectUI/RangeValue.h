@@ -3,7 +3,7 @@
 namespace DirectUI
 {
 	class UILIB_API RangeValueProvider
-		: public PatternProvider<RangeValueProvider, IRangeValueProvider, 4>
+		: public PatternProvider<RangeValueProvider, IRangeValueProvider, Schema::Pattern::RangeValue>
 		, public IRangeValueProvider
 	{
 	public:

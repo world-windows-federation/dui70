@@ -45,7 +45,7 @@ namespace DirectUI
 	};
 
 	class UILIB_API InvokeProvider 
-		: public PatternProvider<InvokeProvider, IInvokeProvider, 0>
+		: public PatternProvider<InvokeProvider, IInvokeProvider, Schema::Pattern::Invoke>
 		, public IInvokeProvider
 	{
 	public:

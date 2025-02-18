@@ -75,18 +75,22 @@ namespace DirectUI
 		virtual void OnInvoke(UINT, void*);
 	};
 
-	class UILIB_API ProviderProxy : public IProxy
+	class UILIB_API DECLSPEC_NOVTABLE ProviderProxy
 	{
 	public:
-		ProviderProxy(const ProviderProxy&);
-		ProviderProxy& operator=(const ProviderProxy&);
+		virtual HRESULT DoMethod(MethodId methodId, va_list args) = 0;
+
+	protected:
+		virtual void Init(Element* pe);
+
+	public:
+		ProviderProxy(const ProviderProxy&) = default;
 
 	protected:
 		ProviderProxy();
-		virtual void Init(Element*);
-	};
 
-	typedef ProviderProxy* (__stdcall*ProviderProxyCall)(Element*);
+		Element* _pe;
+	};
 
 	class UILIB_API IProvider
 	{
@@ -95,7 +99,7 @@ namespace DirectUI
 		IProvider();
 		IProvider& operator=(const IProvider&);
 
-		virtual ProviderProxyCall GetProxyCreator() = 0;
+		virtual PfnCreateProxy GetProxyCreator() = 0;
 	};
 
 	class UILIB_API RefcountBase
@@ -127,7 +131,7 @@ namespace DirectUI
 		static long WINAPI Create(class ElementProvider*, IUnknown**);
 		virtual void Init(ElementProvider*);
 		//IProvider
-		virtual ProviderProxyCall GetProxyCreator();
+		virtual PfnCreateProxy GetProxyCreator();
 
 	protected:
 		long DoInvoke(int, ...);

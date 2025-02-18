@@ -16,7 +16,7 @@ namespace DirectUI
 		InvokeHelper&operator=(const InvokeHelper&) = delete;
 		virtual ~InvokeHelper(void);
 
-		long DoInvoke(int, ElementProvider *, ProviderProxy * (__stdcall*)(Element *), char *);
+		long DoInvoke(int, ElementProvider *, PfnCreateProxy, char *);
 		int Init(unsigned long);
 		void Uninit(void);
 
@@ -53,7 +53,7 @@ namespace DirectUI
 		virtual ~InvokeProvider(void);
 
 		virtual unsigned long __stdcall AddRef(void);
-		virtual ProviderProxyCall GetProxyCreator(void);
+		virtual PfnCreateProxy GetProxyCreator(void);
 		virtual long __stdcall Invoke(void);
 		virtual long __stdcall QueryInterface(GUID const &, void * *);
 		virtual unsigned long __stdcall Release(void);

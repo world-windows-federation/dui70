@@ -4941,9 +4941,9 @@ ExpandCollapseProvider::~ExpandCollapseProvider(void)
 {
 }
 
-ProviderProxyCall ExpandCollapseProvider::GetProxyCreator(void)
+PfnCreateProxy ExpandCollapseProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 HRESULT ExpandCollapseProvider::QueryInterface(REFIID riid, void** ppvObject)
@@ -5215,9 +5215,9 @@ long GridProvider::GetItem(int, int, IRawElementProviderSimple**)
 	return 0;
 }
 
-ProviderProxyCall GridProvider::GetProxyCreator(void)
+PfnCreateProxy GridProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long GridProvider::QueryInterface(GUID const&, void**)
@@ -5301,9 +5301,9 @@ unsigned long GridItemProvider::AddRef(void)
 	return 0;
 }
 
-ProviderProxyCall GridItemProvider::GetProxyCreator(void)
+PfnCreateProxy GridItemProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long GridItemProvider::QueryInterface(GUID const&, void**)
@@ -5731,9 +5731,9 @@ unsigned long HWNDElementProvider::Release(void)
 	return 0;
 }
 
-ProviderProxyCall HWNDElementProvider::GetProxyCreator(void)
+PfnCreateProxy HWNDElementProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long HWNDElementProvider::ElementProviderFromPoint(double, double, IRawElementProviderFragment**)
@@ -6169,23 +6169,8 @@ void Proxy::OnInvoke(unsigned int, void*)
 {
 }
 
-ProviderProxy::ProviderProxy(ProviderProxy const&)
-{
-}
-
-ProviderProxy& ProviderProxy::operator=(ProviderProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-ProviderProxy::ProviderProxy(void)
-{
-}
-
-void ProviderProxy::Init(Element*)
-{
-}
+void ProviderProxy::Init(Element* pe) STUB_VOID;
+ProviderProxy::ProviderProxy() STUB_VOID;
 
 IProvider::IProvider(IProvider const&)
 {
@@ -6358,9 +6343,9 @@ unsigned long InvokeProvider::AddRef(void)
 	return 0;
 }
 
-ProviderProxyCall InvokeProvider::GetProxyCreator(void)
+PfnCreateProxy InvokeProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long InvokeProvider::Invoke(void)
@@ -7481,9 +7466,9 @@ void PatternProvider<X, Y, i>::Init(ElementProvider*)
 }
 
 template <class X, class Y, int i>
-ProviderProxyCall PatternProvider<X, Y, i>::GetProxyCreator(void)
+PfnCreateProxy PatternProvider<X, Y, i>::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 template <class X, class Y, int i>
@@ -7751,9 +7736,9 @@ unsigned long RangeValueProvider::AddRef(void)
 	return 0;
 }
 
-ProviderProxyCall RangeValueProvider::GetProxyCreator(void)
+PfnCreateProxy RangeValueProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long RangeValueProvider::QueryInterface(GUID const&, void**)
@@ -8060,9 +8045,9 @@ unsigned long ScrollProvider::AddRef(void)
 	return 0;
 }
 
-ProviderProxyCall ScrollProvider::GetProxyCreator(void)
+PfnCreateProxy ScrollProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long ScrollProvider::QueryInterface(_GUID const&, void**)
@@ -8450,9 +8435,9 @@ unsigned long ScrollItemProvider::AddRef(void)
 	return 0;
 }
 
-ProviderProxyCall ScrollItemProvider::GetProxyCreator(void)
+PfnCreateProxy ScrollItemProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long ScrollItemProvider::QueryInterface(_GUID const&, void**)
@@ -8588,9 +8573,9 @@ unsigned long SelectionProvider::AddRef(void)
 	return 0;
 }
 
-ProviderProxyCall SelectionProvider::GetProxyCreator(void)
+PfnCreateProxy SelectionProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long SelectionProvider::GetSelection(SAFEARRAY**)
@@ -8669,9 +8654,9 @@ long SelectionItemProvider::AddToSelection(void)
 	return 0;
 }
 
-ProviderProxyCall SelectionItemProvider::GetProxyCreator(void)
+PfnCreateProxy SelectionItemProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long SelectionItemProvider::QueryInterface(GUID const&, void**)
@@ -9042,9 +9027,9 @@ long TableProvider::GetColumnHeaders(SAFEARRAY**)
 	return 0;
 }
 
-ProviderProxyCall TableProvider::GetProxyCreator(void)
+PfnCreateProxy TableProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long TableProvider::GetRowHeaders(SAFEARRAY**)
@@ -9118,9 +9103,9 @@ long TableItemProvider::GetColumnHeaderItems(SAFEARRAY**)
 	return 0;
 }
 
-ProviderProxyCall TableItemProvider::GetProxyCreator(void)
+PfnCreateProxy TableItemProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long TableItemProvider::GetRowHeaderItems(SAFEARRAY**)
@@ -9494,9 +9479,9 @@ unsigned long ToggleProvider::AddRef(void)
 	return 0;
 }
 
-ProviderProxyCall ToggleProvider::GetProxyCreator(void)
+PfnCreateProxy ToggleProvider::GetProxyCreator(void)
 {
-	return ProviderProxyCall();
+	return PfnCreateProxy();
 }
 
 long ToggleProvider::QueryInterface(GUID const&, void**)
@@ -9705,7 +9690,7 @@ HRESULT WINAPI Value::StrDupW(const WCHAR* pszIn, WCHAR** pszOut) { return {}; }
 
 //~ Begin DirectUI::ValueProvider Class
 ValueProvider::ValueProvider() STUB_VOID;
-ProviderProxyCall ValueProvider::GetProxyCreator() STUB_ZERO;
+PfnCreateProxy ValueProvider::GetProxyCreator() STUB_ZERO;
 HRESULT ValueProvider::QueryInterface(REFIID riid, void** ppvObject) STUB_ZERO;
 ULONG ValueProvider::AddRef() STUB_ZERO;
 ULONG ValueProvider::Release() STUB_ZERO;
@@ -10193,255 +10178,53 @@ XProvider::~XProvider() STUB_VOID;
 Element* XProvider::GetRoot() STUB_ZERO;
 void XProvider::SetHandleEnterKey(bool fHandle) STUB_VOID;
 
-ElementProvider::ElementProvider()
-{
-}
+ElementProvider::ElementProvider() STUB_VOID;
+ElementProvider::~ElementProvider() STUB_VOID;
+PfnCreateProxy ElementProvider::GetProxyCreator() STUB_ZERO;
+const Element* ElementProvider::GetElementKey() STUB_ZERO;
+const volatile Element* ElementProvider::GetElement() STUB_ZERO;
+void ElementProvider::TossPatternProvider(const Schema::Pattern pattern) STUB_VOID;
+void ElementProvider::TossElement() STUB_VOID;
+HRESULT ElementProvider::Create(Element* pe, InvokeHelper* pih, ElementProvider** ppprv) STUB_ZERO;
+HRESULT ElementProvider::QueryInterface(REFIID riid, void** ppvObject) STUB_ZERO;
+ULONG ElementProvider::AddRef() STUB_ZERO;
+ULONG ElementProvider::Release() STUB_ZERO;
+HRESULT ElementProvider::get_ProviderOptions(ProviderOptions* pRetVal) STUB_ZERO;
+HRESULT ElementProvider::GetPatternProvider(PATTERNID id, IUnknown** ppunk) STUB_ZERO;
+HRESULT ElementProvider::GetPropertyValue(PROPERTYID propertyID, VARIANT* pvar) STUB_ZERO;
+HRESULT ElementProvider::get_HostRawElementProvider(IRawElementProviderSimple** ppprv) STUB_ZERO;
+HRESULT ElementProvider::Navigate(NavigateDirection direction, IRawElementProviderFragment** ppprv) STUB_ZERO;
+HRESULT ElementProvider::GetRuntimeId(SAFEARRAY** pparray) STUB_ZERO;
+HRESULT ElementProvider::get_BoundingRectangle(UiaRect* prect) STUB_ZERO;
+HRESULT ElementProvider::GetEmbeddedFragmentRoots(SAFEARRAY** pRetVal) STUB_ZERO;
+HRESULT ElementProvider::SetFocus() STUB_ZERO;
+HRESULT ElementProvider::get_FragmentRoot(IRawElementProviderFragmentRoot** ppprv) STUB_ZERO;
+HRESULT ElementProvider::AdviseEventAdded(EVENTID id, SAFEARRAY* propertyIds) STUB_ZERO;
+HRESULT ElementProvider::AdviseEventRemoved(EVENTID id, SAFEARRAY* propertyIds) STUB_ZERO;
+HRESULT ElementProvider::DoInvokeArgs(MethodId methodId, PfnCreateProxy pfnCreate, va_list args) STUB_ZERO;
+HRESULT ElementProvider::Init(Element* pe, InvokeHelper* pih) STUB_ZERO;
+HRESULT ElementProvider::DoInvoke(MethodId methodId, ...) STUB_ZERO;
 
-ElementProvider::~ElementProvider()
-{
-}
-
-long WINAPI ElementProvider::Create(Element*, class InvokeHelper*, ElementProvider** out)
-{
-	return 0;
-}
-
-long ElementProvider::DoInvokeArgs(int, ProviderProxyCall, char*)
-{
-	return 0;
-}
-
-const Element* ElementProvider::GetElementKey()
-{
-	return NULL;
-}
-
-void ElementProvider::TossElement()
-{
-}
-
-void ElementProvider::TossPatternProvider(Schema::Pattern)
-{
-}
-
-
-//IUnknown
-unsigned long WINAPI ElementProvider::AddRef()
-{
-	return 0;
-}
-
-unsigned long WINAPI ElementProvider::Release()
-{
-	return 0;
-}
-
-long WINAPI ElementProvider::QueryInterface(const GUID&, void**)
-{
-	return 0;
-}
-
-//IRawElementProviderSimple
-/* [propget] */
-HRESULT STDMETHODCALLTYPE ElementProvider::get_ProviderOptions(
-	/* [retval][out] */ __RPC__out enum ProviderOptions* pRetVal)
-{
-	return 0;
-}
-
-HRESULT STDMETHODCALLTYPE ElementProvider::GetPatternProvider(
-	/* [in] */ PATTERNID patternId,
-			   /* [retval][out] */ __RPC__deref_out_opt IUnknown** pRetVal)
-{
-	return 0;
-}
-
-HRESULT STDMETHODCALLTYPE ElementProvider::GetPropertyValue(
-	/* [in] */ PROPERTYID propertyId,
-			   /* [retval][out] */ __RPC__out VARIANT* pRetVal)
-{
-	return 0;
-}
-
-/* [propget] */
-HRESULT STDMETHODCALLTYPE ElementProvider::get_HostRawElementProvider(
-	/* [retval][out] */ __RPC__deref_out_opt IRawElementProviderSimple** pRetVal)
-{
-	return 0;
-}
-
-//IRawElementProviderFragment
-HRESULT STDMETHODCALLTYPE ElementProvider::Navigate(
-	/* [in] */ enum NavigateDirection direction,
-			   /* [retval][out] */ __RPC__deref_out_opt IRawElementProviderFragment** pRetVal)
-{
-	return 0;
-}
-
-HRESULT STDMETHODCALLTYPE ElementProvider::GetRuntimeId(
-	/* [retval][out] */ __RPC__deref_out_opt SAFEARRAY* * pRetVal)
-{
-	return 0;
-}
-
-HRESULT STDMETHODCALLTYPE ElementProvider::get_BoundingRectangle(
-	/* [retval][out] */ __RPC__out UiaRect* pRetVal)
-{
-	return 0;
-}
-
-HRESULT STDMETHODCALLTYPE ElementProvider::GetEmbeddedFragmentRoots(
-	/* [retval][out] */ __RPC__deref_out_opt SAFEARRAY* * pRetVal)
-{
-	return 0;
-}
-
-HRESULT STDMETHODCALLTYPE ElementProvider::SetFocus(void)
-{
-	return 0;
-}
-
-/* [propget] */
-HRESULT STDMETHODCALLTYPE ElementProvider::get_FragmentRoot(
-	/* [retval][out] */ __RPC__deref_out_opt IRawElementProviderFragmentRoot** pRetVal)
-{
-	return 0;
-}
-
-//IRawElementProviderAdviseEvents
-HRESULT STDMETHODCALLTYPE ElementProvider::AdviseEventAdded(
-	/* [in] */ EVENTID eventId,
-			   /* [in] */ __RPC__in SAFEARRAY* propertyIDs)
-{
-	return 0;
-}
-
-HRESULT STDMETHODCALLTYPE ElementProvider::AdviseEventRemoved(
-	/* [in] */ EVENTID eventId,
-			   /* [in] */ __RPC__in SAFEARRAY* propertyIDs)
-{
-	return 0;
-}
-
-//1 此函数似乎声明不正确
-ProviderProxyCall ElementProvider::GetProxyCreator()
-{
-	return NULL;
-}
-
-//2
-volatile const Element* ElementProvider::GetElement()
-{
-	return NULL;
-}
-
-long ElementProvider::Init(Element*, InvokeHelper*)
-{
-	return 0;
-}
-
-long ElementProvider::DoInvoke(int, ...)
-{
-	return 0;
-}
-
-ElementProxy::ElementProxy(ElementProxy const&)
-{
-}
-
-ElementProxy::ElementProxy(void)
-{
-}
-
-ElementProxy& ElementProxy::operator=(ElementProxy const&)
-{
-	return *this;
-}
-
-ElementProxy* __stdcall ElementProxy::Create(Element*)
-{
-	return NULL;
-}
-
-//1
-long ElementProxy::DoMethod(int, char*)
-{
-	return 0;
-}
-
-long ElementProxy::GetAutomationId(VARIANT*)
-{
-	return 0;
-}
-
-long ElementProxy::GetBoundingRect(struct UiaRect*)
-{
-	return 0;
-}
-
-long ElementProxy::GetContent(VARIANT*, IAccessible*)
-{
-	return 0;
-}
-
-void ElementProxy::GetControlType(VARIANT*, IAccessible*)
-{
-}
-
-long ElementProxy::GetFragmentRoot(IRawElementProviderFragmentRoot* *)
-{
-	return 0;
-}
-
-long ElementProxy::GetHwnd(HWND*)
-{
-	return 0;
-}
-
-long ElementProxy::GetLabel(VARIANT*)
-{
-	return 0;
-}
-
-long ElementProxy::GetProperty(VARIANT*, int)
-{
-	return 0;
-}
-
-long ElementProxy::GetProviderOptions(ProviderOptions*)
-{
-	return 0;
-}
-
-long ElementProxy::GetRuntimeId(SAFEARRAY* *)
-{
-	return 0;
-}
-
-long ElementProxy::IsPatternSupported(Schema::Pattern, bool*)
-{
-	return 0;
-}
-
-long ElementProxy::Navigate(NavigateDirection, IRawElementProviderFragment**)
-{
-	return 0;
-}
-
-long ElementProxy::SetString(VARIANT*, UCString (Element::*)(Value* *))
-{
-	return 0;
-}
-
-int ElementProxy::_UsesUIAProxies(void)
-{
-	return 0;
-}
-
-//2
-void ElementProxy::Init(Element*)
-{
-}
+ElementProxy* ElementProxy::Create(Element* pe) STUB_ZERO;
+HRESULT ElementProxy::DoMethod(MethodId methodId, va_list args) STUB_ZERO;
+ElementProxy::ElementProxy() STUB_VOID;
+void ElementProxy::Init(Element* pe) STUB_VOID;
+HRESULT ElementProxy::Navigate(NavigateDirection direction, IRawElementProviderFragment** ppprv) STUB_ZERO;
+HRESULT ElementProxy::GetBoundingRect(UiaRect* prect) STUB_ZERO;
+HRESULT ElementProxy::GetProperty(VARIANT* pvar, PROPERTYID propertyId) STUB_ZERO;
+HRESULT ElementProxy::GetRuntimeId(SAFEARRAY** ppArray) STUB_ZERO;
+HRESULT ElementProxy::SetString(VARIANT* pvar, PfnStringVal pfn) STUB_ZERO;
+HRESULT ElementProxy::GetFragmentRoot(IRawElementProviderFragmentRoot** ppprv) STUB_ZERO;
+HRESULT ElementProxy::IsPatternSupported(Schema::Pattern pattern, bool* pf) STUB_ZERO;
+HRESULT ElementProxy::GetLabel(VARIANT* pvar) STUB_ZERO;
+HRESULT ElementProxy::GetContent(VARIANT* pvar, IAccessible* pAccessible) STUB_ZERO;
+HRESULT ElementProxy::GetProviderOptions(ProviderOptions* ppo) STUB_ZERO;
+HRESULT ElementProxy::GetHwnd(HWND* phwnd) STUB_ZERO;
+HRESULT ElementProxy::GetAutomationId(VARIANT* pvar) STUB_ZERO;
+void ElementProxy::GetControlType(VARIANT* pvar, IAccessible* pAccessible) STUB_VOID;
+BOOL ElementProxy::_UsesUIAProxies() STUB_ZERO;
+bool ElementProxy::_IsSemanticZoomControl(int id) STUB_ZERO;
+bool ElementProxy::_IsWindowHostUsingDoNotStealFocusFlag() STUB_ZERO;
 
 ElementProviderManager& ElementProviderManager::operator=(class DirectUI::ElementProviderManager const&)
 {

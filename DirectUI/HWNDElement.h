@@ -135,7 +135,7 @@ namespace DirectUI
 		virtual long __stdcall QueryInterface(struct _GUID const &, void * *);
 		virtual unsigned long __stdcall Release(void);
 
-		virtual ProviderProxyCall GetProxyCreator(void);
+		virtual PfnCreateProxy GetProxyCreator(void);
 
 		//IRawElementProviderFragmentRoot
 		//1

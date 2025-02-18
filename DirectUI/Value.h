@@ -168,7 +168,7 @@ namespace DirectUI
 	public:
 		ValueProvider();
 
-		ProviderProxyCall GetProxyCreator() override;
+		PfnCreateProxy GetProxyCreator() override;
 
 		//~ Begin IUnknown Interface
 		STDMETHODIMP QueryInterface(REFIID riid, void** ppvObject) override;

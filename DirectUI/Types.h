@@ -53,7 +53,8 @@ namespace DirectUI
 	// static_assert(std::is_same_v<wchar_t, unsigned short>, "Please enable \"Treat WChar_t As Built in Type\" in the project settings");
 
 
-	typedef class ProviderProxy* (CALLBACK *ProviderProxyCall)(class Element*);
+	typedef class ProviderProxy* (CALLBACK *PfnCreateProxy)(class Element*);
+	typedef int MethodId;
 
 
 	struct ThemeChangedEvent

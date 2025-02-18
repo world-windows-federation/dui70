@@ -600,38 +600,113 @@ namespace DirectUI
 		friend class __Element_Check;
 	};
 
-	class UILIB_API ElementProxy : public IProxy
+	typedef const WCHAR* (Element::*PfnStringVal)(Value**);
+
+	class UILIB_API DECLSPEC_NOVTABLE ElementProxy : public ProviderProxy
 	{
 	public:
-		ElementProxy(ElementProxy const &);
-		ElementProxy();
-		ElementProxy & operator=(ElementProxy const &);
+		static ElementProxy* Create(Element* pe);
 
-		static ElementProxy * __stdcall Create(Element *);
-		//1
-		virtual long DoMethod(int, char *);
+		HRESULT DoMethod(MethodId methodId, va_list args) override;
+
+		ElementProxy(const ElementProxy&) = default;
+
 	protected:
-		long GetAutomationId(VARIANT *);
-		long GetBoundingRect(UiaRect *);
-		long GetContent(VARIANT *, IAccessible *);
-		void GetControlType(VARIANT *, IAccessible *);
-		long GetFragmentRoot(IRawElementProviderFragmentRoot * *);
-		long GetHwnd(HWND *);
-		long GetLabel(VARIANT *);
-		long GetProperty(VARIANT *, int);
-		long GetProviderOptions(ProviderOptions *);
-		long GetRuntimeId(SAFEARRAY * *);
-		long IsPatternSupported(Schema::Pattern, bool *);
-		long Navigate(NavigateDirection, IRawElementProviderFragment**);
-		long SetString(VARIANT *, UCString (Element::*)(Value * *));
-		int _UsesUIAProxies();
+		ElementProxy();
 
-		//2
-		virtual void Init(Element *);
+		void Init(Element* pe) override;
 
+		HRESULT Navigate(NavigateDirection direction, IRawElementProviderFragment** ppprv);
+		HRESULT GetBoundingRect(UiaRect* prect);
+		HRESULT GetProperty(VARIANT* pvar, PROPERTYID propertyId);
+		HRESULT GetRuntimeId(SAFEARRAY** ppArray);
+		HRESULT SetString(VARIANT* pvar, PfnStringVal pfn);
+		HRESULT GetFragmentRoot(IRawElementProviderFragmentRoot** ppprv);
+		HRESULT IsPatternSupported(Schema::Pattern pattern, bool* pf);
+		HRESULT GetLabel(VARIANT* pvar);
+		HRESULT GetContent(VARIANT* pvar, IAccessible* pAccessible);
+		HRESULT GetProviderOptions(ProviderOptions* ppo);
+		HRESULT GetHwnd(HWND* phwnd);
+		HRESULT GetAutomationId(VARIANT* pvar);
+		void GetControlType(VARIANT* pvar, IAccessible* pAccessible);
+		BOOL _UsesUIAProxies();
+
+	private:
+		bool _IsSemanticZoomControl(int id);
+		bool _IsWindowHostUsingDoNotStealFocusFlag();
 	};
 
-	//此类的声明很可能错误
+	enum MethodIdTag
+	{
+		MethodId_Element_GetHWND = 0,
+		MethodId_Element_ElementFromPoint = 1,
+		MethodId_Element_GetFocus = 2,
+		MethodId_Element_AdviseEventAdded = 3,
+		MethodId_Element_AdviseEventRemoved = 4,
+		MethodId_Element_SetFocus = 5,
+		MethodId_Element_GetRoot = 6,
+		MethodId_Element_Navigate = 7,
+		MethodId_Element_GetBoundingRect = 8,
+		MethodId_Element_GetProperty = 9,
+		MethodId_Element_IsPatternSupported = 10,
+		MethodId_Element_GetRuntimeId = 11,
+		MethodId_Element_GetProviderOptions = 12,
+		MethodId_Drag_GetIsGrabbed = 13,
+		MethodId_Drag_GetDropEffect = 14,
+		MethodId_Drag_GetDropEffects = 15,
+		MethodId_Drag_GetGrabbedItems = 16,
+		MethodId_ExpandCollapse_Expand = 17,
+		MethodId_ExpandCollapse_Collapse = 18,
+		MethodId_ExpandCollapse_GetExpandCollapseState = 19,
+		MethodId_Grid_GetItem = 20,
+		MethodId_Grid_GetRowCount = 21,
+		MethodId_Grid_GetColumnCount = 22,
+		MethodId_GridItem_GetRow = 23,
+		MethodId_GridItem_GetColumn = 24,
+		MethodId_GridItem_GetContainingGrid = 25,
+		MethodId_Invoke_Invoke = 26,
+		MethodId_RangeValue_SetValue = 27,
+		MethodId_RangeValue_GetValue = 28,
+		MethodId_RangeValue_GetIsReadOnly = 29,
+		MethodId_RangeValue_GetMaximum = 30,
+		MethodId_RangeValue_GetMinimum = 31,
+		MethodId_RangeValue_GetLargeChange = 32,
+		MethodId_RangeValue_GetSmallChange = 33,
+		MethodId_Scroll_Scroll = 34,
+		MethodId_Scroll_SetScrollPercent = 35,
+		MethodId_Scroll_GetHorizontalScrollPercent = 36,
+		MethodId_Scroll_GetVerticalScrollPercent = 37,
+		MethodId_Scroll_GetHorizontalViewSize = 38,
+		MethodId_Scroll_GetVerticalViewSize = 39,
+		MethodId_Scroll_GetHorizontallyScrollable = 40,
+		MethodId_Scroll_GetVerticallyScrollable = 41,
+		MethodId_ScrollItem_ScrollIntoView = 42,
+		MethodId_SelectionItem_Select = 43,
+		MethodId_SelectionItem_GetIsSelected = 44,
+		MethodId_SelectionItem_GetSelectionContainer = 45,
+		MethodId_SelectionItem_AddToSelection = 46,
+		MethodId_SelectionItem_RemoveFromSelection = 47,
+		MethodId_Selection_GetIsSelectionRequired = 48,
+		MethodId_Selection_GetSelection = 49,
+		MethodId_Table_GetColumnHeaders = 50,
+		MethodId_TableItem_GetColumnHeaders = 51,
+		MethodId_Toggle_Toggle = 52,
+		MethodId_Toggle_GetToggleState = 53,
+		MethodId_Value_SetValue = 54,
+		MethodId_Value_GetValue = 55,
+		MethodId_Value_GetIsReadOnly = 56,
+		MethodId_Window_SetVisualState = 57,
+		MethodId_Window_Close = 58,
+		MethodId_Window_WaitForInputIdle = 59,
+		MethodId_Window_GetCanMaximize = 60,
+		MethodId_Window_GetCanMinimize = 61,
+		MethodId_Window_GetIsModal = 62,
+		MethodId_Window_GetWindowVisualState = 63,
+		MethodId_Window_GetWindowInteractionState = 64,
+		MethodId_Window_GetIsTopmost = 65,
+		MethodId_Count = 66,
+	};
+
 	class UILIB_API ElementProvider
 		: public RefcountBase
 		, public IRawElementProviderSimple
@@ -641,72 +716,59 @@ namespace DirectUI
 	public:
 		ElementProvider();
 		ElementProvider(const ElementProvider&) = delete;
-		virtual ~ElementProvider();
 
-		static long WINAPI Create(Element*, InvokeHelper*, ElementProvider**out);
+		~ElementProvider() override;
 
-		long DoInvokeArgs(int, ProviderProxyCall, char*);
+		virtual PfnCreateProxy GetProxyCreator();
 		const Element* GetElementKey();
-		void TossElement();
-		void TossPatternProvider(Schema::Pattern);
+		virtual const volatile Element* GetElement();
+		void TossPatternProvider(Schema::Pattern pattern);
+		virtual void TossElement();
 
+		static HRESULT Create(Element* pe, InvokeHelper* pih, ElementProvider** ppprv);
 
-		//IUnknown
-		virtual ULONG WINAPI AddRef();
-		virtual ULONG WINAPI Release();
-		virtual long WINAPI QueryInterface(const GUID&, void**);
+		//~ Begin IUnknown Interface
+		STDMETHODIMP QueryInterface(REFIID riid, void** ppvObject) override;
+		// ReSharper disable once CppHidingFunction
+		STDMETHODIMP_(ULONG) AddRef() override;
+		// ReSharper disable once CppHidingFunction
+		STDMETHODIMP_(ULONG) Release() override;
+		//~ End IUnknown Interface
 
-		//IRawElementProviderSimple
-		virtual /* [propget] */ HRESULT STDMETHODCALLTYPE get_ProviderOptions(
-			/* [retval][out] */ __RPC__out ProviderOptions *pRetVal);
+		//~ Begin IRawElementProviderSimple Interface
+		STDMETHODIMP get_ProviderOptions(ProviderOptions* pRetVal) override;
+		STDMETHODIMP GetPatternProvider(PATTERNID id, IUnknown** ppunk) override;
+		STDMETHODIMP GetPropertyValue(PROPERTYID propertyID, VARIANT* pvar) override;
+		STDMETHODIMP get_HostRawElementProvider(IRawElementProviderSimple** ppprv) override;
+		//~ End IRawElementProviderSimple Interface
 
-		virtual HRESULT STDMETHODCALLTYPE GetPatternProvider(
-			/* [in] */ PATTERNID patternId,
-			/* [retval][out] */ __RPC__deref_out_opt IUnknown **pRetVal);
+		//~ Begin IRawElementProviderFragment Interface
+		STDMETHODIMP Navigate(NavigateDirection direction, IRawElementProviderFragment** ppprv) override;
+		STDMETHODIMP GetRuntimeId(SAFEARRAY** pparray) override;
+		STDMETHODIMP get_BoundingRectangle(UiaRect* prect) override;
+		STDMETHODIMP GetEmbeddedFragmentRoots(SAFEARRAY** pRetVal) override;
+		STDMETHODIMP SetFocus() override;
+		STDMETHODIMP get_FragmentRoot(IRawElementProviderFragmentRoot** ppprv) override;
+		//~ End IRawElementProviderFragment Interface
 
-		virtual HRESULT STDMETHODCALLTYPE GetPropertyValue(
-			/* [in] */ PROPERTYID propertyId,
-			/* [retval][out] */ __RPC__out VARIANT *pRetVal);
+		//~ Begin IRawElementProviderAdviseEvents Interface
+		STDMETHODIMP AdviseEventAdded(EVENTID id, SAFEARRAY* propertyIds) override;
+		STDMETHODIMP AdviseEventRemoved(EVENTID id, SAFEARRAY* propertyIds) override;
+		//~ End IRawElementProviderAdviseEvents Interface
 
-		virtual /* [propget] */ HRESULT STDMETHODCALLTYPE get_HostRawElementProvider(
-			/* [retval][out] */ __RPC__deref_out_opt IRawElementProviderSimple **pRetVal);
-
-		//IRawElementProviderFragment
-		virtual HRESULT STDMETHODCALLTYPE Navigate(
-			/* [in] */ NavigateDirection direction,
-			           /* [retval][out] */ __RPC__deref_out_opt IRawElementProviderFragment **pRetVal);
-
-		virtual HRESULT STDMETHODCALLTYPE GetRuntimeId(
-			/* [retval][out] */ __RPC__deref_out_opt SAFEARRAY * *pRetVal);
-
-		virtual HRESULT STDMETHODCALLTYPE get_BoundingRectangle(
-			/* [retval][out] */ __RPC__out UiaRect *pRetVal);
-
-		virtual HRESULT STDMETHODCALLTYPE GetEmbeddedFragmentRoots(
-			/* [retval][out] */ __RPC__deref_out_opt SAFEARRAY * *pRetVal);
-
-		virtual HRESULT STDMETHODCALLTYPE SetFocus();
-
-		virtual /* [propget] */ HRESULT STDMETHODCALLTYPE get_FragmentRoot(
-			/* [retval][out] */ __RPC__deref_out_opt IRawElementProviderFragmentRoot **pRetVal);
-
-		//IRawElementProviderAdviseEvents
-		virtual HRESULT STDMETHODCALLTYPE AdviseEventAdded(
-			/* [in] */ EVENTID eventId,
-			/* [in] */ __RPC__in SAFEARRAY * propertyIDs);
-
-		virtual HRESULT STDMETHODCALLTYPE AdviseEventRemoved(
-			/* [in] */ EVENTID eventId,
-			/* [in] */ __RPC__in SAFEARRAY * propertyIDs);
-
-		//1 此函数似乎声明不正确
-		virtual ProviderProxyCall GetProxyCreator();
-		//2
-		virtual volatile const Element* GetElement();
+		HRESULT DoInvokeArgs(MethodId methodId, PfnCreateProxy pfnCreate, va_list args);
 
 	protected:
-		//3
-		virtual long Init(Element*, InvokeHelper*);
-		long DoInvoke(int, ...);
+		virtual HRESULT Init(Element* pe, InvokeHelper* pih);
+		HRESULT DoInvoke(MethodId methodId, ...);
+
+		Element* _pe;
+		InvokeHelper* _pih;
+		IUnknown* _patternProviders[21];
+		RTL_CRITICAL_SECTION _cs;
+		bool _fDeleteCS;
+
+	private:
+		Element* _peKey;
 	};
 }

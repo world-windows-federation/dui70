@@ -13,7 +13,7 @@ namespace DirectUI
 		virtual ~ExpandCollapseProvider(void);;
 
 
-		virtual ProviderProxyCall GetProxyCreator(void);
+		virtual PfnCreateProxy GetProxyCreator(void);
 
 
 		//IUnknown

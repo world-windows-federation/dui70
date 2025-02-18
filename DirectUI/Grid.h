@@ -12,7 +12,7 @@ namespace DirectUI
 
 		virtual unsigned long __stdcall AddRef(void);
 		virtual long __stdcall GetItem(int, int, IRawElementProviderSimple * *);
-		virtual ProviderProxyCall GetProxyCreator(void);
+		virtual PfnCreateProxy GetProxyCreator(void);
 		virtual long __stdcall QueryInterface(GUID const &, void * *);
 		virtual unsigned long __stdcall Release(void);
 		virtual long __stdcall get_ColumnCount(int *);

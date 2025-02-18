@@ -11,7 +11,7 @@ namespace DirectUI
 		virtual ~ScrollItemProvider(void);
 
 		virtual unsigned long __stdcall AddRef(void);
-		virtual ProviderProxyCall GetProxyCreator(void);
+		virtual PfnCreateProxy GetProxyCreator(void);
 		virtual long __stdcall QueryInterface(struct _GUID const &, void * *);
 		virtual unsigned long __stdcall Release(void);
 		virtual long __stdcall ScrollIntoView(void);

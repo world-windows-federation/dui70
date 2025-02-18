@@ -9619,8 +9619,8 @@ bool Value::GetBool() STUB_ZERO
 Element* Value::GetElement() STUB_ZERO
 DynamicArray<Element*>* Value::GetElementList() STUB_ZERO
 const WCHAR* Value::GetString() STUB_ZERO
-HRESULT Value::GetEncodedString(WCHAR* pszBuf, ULONG64 cchBuf) STUB_ZERO
-ULONG64 Value::GetEncodedStringLength() STUB_ZERO
+HRESULT Value::GetEncodedString(WCHAR* pszBuf, size_t cchBuf) STUB_ZERO
+size_t Value::GetEncodedStringLength() STUB_ZERO
 const POINT* Value::GetPoint() STUB_ZERO
 const SIZE* Value::GetSize() STUB_ZERO
 const RECT* Value::GetRect() STUB_ZERO

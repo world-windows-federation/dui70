@@ -151,8 +151,8 @@ namespace DirectUI
 		DynamicArray<Element*>* GetElementList();
 
 		const WCHAR* GetString();
-		HRESULT GetEncodedString(WCHAR* pszBuf, ULONG64 cchBuf);
-		ULONG64 GetEncodedStringLength();
+		HRESULT GetEncodedString(WCHAR* pszBuf, size_t cchBuf);
+		size_t GetEncodedStringLength();
 
 		const POINT* GetPoint();
 		const SIZE* GetSize();

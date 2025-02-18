@@ -403,7 +403,7 @@ namespace DirectUI
 
 		int GetIndexOf(T tItem) const
 		{
-			T* pBuffer = Buffer();
+			const T* pBuffer = Buffer();
 			for (UINT i = 0; i < _uSize; i++)
 			{
 				if (pBuffer[i] == tItem)

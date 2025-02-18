@@ -24,9 +24,87 @@ DEFINE_ENUM_FLAG_OPERATORS(DynamicScaleValue);
 
 namespace DirectUI
 {
+	typedef DynamicArray<Value*> ValueList;
+
+	class Layout;
+
+	struct EncodedString
+	{
+		unsigned long long cbBufferSize;
+		wchar_t* pszEncoded;
+	};
+
 	struct ScaledSIZE : SIZE
 	{
 		DynamicScaleValue dynamicScaleValue;
+	};
+
+	struct Fill
+	{
+		BYTE dType;
+
+		union
+		{
+			struct
+			{
+				COLORREF cr;
+				COLORREF cr2;
+				COLORREF cr3;
+			} ref;
+
+			struct
+			{
+				UINT uType;
+				UINT uState;
+			} fillDFC;
+
+			struct
+			{
+				WCHAR* pszClassName;
+				int iPartId;
+				int iStateId;
+			} fillDTB;
+		};
+	};
+
+	struct Cursor
+	{
+		HCURSOR hCursor;
+	};
+
+	struct Graphic
+	{
+		HANDLE hImage;
+		HANDLE hAltImage;
+		USHORT cx;
+		USHORT cy;
+
+		struct
+		{
+			BYTE dImgType : 3;
+			BYTE dMode : 4;
+			bool bFlip : 1;
+			bool bRTLGraphic : 1;
+			bool bFreehImage : 1;
+			bool bSharedResource : 1;
+
+			union
+			{
+				BYTE dAlpha;
+
+				struct
+				{
+					BYTE r : 8;
+					BYTE g : 8;
+					BYTE b : 8;
+				} rgbTrans;
+			};
+		} BlendMode;
+
+		HINSTANCE hResLoad;
+		const WCHAR* lpszName;
+		ScaledSIZE scaledSize;
+		float fScaleFactor;
 	};
 
 	struct ScaledInt
@@ -77,93 +155,185 @@ namespace DirectUI
 
 	class UILIB_API Value
 	{
+		int _dType : 6;
+		int _fWeakRef : 1;
+		int _cRef : 25;
+
+		static constexpr int c_RefCountBitOffset = 7;
+		static constexpr long c_SingleRefCount = 1 << c_RefCountBitOffset;
+		static constexpr long c_RefCountMask = ~(c_SingleRefCount - 1);
+
+		union
+		{
+			int _intVal;
+			bool _boolVal;
+			Element* _peVal;
+			DynamicArray<Element*>* _peListVal;
+			EncodedString _encodedStringVal;
+			WCHAR* _pszVal;
+			POINT _ptVal;
+			SIZE _sizeVal;
+			RECT _rectVal;
+			Fill _fillVal;
+			Layout* _plVal;
+			Graphic* _pGraphicVal;
+			StyleSheet* _ppsVal;
+			Expression* _pexVal;
+			ATOM _atomVal;
+			Cursor _cursorVal;
+			ValueList* _pvListVal;
+			float _flVal;
+			DynamicArray<double>* _pdblListVal;
+			ScaledInt _scaledIntVal;
+			ScaledFloat _scaledFloatVal;
+			ScaledRECT _scaledRectVal;
+			ScaledSIZE _scaledSizeVal;
+			ScaledPOINT _scaledPointVal;
+		};
+
+		void _ZeroRelease();
+		static HRESULT StrDupW(const WCHAR* pszIn, WCHAR** pszOut);
+
 	public:
-		Value& operator=(const Value&);
-
-		void AddRef();
-
-		static Value* WINAPI CreateAtom(ATOM atom);
-		static Value* WINAPI CreateAtom(const WCHAR* pszValue);
+		static Value* WINAPI CreateInt(int dValue, DynamicScaleValue dsv);
+		static Value* WINAPI CreateFloat(float flValue, DynamicScaleValue dsv);
 		static Value* WINAPI CreateBool(bool bValue);
+		static Value* WINAPI CreateElementRef(Element* peValue);
+		static Value* WINAPI CreateElementList(DynamicArray<Element*>* peListValue);
+		static Value* WINAPI CreateString(const WCHAR* pszValue, HINSTANCE hResLoad);
+		static Value* WINAPI CreateEncodedString(const WCHAR* pszValue);
+		static Value* WINAPI CreatePoint(int x, int y, DynamicScaleValue dsv);
+		static Value* WINAPI CreateSize(int cx, int cy, DynamicScaleValue dsv);
+		static Value* WINAPI CreateRect(int left, int top, int right, int bottom, DynamicScaleValue dsv);
+
 		static Value* WINAPI CreateColor(COLORREF cr);
 		static Value* WINAPI CreateColor(COLORREF cr0, COLORREF cr1, BYTE dType);
 		static Value* WINAPI CreateColor(COLORREF cr0, COLORREF cr1, COLORREF cr2, BYTE dType);
-		static Value* WINAPI CreateCursor(HICON hValue);
-		static Value* WINAPI CreateCursor(const WCHAR* pszValue);
+
+		static Value* WINAPI CreateFill(const Fill& fill);
 		static Value* WINAPI CreateDFCFill(UINT uType, UINT uState);
 		static Value* WINAPI CreateDTBFill(const WCHAR* pszClassName, int iPartId, int iStateId);
-		static Value* WINAPI CreateElementList(DynamicArray<Element*, 0>* peListValue);
-		static Value* WINAPI CreateElementRef(Element* pe);
-		static Value* WINAPI CreateEncodedString(const WCHAR* pszValue);
-		static Value* WINAPI CreateExpression(Expression* pexValue);
-		static Value* WINAPI CreateFill(const struct Fill& Fill);
 
-		static Value* WINAPI CreateGraphic(HBITMAP hBitmap, BYTE dBlendMode, UINT dBlendValue, bool bFlip, bool bRTL, bool bPreMultiplied);
-		static Value* WINAPI CreateGraphic(HENHMETAFILE hEnhMetaFile, HENHMETAFILE hAltEnhMetaFile);
-		static Value* WINAPI CreateGraphic(HICON hIcon, bool bFlip, bool bRTL, bool bShared);
+		static Value* WINAPI CreateLayout(Layout* plValue);
+
 		static Value* WINAPI CreateGraphic(ISharedBitmap* pBitmap, BYTE dBlendMode, UINT dBlendValue);
+		static Value* WINAPI CreateGraphic(HBITMAP hBitmap, BYTE dBlendMode, UINT dBlendValue, bool bFlip, bool bRTL, bool bPremultiplied);
+		static Value* WINAPI CreateGraphic(HICON hIcon, bool bFlip, bool bRTL, bool bShared);
+		static Value* WINAPI CreateGraphic(const WCHAR* pszBMP, BYTE dBlendMode, UINT dBlendValue, USHORT cx, USHORT cy, HINSTANCE hResLoad, bool bFlip, bool bRTL);
+		static Value* WINAPI CreateGraphic(const WCHAR* pszICO, USHORT cxDesired, USHORT cyDesired, HINSTANCE hResLoad, bool bFlip, bool bRTL);
+		static Value* WINAPI CreateGraphic(HENHMETAFILE hEnhMetaFile, HENHMETAFILE hAltEnhMetaFile);
 		static Value* WINAPI CreateGraphic(const WCHAR* pszICO, ScaledSIZE szDesired, HINSTANCE hResLoad, bool bFlip, bool bRTL);
-		static Value* WINAPI CreateGraphic(const WCHAR* pszBMP, BYTE dBlendMode, UINT dBlendValue, int cx, int cy, HINSTANCE hResLoad, bool bFlip, bool bRTL);
-		static Value* WINAPI CreateGraphic(const WCHAR* pszICO, int cxDesired, int cyDesired, HINSTANCE hResLoad, bool bFlip, bool bRTL);
-
-		static Value* WINAPI CreateInt(int dValue, DynamicScaleValue dsv = DSV_None);
-		static Value* WINAPI CreateLayout(class Layout*);
-		static Value* WINAPI CreatePoint(int x, int y, DynamicScaleValue dsv = DSV_None);
-		static Value* WINAPI CreateRect(int left, int top, int right, int bottom, DynamicScaleValue dsv = DSV_None);
-		static Value* WINAPI CreateSize(int cx, int cy, DynamicScaleValue dsv = DSV_None);
-		static Value* WINAPI CreateString(const WCHAR* pszValue, HINSTANCE hInstance);
-		static Value* WINAPI CreateStyleSheet(StyleSheet* ppsValue);
-
-		bool GetBool();
-		struct Cursor* GetCursor();
-		Element* GetElement();
-		DynamicArray<Element*, 0>* GetElementList();
-		Expression* GetExpression();
-		const Fill* GetFill();
-		struct Graphic* GetGraphic();
-		void* GetImage(bool);
-		int GetInt();
-		Layout* GetLayout();
-		const POINT* GetPoint();
-		const RECT* GetRect();
-		int GetRefCount() const;
-		const SIZE* GetSize();
-		const WCHAR* GetString();
-		StyleSheet* GetStyleSheet();
-		int GetType() const;
-
-		ATOM GetAtom();
-		static Value* WINAPI GetAtomZero();
-		static Value* WINAPI GetBoolFalse();
-		static Value* WINAPI GetBoolTrue();
-		static Value* WINAPI GetColorTrans();
-		static Value* WINAPI GetCursorNull();
-		static Value* WINAPI GetElListNull();
-		static Value* WINAPI GetElementNull();
-		static Value* WINAPI GetExprNull();
-		static Value* WINAPI GetIntZero();
-		static Value* WINAPI GetLayoutNull();
-		static Value* WINAPI GetNull();
-		static Value* WINAPI GetPointZero();
-		static Value* WINAPI GetRectZero();
-		static Value* WINAPI GetSheetNull();
-		static Value* WINAPI GetSizeZero();
-		static Value* WINAPI GetStringNull();
-		static Value* WINAPI GetUnavailable();
-		static Value* WINAPI GetUnset();
-
-		bool IsEqual(Value*);
-		void Release();
-		WCHAR* ToString(WCHAR* psz, UINT c) const;
 
 	private:
-		void _ZeroRelease();
-		static HRESULT WINAPI StrDupW(const WCHAR* pszIn, WCHAR** pszOut);
+		static Value* WINAPI CreateIconGraphicHelper(HICON hIcon, bool bFlip, bool bRTL, bool bShared);
+		static HICON WINAPI ReloadIcon(Graphic* pGraphic, float fScaleFactor);
+
+	public:
+		static Value* WINAPI CreateStyleSheet(StyleSheet* ppsValue);
+		static Value* WINAPI CreateExpression(Expression* pexValue);
+
+		static Value* WINAPI CreateAtom(const WCHAR* pszValue);
+		static Value* WINAPI CreateAtom(ATOM atom);
+
+		static Value* WINAPI CreateCursor(const WCHAR* pszValue);
+		static Value* WINAPI CreateCursor(HCURSOR hValue);
+
+		static Value* WINAPI CreateValueList(ValueList* pvListValue);
+		static Value* WINAPI CreateValueList(Value* pvValue);
+
+
+		static Value* WINAPI CreateDoubleList(DynamicArray<double>* pdblListValue);
+		static Value* WINAPI CreateDoubleList(const double* rgdbl, int cdbl);
+
+		static Value* WINAPI CreateStringRP(const WCHAR* pszValue, HINSTANCE hResLoad);
+		static Value* WINAPI CreateScaledValue(float flScaleFactor, Value* pvIn);
+		static Value* WINAPI CreateElementScaledValue(Element* pe, Value* pvIn);
+
+		void AddRef();
+		void Release();
+		int GetRefCount() const;
+
+		int GetType() const;
+		void* GetImage(bool bGetRTL, float fScaleFactor);
+
+		int GetInt();
+
+		ScaledInt* GetScaledInt();
+		int GetScaledInt(float flScaleFactor);
+
+		float GetFloat();
+		bool GetBool();
+
+		Element* GetElement();
+		DynamicArray<Element*>* GetElementList();
+
+		const WCHAR* GetString();
+		HRESULT GetEncodedString(WCHAR* pszBuf, ULONG64 cchBuf);
+		ULONG64 GetEncodedStringLength();
+
+		const POINT* GetPoint();
+		const SIZE* GetSize();
+		const RECT* GetRect();
+		const Fill* GetFill();
+
+		Layout* GetLayout();
+		Graphic* GetGraphic();
+		StyleSheet* GetStyleSheet();
+		Expression* GetExpression();
+		ATOM GetAtom();
+		Cursor* GetCursor();
+		ValueList* GetValueList();
+		DynamicArray<double>* GetDoubleList();
+		WCHAR* GetStringDynamicScaling();
+
+		int GetElementScaledInt(Element* pe);
+
+		void GetScaledPoint(float flScaleFactor, POINT* ppt);
+		void GetElementScaledPoint(Element* pe, POINT* ppt);
+
+		void GetScaledSize(float flScaleFactor, SIZE* psize);
+		void GetElementScaledSize(Element* pe, SIZE* psize);
+
+		void GetScaledRect(float flScaleFactor, RECT* prc);
+		void GetElementScaledRect(Element* pe, RECT* prc);
+
+		float GetScaledFloat(float flScaleFactor);
+		float GetElementScaledFloat(Element* pe);
+
+		bool IsDynamicScaled();
+		bool IsEqual(Value* pv);
+
+		WCHAR* ToString(WCHAR* psz, UINT) const;
+		void SetLayoutPointerToNull();
+
+		static Value* WINAPI GetUnavailable();
+		static Value* WINAPI GetNull();
+		static Value* WINAPI GetUnset();
+		static Value* WINAPI GetElementNull();
+		static Value* WINAPI GetElListNull();
+		static Value* WINAPI GetBoolTrue();
+		static Value* WINAPI GetBoolFalse();
+		static Value* WINAPI GetStringNull();
+		static Value* WINAPI GetPointZero();
+		static Value* WINAPI GetSizeZero();
+		static Value* WINAPI GetRectZero();
+		static Value* WINAPI GetIntZero();
+		static Value* WINAPI GetIntMinusOne();
+		static Value* WINAPI GetFloatZero();
+		static Value* WINAPI GetFloatOne();
+		static Value* WINAPI GetLayoutNull();
+		static Value* WINAPI GetSheetNull();
+		static Value* WINAPI GetExprNull();
+		static Value* WINAPI GetAtomZero();
+		static Value* WINAPI GetCursorNull();
+		static Value* WINAPI GetColorTrans();
+		static Value* WINAPI GetDblListEmpty();
+		static Value* WINAPI GetStringRPNull();
 	};
 
-	class UILIB_API ValueProvider 
+	class UILIB_API ValueProvider
 		: public PatternProvider<ValueProvider, IValueProvider, 12>
-		, public IValueProvider
+		  , public IValueProvider
 	{
 	public:
 		ValueProvider();

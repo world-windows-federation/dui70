@@ -177,7 +177,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	CoInitializeEx(nullptr, 0);
 
 	THROW_IF_FAILED(InitProcessPriv(14, nullptr, true, true, true));
-	THROW_IF_FAILED(InitThread(0x2));
+	THROW_IF_FAILED(InitThread(TSM_IMMERSIVE));
 
 	// uncomment to update class definitions
 	// HookClassFactoryRegister();

@@ -22,10 +22,20 @@ enum DynamicScaleValue
 	DSV_Y = 0x2,
 };
 
+
 DEFINE_ENUM_FLAG_OPERATORS(DynamicScaleValue);
 
 namespace DirectUI
 {
+	// nThreadMode flags for DirectUI::InitThread
+	enum THREAD_SCALING_MODE
+	{
+		TSM_DESKTOP = 0x1,
+		TSM_IMMERSIVE = 0x2,
+		TSM_PRIMARY = 0x3,
+		TSM_DESKTOP_DYNAMIC = 0x4,
+	};
+	
 	struct ScaledSIZE : SIZE
 	{
 		DynamicScaleValue dynamicScaleValue;

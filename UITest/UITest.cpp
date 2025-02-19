@@ -59,13 +59,12 @@ struct LogListener : IElementListener
 };
 
 
+template <typename TFunctor>
 struct EventListener : IElementListener
 {
-	using handler_t = std::function<void(Element*, Event*)>;
+	TFunctor f;
 
-	handler_t f;
-
-	EventListener(const handler_t& f) : f(f)
+	EventListener(const TFunctor& f) : f(f)
 	{
 	}
 
@@ -216,6 +215,9 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	THROW_IF_FAILED(pParser->SetXMLFromResource(IDR_UIFILE1, hInstance, hInstance));
 
+	Value* pvRefDuiSheet;
+	THROW_IF_FAILED(pParser->GetSheet(L"RefDui", &pvRefDuiSheet));
+
 	DWORD dwDeferCookie;
 	HWNDElement* peHwndElement;
 	THROW_IF_FAILED(HWNDElement::Create(pHost->GetHWND(), true, 0, nullptr, &dwDeferCookie, (Element**)&peHwndElement));
@@ -225,6 +227,15 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	THROW_IF_FAILED(pParser->CreateElement(L"WizardMain", peHwndElement, nullptr, nullptr, &peWizardMain));
 	peHwndElementCleaner.release();
 	auto peWizardMainCleaner = wil::scope_exit([&] { peWizardMain->Destroy(false); });
+
+	TouchButton* peTouchButton;
+	EventListener elTouchButton([&](Element* peFrom, Event* pEvent) -> void
+	{
+		if (pEvent->uidType == TouchButton::Click)
+		{
+			MessageBoxW(pHost->GetHWND(), L"TouchButton clicked!", L"UITest", 0);
+		}
+	});
 
 	RichText* peSXWizardContentBox = (RichText*)peWizardMain->FindDescendent(StrToID(L"SXWizardContentBox"));
 	if (peSXWizardContentBox && peSXWizardContentBox->GetClassInfoW()->IsSubclassOf(RichText::GetClassInfoPtr()))
@@ -240,12 +251,33 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		Element* peParent = peSXWizardContentBox->GetParent();
 		if (peParent)
 		{
-			TouchEdit2* peTouchEdit2;
-			THROW_IF_FAILED(TouchEdit2::Create(peParent, nullptr, (DirectUI::Element**)&peTouchEdit2));
-			auto peTouchEdit2Cleaner = wil::scope_exit([&] { peTouchEdit2->Destroy(false); });
+			peParent = peParent->GetParent();
+		}
+		if (peParent)
+		{
+			{
+				TouchEdit2* peTouchEdit2;
+				THROW_IF_FAILED(TouchEdit2::Create(peParent, nullptr, (DirectUI::Element**)&peTouchEdit2));
+				auto peTouchEdit2Cleaner = wil::scope_exit([&] { peTouchEdit2->Destroy(false); });
 
-			THROW_IF_FAILED(peParent->Add(peTouchEdit2));
-			peTouchEdit2Cleaner.release();
+				THROW_IF_FAILED(peTouchEdit2->SetSheet(pvRefDuiSheet->GetStyleSheet()));
+				THROW_IF_FAILED(peTouchEdit2->SetPromptText(L"Test TouchEdit2 here"));
+
+				THROW_IF_FAILED(peParent->Add(peTouchEdit2));
+				peTouchEdit2Cleaner.release();
+			}
+
+			{
+				THROW_IF_FAILED(TouchButton::Create(peParent, nullptr, (DirectUI::Element**)&peTouchButton));
+				auto peTouchButtonCleaner = wil::scope_exit([&] { peTouchButton->Destroy(false); });
+
+				// THROW_IF_FAILED(peTouchButton->SetSheet(pvRefDuiSheet->GetStyleSheet())); // Crash on exit
+				THROW_IF_FAILED(peTouchButton->SetContentString(L"I am TouchButton, click me!"));
+				THROW_IF_FAILED(peTouchButton->AddListener(&elTouchButton));
+
+				THROW_IF_FAILED(peParent->Add(peTouchButton));
+				peTouchButtonCleaner.release();
+			}
 		}
 	}
 
@@ -260,6 +292,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	StartMessagePump();
 
+	pvRefDuiSheet->Release();
 	pHost->Destroy();
 
 	UnInitProcessPriv(nullptr);

@@ -18,18 +18,18 @@ namespace DirectUI
 	class TouchScrollViewer : public BaseScrollViewer
 	{
 	public:
-		UILIB_API static UID ManipulationStarting();
-		UILIB_API static UID ManipulationStarted();
-		UILIB_API static UID ManipulationDelta();
-		UILIB_API static UID ManipulationCompleted();
-		UILIB_API static UID SemanticChange();
-		UILIB_API static UID SnapshotTransformElement();
-		UILIB_API static UID ReleaseSnapshot();
-		UILIB_API static UID MapContentVisuals();
-		UILIB_API static UID SetContactNeeded();
-		UILIB_API static UID SetContactNotify();
-		UILIB_API static UID UpdateView();
-		UILIB_API static UID UpdateContentSize();
+		UILIB_API static UID WINAPI ManipulationStarting();
+		UILIB_API static UID WINAPI ManipulationStarted();
+		UILIB_API static UID WINAPI ManipulationDelta();
+		UILIB_API static UID WINAPI ManipulationCompleted();
+		UILIB_API static UID WINAPI SemanticChange();
+		UILIB_API static UID WINAPI SnapshotTransformElement();
+		UILIB_API static UID WINAPI ReleaseSnapshot();
+		UILIB_API static UID WINAPI MapContentVisuals();
+		UILIB_API static UID WINAPI SetContactNeeded();
+		UILIB_API static UID WINAPI SetContactNotify();
+		UILIB_API static UID WINAPI UpdateView();
+		UILIB_API static UID WINAPI UpdateContentSize();
 
 		UILIB_API static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
@@ -161,7 +161,7 @@ namespace DirectUI
 		void ProcessAnimationEvent(AnimateScrollEvent*);
 
 		UILIB_API static IClassInfo* WINAPI GetClassInfoPtr();
-		static void SetClassInfoPtr(IClassInfo* pClass);
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;
@@ -169,7 +169,7 @@ namespace DirectUI
 	public:
 		UILIB_API IClassInfo* GetClassInfoW() override;
 
-		static HRESULT Register();
+		static HRESULT WINAPI Register();
 
 		virtual HRESULT OnViewportStatusChanged(IDirectManipulationViewport*, DIRECTMANIPULATION_STATUS current, DIRECTMANIPULATION_STATUS previous);
 		virtual HRESULT OnViewportUpdated(IDirectManipulationViewport*);
@@ -389,7 +389,7 @@ namespace DirectUI
 		bool _fVirtualizedContainerInvalidationPending;
 		bool _fVirtualizeUsingElementPosition;
 
-		static UID _InvalidateVirtualizedContainersEvent();
+		static UID WINAPI _InvalidateVirtualizedContainersEvent();
 
 		bool _fIsPerformingSemanticZoom;
 		bool _fWasAsMouseBeforeSemanticZoom;

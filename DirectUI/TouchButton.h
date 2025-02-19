@@ -39,8 +39,8 @@ namespace DirectUI
 			}
 		};
 
-		UILIB_API static HRESULT Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
-		UILIB_API static HRESULT Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		UILIB_API static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		UILIB_API static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
 		UILIB_API void OnHosted(Element* peNewRoot) override;
 		UILIB_API void OnUnHosted(Element* peOldRoot) override;
@@ -51,43 +51,43 @@ namespace DirectUI
 		UILIB_API void GetImmersiveFocusRectOffsets(RECT* prc) override;
 		UILIB_API HRESULT GetForegroundColorRef(COLORREF* pclrForeground) override;
 
-		UILIB_API static UID Click();
-		UILIB_API static UID MultipleClick();
-		UILIB_API static UID RightClick();
+		UILIB_API static UID WINAPI Click();
+		UILIB_API static UID WINAPI MultipleClick();
+		UILIB_API static UID WINAPI RightClick();
 
-		UILIB_API static const PropertyInfo* PressedProp();
+		UILIB_API static const PropertyInfo* WINAPI PressedProp();
 		UILIB_API bool GetPressed();
 		UILIB_API HRESULT SetPressed(bool v);
 
-		UILIB_API static const PropertyInfo* CapturedProp();
+		UILIB_API static const PropertyInfo* WINAPI CapturedProp();
 		UILIB_API bool GetCaptured();
 		UILIB_API HRESULT SetCaptured(bool v);
 
-		UILIB_API static const PropertyInfo* HandleEnterProp();
+		UILIB_API static const PropertyInfo* WINAPI HandleEnterProp();
 		UILIB_API bool GetHandleEnter();
 		UILIB_API HRESULT SetHandleEnter(bool v);
 
-		UILIB_API static const PropertyInfo* ShowKeyFocusProp();
+		UILIB_API static const PropertyInfo* WINAPI ShowKeyFocusProp();
 		UILIB_API bool GetShowKeyFocus();
 		UILIB_API HRESULT SetShowKeyFocus(bool v);
 
-		UILIB_API static const PropertyInfo* TreatRightMouseButtonAsLeftProp();
+		UILIB_API static const PropertyInfo* WINAPI TreatRightMouseButtonAsLeftProp();
 		UILIB_API bool GetTreatRightMouseButtonAsLeft();
 		UILIB_API HRESULT SetTreatRightMouseButtonAsLeft(bool v);
 
-		UILIB_API static const PropertyInfo* HandleGlobalEnterProp();
+		UILIB_API static const PropertyInfo* WINAPI HandleGlobalEnterProp();
 		UILIB_API bool GetHandleGlobalEnter();
 		UILIB_API HRESULT SetHandleGlobalEnter(bool v);
 
-		UILIB_API static IClassInfo* GetClassInfoPtr();
-		UILIB_API static void SetClassInfoPtr(IClassInfo*);
+		UILIB_API static IClassInfo* WINAPI GetClassInfoPtr();
+		UILIB_API static void WINAPI SetClassInfoPtr(IClassInfo*);
 
 	private:
 		static IClassInfo* s_pClassInfo;
 
 	public:
 		UILIB_API IClassInfo* GetClassInfoW() override;
-		UILIB_API static HRESULT Register();
+		UILIB_API static HRESULT WINAPI Register();
 
 		UILIB_API TouchButton();
 		TouchButton(const TouchButton&) = default;

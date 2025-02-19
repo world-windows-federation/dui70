@@ -32,14 +32,14 @@ namespace DirectUI
 		UILIB_API ~TouchScrollBar() override;
 
 		UILIB_API static IClassInfo* WINAPI GetClassInfoPtr();
-		static void SetClassInfoPtr(IClassInfo* pClass);
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;
 
 	public:
 		UILIB_API IClassInfo* GetClassInfoW() override;
-		UILIB_API static HRESULT Register();
+		UILIB_API static HRESULT WINAPI Register();
 
 		UILIB_API ActiveState GetActiveState();
 		UILIB_API void SetActiveState(ActiveState newActiveState, bool fNoAnimation);

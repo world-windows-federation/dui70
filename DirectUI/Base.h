@@ -90,13 +90,13 @@ namespace DirectUI
 		void OnListenedEvent(Element* peFrom, Event* pEvent) override;
 		//~ End DirectUI::IElementListener Interface
 
-		static const PropertyInfo* XOffsetProp();
-		static const PropertyInfo* YOffsetProp();
-		static const PropertyInfo* XScrollableProp();
-		static const PropertyInfo* YScrollableProp();
-		static const PropertyInfo* XBarVisibilityProp();
-		static const PropertyInfo* YBarVisibilityProp();
-		static const PropertyInfo* PinningProp();
+		static const PropertyInfo* WINAPI XOffsetProp();
+		static const PropertyInfo* WINAPI YOffsetProp();
+		static const PropertyInfo* WINAPI XScrollableProp();
+		static const PropertyInfo* WINAPI YScrollableProp();
+		static const PropertyInfo* WINAPI XBarVisibilityProp();
+		static const PropertyInfo* WINAPI YBarVisibilityProp();
+		static const PropertyInfo* WINAPI PinningProp();
 
 		int GetXOffset();
 		int GetYOffset();
@@ -115,8 +115,8 @@ namespace DirectUI
 		HRESULT SetYBarVisibility(int v);
 		HRESULT SetPinning(int v);
 
-		static IClassInfo* GetClassInfoPtr();
-		static void SetClassInfoPtr(IClassInfo* pClass);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;
@@ -124,7 +124,7 @@ namespace DirectUI
 	public:
 		IClassInfo* GetClassInfoW() override;
 
-		static HRESULT Register();
+		static HRESULT WINAPI Register();
 
 	protected:
 		Viewer* _peViewer;

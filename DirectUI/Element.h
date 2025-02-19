@@ -33,7 +33,7 @@ namespace DirectUI
 	class UILIB_API Element
 	{
 	public:
-		static HRESULT Create(UINT nCreate, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nCreate, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
 		HRESULT Destroy(bool fDelayed);
 		HRESULT DestroyAll(bool fDelayed);
@@ -231,81 +231,81 @@ namespace DirectUI
 
 		static RTL_CRITICAL_SECTION* GetFactoryLock();
 
-		static UID KeyboardNavigate();
-		static UID AnimationChange();
-		static UID DCompDeviceRebuilt(); // TODO Check when was this added
+		static UID WINAPI KeyboardNavigate();
+		static UID WINAPI AnimationChange();
+		static UID WINAPI DCompDeviceRebuilt(); // TODO Check when was this added
 
-		static const PropertyInfo* ParentProp();
-		static const PropertyInfo* ChildrenProp();
-		static const PropertyInfo* VisibleProp();
-		static const PropertyInfo* WidthProp();
-		static const PropertyInfo* HeightProp();
-		static const PropertyInfo* LocationProp();
-		static const PropertyInfo* ExtentProp();
-		static const PropertyInfo* XProp();
-		static const PropertyInfo* YProp();
-		static const PropertyInfo* PosInLayoutProp();
-		static const PropertyInfo* SizeInLayoutProp();
-		static const PropertyInfo* DesiredSizeProp();
-		static const PropertyInfo* LastDSConstProp();
-		static const PropertyInfo* LayoutProp();
-		static const PropertyInfo* LayoutPosProp();
-		static const PropertyInfo* BorderThicknessProp();
-		static const PropertyInfo* BorderStyleProp();
-		static const PropertyInfo* BorderColorProp();
-		static const PropertyInfo* PaddingProp();
-		static const PropertyInfo* MarginProp();
-		static const PropertyInfo* ForegroundProp();
-		static const PropertyInfo* BackgroundProp();
-		static const PropertyInfo* ContentProp();
-		static const PropertyInfo* FontFaceProp();
-		static const PropertyInfo* FontSizeProp();
-		static const PropertyInfo* FontWeightProp();
-		static const PropertyInfo* FontStyleProp();
-		static const PropertyInfo* FontQualityProp();
-		static const PropertyInfo* ActiveProp();
-		static const PropertyInfo* ContentAlignProp();
-		static const PropertyInfo* KeyFocusedProp();
-		static const PropertyInfo* KeyWithinProp();
-		static const PropertyInfo* MouseFocusedProp();
-		static const PropertyInfo* MouseWithinProp();
-		static const PropertyInfo* ClassProp();
-		static const PropertyInfo* IDProp();
-		static const PropertyInfo* SheetProp();
-		static const PropertyInfo* SelectedProp();
-		static const PropertyInfo* AlphaProp();
-		static const PropertyInfo* AnimationProp();
-		static const PropertyInfo* CursorProp();
-		static const PropertyInfo* DirectionProp();
-		static const PropertyInfo* AccessibleProp();
-		static const PropertyInfo* AccRoleProp();
-		static const PropertyInfo* AccStateProp();
-		static const PropertyInfo* AccNameProp();
-		static const PropertyInfo* AccDescProp();
-		static const PropertyInfo* AccValueProp();
-		static const PropertyInfo* AccDefActionProp();
-		static const PropertyInfo* AccHelpProp();
-		static const PropertyInfo* AccItemTypeProp();
-		static const PropertyInfo* AccItemStatusProp();
-		static const PropertyInfo* ShortcutProp();
-		static const PropertyInfo* EnabledProp();
-		static const PropertyInfo* MinSizeProp();
-		static const PropertyInfo* OverhangProp();
-		static const PropertyInfo* TooltipProp();
-		static const PropertyInfo* TooltipMaxWidthProp();
-		static const PropertyInfo* FontProp();
-		static const PropertyInfo* WindowActiveProp();
-		static const PropertyInfo* AbsorbsShortcutProp();
-		static const PropertyInfo* CompositedTextProp();
-		static const PropertyInfo* TextGlowSizeProp();
-		static const PropertyInfo* HighDPIProp();
-		static const PropertyInfo* DPIProp();
-		static const PropertyInfo* CustomProp();
-		static const PropertyInfo* ShadowIntensityProp();
-		static const PropertyInfo* EdgeHighlightThicknessProp(); // TODO Check when was this added
-		static const PropertyInfo* EdgeHighlightColorProp(); // TODO Check when was this added
-		static const PropertyInfo* ScaleFactorProp(); // TODO Check when was this added
-		static const PropertyInfo* UsesDesktopPerMonitorScalingProp(); // TODO Check when was this added
+		static const PropertyInfo* WINAPI ParentProp();
+		static const PropertyInfo* WINAPI ChildrenProp();
+		static const PropertyInfo* WINAPI VisibleProp();
+		static const PropertyInfo* WINAPI WidthProp();
+		static const PropertyInfo* WINAPI HeightProp();
+		static const PropertyInfo* WINAPI LocationProp();
+		static const PropertyInfo* WINAPI ExtentProp();
+		static const PropertyInfo* WINAPI XProp();
+		static const PropertyInfo* WINAPI YProp();
+		static const PropertyInfo* WINAPI PosInLayoutProp();
+		static const PropertyInfo* WINAPI SizeInLayoutProp();
+		static const PropertyInfo* WINAPI DesiredSizeProp();
+		static const PropertyInfo* WINAPI LastDSConstProp();
+		static const PropertyInfo* WINAPI LayoutProp();
+		static const PropertyInfo* WINAPI LayoutPosProp();
+		static const PropertyInfo* WINAPI BorderThicknessProp();
+		static const PropertyInfo* WINAPI BorderStyleProp();
+		static const PropertyInfo* WINAPI BorderColorProp();
+		static const PropertyInfo* WINAPI PaddingProp();
+		static const PropertyInfo* WINAPI MarginProp();
+		static const PropertyInfo* WINAPI ForegroundProp();
+		static const PropertyInfo* WINAPI BackgroundProp();
+		static const PropertyInfo* WINAPI ContentProp();
+		static const PropertyInfo* WINAPI FontFaceProp();
+		static const PropertyInfo* WINAPI FontSizeProp();
+		static const PropertyInfo* WINAPI FontWeightProp();
+		static const PropertyInfo* WINAPI FontStyleProp();
+		static const PropertyInfo* WINAPI FontQualityProp();
+		static const PropertyInfo* WINAPI ActiveProp();
+		static const PropertyInfo* WINAPI ContentAlignProp();
+		static const PropertyInfo* WINAPI KeyFocusedProp();
+		static const PropertyInfo* WINAPI KeyWithinProp();
+		static const PropertyInfo* WINAPI MouseFocusedProp();
+		static const PropertyInfo* WINAPI MouseWithinProp();
+		static const PropertyInfo* WINAPI ClassProp();
+		static const PropertyInfo* WINAPI IDProp();
+		static const PropertyInfo* WINAPI SheetProp();
+		static const PropertyInfo* WINAPI SelectedProp();
+		static const PropertyInfo* WINAPI AlphaProp();
+		static const PropertyInfo* WINAPI AnimationProp();
+		static const PropertyInfo* WINAPI CursorProp();
+		static const PropertyInfo* WINAPI DirectionProp();
+		static const PropertyInfo* WINAPI AccessibleProp();
+		static const PropertyInfo* WINAPI AccRoleProp();
+		static const PropertyInfo* WINAPI AccStateProp();
+		static const PropertyInfo* WINAPI AccNameProp();
+		static const PropertyInfo* WINAPI AccDescProp();
+		static const PropertyInfo* WINAPI AccValueProp();
+		static const PropertyInfo* WINAPI AccDefActionProp();
+		static const PropertyInfo* WINAPI AccHelpProp();
+		static const PropertyInfo* WINAPI AccItemTypeProp();
+		static const PropertyInfo* WINAPI AccItemStatusProp();
+		static const PropertyInfo* WINAPI ShortcutProp();
+		static const PropertyInfo* WINAPI EnabledProp();
+		static const PropertyInfo* WINAPI MinSizeProp();
+		static const PropertyInfo* WINAPI OverhangProp();
+		static const PropertyInfo* WINAPI TooltipProp();
+		static const PropertyInfo* WINAPI TooltipMaxWidthProp();
+		static const PropertyInfo* WINAPI FontProp();
+		static const PropertyInfo* WINAPI WindowActiveProp();
+		static const PropertyInfo* WINAPI AbsorbsShortcutProp();
+		static const PropertyInfo* WINAPI CompositedTextProp();
+		static const PropertyInfo* WINAPI TextGlowSizeProp();
+		static const PropertyInfo* WINAPI HighDPIProp();
+		static const PropertyInfo* WINAPI DPIProp();
+		static const PropertyInfo* WINAPI CustomProp();
+		static const PropertyInfo* WINAPI ShadowIntensityProp();
+		static const PropertyInfo* WINAPI EdgeHighlightThicknessProp(); // TODO Check when was this added
+		static const PropertyInfo* WINAPI EdgeHighlightColorProp(); // TODO Check when was this added
+		static const PropertyInfo* WINAPI ScaleFactorProp(); // TODO Check when was this added
+		static const PropertyInfo* WINAPI UsesDesktopPerMonitorScalingProp(); // TODO Check when was this added
 
 	protected:
 		HGADGET _hgDisplayNode;
@@ -560,8 +560,8 @@ namespace DirectUI
 		WCHAR GetShortcutChar();
 		HRESULT SetShadowIntensity(int v);
 
-		static IClassInfo* GetClassInfoPtr();
-		static void SetClassInfoPtr(IClassInfo* pClass);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;
@@ -569,8 +569,8 @@ namespace DirectUI
 	public:
 		virtual IClassInfo* GetClassInfoW();
 
-		static HRESULT Register();
-		static HRESULT UnRegister(IClassInfo** ppClassInfo);
+		static HRESULT WINAPI Register();
+		static HRESULT WINAPI UnRegister(IClassInfo** ppClassInfo);
 		virtual HRESULT GetAccessibleImpl(IAccessible** ppAccessible);
 		HRESULT QueueDefaultAction();
 		virtual HRESULT DefaultAction();
@@ -603,7 +603,7 @@ namespace DirectUI
 	class UILIB_API DECLSPEC_NOVTABLE ElementProxy : public ProviderProxy
 	{
 	public:
-		static ElementProxy* Create(Element* pe);
+		static ElementProxy* WINAPI Create(Element* pe);
 
 		HRESULT DoMethod(MethodId methodId, va_list args) override;
 
@@ -723,7 +723,7 @@ namespace DirectUI
 		void TossPatternProvider(Schema::Pattern pattern);
 		virtual void TossElement();
 
-		static HRESULT Create(Element* pe, InvokeHelper* pih, ElementProvider** ppprv);
+		static HRESULT WINAPI Create(Element* pe, InvokeHelper* pih, ElementProvider** ppprv);
 
 		//~ Begin IUnknown Interface
 		STDMETHODIMP QueryInterface(REFIID riid, void** ppvObject) override;

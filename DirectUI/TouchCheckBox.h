@@ -11,8 +11,8 @@ namespace DirectUI
 	class TouchCheckBox : public TouchButton
 	{
 	public:
-		UILIB_API static HRESULT Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
-		UILIB_API static HRESULT Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		UILIB_API static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		UILIB_API static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
 		UILIB_API void Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) override;
 		UILIB_API bool OnPropertyChanging(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
@@ -21,16 +21,16 @@ namespace DirectUI
 		UILIB_API HRESULT Insert(Element** ppe, UINT cCount, UINT iInsertIdx) override;
 		UILIB_API void GetImmersiveFocusRectOffsets(RECT* prc) override;
 
-		UILIB_API static const PropertyInfo* CheckedStateProp();
+		UILIB_API static const PropertyInfo* WINAPI CheckedStateProp();
 		UILIB_API CheckedStateFlags GetCheckedState();
 		UILIB_API HRESULT SetCheckedState(CheckedStateFlags v);
 
-		UILIB_API static const PropertyInfo* ToggleOnClickProp();
+		UILIB_API static const PropertyInfo* WINAPI ToggleOnClickProp();
 		UILIB_API bool GetToggleOnClick();
 		UILIB_API HRESULT SetToggleOnClick(bool v);
 
-		UILIB_API static IClassInfo* GetClassInfoPtr();
-		static void SetClassInfoPtr(IClassInfo* pClass);
+		UILIB_API static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;
@@ -38,7 +38,7 @@ namespace DirectUI
 	public:
 		UILIB_API IClassInfo* GetClassInfoW() override;
 
-		UILIB_API static HRESULT Register();
+		UILIB_API static HRESULT WINAPI Register();
 
 		UILIB_API TouchCheckBox();
 		TouchCheckBox(const TouchCheckBox&) = default;

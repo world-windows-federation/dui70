@@ -105,7 +105,7 @@ namespace DirectUI
 		public:
 			ValueParser();
 			~ValueParser();
-			static HRESULT Create(ValueParser** ppvp);
+			static HRESULT WINAPI Create(ValueParser** ppvp);
 			void Destroy();
 			HRESULT Parse(const WCHAR* pszValue, const ExprNode** ppenRoot);
 

@@ -37,8 +37,8 @@ namespace DirectUI
 	class RichText : public Element
 	{
 	public:
-		UILIB_API static IClassInfo* GetClassInfoPtr();
-		static void SetClassInfoPtr(IClassInfo* pClass);
+		UILIB_API static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;
@@ -51,8 +51,8 @@ namespace DirectUI
 
 		UILIB_API ~RichText() override;
 
-		UILIB_API static HRESULT Register();
-		UILIB_API static HRESULT Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		UILIB_API static HRESULT WINAPI Register();
+		UILIB_API static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
 		UILIB_API HRESULT Initialize(Element* pParent, DWORD* pdwDeferCookie);
 
@@ -62,21 +62,21 @@ namespace DirectUI
 		UILIB_API void Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) override;
 		UILIB_API SIZE GetContentSize(int pxConstW, int pxConstH, Surface* psrf) override;
 
-		UILIB_API static const PropertyInfo* FontColorRunsProp();
-		UILIB_API static const PropertyInfo* FontSizeRunsProp();
-		UILIB_API static const PropertyInfo* FontWeightRunsProp();
-		UILIB_API static const PropertyInfo* OverhangOffsetProp();
-		UILIB_API static const PropertyInfo* TypographyProp();
-		UILIB_API static const PropertyInfo* TypographyRunsProp();
-		UILIB_API static const PropertyInfo* LocaleProp();
-		UILIB_API static const PropertyInfo* BaselineProp();
-		UILIB_API static const PropertyInfo* LineSpacingProp();
-		UILIB_API static const PropertyInfo* AliasedRenderingProp();
-		UILIB_API static const PropertyInfo* DisableAccTextExtendProp();
-		UILIB_API static const PropertyInfo* MapRunsToClustersProp();
-		UILIB_API static const PropertyInfo* VerticalScriptProp();
-		UILIB_API static const PropertyInfo* ConstrainLayoutProp();
-		UILIB_API static const PropertyInfo* ColorFontPaletteIndexProp();
+		UILIB_API static const PropertyInfo* WINAPI FontColorRunsProp();
+		UILIB_API static const PropertyInfo* WINAPI FontSizeRunsProp();
+		UILIB_API static const PropertyInfo* WINAPI FontWeightRunsProp();
+		UILIB_API static const PropertyInfo* WINAPI OverhangOffsetProp();
+		UILIB_API static const PropertyInfo* WINAPI TypographyProp();
+		UILIB_API static const PropertyInfo* WINAPI TypographyRunsProp();
+		UILIB_API static const PropertyInfo* WINAPI LocaleProp();
+		UILIB_API static const PropertyInfo* WINAPI BaselineProp();
+		UILIB_API static const PropertyInfo* WINAPI LineSpacingProp();
+		UILIB_API static const PropertyInfo* WINAPI AliasedRenderingProp();
+		UILIB_API static const PropertyInfo* WINAPI DisableAccTextExtendProp();
+		UILIB_API static const PropertyInfo* WINAPI MapRunsToClustersProp();
+		UILIB_API static const PropertyInfo* WINAPI VerticalScriptProp();
+		UILIB_API static const PropertyInfo* WINAPI ConstrainLayoutProp();
+		UILIB_API static const PropertyInfo* WINAPI ColorFontPaletteIndexProp();
 
 		const WCHAR* GetFontColorRuns(Value** ppv);
 		const WCHAR* GetFontSizeRuns(Value** ppv);
@@ -121,7 +121,7 @@ namespace DirectUI
 		UILIB_API IDWriteFactory* GetFactory();
 		UILIB_API void SetDWriteFontCollection(IDWriteFontCollection* pdwFontCollection);
 		UILIB_API void SetMaxLineCount(UINT cLinesMax);
-		UILIB_API static HRESULT CreateCache(UINT cAverageNumberOfEntries, IDUIRichTextCache** ppCache);
+		UILIB_API static HRESULT WINAPI CreateCache(UINT cAverageNumberOfEntries, IDUIRichTextCache** ppCache);
 		UILIB_API void SetCache(DWORD dwKey, IDUIRichTextCache* pCache);
 		UILIB_API void StopUsingCache();
 

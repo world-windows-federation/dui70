@@ -960,7 +960,7 @@ HRESULT DUIXmlParser::ParseStyleSheets(IXmlReader* pReader) STUB_ZERO
 HRESULT DUIXmlParser::ParseStyleSheets() STUB_ZERO
 HRESULT DUIXmlParser::_EnterOnCurrentThread() STUB_ZERO
 void DUIXmlParser::_LeaveOnCurrentThread() STUB_VOID
-HRESULT WINAPI DUIXmlParser::GetXmlLiteDll(HMODULE* phXmlLiteDll) STUB_ZERO
+HRESULT DUIXmlParser::GetXmlLiteDll(HMODULE* phXmlLiteDll) STUB_ZERO
 HRESULT DUIXmlParser::CreateXmlReader(IXmlReader** ppReader) STUB_ZERO
 HRESULT DUIXmlParser::CreateXmlReaderFromHGLOBAL(HGLOBAL hglob, IXmlReader** ppReader) STUB_ZERO
 HRESULT DUIXmlParser::CreateXmlReaderInputWithEncodingName(IStream* pInput, const WCHAR* pszEncodingName, IUnknown** ppReaderInput) STUB_ZERO
@@ -997,11 +997,11 @@ HRESULT DUIXmlParser::GetPropValPairInfo(IXmlReader* pReader, IClassInfo* pci, c
 HRESULT DUIXmlParser::_ParseValue(const PropertyInfo* ppi, WCHAR* pszValue, Value** ppValue) STUB_ZERO
 void DUIXmlParser::SendParseError(const WCHAR* pszError, const WCHAR* pszToken, int dLine, int dCol, HRESULT hr) STUB_VOID
 void DUIXmlParser::SendParseError(const WCHAR* pszError, const WCHAR* pszToken, IXmlReader* pReader, HRESULT hr) STUB_VOID
-int WINAPI DUIXmlParser::QuerySysMetric(int idx, bool* pfDynamicScaling) STUB_ZERO
-const WCHAR* WINAPI DUIXmlParser::QuerySysMetricStr(int idx, WCHAR* pszMetric, UINT c) STUB_ZERO
+int DUIXmlParser::QuerySysMetric(int idx, bool* pfDynamicScaling) STUB_ZERO
+const WCHAR* DUIXmlParser::QuerySysMetricStr(int idx, WCHAR* pszMetric, UINT c) STUB_ZERO
 HRESULT DUIXmlParser::ParseArgs(const ParserTools::ExprNode* pen, ParsedArg* rgpa, UINT cpa, const CHAR* pszSignature) STUB_ZERO
 HRESULT DUIXmlParser::ParseFunction(const WCHAR* pszName, const ParserTools::ExprNode* pen, ParsedArg* rgpa, UINT cpa, const CHAR* pszSignature) STUB_ZERO
-bool WINAPI DUIXmlParser::IsThemeClassName(const ParserTools::ExprNode* pen) STUB_ZERO
+bool DUIXmlParser::IsThemeClassName(const ParserTools::ExprNode* pen) STUB_ZERO
 HRESULT DUIXmlParser::ParseMagnitude(const WCHAR* pszMag, int* pMagOut, bool* pfDynamicScaling) STUB_ZERO
 HRESULT DUIXmlParser::ParseMagnitudeFloat(const WCHAR* pszMag, float* pMagOut, bool* pfDynamicScaling) STUB_ZERO
 HRESULT DUIXmlParser::ParseLiteralNumber(const WCHAR* psz, int* pnOut, bool* pfDynamicScaling) STUB_ZERO
@@ -1073,9 +1073,9 @@ DUIXmlParser::FunctionDefinition<T> & DUIXmlParser::FunctionDefinition<T>::opera
 	return *this;
 }*/
 
-UINT WINAPI NativeHWNDHost::DestroyMsg() STUB_ZERO
-HRESULT WINAPI NativeHWNDHost::Create(const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO
-HRESULT WINAPI NativeHWNDHost::Create(const WCHAR* pszClassName, const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, HINSTANCE hInstance, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO
+UINT NativeHWNDHost::DestroyMsg() STUB_ZERO
+HRESULT NativeHWNDHost::Create(const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO
+HRESULT NativeHWNDHost::Create(const WCHAR* pszClassName, const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, HINSTANCE hInstance, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO
 void NativeHWNDHost::Destroy() STUB_VOID
 HWND NativeHWNDHost::GetHWND() STUB_ZERO
 Element* NativeHWNDHost::GetElement() STUB_ZERO
@@ -9567,45 +9567,45 @@ IClassInfo* UnknownElement::s_pClassInfo;
 //~ Begin DirectUI::Value Class
 void Value::_ZeroRelease() STUB_VOID
 HRESULT Value::StrDupW(const WCHAR* pszIn, WCHAR** pszOut) STUB_ZERO
-Value* WINAPI Value::CreateInt(int dValue, DynamicScaleValue dsv) STUB_ZERO
-Value* WINAPI Value::CreateFloat(float flValue, DynamicScaleValue dsv) STUB_ZERO
-Value* WINAPI Value::CreateBool(bool bValue) STUB_ZERO
-Value* WINAPI Value::CreateElementRef(Element* peValue) STUB_ZERO
-Value* WINAPI Value::CreateElementList(DynamicArray<Element*>* peListValue) STUB_ZERO
-Value* WINAPI Value::CreateString(const WCHAR* pszValue, HINSTANCE hResLoad) STUB_ZERO
-Value* WINAPI Value::CreateEncodedString(const WCHAR* pszValue) STUB_ZERO
-Value* WINAPI Value::CreatePoint(int x, int y, DynamicScaleValue dsv) STUB_ZERO
-Value* WINAPI Value::CreateSize(int cx, int cy, DynamicScaleValue dsv) STUB_ZERO
-Value* WINAPI Value::CreateRect(int left, int top, int right, int bottom, DynamicScaleValue dsv) STUB_ZERO
-Value* WINAPI Value::CreateColor(COLORREF cr) STUB_ZERO
-Value* WINAPI Value::CreateColor(COLORREF cr0, COLORREF cr1, BYTE dType) STUB_ZERO
-Value* WINAPI Value::CreateColor(COLORREF cr0, COLORREF cr1, COLORREF cr2, BYTE dType) STUB_ZERO
-Value* WINAPI Value::CreateFill(const Fill& fill) STUB_ZERO
-Value* WINAPI Value::CreateDFCFill(UINT uType, UINT uState) STUB_ZERO
-Value* WINAPI Value::CreateDTBFill(const WCHAR* pszClassName, int iPartId, int iStateId) STUB_ZERO
-Value* WINAPI Value::CreateLayout(Layout* plValue) STUB_ZERO
-Value* WINAPI Value::CreateGraphic(ISharedBitmap* pBitmap, BYTE dBlendMode, UINT dBlendValue) STUB_ZERO;
-Value* WINAPI Value::CreateGraphic(HBITMAP hBitmap, BYTE dBlendMode, UINT dBlendValue, bool bFlip, bool bRTL, bool bPremultiplied) STUB_ZERO;
-Value* WINAPI Value::CreateGraphic(HICON hIcon, bool bFlip, bool bRTL, bool bShared) STUB_ZERO;
-Value* WINAPI Value::CreateGraphic(const WCHAR* pszBMP, BYTE dBlendMode, UINT dBlendValue, USHORT cx, USHORT cy, HINSTANCE hResLoad, bool bFlip, bool bRTL) STUB_ZERO;
-Value* WINAPI Value::CreateGraphic(const WCHAR* pszICO, USHORT cxDesired, USHORT cyDesired, HINSTANCE hResLoad, bool bFlip, bool bRTL) STUB_ZERO;
-Value* WINAPI Value::CreateGraphic(HENHMETAFILE hEnhMetaFile, HENHMETAFILE hAltEnhMetaFile) STUB_ZERO;
-Value* WINAPI Value::CreateGraphic(const WCHAR* pszICO, ScaledSIZE szDesired, HINSTANCE hResLoad, bool bFlip, bool bRTL) STUB_ZERO;
-Value* WINAPI Value::CreateIconGraphicHelper(HICON hIcon, bool bFlip, bool bRTL, bool bShared) STUB_ZERO
-HICON WINAPI Value::ReloadIcon(Graphic* pGraphic, float fScaleFactor) STUB_ZERO
-Value* WINAPI Value::CreateStyleSheet(StyleSheet* ppsValue) STUB_ZERO
-Value* WINAPI Value::CreateExpression(Expression* pexValue) STUB_ZERO
-Value* WINAPI Value::CreateAtom(const WCHAR* pszValue) STUB_ZERO
-Value* WINAPI Value::CreateAtom(ATOM atom) STUB_ZERO
-Value* WINAPI Value::CreateCursor(const WCHAR* pszValue) STUB_ZERO
-Value* WINAPI Value::CreateCursor(HCURSOR hValue) STUB_ZERO
-Value* WINAPI Value::CreateValueList(ValueList* pvListValue) STUB_ZERO
-Value* WINAPI Value::CreateValueList(Value* pvValue) STUB_ZERO
-Value* WINAPI Value::CreateDoubleList(DynamicArray<double>* pdblListValue) STUB_ZERO
-Value* WINAPI Value::CreateDoubleList(const double* rgdbl, int cdbl) STUB_ZERO
-Value* WINAPI Value::CreateStringRP(const WCHAR* pszValue, HINSTANCE hResLoad) STUB_ZERO
-Value* WINAPI Value::CreateScaledValue(float flScaleFactor, Value* pvIn) STUB_ZERO
-Value* WINAPI Value::CreateElementScaledValue(Element* pe, Value* pvIn) STUB_ZERO
+Value* Value::CreateInt(int dValue, DynamicScaleValue dsv) STUB_ZERO
+Value* Value::CreateFloat(float flValue, DynamicScaleValue dsv) STUB_ZERO
+Value* Value::CreateBool(bool bValue) STUB_ZERO
+Value* Value::CreateElementRef(Element* peValue) STUB_ZERO
+Value* Value::CreateElementList(DynamicArray<Element*>* peListValue) STUB_ZERO
+Value* Value::CreateString(const WCHAR* pszValue, HINSTANCE hResLoad) STUB_ZERO
+Value* Value::CreateEncodedString(const WCHAR* pszValue) STUB_ZERO
+Value* Value::CreatePoint(int x, int y, DynamicScaleValue dsv) STUB_ZERO
+Value* Value::CreateSize(int cx, int cy, DynamicScaleValue dsv) STUB_ZERO
+Value* Value::CreateRect(int left, int top, int right, int bottom, DynamicScaleValue dsv) STUB_ZERO
+Value* Value::CreateColor(COLORREF cr) STUB_ZERO
+Value* Value::CreateColor(COLORREF cr0, COLORREF cr1, BYTE dType) STUB_ZERO
+Value* Value::CreateColor(COLORREF cr0, COLORREF cr1, COLORREF cr2, BYTE dType) STUB_ZERO
+Value* Value::CreateFill(const Fill& fill) STUB_ZERO
+Value* Value::CreateDFCFill(UINT uType, UINT uState) STUB_ZERO
+Value* Value::CreateDTBFill(const WCHAR* pszClassName, int iPartId, int iStateId) STUB_ZERO
+Value* Value::CreateLayout(Layout* plValue) STUB_ZERO
+Value* Value::CreateGraphic(ISharedBitmap* pBitmap, BYTE dBlendMode, UINT dBlendValue) STUB_ZERO;
+Value* Value::CreateGraphic(HBITMAP hBitmap, BYTE dBlendMode, UINT dBlendValue, bool bFlip, bool bRTL, bool bPremultiplied) STUB_ZERO;
+Value* Value::CreateGraphic(HICON hIcon, bool bFlip, bool bRTL, bool bShared) STUB_ZERO;
+Value* Value::CreateGraphic(const WCHAR* pszBMP, BYTE dBlendMode, UINT dBlendValue, USHORT cx, USHORT cy, HINSTANCE hResLoad, bool bFlip, bool bRTL) STUB_ZERO;
+Value* Value::CreateGraphic(const WCHAR* pszICO, USHORT cxDesired, USHORT cyDesired, HINSTANCE hResLoad, bool bFlip, bool bRTL) STUB_ZERO;
+Value* Value::CreateGraphic(HENHMETAFILE hEnhMetaFile, HENHMETAFILE hAltEnhMetaFile) STUB_ZERO;
+Value* Value::CreateGraphic(const WCHAR* pszICO, ScaledSIZE szDesired, HINSTANCE hResLoad, bool bFlip, bool bRTL) STUB_ZERO;
+Value* Value::CreateIconGraphicHelper(HICON hIcon, bool bFlip, bool bRTL, bool bShared) STUB_ZERO
+HICON Value::ReloadIcon(Graphic* pGraphic, float fScaleFactor) STUB_ZERO
+Value* Value::CreateStyleSheet(StyleSheet* ppsValue) STUB_ZERO
+Value* Value::CreateExpression(Expression* pexValue) STUB_ZERO
+Value* Value::CreateAtom(const WCHAR* pszValue) STUB_ZERO
+Value* Value::CreateAtom(ATOM atom) STUB_ZERO
+Value* Value::CreateCursor(const WCHAR* pszValue) STUB_ZERO
+Value* Value::CreateCursor(HCURSOR hValue) STUB_ZERO
+Value* Value::CreateValueList(ValueList* pvListValue) STUB_ZERO
+Value* Value::CreateValueList(Value* pvValue) STUB_ZERO
+Value* Value::CreateDoubleList(DynamicArray<double>* pdblListValue) STUB_ZERO
+Value* Value::CreateDoubleList(const double* rgdbl, int cdbl) STUB_ZERO
+Value* Value::CreateStringRP(const WCHAR* pszValue, HINSTANCE hResLoad) STUB_ZERO
+Value* Value::CreateScaledValue(float flScaleFactor, Value* pvIn) STUB_ZERO
+Value* Value::CreateElementScaledValue(Element* pe, Value* pvIn) STUB_ZERO
 void Value::AddRef() STUB_VOID
 void Value::Release() STUB_VOID
 int Value::GetRefCount() const STUB_ZERO
@@ -9647,29 +9647,29 @@ bool Value::IsDynamicScaled() STUB_ZERO
 bool Value::IsEqual(Value* pv) STUB_ZERO
 WCHAR* Value::ToString(WCHAR* psz, UINT) const STUB_ZERO
 void Value::SetLayoutPointerToNull() STUB_VOID
-Value* WINAPI Value::GetUnavailable() STUB_ZERO
-Value* WINAPI Value::GetNull() STUB_ZERO
-Value* WINAPI Value::GetUnset() STUB_ZERO
-Value* WINAPI Value::GetElementNull() STUB_ZERO
-Value* WINAPI Value::GetElListNull() STUB_ZERO
-Value* WINAPI Value::GetBoolTrue() STUB_ZERO
-Value* WINAPI Value::GetBoolFalse() STUB_ZERO
-Value* WINAPI Value::GetStringNull() STUB_ZERO
-Value* WINAPI Value::GetPointZero() STUB_ZERO
-Value* WINAPI Value::GetSizeZero() STUB_ZERO
-Value* WINAPI Value::GetRectZero() STUB_ZERO
-Value* WINAPI Value::GetIntZero() STUB_ZERO
-Value* WINAPI Value::GetIntMinusOne() STUB_ZERO
-Value* WINAPI Value::GetFloatZero() STUB_ZERO
-Value* WINAPI Value::GetFloatOne() STUB_ZERO
-Value* WINAPI Value::GetLayoutNull() STUB_ZERO
-Value* WINAPI Value::GetSheetNull() STUB_ZERO
-Value* WINAPI Value::GetExprNull() STUB_ZERO
-Value* WINAPI Value::GetAtomZero() STUB_ZERO
-Value* WINAPI Value::GetCursorNull() STUB_ZERO
-Value* WINAPI Value::GetColorTrans() STUB_ZERO
-Value* WINAPI Value::GetDblListEmpty() STUB_ZERO
-Value* WINAPI Value::GetStringRPNull() STUB_ZERO
+Value*Value::GetUnavailable() STUB_ZERO
+Value*Value::GetNull() STUB_ZERO
+Value*Value::GetUnset() STUB_ZERO
+Value*Value::GetElementNull() STUB_ZERO
+Value*Value::GetElListNull() STUB_ZERO
+Value*Value::GetBoolTrue() STUB_ZERO
+Value*Value::GetBoolFalse() STUB_ZERO
+Value*Value::GetStringNull() STUB_ZERO
+Value*Value::GetPointZero() STUB_ZERO
+Value*Value::GetSizeZero() STUB_ZERO
+Value*Value::GetRectZero() STUB_ZERO
+Value*Value::GetIntZero() STUB_ZERO
+Value*Value::GetIntMinusOne() STUB_ZERO
+Value*Value::GetFloatZero() STUB_ZERO
+Value*Value::GetFloatOne() STUB_ZERO
+Value*Value::GetLayoutNull() STUB_ZERO
+Value*Value::GetSheetNull() STUB_ZERO
+Value*Value::GetExprNull() STUB_ZERO
+Value*Value::GetAtomZero() STUB_ZERO
+Value*Value::GetCursorNull() STUB_ZERO
+Value*Value::GetColorTrans() STUB_ZERO
+Value*Value::GetDblListEmpty() STUB_ZERO
+Value* Value::GetStringRPNull() STUB_ZERO
 //~ End DirectUI::Value Class
 
 //~ Begin DirectUI::ValueProvider Class
@@ -10271,7 +10271,7 @@ HRESULT DUIFactory::LoadFromBuffer(const WCHAR*, UINT cchBuf, const WCHAR*, Elem
 HRESULT DUIFactory::LoadFromFile(LPCWSTR, LPCWSTR, Element*, DWORD*, Element**) STUB_ZERO
 HRESULT DUIFactory::LoadFromResource(HINSTANCE, LPCWSTR, LPCWSTR, Element*, DWORD*, Element**, LPCWSTR) STUB_ZERO
 void DUIFactory::SetError(LPCWSTR, ...) STUB_VOID
-void WINAPI DUIFactory::s_XMLParseError(const WCHAR*, const WCHAR*, int, DUIFactory*) STUB_VOID
+void DUIFactory::s_XMLParseError(const WCHAR*, const WCHAR*, int, DUIFactory*) STUB_VOID
 void DUIFactory::ClearParser() STUB_VOID
 
 BrowserSelectionProxy::BrowserSelectionProxy(BrowserSelectionProxy const&)

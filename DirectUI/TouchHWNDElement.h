@@ -92,8 +92,8 @@ namespace DirectUI
 		UILIB_API void UnregisterForAnimationStatusChanges();
 		UILIB_API bool IsRegisteredForAnimationStatusChanges();
 
-		UILIB_API static IClassInfo* GetClassInfoPtr();
-		static void SetClassInfoPtr(IClassInfo* pClass);
+		UILIB_API static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;

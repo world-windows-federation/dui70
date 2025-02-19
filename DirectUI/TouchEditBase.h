@@ -116,7 +116,7 @@ namespace DirectUI
 		UILIB_API HRESULT SetPreventFormatChangeUpdatingModifiedState(bool v);
 
 		UILIB_API static IClassInfo* WINAPI GetClassInfoPtr();
-		static void SetClassInfoPtr(IClassInfo* pClass);
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;
@@ -124,8 +124,8 @@ namespace DirectUI
 	public:
 		UILIB_API IClassInfo* GetClassInfoW() override;
 
-		UILIB_API static HRESULT Register();
-		UILIB_API static HRESULT Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		UILIB_API static HRESULT WINAPI Register();
+		UILIB_API static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
 		UILIB_API bool OnPropertyChanging(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
 		UILIB_API void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;

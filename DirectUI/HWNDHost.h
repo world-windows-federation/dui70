@@ -18,7 +18,7 @@ namespace DirectUI
 		bool GetOptimizeMove();
 		bool GetTransparent();
 		long GetClientAccessibleImpl(IAccessible**);
-		long SetBackgroundOwnerID(UCString);
+		long SetBackgroundOwnerID(const WCHAR*);
 		long SetOptimizeMove(bool);
 		long SetTransparent(bool);
 
@@ -54,7 +54,7 @@ namespace DirectUI
 		//3
 		virtual bool OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*);
 		//4
-		virtual bool OnSysChar(UChar);
+		virtual bool OnSysChar(WCHAR);
 		//5
 		virtual bool OnSinkThemeChanged(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*);
 		//6

@@ -2278,7 +2278,7 @@ const PropertyInfo* ClassInfoBase::EnumPropertyInfo(UINT) STUB_ZERO;
 const PropertyInfo* ClassInfoBase::GetByClassIndex(UINT) STUB_ZERO;
 UINT ClassInfoBase::GetPICount() const STUB_ZERO;
 UINT ClassInfoBase::GetGlobalIndex() const STUB_ZERO;
-UCString ClassInfoBase::GetName() const STUB_ZERO;
+const WCHAR* ClassInfoBase::GetName() const STUB_ZERO;
 bool ClassInfoBase::IsValidProperty(const PropertyInfo* ppi) const STUB_ZERO;
 bool ClassInfoBase::IsSubclassOf(IClassInfo* pci) const STUB_ZERO;
 void ClassInfoBase::Destroy() STUB_VOID;
@@ -2474,14 +2474,14 @@ IClassInfo* Bind::GetClassInfoW(void)
 	return nullptr;
 }
 
-UCString Bind::GetConnect(Value**)
+const WCHAR* Bind::GetConnect(Value**)
 {
-	return UCString();
+	return nullptr;
 }
 
-UCString Bind::GetProperty(Value**)
+const WCHAR* Bind::GetProperty(Value**)
 {
-	return UCString();
+	return nullptr;
 }
 
 long Bind::Initialize(Element*, unsigned long*)
@@ -2489,12 +2489,12 @@ long Bind::Initialize(Element*, unsigned long*)
 	return 0;
 }
 
-long Bind::SetConnect(UCString)
+long Bind::SetConnect(const WCHAR*)
 {
 	return 0;
 }
 
-long Bind::SetProperty(UCString)
+long Bind::SetProperty(const WCHAR*)
 {
 	return 0;
 }
@@ -2747,7 +2747,7 @@ CCBase::CCBase(const CCBase&)
 {
 }
 
-CCBase::CCBase(unsigned long, UCString)
+CCBase::CCBase(unsigned long, const WCHAR*)
 {
 }
 
@@ -3205,12 +3205,12 @@ PropertyInfo const* CCCommandLink::NoteProp(void)
 	return nullptr;
 }
 
-UCString CCCommandLink::GetNote(Value**)
+const WCHAR* CCCommandLink::GetNote(Value**)
 {
-	return UCString();
+	return nullptr;
 }
 
-long CCCommandLink::SetNote(UCString)
+long CCCommandLink::SetNote(const WCHAR*)
 {
 	return 0;
 }
@@ -5841,7 +5841,7 @@ long HWNDHost::GetClientAccessibleImpl(IAccessible**)
 	return 0;
 }
 
-long HWNDHost::SetBackgroundOwnerID(UCString)
+long HWNDHost::SetBackgroundOwnerID(const WCHAR*)
 {
 	return 0;
 }
@@ -5963,7 +5963,7 @@ bool HWNDHost::OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*)
 	return false;
 }
 
-bool HWNDHost::OnSysChar(UChar)
+bool HWNDHost::OnSysChar(WCHAR)
 {
 	return false;
 }
@@ -6745,9 +6745,9 @@ int Movie::GetInterpolationMode()
 	return 0;
 }
 
-UCString Movie::GetPath(Value**)
+const WCHAR* Movie::GetPath(Value**)
 {
-	return UCString();
+	return nullptr;
 }
 
 int Movie::GetPixelOffsetMode()
@@ -6770,7 +6770,7 @@ int Movie::GetSmoothingMode()
 	return 0;
 }
 
-HRESULT Movie::LoadFromPath(UCString)
+HRESULT Movie::LoadFromPath(const WCHAR*)
 {
 	return E_NOTIMPL;
 }
@@ -6821,7 +6821,7 @@ long Movie::SetInterpolationMode(int)
 	return 0;
 }
 
-long Movie::SetPath(UCString)
+long Movie::SetPath(const WCHAR*)
 {
 	return 0;
 }
@@ -7463,12 +7463,12 @@ long WINAPI XResourceProvider::Create(XResourceProvider** pOut)
 	return 0;
 }
 
-long WINAPI XResourceProvider::Create(HINSTANCE, UCString, UCString, UCString, XResourceProvider** pOut)
+long WINAPI XResourceProvider::Create(HINSTANCE, const WCHAR*, const WCHAR*, const WCHAR*, XResourceProvider** pOut)
 {
 	return 0;
 }
 
-long XResourceProvider::Initialize(HINSTANCE h, UCString s1, UCString s2, UCString s3)
+long XResourceProvider::Initialize(HINSTANCE h, const WCHAR* s1, const WCHAR* s2, const WCHAR* s3)
 {
 	return 0;
 }

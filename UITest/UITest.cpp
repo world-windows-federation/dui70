@@ -219,19 +219,48 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	DWORD dwDeferCookie;
 	HWNDElement* peHwndElement;
 	THROW_IF_FAILED(HWNDElement::Create(pHost->GetHWND(), true, 0, nullptr, &dwDeferCookie, (Element**)&peHwndElement));
+	auto peHwndElementCleaner = wil::scope_exit([&] { peHwndElement->Destroy(false); });
 
 	Element* peWizardMain;
 	THROW_IF_FAILED(pParser->CreateElement(L"WizardMain", peHwndElement, nullptr, nullptr, &peWizardMain));
+	peHwndElementCleaner.release();
+	auto peWizardMainCleaner = wil::scope_exit([&] { peWizardMain->Destroy(false); });
+
+	RichText* peSXWizardContentBox = (RichText*)peWizardMain->FindDescendent(StrToID(L"SXWizardContentBox"));
+	if (peSXWizardContentBox && peSXWizardContentBox->GetClassInfoW()->IsSubclassOf(RichText::GetClassInfoPtr()))
+	{
+		Value* pv = nullptr; // TODO CValuePtr
+		const WCHAR* pszCurrent = peSXWizardContentBox->GetContentString(&pv);
+		if (pszCurrent)
+		{
+			peSXWizardContentBox->SetContentString((std::wstring{ pszCurrent } + L"\n\nThis text is appended via code.").c_str());
+			pv->Release();
+		}
+
+		Element* peParent = peSXWizardContentBox->GetParent();
+		if (peParent)
+		{
+			TouchEdit2* peTouchEdit2;
+			THROW_IF_FAILED(TouchEdit2::Create(peParent, nullptr, (DirectUI::Element**)&peTouchEdit2));
+			auto peTouchEdit2Cleaner = wil::scope_exit([&] { peTouchEdit2->Destroy(false); });
+
+			THROW_IF_FAILED(peParent->Add(peTouchEdit2));
+			peTouchEdit2Cleaner.release();
+		}
+	}
 
 	THROW_IF_FAILED(peWizardMain->SetVisible(true));
 	peWizardMain->EndDefer(dwDeferCookie);
 	pHost->Host(peWizardMain);
+	peWizardMainCleaner.release();
 
 	pHost->ShowWindow(SW_SHOW);
 
 	//DumpDuiTree(pWizardMain, 0);
 
 	StartMessagePump();
+
+	pHost->Destroy();
 
 	UnInitProcessPriv(nullptr);
 	return 0;

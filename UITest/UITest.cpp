@@ -1,5 +1,6 @@
 #include <Windows.h>
 
+#include <ShellScalingApi.h>
 #include <Vsstyle.h>
 #include <vssym32.h>
 
@@ -14,8 +15,9 @@
 
 #include "../DirectUI/DirectUI.h"
 
-#pragma comment(lib,"dui70.lib")
+#pragma comment(lib, "dui70.lib")
 #pragma comment(lib, "comctl32.lib")
+#pragma comment(lib, "Shcore.lib")
 #include "resource.h"
 
 using namespace DirectUI;
@@ -170,6 +172,7 @@ static void CALLBACK WilLogCallback(wil::FailureInfo const &failure) noexcept
 
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
 	wil::SetResultLoggingCallback(WilLogCallback);
 
 	CoInitializeEx(nullptr, 0);
@@ -181,11 +184,25 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	// HookClassFactoryRegister();
 	THROW_IF_FAILED(RegisterAllControls());
 
+	HMONITOR hMonitor = MonitorFromWindow(nullptr, MONITOR_DEFAULTTOPRIMARY);
+	MONITORINFO mi = { sizeof(mi) };
+	THROW_IF_WIN32_BOOL_FALSE(GetMonitorInfo(hMonitor, &mi));
+
+	UINT dpiX, dpiY;
+	THROW_IF_FAILED(GetDpiForMonitor(hMonitor, MDT_EFFECTIVE_DPI, &dpiX, &dpiY));
+	int initWidth = MulDiv(800, dpiX, 96);
+	int initHeight = MulDiv(600, dpiY, 96);
+
+	RECT rcWindow;
+	rcWindow.left = mi.rcWork.left + (mi.rcWork.right - mi.rcWork.left - initWidth) / 2;
+	rcWindow.top = mi.rcWork.top + (mi.rcWork.bottom - mi.rcWork.top - initHeight) / 2;
+	rcWindow.right = rcWindow.left + initWidth;
+	rcWindow.bottom = rcWindow.top + initHeight;
+
 	NativeHWNDHost* pHost;
 	THROW_IF_FAILED(NativeHWNDHost::Create(
 		L"Microsoft DirectUI Test", nullptr, nullptr,
-		//CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
-		600, 400, 800, 600,
+		rcWindow.left, rcWindow.top, rcWindow.right - rcWindow.left, rcWindow.bottom - rcWindow.top,
 		WS_EX_WINDOWEDGE, WS_OVERLAPPEDWINDOW | WS_VISIBLE, 0, &pHost));
 
 	DUIXmlParser* pParser;

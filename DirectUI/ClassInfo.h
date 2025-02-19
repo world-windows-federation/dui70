@@ -64,6 +64,7 @@ namespace DirectUI
 	template <typename T>
 	class EmptyCreator
 	{
+	public:
 		static HRESULT CreateInstance(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement)
 		{
 			DUI_ASSERT("Cannot instantiate this type via parser. Must use substitution.");

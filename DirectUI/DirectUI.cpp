@@ -5750,21 +5750,9 @@ long HWNDElementProvider::Init(HWNDElement*, InvokeHelper*)
 {
 	return 0;
 }
-
-HWNDElementProxy::HWNDElementProxy(HWNDElementProxy const&)
-{
-}
-
 HWNDElementProxy::HWNDElementProxy(void)
 {
 }
-
-HWNDElementProxy& HWNDElementProxy::operator=(HWNDElementProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
 HWNDElementProxy* HWNDElementProxy::Create(HWNDElement*)
 {
 	return nullptr;
@@ -6138,10 +6126,7 @@ unsigned int const (*__ptr32 HWNDHost::g_rgMouseMap)[3];
 
 IClassInfo* HWNDHost::s_pClassInfo;
 
-Proxy::Proxy(Proxy const&)
-{
-}
-
+	
 Proxy::Proxy(void)
 {
 }
@@ -6149,13 +6134,6 @@ Proxy::Proxy(void)
 Proxy::~Proxy(void)
 {
 }
-
-Proxy& Proxy::operator=(Proxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
 long Proxy::SyncCallback(HGADGET__*, void*, EventMsg*)
 {
 	return 0;

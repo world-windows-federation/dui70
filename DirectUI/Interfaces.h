@@ -4,17 +4,11 @@ namespace DirectUI
 {
 	struct DECLSPEC_NOVTABLE IElementListener
 	{
-		//0
 		virtual void OnListenerAttach(Element* peFrom) = 0;
-		//1
 		virtual void OnListenerDetach(Element* peFrom) = 0;
-		//2 returns false to cancel
 		virtual bool OnListenedPropertyChanging(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) = 0;
-		//3
 		virtual void OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) = 0;
-		//4
 		virtual void OnListenedInput(Element* peFrom, InputEvent* pInput) = 0;
-		//5
 		virtual void OnListenedEvent(Element* peFrom, Event* pEvent) = 0;
 	};
 
@@ -48,47 +42,7 @@ namespace DirectUI
 		virtual void* GetActual() = 0;
 	};
 
-	class DECLSPEC_NOVTABLE IProxy
-	{
-	public:
-		virtual long DoMethod(int, char*) = 0;
-
-	protected:
-		virtual void Init(Element*) = 0;
-	};
-
-	class UILIB_API Proxy
-	{
-	public:
-		Proxy(const Proxy&);
-		Proxy();
-		virtual ~Proxy();
-		Proxy& operator=(const Proxy&);
-
-		static long __stdcall SyncCallback(HGADGET__*, void*, EventMsg*);
-
-	protected:
-		void Invoke(UINT, void*);
-		virtual void OnInvoke(UINT, void*);
-	};
-
-	class UILIB_API DECLSPEC_NOVTABLE ProviderProxy
-	{
-	public:
-		virtual HRESULT DoMethod(MethodId methodId, va_list args) = 0;
-
-	protected:
-		virtual void Init(Element* pe);
-
-	public:
-		ProviderProxy(const ProviderProxy&) = default;
-
-	protected:
-		ProviderProxy();
-
-		Element* _pe;
-	};
-
+	
 	class UILIB_API IProvider
 	{
 	public:

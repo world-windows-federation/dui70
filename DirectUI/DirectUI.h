@@ -33,6 +33,7 @@
 #include "SimpleTimer.h"
 
 #include "Primitives.h"
+#include "DuiProxy.h"
 #include "UiaSchema.h"
 #include "Element.h"
 #include "PatternProvider.h"

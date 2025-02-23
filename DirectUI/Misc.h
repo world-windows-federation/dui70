@@ -762,19 +762,7 @@ namespace DirectUI
 
 		static HRESULT Create(bool fZeroData, DynamicArray** ppArray)
 		{
-			BaseT* pTmp;
-			HRESULT hr = BaseT::Create(fZeroData, &pTmp);
-
-			if (SUCCEEDED(hr))
-			{
-				*ppArray = (DynamicArray*)pTmp;
-			}
-			else
-			{
-				*ppArray = nullptr;
-			}
-
-			return hr;
+			return Create(0, fZeroData, ppArray);
 		}
 
 		static HRESULT Create(UINT uCapacity, bool fZeroData, DynamicArray** ppArray)

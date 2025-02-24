@@ -489,7 +489,7 @@ namespace DirectUI
 
 			if (SUCCEEDED(hr))
 			{
-				T* pBuffer = Buffer();
+				const T* pBuffer = Buffer();
 				if (pBuffer)
 				{
 					memcpy(p->Buffer(), pBuffer, sizeof(T) * _uSize);
@@ -785,7 +785,7 @@ namespace DirectUI
 		HRESULT Clone(DynamicArray** ppClone) const
 		{
 			BaseT* pTmp;
-			HRESULT hr = BaseT::Clone(ppClone, &pTmp);
+			HRESULT hr = BaseT::Clone(&pTmp);
 
 			if (SUCCEEDED(hr))
 			{

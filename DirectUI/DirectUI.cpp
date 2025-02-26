@@ -8819,6 +8819,16 @@ long SelectorNoDefault::SetSelection(Element*)
 
 IClassInfo* SelectorNoDefault::s_pClassInfo;
 
+IClassInfo* ItemList::GetClassInfoPtr() STUB_ZERO;
+IClassInfo* ItemList::GetClassInfoW() STUB_ZERO;
+ItemList::ItemList() STUB_VOID;
+ItemList::~ItemList() STUB_VOID;
+HRESULT ItemList::SetReorderable(bool v) STUB_ZERO;
+bool ItemList::IsReorderable() STUB_ZERO;
+HRESULT ItemList::Register() STUB_ZERO;
+HRESULT ItemList::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void ItemList::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+Element* ItemList::GetAdjacent(Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
 
 SelectorSelectionProxy::SelectorSelectionProxy(SelectorSelectionProxy const&)
 {

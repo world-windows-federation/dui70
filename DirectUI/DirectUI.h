@@ -114,6 +114,7 @@
 #include "Selection.h"
 #include "Selector.h"
 #include "SelectorNoDefault.h"
+#include "ItemList.h"
 #include "SelectorSelectionItem.h"
 #include "SelectorSelection.h"
 #include "StyledScrollViewer.h"

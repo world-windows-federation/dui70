@@ -34,8 +34,8 @@ namespace DirectUI
 
 		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
 
-		virtual bool OnLostDialogFocus(class DialogElement* pDE); // TODO Change to IDialogElement
-		virtual bool OnReceivedDialogFocus(DialogElement* pDE); // TODO Change to IDialogElement
+		virtual bool OnLostDialogFocus(IDialogElement* pDE);
+		virtual bool OnReceivedDialogFocus(IDialogElement* pDE);
 
 		HRESULT DefaultAction() override;
 

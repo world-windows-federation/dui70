@@ -32,37 +32,30 @@ namespace DirectUI
 		static const PropertyInfo* WINAPI ThemeChangedProp();
 		static const PropertyInfo* WINAPI TransparentProp();
 
-		//父类重载
-		virtual IClassInfo* GetClassInfoW();
-		virtual long GetAccessibleImpl(IAccessible**);
-		virtual bool GetKeyFocused();
-		virtual unsigned int MessageCallback(LPGMSG);
-		virtual void OnDestroy();
-		virtual void OnEvent(Event*);
-		virtual void OnInput(InputEvent*);
-		virtual void OnPropertyChanged(const PropertyInfo*, int, Value*, Value*);
+		virtual IClassInfo* GetClassInfoW() override;
+		virtual long GetAccessibleImpl(IAccessible** ppAccessible) override;
+		virtual bool GetKeyFocused() override;
+		virtual unsigned int MessageCallback(GMSG* pgMsg) override;
+		virtual void OnDestroy() override;
+		virtual void OnEvent(Event* pEvent) override;
+		virtual void OnInput(InputEvent* pInput) override;
+		virtual void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+		virtual void OnHosted(Element* peNewHost) override;
+		virtual void OnUnHosted(Element* peOldHost) override;
 
-		virtual void Paint(HDC, LPCRECT, LPCRECT, LPRECT, LPRECT);
-		virtual void SetKeyFocus();
-		virtual void SetWindowDirection(HWND);
-		//
+		virtual void Paint(HDC, LPCRECT, LPCRECT, LPRECT, LPRECT) override;
+		virtual void SetKeyFocus() override;
 
-		//1
-		virtual HWND GetHWND();
-		//2
-		virtual bool OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*);
-		//3
-		virtual bool OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*);
-		//4
-		virtual bool OnSysChar(WCHAR);
-		//5
-		virtual bool OnSinkThemeChanged(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*);
-		//6
-		virtual bool OnCtrlThemeChanged(UINT, WPARAM wParam, LPARAM lParam, LRESULT*);
-		//7
-		virtual void OnWindowStyleChanged(WPARAM, const STYLESTRUCT *);
-		//8
-		virtual int OnAdjustWindowSize(int, int, unsigned int);
+		virtual bool OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) = 0;
+		virtual bool OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) = 0;
+		virtual bool OnSysChar(WCHAR chKeyCode) = 0;
+		virtual bool OnSinkThemeChanged(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet);
+		virtual bool OnCtrlThemeChanged(UINT, WPARAM wParam, LPARAM lParam, LRESULT* plRet);
+		virtual void OnWindowStyleChanged(WPARAM wParam, const STYLESTRUCT* pstylestruct);
+		virtual int OnAdjustWindowSize(int x, int y, UINT uFlags);
+		virtual void SetWindowDirection(HWND hwnd);
+		virtual HWND CreateHWND(HWND hwndParent) = 0;
+		virtual bool EraseBkgnd(HDC hdcCtl, int* lpRet);
 
 	protected:
 		static void WINAPI AttachCtrlSubclassProc(HWND);
@@ -86,15 +79,6 @@ namespace DirectUI
 		bool GetStaticColor(HDC, HBRUSH*);
 		int GetThemeChanged();
 		bool IsMoveDeferred();
-		//父类重载
-		virtual void OnHosted(Element*);
-		virtual void OnUnHosted(Element*);
-		//
-
-		//9
-		virtual HWND CreateHWND(HWND);
-		//10
-		virtual bool EraseBkgnd(HDC, LRESULT*);
 
 	private:
 		static unsigned int const (* __ptr32 g_rgMouseMap)[3];

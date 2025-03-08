@@ -5843,9 +5843,9 @@ void HWNDHost::SetWindowDirection(HWND)
 {
 }
 
-HWND HWNDHost::GetHWND()
+bool HWNDHost::EraseBkgnd(HDC hdcCtl, int *lpRet)
 {
-	return HWND();
+	return false;
 }
 
 bool HWNDHost::OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*)
@@ -5977,16 +5977,6 @@ void HWNDHost::OnHosted(Element*)
 
 void HWNDHost::OnUnHosted(Element*)
 {
-}
-
-HWND HWNDHost::CreateHWND(HWND)
-{
-	return HWND();
-}
-
-bool HWNDHost::EraseBkgnd(HDC, LRESULT*)
-{
-	return false;
 }
 
 BOOL HWNDHost::_CtrlWndProc(void*, HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult)

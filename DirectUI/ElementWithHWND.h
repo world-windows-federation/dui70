@@ -11,14 +11,16 @@ namespace DirectUI
 
 		virtual ~ElementWithHWND();
 
-		static long WINAPI Create(Element*, unsigned long*, Element**);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 		static IClassInfo* WINAPI GetClassInfoPtr();
-		static long WINAPI Register();
-		static void WINAPI SetClassInfoPtr(IClassInfo*);
+		static HRESULT WINAPI Register();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
-		virtual IClassInfo* GetClassInfoW();
+		virtual IClassInfo* GetClassInfoW() override;
+
+		virtual HWND GetHWND() = 0;
 
 	private:
-		static IClassInfo*s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
 	};
 }

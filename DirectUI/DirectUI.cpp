@@ -775,49 +775,13 @@ class __Element_Check final : public Element
 #endif
 };
 
-ElementWithHWND::ElementWithHWND(const ElementWithHWND&)
-{
-}
-
-ElementWithHWND::ElementWithHWND()
-{
-}
-
-ElementWithHWND::~ElementWithHWND()
-{
-}
-
-ElementWithHWND& ElementWithHWND::operator=(const ElementWithHWND&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long WINAPI ElementWithHWND::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* WINAPI ElementWithHWND::GetClassInfoPtr()
-{
-	return nullptr;
-}
-
-IClassInfo* ElementWithHWND::GetClassInfoW()
-{
-	return nullptr;
-}
-
-long WINAPI ElementWithHWND::Register()
-{
-	return 0;
-}
-
-void WINAPI ElementWithHWND::SetClassInfoPtr(IClassInfo*)
-{
-}
-
+HRESULT WINAPI ElementWithHWND::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HWND ElementWithHWND::GetHWND() STUB_ZERO;
+IClassInfo* WINAPI ElementWithHWND::GetClassInfoPtr() STUB_ZERO;
+void WINAPI ElementWithHWND::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* ElementWithHWND::s_pClassInfo;
+IClassInfo* ElementWithHWND::GetClassInfoW() STUB_ZERO;
+HRESULT WINAPI ElementWithHWND::Register() STUB_ZERO;
 	
 DUIXmlParser& DUIXmlParser::operator=(const DUIXmlParser&)
 {
@@ -5355,334 +5319,86 @@ LRESULT WINAPI XHost::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam
 	return LRESULT();
 }
 
-HWNDElement::HWNDElement(const HWNDElement&)
-{
-}
-
-HWNDElement::HWNDElement()
-{
-}
-
-HWNDElement::~HWNDElement()
-{
-}
-
-HWNDElement& HWNDElement::operator=(const HWNDElement&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-void HWNDElement::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-void HWNDElement::OnGroupChanged(int, bool)
-{
-}
-
-void HWNDElement::OnInput(InputEvent*)
-{
-}
-
-void HWNDElement::OnDestroy()
-{
-}
-
-void HWNDElement::OnEvent(Event*)
-{
-}
-
-void HWNDElement::UpdateTooltip(Element*)
-{
-}
-
-void HWNDElement::ActivateTooltip(Element*, unsigned long)
-{
-}
-
-void HWNDElement::RemoveTooltip(Element*)
-{
-}
-
-IClassInfo* HWNDElement::GetClassInfoW()
-{
-	return nullptr;
-}
-
-long HWNDElement::GetAccessibleImpl(IAccessible**)
-{
-	return 0;
-}
-
-HWND HWNDElement::GetHWND()
-{
-	return HWND();
-}
-
-void HWNDElement::OnThemeChanged(ThemeChangedEvent*)
-{
-}
-
-void HWNDElement::OnImmersiveColorSchemeChanged()
-{
-}
-
-void HWNDElement::OnNoChildWithShortcutFound(KeyboardEvent*)
-{
-}
-
-void HWNDElement::OnGetDlgCode(LPMSG, LRESULT*)
-{
-}
-
-void HWNDElement::OnWmThemeChanged(WPARAM wParam, LPARAM lParam)
-{
-}
-
-void HWNDElement::OnWmSettingChanged(WPARAM wParam, LPARAM lParam)
-{
-}
-
-void HWNDElement::OnCompositionChanged()
-{
-}
-
-bool HWNDElement::CanSetFocus()
-{
-	return false;
-}
-
-bool HWNDElement::IsMSAAEnabled()
-{
-	return false;
-}
-
-UID WINAPI HWNDElement::CompositionChange()
-{
-	return UID();
-}
-
-HRESULT HWNDElement::Create(HWND, bool, unsigned int, Element*, unsigned long*, Element** pOut)
-{
-	return E_NOTIMPL;
-}
-
-long HWNDElement::CreateStyleParser(DUIXmlParser**)
-{
-	return 0;
-}
-
-void HWNDElement::DelayActivateTooltip()
-{
-}
-
-Element* HWNDElement::ElementFromPoint(LPPOINT)
-{
-	return nullptr;
-}
-
-bool WINAPI HWNDElement::FindShortcut(unsigned short, Element*, Element**, int*, int*, int)
-{
-	return false;
-}
-
-void HWNDElement::FlushWorkingSet()
-{
-}
-
-IClassInfo* WINAPI HWNDElement::GetClassInfoPtr()
-{
-	return nullptr;
-}
-
-HWNDElement* WINAPI HWNDElement::GetFocusedHWNDElement()
-{
-	return nullptr;
-}
-
-Element* WINAPI HWNDElement::GetKeyFocusedElement()
-{
-	return nullptr;
-}
-
-unsigned short HWNDElement::GetUIState()
-{
-	return 0;
-}
-
-bool HWNDElement::GetWrapKeyboardNavigate()
-{
-	return false;
-}
-
-long HWNDElement::Initialize(HWND, bool, unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-bool HWNDElement::IsFirstElement(Element*)
-{
-	return false;
-}
-
-bool HWNDElement::IsLastElement(Element*)
-{
-	return false;
-}
-
-long WINAPI HWNDElement::Register()
-{
-	return 0;
-}
-
-void WINAPI HWNDElement::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-void HWNDElement::SetFocus(bool)
-{
-}
-
-void HWNDElement::SetParentSizeControl(bool)
-{
-}
-
-void HWNDElement::SetScreenCenter(bool)
-{
-}
-
-long HWNDElement::SetWrapKeyboardNavigate(bool)
-{
-	return 0;
-}
-
-bool HWNDElement::ShowAccel(void)
-{
-	return false;
-}
-
-bool HWNDElement::ShowFocus(void)
-{
-	return false;
-}
-
-void HWNDElement::ShowUIState(bool, bool)
-{
-}
-
-UID WINAPI HWNDElement::ThemeChange()
-{
-	return UID();
-}
-
-void HWNDElement::ToggleUIState(bool, bool)
-{
-}
-
-const PropertyInfo* HWNDElement::WrapKeyboardNavigateProp()
-{
-	return nullptr;
-}
-
-LRESULT WINAPI HWNDElement::StaticWndProc(HWND, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	return 0;
-}
-
-LRESULT HWNDElement::WndProc(HWND, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	return LRESULT();
-}
-
-void HWNDElement::GetWindowClassNameAndStyle(const unsigned short**, UINT*)
-{
-}
-
-void HWNDElement::_OnUIStateChanged(WORD, WORD)
-{
-}
-
-bool WINAPI HWNDElement::FindShortcutRecursive(unsigned short, Element*, Element**, int*, int*, int)
-{
-	return false;
-}
-
+HRESULT WINAPI HWNDElement::Create(HWND hParent, bool fDblBuffer, UINT nCreate, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void HWNDElement::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void HWNDElement::OnGroupChanged(int fGroups, bool bLowPri) STUB_VOID;
+void HWNDElement::OnDestroy() STUB_VOID;
+void HWNDElement::OnEvent(Event* pEvent) STUB_VOID;
+void HWNDElement::OnThemeChanged(ThemeChangedEvent* pev) STUB_VOID;
+void HWNDElement::OnImmersiveColorSchemeChanged() STUB_VOID;
+void HWNDElement::OnInput(InputEvent* pie) STUB_VOID;
+void HWNDElement::OnNoChildWithShortcutFound(KeyboardEvent* pke) STUB_VOID;
+void HWNDElement::OnGetDlgCode(MSG* msg, LRESULT* plResult) STUB_VOID;
+void HWNDElement::OnWmThemeChanged(WPARAM wParam, LPARAM lParam) STUB_VOID;
+void HWNDElement::OnWmSettingChanged(WPARAM wParam, LPARAM lParam) STUB_VOID;
+void HWNDElement::OnCompositionChanged() STUB_VOID;
+bool HWNDElement::CanSetFocus() STUB_ZERO;
+bool HWNDElement::IsMSAAEnabled() STUB_ZERO;
+void HWNDElement::UpdateTooltip(Element* pe) STUB_VOID;
+void HWNDElement::ActivateTooltip(Element* pe, DWORD dwFlags) STUB_VOID;
+void HWNDElement::RemoveTooltip(Element* pe) STUB_VOID;
+void HWNDElement::DelayActivateTooltip() STUB_VOID;
+HRESULT HWNDElement::CreateStyleParser(DUIXmlParser** ppParser) STUB_ZERO;
+Element* HWNDElement::ElementFromPoint(POINT* ppt) STUB_ZERO;
+LRESULT CALLBACK HWNDElement::StaticWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO;
+LRESULT HWNDElement::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO;
+void HWNDElement::FlushWorkingSet() STUB_VOID;
+HWND HWNDElement::GetHWND() STUB_ZERO;
+void HWNDElement::GetWindowClassNameAndStyle(const WCHAR** ppchClassName, UINT* puiClassStyle) STUB_VOID;
+Element* WINAPI HWNDElement::GetKeyFocusedElement() STUB_ZERO;
+HWNDElement* WINAPI HWNDElement::GetFocusedHWNDElement() STUB_ZERO;
+bool WINAPI HWNDElement::FindShortcut(WCHAR ch, Element* pe, Element** ppeFound, BOOL* pfMultiple, BOOL* pfUseNext, BOOL fSysKey) STUB_ZERO;
+bool HWNDElement::IsFirstElement(Element* peTarget) STUB_ZERO;
+bool HWNDElement::IsLastElement(Element* peTarget) STUB_ZERO;
+void HWNDElement::SetFocus(bool fFirstElement) STUB_VOID;
+void HWNDElement::ToggleUIState(bool fUpdateAccel, bool fUpdateFocus) STUB_VOID;
+void HWNDElement::ShowUIState(bool fUpdateAccel, bool fUpdateFocus) STUB_VOID;
+WORD HWNDElement::GetUIState() STUB_ZERO;
+bool HWNDElement::ShowAccel() STUB_ZERO;
+bool HWNDElement::ShowFocus() STUB_ZERO;
+void HWNDElement::SetParentSizeControl(bool bParentSizeControl) STUB_VOID;
+void HWNDElement::SetScreenCenter(bool bScreenCenter) STUB_VOID;
+bool HWNDElement::ShouldUseDesktopPerMonitorScaling() STUB_ZERO;
+UID WINAPI HWNDElement::ThemeChange() STUB_ZERO;
+UID WINAPI HWNDElement::CompositionChange() STUB_ZERO;
+UID WINAPI HWNDElement::ImmersiveColorSchemeChange() STUB_ZERO;
+UID WINAPI HWNDElement::WindowDpiChanged() STUB_ZERO;
+const PropertyInfo* WINAPI HWNDElement::WrapKeyboardNavigateProp() STUB_ZERO;
+bool HWNDElement::GetWrapKeyboardNavigate() STUB_ZERO;
+HRESULT HWNDElement::SetWrapKeyboardNavigate(bool v) STUB_ZERO;
+IClassInfo* WINAPI HWNDElement::GetClassInfoPtr() STUB_ZERO;
+void WINAPI HWNDElement::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* HWNDElement::s_pClassInfo;
+IClassInfo* HWNDElement::GetClassInfoW() STUB_ZERO;
+HRESULT WINAPI HWNDElement::Register() STUB_ZERO;
+HRESULT HWNDElement::GetAccessibleImpl(IAccessible**) STUB_ZERO;
+HWNDElement::HWNDElement() STUB_VOID;
+HWNDElement::~HWNDElement() STUB_VOID;
+HRESULT HWNDElement::Initialize(HWND hParent, bool fDblBuffer, UINT nCreate, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+bool WINAPI HWNDElement::FindShortcutRecursive(WCHAR ch, Element* pe, Element** ppeFound, BOOL* pfMultiple, BOOL* pfUseNext, BOOL fSysKey) STUB_ZERO;
+void HWNDElement::UpdateStyleSheets() STUB_VOID;
+void HWNDElement::_OnUIStateChanged(WORD wUIStateOld, WORD wUIStateNew) STUB_VOID;
+void HWNDElement::_HandleImmersiveColorSchemeChange() STUB_VOID;
+int HWNDElement::_GetPerMonitorScaleFactorForDesktopWindow(HWND hwnd) STUB_ZERO;
+void HWNDElement::_FireWindowDpiChangeEvent() STUB_VOID;
+int HWNDElement::_UpdateDesktopScaleFactor() STUB_ZERO;
 
-HWNDElementProvider::HWNDElementProvider(void)
-{
-}
+PfnCreateProxy HWNDElementProvider::GetProxyCreator() STUB_ZERO;
+HRESULT HWNDElementProvider::Create(HWNDElement* pe, InvokeHelper* pih, HWNDElementProvider** ppprv) STUB_ZERO;
+HWNDElementProvider::HWNDElementProvider() STUB_VOID;
+ULONG HWNDElementProvider::AddRef() STUB_ZERO;
+ULONG HWNDElementProvider::Release() STUB_ZERO;
+HRESULT HWNDElementProvider::QueryInterface(REFIID riid, void** ppvObject) STUB_ZERO;
+HRESULT HWNDElementProvider::ElementProviderFromPoint(double x, double y, IRawElementProviderFragment** ppprv) STUB_ZERO;
+HRESULT HWNDElementProvider::GetFocus(IRawElementProviderFragment** ppprv) STUB_ZERO;
+HRESULT HWNDElementProvider::Init(HWNDElement* pe, InvokeHelper* pih) STUB_ZERO;
 
-HWNDElementProvider::~HWNDElementProvider(void)
-{
-}
-
-long HWNDElementProvider::Create(HWNDElement*, InvokeHelper*, HWNDElementProvider**)
-{
-	return 0;
-}
-
-unsigned long HWNDElementProvider::AddRef(void)
-{
-	return 0;
-}
-
-long HWNDElementProvider::QueryInterface(_GUID const&, void**)
-{
-	return 0;
-}
-
-unsigned long HWNDElementProvider::Release(void)
-{
-	return 0;
-}
-
-PfnCreateProxy HWNDElementProvider::GetProxyCreator(void)
-{
-	return PfnCreateProxy();
-}
-
-long HWNDElementProvider::ElementProviderFromPoint(double, double, IRawElementProviderFragment**)
-{
-	return 0;
-}
-
-long HWNDElementProvider::GetFocus(IRawElementProviderFragment**)
-{
-	return 0;
-}
-
-long HWNDElementProvider::Init(HWNDElement*, InvokeHelper*)
-{
-	return 0;
-}
-HWNDElementProxy::HWNDElementProxy(void)
-{
-}
-HWNDElementProxy* HWNDElementProxy::Create(HWNDElement*)
-{
-	return nullptr;
-}
-
-long HWNDElementProxy::DoMethod(int, char*)
-{
-	return 0;
-}
-
-void HWNDElementProxy::Init(HWNDElement*)
-{
-}
-
-long HWNDElementProxy::ElementFromPoint(double, double, IRawElementProviderFragment**)
-{
-	return 0;
-}
-
-long HWNDElementProxy::GetFocus(IRawElementProviderFragment**)
-{
-	return 0;
-}
+HWNDElementProxy* HWNDElementProxy::Create(HWNDElement* pe) STUB_ZERO;
+void HWNDElementProxy::Init(HWNDElement* pe) STUB_VOID;
+HRESULT HWNDElementProxy::DoMethod(MethodId methodId, va_list args) STUB_ZERO;
+HWNDElementProxy::HWNDElementProxy() STUB_VOID;
+HRESULT HWNDElementProxy::ElementFromPoint(double x, double y, IRawElementProviderFragment** ppprv) STUB_ZERO;
+HRESULT HWNDElementProxy::GetFocus(IRawElementProviderFragment** ppprv) STUB_ZERO;
 
 HWNDHost::HWNDHost(const HWNDHost&)
 {

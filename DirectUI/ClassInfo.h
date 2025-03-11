@@ -211,6 +211,48 @@ namespace DirectUI
 		}
 		return hr;
 	}
+
+	template <typename T, typename A1T, typename A2T>
+	HRESULT CreateAndInit(A1T arg1, A2T arg2, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement)
+	{
+		*ppElement = nullptr;
+		T* pT = HNew<T>();
+		HRESULT hr = pT ? S_OK : E_OUTOFMEMORY;
+		if (SUCCEEDED(hr))
+		{
+			hr = pT->Initialize(arg1, arg2, pParent, pdwDeferCookie);
+			if (SUCCEEDED(hr))
+			{
+				*ppElement = pT;
+			}
+			else
+			{
+				pT->Destroy(false);
+			}
+		}
+		return hr;
+	}
+
+	template <typename T, typename A1T, typename A2T, typename A3T>
+	HRESULT CreateAndInit(A1T arg1, A2T arg2, A3T arg3, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement)
+	{
+		*ppElement = nullptr;
+		T* pT = HNew<T>();
+		HRESULT hr = pT ? S_OK : E_OUTOFMEMORY;
+		if (SUCCEEDED(hr))
+		{
+			hr = pT->Initialize(arg1, arg2, arg3, pParent, pdwDeferCookie);
+			if (SUCCEEDED(hr))
+			{
+				*ppElement = pT;
+			}
+			else
+			{
+				pT->Destroy(false);
+			}
+		}
+		return hr;
+	}
 }
 
 #undef DUI_SET_CLASS_INFO

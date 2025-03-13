@@ -955,7 +955,7 @@ void NativeHWNDHost::ShowWindow(int iShow) STUB_VOID
 void NativeHWNDHost::HideWindow() STUB_VOID
 void NativeHWNDHost::DestroyWindow() STUB_VOID
 void NativeHWNDHost::SyncDestroyWindow() STUB_VOID
-LRESULT CALLBACK NativeHWNDHost::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO
+LRESULT NativeHWNDHost::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO
 NativeHWNDHost::NativeHWNDHost(const NativeHWNDHost&) STUB_VOID
 NativeHWNDHost::NativeHWNDHost() STUB_VOID
 HRESULT NativeHWNDHost::Initialize(const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, UINT nOptions) STUB_ZERO
@@ -5340,7 +5340,7 @@ void HWNDElement::RemoveTooltip(Element* pe) STUB_VOID;
 void HWNDElement::DelayActivateTooltip() STUB_VOID;
 HRESULT HWNDElement::CreateStyleParser(DUIXmlParser** ppParser) STUB_ZERO;
 Element* HWNDElement::ElementFromPoint(POINT* ppt) STUB_ZERO;
-LRESULT CALLBACK HWNDElement::StaticWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO;
+LRESULT HWNDElement::StaticWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO;
 LRESULT HWNDElement::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO;
 void HWNDElement::FlushWorkingSet() STUB_VOID;
 HWND HWNDElement::GetHWND() STUB_ZERO;
@@ -5400,346 +5400,82 @@ HWNDElementProxy::HWNDElementProxy() STUB_VOID;
 HRESULT HWNDElementProxy::ElementFromPoint(double x, double y, IRawElementProviderFragment** ppprv) STUB_ZERO;
 HRESULT HWNDElementProxy::GetFocus(IRawElementProviderFragment** ppprv) STUB_ZERO;
 
-HWNDHost::HWNDHost(const HWNDHost&)
-{
-}
-
-HWNDHost::HWNDHost()
-{
-}
-
-HWNDHost& HWNDHost::operator=(const HWNDHost&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-HWNDHost::~HWNDHost()
-{
-}
-
-long HWNDHost::Initialize(unsigned int, unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-void HWNDHost::Detach()
-{
-}
-
-unsigned short HWNDHost::GetBackgroundOwnerID()
-{
-	return 0;
-}
-
-HWND HWNDHost::GetHWNDParent()
-{
-	return HWND();
-}
-
-bool HWNDHost::GetOptimizeMove()
-{
-	return false;
-}
-
-bool HWNDHost::GetTransparent()
-{
-	return false;
-}
-
-long HWNDHost::GetClientAccessibleImpl(IAccessible**)
-{
-	return 0;
-}
-
-long HWNDHost::SetBackgroundOwnerID(const WCHAR*)
-{
-	return 0;
-}
-
-long HWNDHost::SetOptimizeMove(bool)
-{
-	return 0;
-}
-
-long HWNDHost::SetTransparent(bool)
-{
-	return 0;
-}
-
-long WINAPI HWNDHost::Create(unsigned int, unsigned int, Element*, unsigned long*, Element** pOut)
-{
-	return 0;
-}
-
-long WINAPI HWNDHost::Create(Element*, unsigned long*, Element** pOut)
-{
-	return 0;
-}
-
-const PropertyInfo* WINAPI HWNDHost::BackgroundOwnerIDProp()
-{
-	return nullptr;
-}
-
-IClassInfo* WINAPI HWNDHost::GetClassInfoPtr()
-{
-	return nullptr;
-}
-
-const PropertyInfo* WINAPI HWNDHost::OptimizeMoveProp()
-{
-	return nullptr;
-}
-
-long WINAPI HWNDHost::Register()
-{
-	return 0;
-}
-
-void WINAPI HWNDHost::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-const PropertyInfo* WINAPI HWNDHost::ThemeChangedProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* WINAPI HWNDHost::TransparentProp()
-{
-	return nullptr;
-}
-
-IClassInfo* HWNDHost::GetClassInfoW()
-{
-	return nullptr;
-}
-
-long HWNDHost::GetAccessibleImpl(IAccessible**)
-{
-	return 0;
-}
-
-bool HWNDHost::GetKeyFocused()
-{
-	return false;
-}
-
-unsigned int HWNDHost::MessageCallback(LPGMSG)
-{
-	return 0;
-}
-
-void HWNDHost::OnDestroy()
-{
-}
-
-void HWNDHost::OnEvent(Event*)
-{
-}
-
-void HWNDHost::OnInput(InputEvent*)
-{
-}
-
-void HWNDHost::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-void HWNDHost::Paint(HDC, LPCRECT, LPCRECT, LPRECT, LPRECT)
-{
-}
-
-void HWNDHost::SetKeyFocus()
-{
-}
-
-void HWNDHost::SetWindowDirection(HWND)
-{
-}
-
-bool HWNDHost::EraseBkgnd(HDC hdcCtl, int *lpRet)
-{
-	return false;
-}
-
-bool HWNDHost::OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*)
-{
-	return false;
-}
-
-bool HWNDHost::OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*)
-{
-	return false;
-}
-
-bool HWNDHost::OnSysChar(WCHAR)
-{
-	return false;
-}
-
-bool HWNDHost::OnSinkThemeChanged(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*)
-{
-	return false;
-}
-
-bool HWNDHost::OnCtrlThemeChanged(UINT, WPARAM wParam, LPARAM lParam, LRESULT*)
-{
-	return false;
-}
-
-void HWNDHost::OnWindowStyleChanged(WPARAM, const STYLESTRUCT*)
-{
-}
-
-int HWNDHost::OnAdjustWindowSize(int, int, unsigned int)
-{
-	return 0;
-}
-
-void WINAPI HWNDHost::AttachCtrlSubclassProc(HWND)
-{
-}
-
-LRESULT WINAPI HWNDHost::CtrlSubclassProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	return 0;
-}
-
-void HWNDHost::PrintRTLControl(HDC, HDC, const RECT&)
-{
-}
-
-long HWNDHost::SetThemeChanged(int)
-{
-	return 0;
-}
-
-void HWNDHost::SyncBackground()
-{
-}
-
-void HWNDHost::SyncDirection()
-{
-}
-
-void HWNDHost::SyncFont()
-{
-}
-
-void HWNDHost::SyncForeground()
-{
-}
-
-void HWNDHost::SyncParent()
-{
-}
-
-void HWNDHost::SyncRect(unsigned int, bool)
-{
-}
-
-void HWNDHost::SyncStyle()
-{
-}
-
-void HWNDHost::SyncText()
-{
-}
-
-void HWNDHost::SyncVisible()
-{
-}
-
-int HWNDHost::VerifyParentage()
-{
-	return 0;
-}
-
-HWND HWNDHost::CreateAccNameLabel(HWND)
-{
-	return HWND();
-}
-
-Element* HWNDHost::GetBackgroundOwner()
-{
-	return nullptr;
-}
-
-HFONT HWNDHost::GetFont()
-{
-	return HFONT();
-}
-
-bool HWNDHost::GetStaticColor(HDC, HBRUSH*)
-{
-	return false;
-}
-
-int HWNDHost::GetThemeChanged()
-{
-	return 0;
-}
-
-bool HWNDHost::IsMoveDeferred()
-{
-	return false;
-}
-
-void HWNDHost::OnHosted(Element*)
-{
-}
-
-void HWNDHost::OnUnHosted(Element*)
-{
-}
-
-BOOL HWNDHost::_CtrlWndProc(void*, HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return 0;
-}
-
-BOOL WINAPI HWNDHost::_SinkWndProc(void*, HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return 0;
-}
-
-void HWNDHost::ApplySinkRegion(struct tagRECT const*, bool)
-{
-}
-
-long HWNDHost::GetAccessibleImpl(IAccessible**, bool)
-{
-	return 0;
-}
-
-void HWNDHost::GetSinkRect(RECT const*, LPRECT)
-{
-}
-
-bool HWNDHost::HaveWin32Focus()
-{
-	return false;
-}
-
-void HWNDHost::SyncColorsAndFonts()
-{
-}
-
-void HWNDHost::UnvirtualizePosition()
-{
-}
-
-void HWNDHost::_DeleteCtrlWnd()
-{
-}
-
-unsigned int const (*__ptr32 HWNDHost::g_rgMouseMap)[3];
-
+HRESULT HWNDHost::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT HWNDHost::Create(UINT nCreate, UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void HWNDHost::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void HWNDHost::OnInput(InputEvent* pInput) STUB_VOID;
+void HWNDHost::OnEvent(Event* pEvent) STUB_VOID;
+void HWNDHost::OnDestroy() STUB_VOID;
+bool HWNDHost::OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+bool HWNDHost::OnMessage(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+bool HWNDHost::OnSysChar(WCHAR chKeyCode) STUB_ZERO;
+bool HWNDHost::OnSinkThemeChanged(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+bool HWNDHost::OnCtrlThemeChanged(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+void HWNDHost::OnWindowStyleChanged(WPARAM wParam, const STYLESTRUCT* pstylestruct) STUB_VOID;
+int HWNDHost::OnAdjustWindowSize(int x, int y, UINT uFlags) STUB_ZERO;
+UINT HWNDHost::MessageCallback(GMSG* pmsg) STUB_ZERO;
+void HWNDHost::Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) STUB_VOID;
+bool HWNDHost::GetKeyFocused() STUB_ZERO;
+void HWNDHost::SetKeyFocus() STUB_VOID;
+void HWNDHost::SetWindowDirection(HWND hwnd) STUB_VOID;
+HWND HWNDHost::GetHWND() STUB_ZERO;
+HWND HWNDHost::GetHWNDParent() STUB_ZERO;
+void HWNDHost::Detach() STUB_VOID;
+const PropertyInfo* HWNDHost::TransparentProp() STUB_ZERO;
+const PropertyInfo* HWNDHost::BackgroundOwnerIDProp() STUB_ZERO;
+const PropertyInfo* HWNDHost::OptimizeMoveProp() STUB_ZERO;
+const PropertyInfo* HWNDHost::ThemeChangedProp() STUB_ZERO;
+bool HWNDHost::GetTransparent() STUB_ZERO;
+HRESULT HWNDHost::SetTransparent(bool v) STUB_ZERO;
+ATOM HWNDHost::GetBackgroundOwnerID() STUB_ZERO;
+HRESULT HWNDHost::SetBackgroundOwnerID(const WCHAR* v) STUB_ZERO;
+bool HWNDHost::GetOptimizeMove() STUB_ZERO;
+HRESULT HWNDHost::SetOptimizeMove(bool v) STUB_ZERO;
+IClassInfo* HWNDHost::GetClassInfoPtr() STUB_ZERO;
+void HWNDHost::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* HWNDHost::s_pClassInfo;
+IClassInfo* HWNDHost::GetClassInfoW() STUB_ZERO;
+HRESULT HWNDHost::Register() STUB_ZERO;
+HRESULT HWNDHost::GetAccessibleImpl(IAccessible** ppAccessible, bool fWindow) STUB_ZERO;
+HRESULT HWNDHost::GetAccessibleImpl(IAccessible** ppAccessible) STUB_ZERO;
+HRESULT HWNDHost::GetClientAccessibleImpl(IAccessible** ppAccessible) STUB_ZERO;
+HWNDHost::HWNDHost() STUB_VOID;
+HRESULT HWNDHost::Initialize(UINT nCreate, UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+HWNDHost::~HWNDHost() STUB_VOID;
+int HWNDHost::GetThemeChanged() STUB_ZERO;
+HRESULT HWNDHost::SetThemeChanged(int v) STUB_ZERO;
+void HWNDHost::OnHosted(Element* peNewHost) STUB_VOID;
+void HWNDHost::OnUnHosted(Element* peOldHost) STUB_VOID;
+HWND HWNDHost::CreateHWND(HWND hwndParent) STUB_ZERO;
+void HWNDHost::AttachCtrlSubclassProc(HWND hwnd) STUB_VOID;
+LRESULT HWNDHost::CtrlSubclassProc(HWND hwnd, UINT uiMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO;
+HWND HWNDHost::CreateAccNameLabel(HWND hwndParent) STUB_ZERO;
+void HWNDHost::SyncRect(UINT nChangeFlags, bool bForceSync) STUB_VOID;
+void HWNDHost::SyncParent() STUB_VOID;
+void HWNDHost::SyncStyle() STUB_VOID;
+void HWNDHost::SyncVisible() STUB_VOID;
+void HWNDHost::SyncDirection() STUB_VOID;
+void HWNDHost::SyncFont() STUB_VOID;
+HFONT HWNDHost::GetFont() STUB_ZERO;
+void HWNDHost::SyncBackground() STUB_VOID;
+void HWNDHost::SyncForeground() STUB_VOID;
+void HWNDHost::SyncText() STUB_VOID;
+bool HWNDHost::GetStaticColor(HDC hdcCtl, HBRUSH* phbrush) STUB_ZERO;
+void HWNDHost::PrintRTLControl(HDC hDC, HDC hdcBuffer, const RECT& rcSkipContent) STUB_VOID;
+bool HWNDHost::EraseBkgnd(HDC hdcCtl, LRESULT* lpRet) STUB_ZERO;
+Element* HWNDHost::GetBackgroundOwner() STUB_ZERO;
+bool HWNDHost::IsMoveDeferred() STUB_ZERO;
+int HWNDHost::VerifyParentage() STUB_ZERO;
+BOOL HWNDHost::_SinkWndProc(void* pThis, HWND hwnd, UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+BOOL HWNDHost::_CtrlWndProc(void* pThis, HWND hwnd, UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+void HWNDHost::_DeleteCtrlWnd() STUB_VOID;
+void HWNDHost::SyncColorsAndFonts() STUB_VOID;
+void HWNDHost::UnvirtualizePosition() STUB_VOID;
+void HWNDHost::ApplySinkRegion(const RECT* prcSink, bool bForceSync) STUB_VOID;
+void HWNDHost::GetSinkRect(const RECT* prcConPxl, RECT* prcSink) STUB_VOID;
+bool HWNDHost::HaveWin32Focus() STUB_ZERO;
+const UINT HWNDHost::g_rgMouseMap[8][3] = {};
 
-	
 Proxy::Proxy(void)
 {
 }

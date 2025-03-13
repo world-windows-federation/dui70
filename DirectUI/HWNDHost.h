@@ -5,103 +5,119 @@ namespace DirectUI
 	class UILIB_API HWNDHost : public ElementWithHWND
 	{
 	public:
-		HWNDHost(const HWNDHost &);
-		HWNDHost();
-		HWNDHost& operator=(const HWNDHost &);
-		
-		virtual ~HWNDHost();
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nCreate, UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		long Initialize(unsigned int, unsigned int, Element*, unsigned long*);
-		void Detach();
-		unsigned short GetBackgroundOwnerID();
-		HWND GetHWNDParent();
-		bool GetOptimizeMove();
-		bool GetTransparent();
-		long GetClientAccessibleImpl(IAccessible**);
-		long SetBackgroundOwnerID(const WCHAR*);
-		long SetOptimizeMove(bool);
-		long SetTransparent(bool);
-
-		static long WINAPI Create(unsigned int, unsigned int, Element*, unsigned long*, Element**pOut);
-		static long WINAPI Create(Element*, unsigned long*, Element**pOut);
-		static const PropertyInfo* WINAPI BackgroundOwnerIDProp();
-		static IClassInfo* WINAPI GetClassInfoPtr();
-		static const PropertyInfo* WINAPI OptimizeMoveProp();
-		static long WINAPI Register();
-		static void WINAPI SetClassInfoPtr(IClassInfo*);
-		static const PropertyInfo* WINAPI ThemeChangedProp();
-		static const PropertyInfo* WINAPI TransparentProp();
-
-		virtual IClassInfo* GetClassInfoW() override;
-		virtual long GetAccessibleImpl(IAccessible** ppAccessible) override;
-		virtual bool GetKeyFocused() override;
-		virtual unsigned int MessageCallback(GMSG* pgMsg) override;
-		virtual void OnDestroy() override;
-		virtual void OnEvent(Event* pEvent) override;
-		virtual void OnInput(InputEvent* pInput) override;
-		virtual void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
-		virtual void OnHosted(Element* peNewHost) override;
-		virtual void OnUnHosted(Element* peOldHost) override;
-
-		virtual void Paint(HDC, LPCRECT, LPCRECT, LPRECT, LPRECT) override;
-		virtual void SetKeyFocus() override;
-
-		virtual bool OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) = 0;
-		virtual bool OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) = 0;
-		virtual bool OnSysChar(WCHAR chKeyCode) = 0;
-		virtual bool OnSinkThemeChanged(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet);
-		virtual bool OnCtrlThemeChanged(UINT, WPARAM wParam, LPARAM lParam, LRESULT* plRet);
+		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+		void OnInput(InputEvent* pInput) override;
+		void OnEvent(Event* pEvent) override;
+		void OnDestroy() override;
+		virtual bool OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet);
+		virtual bool OnMessage(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet);
+		virtual bool OnSysChar(WCHAR chKeyCode);
+		virtual bool OnSinkThemeChanged(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet);
+		virtual bool OnCtrlThemeChanged(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet);
 		virtual void OnWindowStyleChanged(WPARAM wParam, const STYLESTRUCT* pstylestruct);
 		virtual int OnAdjustWindowSize(int x, int y, UINT uFlags);
+		UINT MessageCallback(GMSG* pmsg) override;
+		void Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) override;
+		bool GetKeyFocused() override;
+		void SetKeyFocus() override;
 		virtual void SetWindowDirection(HWND hwnd);
-		virtual HWND CreateHWND(HWND hwndParent) = 0;
-		virtual bool EraseBkgnd(HDC hdcCtl, int* lpRet);
+		HWND GetHWND() override;
 
-	protected:
-		static void WINAPI AttachCtrlSubclassProc(HWND);
-		static LRESULT WINAPI CtrlSubclassProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+		HWND GetHWNDParent();
+		void Detach();
 
-		void PrintRTLControl(HDC, HDC, const RECT&);
-		long SetThemeChanged(int);
-		void SyncBackground();
-		void SyncDirection();
-		void SyncFont();
-		void SyncForeground();
-		void SyncParent();
-		void SyncRect(unsigned int, bool);
-		void SyncStyle();
-		void SyncText();
-		void SyncVisible();
-		int VerifyParentage();
-		HWND CreateAccNameLabel(HWND);
-		Element* GetBackgroundOwner();
-		HFONT GetFont();
-		bool GetStaticColor(HDC, HBRUSH*);
-		int GetThemeChanged();
-		bool IsMoveDeferred();
+		static const PropertyInfo* WINAPI TransparentProp();
+		static const PropertyInfo* WINAPI BackgroundOwnerIDProp();
+		static const PropertyInfo* WINAPI OptimizeMoveProp();
+		static const PropertyInfo* WINAPI ThemeChangedProp();
+
+		bool GetTransparent();
+		HRESULT SetTransparent(bool v);
+
+		ATOM GetBackgroundOwnerID();
+		HRESULT SetBackgroundOwnerID(const WCHAR* v);
+
+		bool GetOptimizeMove();
+		HRESULT SetOptimizeMove(bool v);
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		static unsigned int const (* __ptr32 g_rgMouseMap)[3];
 		static IClassInfo* s_pClassInfo;
-		static BOOL __stdcall _CtrlWndProc(void *, HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult);
-		static BOOL WINAPI _SinkWndProc(void *, HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult);
 
-		void ApplySinkRegion(RECT const *, bool);
-		long GetAccessibleImpl(IAccessible**, bool);
-		void GetSinkRect(RECT const *, LPRECT);
-		bool HaveWin32Focus();
-		void SyncColorsAndFonts();
-		void UnvirtualizePosition();
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
+
+	private:
+		HRESULT GetAccessibleImpl(IAccessible** ppAccessible, bool fWindow);
+
+	public:
+		HRESULT GetAccessibleImpl(IAccessible** ppAccessible) override;
+		HRESULT GetClientAccessibleImpl(IAccessible** ppAccessible);
+
+		HWNDHost();
+		HWNDHost(const HWNDHost&) = default;
+
+		HRESULT Initialize(UINT nCreate, UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
+
+		~HWNDHost() override;
+
+	protected:
+		int GetThemeChanged();
+		HRESULT SetThemeChanged(int v);
+
+		void OnHosted(Element* peNewHost) override;
+		void OnUnHosted(Element* peOldHost) override;
+		virtual HWND CreateHWND(HWND hwndParent);
+
+		static void WINAPI AttachCtrlSubclassProc(HWND hwnd);
+		static LRESULT CALLBACK CtrlSubclassProc(HWND hwnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
+
+		HWND CreateAccNameLabel(HWND hwndParent);
+		void SyncRect(UINT nChangeFlags, bool bForceSync);
+		void SyncParent();
+		void SyncStyle();
+		void SyncVisible();
+		void SyncDirection();
+		void SyncFont();
+		HFONT GetFont();
+		void SyncBackground();
+		void SyncForeground();
+		void SyncText();
+		bool GetStaticColor(HDC hdcCtl, HBRUSH* phbrush);
+		void PrintRTLControl(HDC hDC, HDC hdcBuffer, const RECT& rcSkipContent);
+		virtual bool EraseBkgnd(HDC hdcCtl, LRESULT* lpRet);
+		Element* GetBackgroundOwner();
+		bool IsMoveDeferred();
+		int VerifyParentage();
+
+	private:
+		static BOOL CALLBACK _SinkWndProc(void* pThis, HWND hwnd, UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet);
+		static BOOL CALLBACK _CtrlWndProc(void* pThis, HWND hwnd, UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet);
+
 		void _DeleteCtrlWnd();
+		void SyncColorsAndFonts();
+		// bool VirtualizePosition(const RECT*);
+		void UnvirtualizePosition();
+		void ApplySinkRegion(const RECT* prcSink, bool bForceSync);
+		void GetSinkRect(const RECT* prcConPxl, RECT* prcSink);
+		bool HaveWin32Focus();
+
+		static const UINT g_rgMouseMap[8][3];
 
 		bool _fHwndCreate;
 		bool _fSpecOptimizeMove;
 		bool _fMoveDeferred;
 		HWND _hwndCtrl;
 		HWND _hwndSink;
-		LRESULT (CALLBACK *_pfnCtrlOrgProc)(HWND, UINT, WPARAM, LPARAM);
+		WNDPROC _pfnCtrlOrgProc;
 		HWND _hwndAccName;
-		BOOL _fCtrlAttached;
+		int _fCtrlAttached;
 		RECT _rcBounds;
 		HFONT _hFont;
 		COLORREF _crBkColor;
@@ -112,6 +128,6 @@ namespace DirectUI
 		int _cAnimate;
 		bool _fSentMouseWheel;
 		bool _fHandledMouseWheel;
-		DirectUI::DuiAccessible *_pClientAccessible;
+		DuiAccessible* _pClientAccessible;
 	};
 }

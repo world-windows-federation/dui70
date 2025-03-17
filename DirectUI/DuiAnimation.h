@@ -499,6 +499,13 @@ namespace DirectUI
 		bool fSkipScaleTransform;
 	};
 
+	struct TriggeredAnimationCompleteEvent : Event
+	{
+		UINT nCode;
+		DWORD dwCookie;
+		bool fStoryboardAnimated;
+	};
+
 	MIDL_INTERFACE("0372C617-AEB1-4BCC-8703-DAD13E0C7D8A")
 	IDuiAnimationTriggers : IUnknown
 	{

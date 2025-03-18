@@ -38,6 +38,8 @@
 #include "Element.h"
 #include "PatternProvider.h"
 #include "Value.h"
+#include "ValuePtr.h"
+#include "ElementWithProxy.h"
 #include "Parser.h"
 #include "Browser.h"
 #include "Bind.h"
@@ -136,6 +138,7 @@
 #include "DuiAnimation.h"
 
 // Touch elements
+#include "ModernProgressBar.h"
 #include "TouchButton.h"
 #include "TouchCheckBox.h"
 #include "TouchHWNDElement.h"

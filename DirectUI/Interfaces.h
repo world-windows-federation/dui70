@@ -255,6 +255,6 @@ IDuiParserCache : IUnknown
 	virtual HRESULT STDMETHODCALLTYPE Store(ULONG key, DirectUI::IClassInfo* pClassInfo) = 0;
 	virtual HRESULT STDMETHODCALLTYPE Store(ULONG key, DirectUI::Value* pValue) = 0;
 	virtual HRESULT STDMETHODCALLTYPE CreateLayout(ULONG key, DirectUI::Value** ppValue) = 0;
-	virtual HRESULT STDMETHODCALLTYPE AddLayout(ULONG key, HRESULT (*)(int, int*, DirectUI::Value**), int cargs, int* pargs) = 0; // TODO: Figure out this typedef shit
+	virtual HRESULT STDMETHODCALLTYPE AddLayout(ULONG key, HRESULT (*)(int, int*, DirectUI::Value**), int cargs, int* pargs) = 0; // TODO: Figure out the typedef of this function
 	virtual HRESULT STDMETHODCALLTYPE ClearStoredClasses() = 0;
 };

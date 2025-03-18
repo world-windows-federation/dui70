@@ -240,12 +240,11 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	RichText* peSXWizardContentBox = (RichText*)peWizardMain->FindDescendent(StrToID(L"SXWizardContentBox"));
 	if (peSXWizardContentBox && peSXWizardContentBox->GetClassInfoW()->IsSubclassOf(RichText::GetClassInfoPtr()))
 	{
-		Value* pv = nullptr; // TODO CValuePtr
-		const WCHAR* pszCurrent = peSXWizardContentBox->GetContentString(&pv);
+		CValuePtr spv;
+		const WCHAR* pszCurrent = peSXWizardContentBox->GetContentString(&spv);
 		if (pszCurrent)
 		{
 			peSXWizardContentBox->SetContentString((std::wstring{ pszCurrent } + L"\n\nThis text is appended via code.").c_str());
-			pv->Release();
 		}
 
 		Element* peParent = peSXWizardContentBox->GetParent();

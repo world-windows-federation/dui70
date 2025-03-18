@@ -9698,6 +9698,43 @@ HRESULT RichText::CreateCache(UINT cAverageNumberOfEntries, IDUIRichTextCache** 
 void RichText::SetCache(DWORD dwKey, IDUIRichTextCache* pCache) STUB_VOID;
 void RichText::StopUsingCache() STUB_VOID;
 
+IClassInfo* ModernProgressBar::GetClassInfoPtr() STUB_ZERO;
+IClassInfo* ModernProgressBar::GetClassInfoW() STUB_ZERO;
+ModernProgressBar::ModernProgressBar() STUB_VOID;
+ModernProgressBar::~ModernProgressBar() STUB_VOID;
+const PropertyInfo* ModernProgressBar::PositionProp() STUB_ZERO;
+const PropertyInfo* ModernProgressBar::MinimumProp() STUB_ZERO;
+const PropertyInfo* ModernProgressBar::MaximumProp() STUB_ZERO;
+const PropertyInfo* ModernProgressBar::StateProp() STUB_ZERO;
+const PropertyInfo* ModernProgressBar::DeterminateProp() STUB_ZERO;
+int ModernProgressBar::GetPosition() STUB_ZERO;
+int ModernProgressBar::GetMaximum() STUB_ZERO;
+int ModernProgressBar::GetMinimum() STUB_ZERO;
+int ModernProgressBar::GetState() STUB_ZERO;
+bool ModernProgressBar::IsDeterminate() STUB_ZERO;
+bool ModernProgressBar::IsActivityOccuring() STUB_ZERO;
+bool ModernProgressBar::IsAutoHeight() STUB_ZERO;
+bool ModernProgressBar::IsSmoothFillAnimation() STUB_ZERO;
+bool ModernProgressBar::IsAddLayeredRef() STUB_ZERO;
+bool ModernProgressBar::IsIndependentAnimations() STUB_ZERO;
+HRESULT ModernProgressBar::SetPosition(int v) STUB_ZERO;
+HRESULT ModernProgressBar::SetMaximum(int v) STUB_ZERO;
+HRESULT ModernProgressBar::SetMinimum(int v) STUB_ZERO;
+HRESULT ModernProgressBar::SetState(int v) STUB_ZERO;
+HRESULT ModernProgressBar::SetDeterminate(bool v) STUB_ZERO;
+HRESULT ModernProgressBar::SetActivityOccuring(bool v) STUB_ZERO;
+HRESULT ModernProgressBar::SetAutoHeight(bool v) STUB_ZERO;
+HRESULT ModernProgressBar::SetSmoothFillAnimation(bool v) STUB_ZERO;
+HRESULT ModernProgressBar::SetAddLayeredRef(bool v) STUB_ZERO;
+HRESULT ModernProgressBar::SetIndependentAnimations(bool v) STUB_ZERO;
+HRESULT ModernProgressBar::Register() STUB_ZERO;
+HRESULT ModernProgressBar::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void ModernProgressBar::OnDestroy() STUB_VOID;
+void ModernProgressBar::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void ModernProgressBar::Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) STUB_VOID;
+void ModernProgressBar::OnHosted(Element* peNewHost) STUB_VOID;
+void ModernProgressBar::OnUnHosted(Element* peOldHost) STUB_VOID;
+
 HRESULT TouchButton::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 HRESULT TouchButton::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 void TouchButton::OnHosted(Element* peNewRoot) STUB_VOID;
@@ -10054,3 +10091,8 @@ void SemanticZoomToggle::UpdateToggleState(SemanticZoomToggleState sztsNew, bool
 HRESULT SemanticZoomToggle::DefaultAction() STUB_ZERO;
 
 } // namespace DirectUI
+
+HRESULT CSafeElementProxy::CreateInstance(DirectUI::Element* pe, CSafeElementProxy** ppProxy) STUB_ZERO;
+void CSafeElementProxy::Detach() STUB_VOID;
+HRESULT CSafeElementProxy::s_SyncCallback(HGADGET, void*, EventMsg* pmsg) STUB_ZERO;
+HRESULT CSafeElementProxy::Initialize(DirectUI::Element*) STUB_ZERO;

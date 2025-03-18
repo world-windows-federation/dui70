@@ -250,6 +250,7 @@
     <ClInclude Include="Element.h" />
     <ClInclude Include="ElementProviderManager.h" />
     <ClInclude Include="ElementWithHWND.h" />
+    <ClInclude Include="ElementWithProxy.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Expandable.h" />
@@ -271,6 +272,7 @@
     <ClInclude Include="Macro.h" />
     <ClInclude Include="ManipulationHelper.h" />
     <ClInclude Include="Misc.h" />
+    <ClInclude Include="ModernProgressBar.h" />
     <ClInclude Include="Movie.h" />
     <ClInclude Include="NativeHWNDHost.h" />
     <ClInclude Include="Navigator.h" />
@@ -321,6 +323,7 @@
     <ClInclude Include="UiaSchema.h" />
     <ClInclude Include="UnknownElement.h" />
     <ClInclude Include="Value.h" />
+    <ClInclude Include="ValuePtr.h" />
     <ClInclude Include="Viewer.h" />
     <ClInclude Include="XBaby.h" />
     <ClInclude Include="XElement.h" />

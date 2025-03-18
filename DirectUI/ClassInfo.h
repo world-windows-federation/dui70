@@ -255,4 +255,41 @@ namespace DirectUI
 	}
 }
 
+template <typename T>
+BOOL IsSubclassOf(DirectUI::Element* pe)
+{
+	return pe->GetClassInfoW()->IsSubclassOf(T::GetClassInfoPtr()); // @Note: bool -> BOOL, no != 0
+}
+
+template <typename T>
+T* element_cast(DirectUI::Element* pe)
+{
+	T* p = nullptr;
+	if (pe && IsSubclassOf<T>(pe))
+	{
+		p = (T*)pe;
+	}
+	return p;
+}
+
+template <typename T>
+HRESULT ElementCast(DirectUI::Element* pe, T** ppT)
+{
+	*ppT = element_cast<T>(pe);
+	return *ppT ? S_OK : E_FAIL;
+}
+
+template <typename T>
+T* element_interface_cast(DirectUI::Element* pe)
+{
+	T* p = nullptr;
+	return pe && SUCCEEDED(pe->QueryInterface(__uuidof(*p), (void**)&p)) ? p : nullptr;
+}
+
+template <typename T>
+BOOL IsClassOf(DirectUI::Element* pe)
+{
+	return pe->GetClassInfoW() == T::GetClassInfoPtr();
+}
+
 #undef DUI_SET_CLASS_INFO

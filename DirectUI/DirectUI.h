@@ -37,9 +37,9 @@
 #include "UiaSchema.h"
 #include "Element.h"
 #include "PatternProvider.h"
+#include "PropNotify.h"
 #include "Value.h"
 #include "ValuePtr.h"
-#include "ElementWithProxy.h"
 #include "Parser.h"
 #include "Browser.h"
 #include "Bind.h"
@@ -47,6 +47,7 @@
 #include "Button.h"
 #include "Base.h"
 #include "ClassInfo.h"
+#include "ElementWithProxy.h"
 #include "AccessibleButton.h"
 #include "AutoButton.h"
 #include "PushButton.h"
@@ -159,6 +160,9 @@
 UILIB_API void WINAPI DumpDuiTree(DirectUI::Element* pe, BOOL fShowProperties);
 UILIB_API void WINAPI DumpDuiProperties(DirectUI::Element* pe);
 UILIB_API HRESULT WINAPI DuiCreateObject(REFCLSID rclsid, REFIID riid, void** ppv);
+
+#include "PVLTrigger.h"
+#include "PVLLauncherTrigger.h"
 
 namespace DirectUI
 {

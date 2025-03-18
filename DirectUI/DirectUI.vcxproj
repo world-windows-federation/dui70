@@ -283,9 +283,12 @@
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Progress.h" />
     <ClInclude Include="PromptText.h" />
+    <ClInclude Include="PropNotify.h" />
     <ClInclude Include="Provider.h" />
     <ClInclude Include="PText.h" />
     <ClInclude Include="PushButton.h" />
+    <ClInclude Include="PVLLauncherTrigger.h" />
+    <ClInclude Include="PVLTrigger.h" />
     <ClInclude Include="RadioButtonGlyph.h" />
     <ClInclude Include="RangeValue.h" />
     <ClInclude Include="RefPointElement.h" />

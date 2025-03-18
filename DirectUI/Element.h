@@ -769,4 +769,46 @@ namespace DirectUI
 	private:
 		Element* _peKey;
 	};
+
+	class AutoDefer
+	{
+		AutoDefer(const AutoDefer&) = delete;
+
+	public:
+		AutoDefer(Element* pElement)
+			: AutoDefer(pElement, 0)
+		{
+		}
+
+		AutoDefer(Element* pElement, DWORD dwCookie)
+			: _pElement(pElement), _dwCookie(dwCookie)
+		{
+			pElement->StartDefer(&_dwCookie);
+		}
+
+		~AutoDefer()
+		{
+			EndDefer();
+		}
+
+		void EndDefer()
+		{
+			if (_dwCookie)
+			{
+				_pElement->EndDefer(_dwCookie);
+				_dwCookie = 0;
+			}
+		}
+
+	private:
+		Element* _pElement;
+		DWORD _dwCookie;
+	};
+
+	struct UpdateContentSizeEvent : Event
+	{
+		int nContentSizeFlags;
+		SIZE sizeContentOverride;
+		POINT positionContentOverride;
+	};
 }

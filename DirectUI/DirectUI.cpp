@@ -944,29 +944,27 @@ DUIXmlParser::FunctionDefinition<T> & DUIXmlParser::FunctionDefinition<T>::opera
 	return *this;
 }*/
 
-UINT NativeHWNDHost::DestroyMsg() STUB_ZERO
-HRESULT NativeHWNDHost::Create(const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO
-HRESULT NativeHWNDHost::Create(const WCHAR* pszClassName, const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, HINSTANCE hInstance, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO
-void NativeHWNDHost::Destroy() STUB_VOID
-HWND NativeHWNDHost::GetHWND() STUB_ZERO
-Element* NativeHWNDHost::GetElement() STUB_ZERO
-void NativeHWNDHost::Host(Element* pe) STUB_VOID
-void NativeHWNDHost::ShowWindow(int iShow) STUB_VOID
-void NativeHWNDHost::HideWindow() STUB_VOID
-void NativeHWNDHost::DestroyWindow() STUB_VOID
-void NativeHWNDHost::SyncDestroyWindow() STUB_VOID
-LRESULT NativeHWNDHost::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO
-NativeHWNDHost::NativeHWNDHost(const NativeHWNDHost&) STUB_VOID
-NativeHWNDHost::NativeHWNDHost() STUB_VOID
-HRESULT NativeHWNDHost::Initialize(const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, UINT nOptions) STUB_ZERO
-HRESULT NativeHWNDHost::Initialize(const WCHAR* pszClassName, const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, HINSTANCE hInstance, UINT nOptions) STUB_ZERO
-NativeHWNDHost::~NativeHWNDHost() STUB_VOID
-void NativeHWNDHost::SetDefaultFocusID(const WCHAR*) STUB_VOID
-void NativeHWNDHost::SaveFocus() STUB_VOID
-int NativeHWNDHost::RestoreFocus() STUB_ZERO
-HWND NativeHWNDHost::CreateHostWindow(DWORD dwExStyle, const WCHAR* lpClassName, const WCHAR* lpWindowName, DWORD dwStyle, int nX, int nY, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) STUB_ZERO
-HRESULT NativeHWNDHost::OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO
-NativeHWNDHost& NativeHWNDHost::operator=(const NativeHWNDHost&) = default;
+UINT NativeHWNDHost::DestroyMsg() STUB_ZERO;
+HRESULT NativeHWNDHost::Create(const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO;
+HRESULT NativeHWNDHost::Create(const WCHAR* pszClassName, const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, HINSTANCE hInstance, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO;
+void NativeHWNDHost::Destroy() STUB_VOID;
+HWND NativeHWNDHost::GetHWND() STUB_ZERO;
+Element* NativeHWNDHost::GetElement() STUB_ZERO;
+void NativeHWNDHost::Host(Element* pe) STUB_VOID;
+void NativeHWNDHost::ShowWindow(int iShow) STUB_VOID;
+void NativeHWNDHost::HideWindow() STUB_VOID;
+void NativeHWNDHost::DestroyWindow() STUB_VOID;
+void NativeHWNDHost::SyncDestroyWindow() STUB_VOID;
+LRESULT NativeHWNDHost::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO;
+NativeHWNDHost::NativeHWNDHost() STUB_VOID;
+HRESULT NativeHWNDHost::Initialize(const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, UINT nOptions) STUB_ZERO;
+HRESULT NativeHWNDHost::Initialize(const WCHAR* pszClassName, const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, HINSTANCE hInstance, UINT nOptions) STUB_ZERO;
+NativeHWNDHost::~NativeHWNDHost() STUB_VOID;
+void NativeHWNDHost::SetDefaultFocusID(const WCHAR*) STUB_VOID;
+void NativeHWNDHost::SaveFocus() STUB_VOID;
+int NativeHWNDHost::RestoreFocus() STUB_ZERO;
+HWND NativeHWNDHost::CreateHostWindow(DWORD dwExStyle, const WCHAR* lpClassName, const WCHAR* lpWindowName, DWORD dwStyle, int nX, int nY, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) STUB_ZERO;
+HRESULT NativeHWNDHost::OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
 
 HWNDHostAccessible::HWNDHostAccessible()
 {

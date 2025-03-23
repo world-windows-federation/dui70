@@ -5754,100 +5754,27 @@ LinkedListNode* LinkedList::RemoveTail(void)
 	return nullptr;
 }
 
-Macro::Macro(Macro const&)
-{
-}
-
-Macro::Macro(void)
-{
-}
-
-Macro::~Macro(void)
-{
-}
-
-Macro& Macro::operator=(Macro const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long Macro::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-PropertyInfo const* Macro::ExpandProp(void)
-{
-	return nullptr;
-}
-
-IClassInfo* Macro::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long Macro::Register(void)
-{
-	return 0;
-}
-
-void Macro::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-void Macro::SetDataEntry(IDataEntry*, Element*)
-{
-}
-
-long Macro::SetExpand(unsigned short const*)
-{
-	return 0;
-}
-
-void Macro::SetParser(DUIXmlParser*)
-{
-}
-
-IDataEntry* Macro::GetDataEntry(void)
-{
-	return nullptr;
-}
-
-unsigned short const* Macro::GetExpand(Value**)
-{
-	return nullptr;
-}
-
-long Macro::Initialize(Element*, unsigned long*)
-{
-	return 0;
-}
-
-long Macro::Add(Element**, unsigned int)
-{
-	return 0;
-}
-
-IClassInfo* Macro::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void Macro::OnPropertyChanged(PropertyInfo const*, int, Value*, Value*)
-{
-}
-
-long Macro::BuildElement(void)
-{
-	return 0;
-}
-
-void Macro::ResolveBindings(void)
-{
-}
-
+HRESULT Macro::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT Macro::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+const PropertyInfo* Macro::ExpandProp() STUB_ZERO;
+const WCHAR* Macro::GetExpand(Value** ppv) STUB_ZERO;
+HRESULT Macro::SetExpand(const WCHAR* v) STUB_ZERO;
+void Macro::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+HRESULT Macro::Add(Element** ppe, UINT cCount) STUB_ZERO;
+IClassInfo* Macro::GetClassInfoPtr() STUB_ZERO;
+void Macro::SetClassInfoPtr(IClassInfo*) STUB_VOID;
 IClassInfo* Macro::s_pClassInfo;
+IClassInfo* Macro::GetClassInfoW() STUB_ZERO;
+HRESULT Macro::Register() STUB_ZERO;
+void Macro::SetDataEntry(IDataEntry* pide, Element* peBindings) STUB_VOID;
+IDataEntry* Macro::GetDataEntry() STUB_ZERO;
+void Macro::SetParser(DUIXmlParser* pParser) STUB_VOID;
+void Macro::SetDefaultGraphicType(BYTE defaultGraphicType, bool fOffOpaqueGraphicType) STUB_VOID;
+HRESULT Macro::BuildElement() STUB_ZERO;
+void Macro::ResolveBindings() STUB_VOID;
+void Macro::_BitAccurateFillRect(HDC hDC, int x, int y, int w, int h, BYTE r, BYTE g, BYTE b, BYTE a, DWORD dwROP) STUB_VOID;
+bool Macro::_GetBitmapSize(HBITMAP hBitmap, SIZE* pSize) STUB_ZERO;
+Value* Macro::_LoadImage32BitsPerPixel(const WCHAR* pszPath) STUB_ZERO;
 
 CritSecLock::CritSecLock(CRITICAL_SECTION* pacs) STUB_VOID;
 CritSecLock::~CritSecLock() STUB_VOID;
@@ -7266,63 +7193,16 @@ void RepeatButton::_RepeatButtonActionCallback(GMA_ACTIONINFO*)
 
 IClassInfo* RepeatButton::s_pClassInfo;
 
-Repeater::Repeater(Repeater const&)
-{
-}
-
-Repeater::Repeater(void)
-{
-}
-
-Repeater::~Repeater(void)
-{
-}
-
-Repeater& Repeater::operator=(Repeater const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long Repeater::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* Repeater::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long Repeater::Register(void)
-{
-	return 0;
-}
-
-void Repeater::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long Repeater::Initialize(Element*, unsigned long*)
-{
-	return 0;
-}
-
-void Repeater::SetDataEngine(IDataEngine*)
-{
-}
-
-IClassInfo* Repeater::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-long Repeater::BuildElement(void)
-{
-	return 0;
-}
-
+HRESULT Repeater::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT Repeater::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+IClassInfo* Repeater::GetClassInfoPtr() STUB_ZERO;
+void Repeater::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Repeater::s_pClassInfo;
+IClassInfo* Repeater::GetClassInfoW() STUB_ZERO;
+HRESULT Repeater::Register() STUB_ZERO;
+void Repeater::SetDataEngine(IDataEngine* pie) STUB_VOID;
+void Repeater::SetGraphicType(BYTE dDefaultGraphicType) STUB_VOID;
+HRESULT Repeater::BuildElement() STUB_ZERO;
 
 ScrollProvider::ScrollProvider(void)
 {

@@ -16,8 +16,9 @@ namespace DirectUI
 
 		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
 		HRESULT Add(Element** ppe, UINT cCount) override;
-		IClassInfo* GetClassInfoPtr();
-		void SetClassInfoPtr(IClassInfo*);
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;

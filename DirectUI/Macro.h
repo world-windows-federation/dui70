@@ -18,7 +18,7 @@ namespace DirectUI
 		HRESULT Add(Element** ppe, UINT cCount) override;
 
 		static IClassInfo* WINAPI GetClassInfoPtr();
-		void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;

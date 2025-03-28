@@ -199,7 +199,7 @@ namespace DirectUI
 
 		HRESULT EnsureObject()
 		{
-			return !m_pde ? DuiCreateObject(__uuidof(PVLAnimationTriggers), IID_PPV_ARGS(&m_pde)) : S_OK;
+			return !m_pde ? DuiCreateObject(__uuidof(PVLLauncherAnimationTriggers), IID_PPV_ARGS(&m_pde)) : S_OK;
 		}
 	};
 }

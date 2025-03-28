@@ -577,7 +577,7 @@ namespace DirectUI
 		UILIB_API static UID WINAPI AnimationStatusChange();
 	};
 
-	class PVLLauncherAnimationTriggers : public IDuiLauncherAnimationTriggers
+	/*class PVLLauncherAnimationTriggers : public IDuiLauncherAnimationTriggers
 	{
 	public:
 		static HRESULT WINAPI Startup();
@@ -609,5 +609,5 @@ namespace DirectUI
 	private:
 		static PVLLauncherAnimationTriggers* s_pLauncherInstance;
 		bool _fDestroyed;
-	};
+	};*/
 }

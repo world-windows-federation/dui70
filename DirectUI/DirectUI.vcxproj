@@ -215,6 +215,8 @@
     <ClInclude Include="AutoVariant.h" />
     <ClInclude Include="AutoThread.h" />
     <ClInclude Include="Base.h" />
+    <ClInclude Include="BehaviorEngine.h" />
+    <ClInclude Include="BehaviorEngineHelper.h" />
     <ClInclude Include="Bind.h" />
     <ClInclude Include="BorderLayout.h" />
     <ClInclude Include="Browser.h" />
@@ -235,6 +237,7 @@
     <ClInclude Include="CHScrollBar.h" />
     <ClInclude Include="CListBox.h" />
     <ClInclude Include="Combobox.h" />
+    <ClInclude Include="ContextMenuBehavior.h" />
     <ClInclude Include="CProgressBar.h" />
     <ClInclude Include="CPushButton.h" />
     <ClInclude Include="CRadioButton.h" />

@@ -163,6 +163,9 @@ UILIB_API HRESULT WINAPI DuiCreateObject(REFCLSID rclsid, REFIID riid, void** pp
 
 #include "PVLTrigger.h"
 #include "PVLLauncherTrigger.h"
+#include "BehaviorEngine.h"
+#include "BehaviorEngineHelper.h"
+#include "ContextMenuBehavior.h"
 
 namespace DirectUI
 {
@@ -245,5 +248,11 @@ namespace DirectUI
 
 		HRESULT WINAPI RegisterPVLBehaviorFactory();
 		void WINAPI DUIStopPVLAnimation(Element* peAnimating, UINT nDCProperty, BOOL fFinal);
+	}
+
+	inline int GetPixelHelper(Element* pe, const PropertyInfo* ppi, bool fUseDefault)
+	{
+		CValuePtr spv(pe->GetRawValue(ppi, 2, nullptr));
+		return spv->GetElementScaledInt(pe);
 	}
 }

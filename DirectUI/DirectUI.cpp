@@ -5571,24 +5571,7 @@ IDataEngine::~IDataEngine(void)
 {
 }
 
-StyleSheet::StyleSheet(StyleSheet const&)
-{
-}
-
-StyleSheet::StyleSheet(void)
-{
-}
-
-StyleSheet& StyleSheet::operator=(StyleSheet const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long StyleSheet::Create(StyleSheet**)
-{
-	return 0;
-}
+HRESULT StyleSheet::Create(StyleSheet** ppSheet) STUB_ZERO;
 
 InvokeHelper::InvokeHelper(void)
 {
@@ -9576,6 +9559,18 @@ HRESULT RichText::CreateCache(UINT cAverageNumberOfEntries, IDUIRichTextCache** 
 void RichText::SetCache(DWORD dwKey, IDUIRichTextCache* pCache) STUB_VOID;
 void RichText::StopUsingCache() STUB_VOID;
 
+UID PVLAnimation::NotifyStart() STUB_ZERO;
+UID PVLAnimation::NotifyComplete() STUB_ZERO;
+UID PVLAnimation::NotifyImplicit() STUB_ZERO;
+UID PVLAnimation::NotifyStoryboardComplete() STUB_ZERO;
+UID PVLAnimation::ManualStoryboardVerify() STUB_ZERO;
+UID PVLAnimation::ReflowStyle() STUB_ZERO;
+UID PVLAnimation::CustomReflowHint() STUB_ZERO;
+UID PVLAnimation::CustomDragDropScalingHint() STUB_ZERO;
+UID PVLAnimation::CustomTapHint() STUB_ZERO;
+UID PVLAnimation::TriggeredAnimationComplete() STUB_ZERO;
+UID PVLAnimation::AnimationStatusChange() STUB_ZERO;
+
 IClassInfo* ModernProgressBar::GetClassInfoPtr() STUB_ZERO;
 IClassInfo* ModernProgressBar::GetClassInfoW() STUB_ZERO;
 ModernProgressBar::ModernProgressBar() STUB_VOID;
@@ -9737,6 +9732,36 @@ void TouchHWNDElement::_ClearTooltipState() STUB_VOID;
 void TouchHWNDElement::_DestroyTooltip() STUB_VOID;
 
 void TouchHWNDElement::ElementWithTooltipListener::OnListenerDetach(Element* peFrom) STUB_VOID;
+
+UID TouchScrollBar::InteractionStart() STUB_ZERO;
+UID TouchScrollBar::InteractionEnd() STUB_ZERO;
+UID TouchScrollBar::ActiveStateChanged() STUB_ZERO;
+UID TouchScrollBar::AnimateScroll() STUB_ZERO;
+HRESULT TouchScrollBar::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT TouchScrollBar::Initialize(bool fBuildSubTree, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+void TouchScrollBar::OnInput(InputEvent* pInput) STUB_VOID;
+void TouchScrollBar::OnEvent(Event* pEvent) STUB_VOID;
+void TouchScrollBar::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void TouchScrollBar::OnHosted(Element* peNewHost) STUB_VOID;
+void TouchScrollBar::_SelfLayoutDoLayout(int cx, int cy) STUB_VOID;
+SIZE TouchScrollBar::_SelfLayoutUpdateDesiredSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+TouchScrollBar::TouchScrollBar() STUB_VOID;
+TouchScrollBar::~TouchScrollBar() STUB_VOID;
+IClassInfo* TouchScrollBar::GetClassInfoPtr() STUB_ZERO;
+IClassInfo* TouchScrollBar::GetClassInfoW() STUB_ZERO;
+HRESULT TouchScrollBar::Register() STUB_ZERO;
+ActiveState TouchScrollBar::GetActiveState() STUB_ZERO;
+void TouchScrollBar::SetActiveState(ActiveState newActiveState, bool fNoAnimation) STUB_VOID;
+bool TouchScrollBar::IsThumbActive() STUB_ZERO;
+Element* TouchScrollBar::GetThumb() STUB_ZERO;
+HRESULT TouchScrollBar::CreateButtons() STUB_ZERO;
+void TouchScrollBar::LineUp(UINT nCount) STUB_VOID;
+void TouchScrollBar::LineDown(UINT nCount) STUB_VOID;
+void TouchScrollBar::PageUp(UINT nCount) STUB_VOID;
+void TouchScrollBar::PageDown(UINT nCount) STUB_VOID;
+
+TouchScrollBar::InnerTouchScrollBarListener::InnerTouchScrollBarListener() STUB_VOID;
+void TouchScrollBar::InnerTouchScrollBarListener::OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
 
 UID TouchScrollViewer::ManipulationStarting() STUB_ZERO;
 UID TouchScrollViewer::ManipulationStarted() STUB_ZERO;
@@ -9952,12 +9977,8 @@ bool TouchEdit2::HasSelection() STUB_ZERO;
 HRESULT TouchEdit2::SelectAll() STUB_ZERO;
 HRESULT TouchEdit2::SelectNone() STUB_ZERO;
 void TouchEdit2::DisableSelectionHandlesOnEmptyContent() STUB_VOID
-void TouchEdit2::OnListenerAttach(Element* peFrom) STUB_VOID;
 void TouchEdit2::OnListenerDetach(Element* peFrom) STUB_VOID;
-bool TouchEdit2::OnListenedPropertyChanging(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
 void TouchEdit2::OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
-void TouchEdit2::OnListenedInput(Element* peFrom, InputEvent* pInput) STUB_VOID;
-void TouchEdit2::OnListenedEvent(Element* peFrom, Event* pEvent) STUB_VOID;
 
 UID SemanticZoomToggle::Toggle() STUB_ZERO;
 HRESULT SemanticZoomToggle::Register() STUB_ZERO;
@@ -9967,6 +9988,10 @@ HRESULT SemanticZoomToggle::Create(Element* pParent, DWORD* pdwDeferCookie, Elem
 HRESULT SemanticZoomToggle::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
 void SemanticZoomToggle::UpdateToggleState(SemanticZoomToggleState sztsNew, bool fEnabled) STUB_VOID;
 HRESULT SemanticZoomToggle::DefaultAction() STUB_ZERO;
+
+HRESULT ContextMenuBehavior::Create(IDuiBehavior** ppBehavior) STUB_ZERO;
+UID ContextMenuBehavior::ContextMenuRequested() STUB_ZERO;
+UID ContextMenuBehavior::ContextMenuHintShowing() STUB_ZERO;
 
 } // namespace DirectUI
 

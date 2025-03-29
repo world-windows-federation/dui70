@@ -47,8 +47,8 @@ int WINAPI DUIDrawShadowText(HDC hdc, const WCHAR* pszText, int cch, RECT* prc, 
 void WINAPI BlurBitmap(UINT* plBitmapBits, int cx, int cy, int cxRow, COLORREF crFill) STUB_VOID;
 void WINAPI BlurBitmapNormal(UINT* prgb, int cx, int cy, int cxRow, COLORREF crFill) STUB_VOID;
 HBRUSH WINAPI BrushFromEnumI(int c) STUB_ZERO;
-COLORREF WINAPI ARGBColorFromEnumI(int c) STUB_ZERO;
 COLORREF WINAPI ColorFromEnumI(int c) STUB_ZERO;
+COLORREF WINAPI ARGBColorFromEnumI(int c) STUB_ZERO;
 DWORD* WINAPI DisableAnimations() STUB_ZERO;
 int WINAPI DrawShadowTextEx(HDC hdc, const WCHAR* pszText, int cch, RECT* prc, DWORD dwFlags, COLORREF crText, COLORREF crShadow, int ixOffset, int iyOffset, BYTE bInitialAlpha, BOOL fAPIInit) STUB_ZERO;
 Element* WINAPI ElementFromGadget(HGADGET hGadget) STUB_ZERO;

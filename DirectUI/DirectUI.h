@@ -213,7 +213,7 @@ namespace DirectUI
 
 		HBRUSH WINAPI BrushFromEnumI(int c);
 		COLORREF WINAPI ColorFromEnumI(int c);
-		COLORREF WINAPI ARGBColorEnumI(int c);
+		COLORREF WINAPI ARGBColorFromEnumI(int c);
 
 		DWORD* WINAPI DisableAnimations();
 		int WINAPI DrawShadowTextEx(HDC hdc, const WCHAR *pszText, int cch, RECT* prc, DWORD dwFlags, COLORREF crText, COLORREF crShadow, int ixOffset, int iyOffset, BYTE bInitialAlpha, BOOL fAPIInit);

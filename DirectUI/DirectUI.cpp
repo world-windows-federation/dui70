@@ -782,167 +782,154 @@ void WINAPI ElementWithHWND::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* ElementWithHWND::s_pClassInfo;
 IClassInfo* ElementWithHWND::GetClassInfoW() STUB_ZERO;
 HRESULT WINAPI ElementWithHWND::Register() STUB_ZERO;
-	
-DUIXmlParser& DUIXmlParser::operator=(const DUIXmlParser&)
-{
-	return *this;
-}
-	
-DUIXmlParser::DUIXmlParser(const DUIXmlParser&) STUB_VOID
-DUIXmlParser::DUIXmlParser() STUB_VOID
-DUIXmlParser::~DUIXmlParser() STUB_VOID
-HRESULT WINAPI DUIXmlParser::Create(DUIXmlParser** ppParserOut, PXMLGETSHEETCB pfnGetSheetCallback, void* sheetParam, PXMLPARSEERRORCB, void* parseErrorParam) STUB_ZERO
+
+DUIXmlParser::DUIXmlParser() STUB_VOID;
+DUIXmlParser::~DUIXmlParser() STUB_VOID;
+HRESULT WINAPI DUIXmlParser::Create(DUIXmlParser** ppParserOut, PXMLGETSHEETCB pfnGetSheetCallback, void* sheetParam, PXMLPARSEERRORCB, void* parseErrorParam) STUB_ZERO;
 void DUIXmlParser::Destroy() STUB_VOID;
 HRESULT DUIXmlParser::_InitializeTables() STUB_ZERO;
-void DUIXmlParser::_DestroyTables() STUB_VOID
-HRESULT DUIXmlParser::SetXML(const WCHAR* pBuffer, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance) STUB_ZERO
-HRESULT DUIXmlParser::SetPreprocessedXML(const WCHAR*, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance) STUB_ZERO
-HRESULT DUIXmlParser::SetXMLFromResourceWithTheme(UINT uRCID, HINSTANCE hResInstance, HINSTANCE hResTheme, HINSTANCE hControlsInstance) STUB_ZERO
-HRESULT DUIXmlParser::SetXMLFromResource(const WCHAR* pszResource, const WCHAR* pszResType, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance) STUB_ZERO
-HRESULT DUIXmlParser::SetXMLFromResource(const WCHAR* pszResid, HINSTANCE hResInstance, HINSTANCE hControlsInstance) STUB_ZERO
-HRESULT DUIXmlParser::SetXMLFromResource(UINT uRCID, const WCHAR* pszResType, HINSTANCE hResInstance, HINSTANCE hControlsInstance) STUB_ZERO
-HRESULT DUIXmlParser::SetXMLFromResource(UINT uRCID, HINSTANCE hResInstance, HINSTANCE hControlsInstance) STUB_ZERO
-void DUIXmlParser::SetRootWindowForTheming(HWND) STUB_VOID
-Value* DUIXmlParser::GetMappedValue(WCHAR*) STUB_ZERO
+void DUIXmlParser::_DestroyTables() STUB_VOID;
+HRESULT DUIXmlParser::SetXML(const WCHAR* pBuffer, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance) STUB_ZERO;
+HRESULT DUIXmlParser::SetPreprocessedXML(const WCHAR*, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance) STUB_ZERO;
+HRESULT DUIXmlParser::SetXMLFromResourceWithTheme(UINT uRCID, HINSTANCE hResInstance, HINSTANCE hResTheme, HINSTANCE hControlsInstance) STUB_ZERO;
+HRESULT DUIXmlParser::SetXMLFromResource(const WCHAR* pszResource, const WCHAR* pszResType, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance) STUB_ZERO;
+HRESULT DUIXmlParser::SetXMLFromResource(const WCHAR* pszResid, HINSTANCE hResInstance, HINSTANCE hControlsInstance) STUB_ZERO;
+HRESULT DUIXmlParser::SetXMLFromResource(UINT uRCID, const WCHAR* pszResType, HINSTANCE hResInstance, HINSTANCE hControlsInstance) STUB_ZERO;
+HRESULT DUIXmlParser::SetXMLFromResource(UINT uRCID, HINSTANCE hResInstance, HINSTANCE hControlsInstance) STUB_ZERO;
+void DUIXmlParser::SetRootWindowForTheming(HWND) STUB_VOID;
+Value* DUIXmlParser::GetMappedValue(WCHAR*) STUB_ZERO;
 HRESULT DUIXmlParser::CreateElement(const WCHAR* pszResID, Element* pEleSubstitute, Element* pParent, DWORD* pdwDeferCookie, Element** ppElementOut) STUB_ZERO;
 HRESULT DUIXmlParser::GetSheet(const WCHAR* pszResID, Value** ppValueOut) STUB_ZERO;
-void DUIXmlParser::SetParseErrorCallback(PXMLPARSEERRORCB pfnErrorCallback, void* pContext) STUB_VOID
-void DUIXmlParser::SetGetSheetCallback(PXMLGETSHEETCB pfnGetSheetCallback, void* pContext) STUB_VOID
-PXMLGETSHEETCB DUIXmlParser::GetGetSheetCallback() STUB_ZERO
+void DUIXmlParser::SetParseErrorCallback(PXMLPARSEERRORCB pfnErrorCallback, void* pContext) STUB_VOID;
+void DUIXmlParser::SetGetSheetCallback(PXMLGETSHEETCB pfnGetSheetCallback, void* pContext) STUB_VOID;
+PXMLGETSHEETCB DUIXmlParser::GetGetSheetCallback() STUB_ZERO;
 void* DUIXmlParser::GetSheetContext() STUB_ZERO;
-void DUIXmlParser::EnableDesignMode() STUB_VOID
-void DUIXmlParser::SetUnknownAttrCallback(PUNKNOWNATTRCB pfnUnknownAttrCallback, void* pContext) STUB_VOID
+void DUIXmlParser::EnableDesignMode() STUB_VOID;
+void DUIXmlParser::SetUnknownAttrCallback(PUNKNOWNATTRCB pfnUnknownAttrCallback, void* pContext) STUB_VOID;
 HINSTANCE DUIXmlParser::GetResourceHInstance() STUB_ZERO;
-HINSTANCE DUIXmlParser::GetHInstance() STUB_ZERO
-HRESULT DUIXmlParser::LookupElement(LINEINFO li, const WCHAR* pszElem, HINSTANCE hControlsInstance, IClassInfo** ppciOut) STUB_ZERO
-HRESULT DUIXmlParser::LookupElement(IXmlReader* pReader, const WCHAR* pszElem, HINSTANCE hInstance, IClassInfo** ppciOut) STUB_ZERO
-HRESULT DUIXmlParser::UpdateSheets(Element* pe) STUB_ZERO	
-void DUIXmlParser::SetDefaultHInstance(HINSTANCE hInst) STUB_VOID
-void DUIXmlParser::SetUnavailableIcon(HICON hIcon) STUB_VOID
-void DUIXmlParser::SetScaleFactor(float scaleFactor) STUB_VOID
-void DUIXmlParser::SetDynamicScaling(DynamicScaleParsing dsp) STUB_VOID
-bool DUIXmlParser::IsDynamicScaling() STUB_ZERO
-HRESULT DUIXmlParser::CopySheets(DynamicArray<Value*>** ppdaSheets) STUB_ZERO
-void DUIXmlParser::SetOverrideScaleFactor(float scaleFactor) STUB_VOID
-bool DUIXmlParser::GetOverrideScaleFactor(float* pScaleFactor) STUB_ZERO
-HRESULT DUIXmlParser::Initialize() STUB_ZERO
-HRESULT DUIXmlParser::InitializeParserFromXmlReader(IXmlReader* pReader, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance) STUB_ZERO
-HRESULT DUIXmlParser::ParseStyleSheets(IXmlReader* pReader) STUB_ZERO
-HRESULT DUIXmlParser::ParseStyleSheets() STUB_ZERO
-HRESULT DUIXmlParser::_EnterOnCurrentThread() STUB_ZERO
-void DUIXmlParser::_LeaveOnCurrentThread() STUB_VOID
-HRESULT DUIXmlParser::GetXmlLiteDll(HMODULE* phXmlLiteDll) STUB_ZERO
-HRESULT DUIXmlParser::CreateXmlReader(IXmlReader** ppReader) STUB_ZERO
-HRESULT DUIXmlParser::CreateXmlReaderFromHGLOBAL(HGLOBAL hglob, IXmlReader** ppReader) STUB_ZERO
-HRESULT DUIXmlParser::CreateXmlReaderInputWithEncodingName(IStream* pInput, const WCHAR* pszEncodingName, IUnknown** ppReaderInput) STUB_ZERO
+HINSTANCE DUIXmlParser::GetHInstance() STUB_ZERO;
+HRESULT DUIXmlParser::LookupElement(LINEINFO li, const WCHAR* pszElem, HINSTANCE hControlsInstance, IClassInfo** ppciOut) STUB_ZERO;
+HRESULT DUIXmlParser::LookupElement(IXmlReader* pReader, const WCHAR* pszElem, HINSTANCE hInstance, IClassInfo** ppciOut) STUB_ZERO;
+HRESULT DUIXmlParser::UpdateSheets(Element* pe) STUB_ZERO;
+void DUIXmlParser::SetDefaultHInstance(HINSTANCE hInst) STUB_VOID;
+void DUIXmlParser::SetUnavailableIcon(HICON hIcon) STUB_VOID;
+void DUIXmlParser::SetScaleFactor(float scaleFactor) STUB_VOID;
+void DUIXmlParser::SetDynamicScaling(DynamicScaleParsing dsp) STUB_VOID;
+bool DUIXmlParser::IsDynamicScaling() STUB_ZERO;
+HRESULT DUIXmlParser::CopySheets(DynamicArray<Value*>** ppdaSheets) STUB_ZERO;
+void DUIXmlParser::SetOverrideScaleFactor(float scaleFactor) STUB_VOID;
+bool DUIXmlParser::GetOverrideScaleFactor(float* pScaleFactor) const STUB_ZERO;
+HRESULT DUIXmlParser::Initialize() STUB_ZERO;
+HRESULT DUIXmlParser::InitializeParserFromXmlReader(IXmlReader* pReader, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance) STUB_ZERO;
+HRESULT DUIXmlParser::ParseStyleSheets(IXmlReader* pReader) STUB_ZERO;
+HRESULT DUIXmlParser::ParseStyleSheets() STUB_ZERO;
+HRESULT DUIXmlParser::_EnterOnCurrentThread() STUB_ZERO;
+void DUIXmlParser::_LeaveOnCurrentThread() STUB_VOID;
+HRESULT DUIXmlParser::GetXmlLiteDll(HMODULE* phXmlLiteDll) STUB_ZERO;
+HRESULT DUIXmlParser::CreateXmlReader(IXmlReader** ppReader) STUB_ZERO;
+HRESULT DUIXmlParser::CreateXmlReaderFromHGLOBAL(HGLOBAL hglob, IXmlReader** ppReader) STUB_ZERO;
+HRESULT DUIXmlParser::CreateXmlReaderInputWithEncodingName(IStream* pInput, const WCHAR* pszEncodingName, IUnknown** ppReaderInput) STUB_ZERO;
 HRESULT DUIXmlParser::_SetXMLFromResource(const WCHAR* pszResource, const WCHAR* pszResType, HINSTANCE hResourceInstance, HINSTANCE hControlsInstance, HINSTANCE hResTheme) STUB_ZERO;
-HRESULT DUIXmlParser::_SetBinaryXml(const BYTE* pBuffer, UINT cbBuffer, HINSTANCE hControlsInstance) STUB_ZERO
-HRESULT DUIXmlParser::_BuildFromBinary(Element* peSub, Element* peParent, const WCHAR* pszResource, DWORD* pdwDefer, Element** ppElement) STUB_ZERO
-HRESULT DUIXmlParser::_BuildElement(IXmlReader* pReader, Element* peParent, Element** ppElement) STUB_ZERO
-HRESULT DUIXmlParser::_BuildChildren(IXmlReader* pReader, Element* peParent) STUB_ZERO
-HRESULT DUIXmlParser::_SetProperties(IXmlReader* pReader, IClassInfo* pClassInfo, Element* peTarget) STUB_ZERO
-HRESULT DUIXmlParser::_ParseLayout(const WCHAR* pszLayoutString, Value** ppvLayout) STUB_ZERO
-HRESULT DUIXmlParser::_ParseBehavior(Element* pTarget, const WCHAR* pszBehavior) STUB_ZERO
-HRESULT DUIXmlParser::_CreateValue(const WCHAR* pszValue, const PropertyInfo* pPropInfo, Value** ppValue) STUB_ZERO
-HRESULT DUIXmlParser::_GetClassForElement(IXmlReader* pReader, IClassInfo** ppClassInfo) STUB_ZERO
-HRESULT DUIXmlParser::_GetClassForElementByName(const WCHAR* pszName, IClassInfo** ppClassInfo) STUB_ZERO	
+HRESULT DUIXmlParser::_SetBinaryXml(const BYTE* pBuffer, UINT cbBuffer, HINSTANCE hControlsInstance) STUB_ZERO;
+HRESULT DUIXmlParser::_BuildFromBinary(Element* peSub, Element* peParent, const WCHAR* pszResource, DWORD* pdwDefer, Element** ppElement) STUB_ZERO;
+HRESULT DUIXmlParser::_BuildElement(IXmlReader* pReader, Element* peParent, Element** ppElement) STUB_ZERO;
+HRESULT DUIXmlParser::_BuildChildren(IXmlReader* pReader, Element* peParent) STUB_ZERO;
+HRESULT DUIXmlParser::_SetProperties(IXmlReader* pReader, IClassInfo* pClassInfo, Element* peTarget) STUB_ZERO;
+HRESULT DUIXmlParser::_ParseLayout(const WCHAR* pszLayoutString, Value** ppvLayout) STUB_ZERO;
+HRESULT DUIXmlParser::_ParseBehavior(Element* pTarget, const WCHAR* pszBehavior) STUB_ZERO;
+HRESULT DUIXmlParser::_CreateValue(const WCHAR* pszValue, const PropertyInfo* pPropInfo, Value** ppValue) STUB_ZERO;
+HRESULT DUIXmlParser::_GetClassForElement(IXmlReader* pReader, IClassInfo** ppClassInfo) STUB_ZERO;
+HRESULT DUIXmlParser::_GetClassForElementByName(const WCHAR* pszName, IClassInfo** ppClassInfo) STUB_ZERO	;
 HRESULT DUIXmlParser::_GetPropertyForAttribute(IXmlReader* pReader, IClassInfo* pClassInfo, const PropertyInfo** ppPropInfo) STUB_ZERO;
-HRESULT DUIXmlParser::_BuildStyles(IXmlReader* pReader) STUB_ZERO
-HRESULT DUIXmlParser::_GetValueForStyleSheet(IClassInfo* pClassInfo, const WCHAR* pszName, const WCHAR* pszValue, const PropertyInfo** ppPropInfo, Value** ppValue) STUB_ZERO
+HRESULT DUIXmlParser::_BuildStyles(IXmlReader* pReader) STUB_ZERO;
+HRESULT DUIXmlParser::_GetValueForStyleSheet(IClassInfo* pClassInfo, const WCHAR* pszName, const WCHAR* pszValue, const PropertyInfo** ppPropInfo, Value** ppValue) STUB_ZERO;
 LINEINFO DUIXmlParser::_GetLineInfo(IXmlReader* pReader) STUB_ZERO;
-HRESULT DUIXmlParser::_SetupParserState(HINSTANCE hResourceInstance, HINSTANCE hControlsInstance) STUB_ZERO
-HRESULT DUIXmlParser::_RecordElementTrees(IXmlReader* pReader) STUB_ZERO
-HRESULT DUIXmlParser::_RecordElementWithChildren(IXmlReader* pReader, bool fEmptyElem, WCHAR** ppszElemName) STUB_ZERO
-HRESULT DUIXmlParser::_RecordInstantiateElement(IXmlReader* pReader, WCHAR** ppszElemName) STUB_ZERO
-HRESULT DUIXmlParser::_RecordSetElementProperties(IXmlReader* pReader) STUB_ZERO
-HRESULT DUIXmlParser::_RecordElementLayout(IXmlReader* pReader, const WCHAR* pszValue) STUB_ZERO
-HRESULT DUIXmlParser::_RecordElementBehaviors(IXmlReader* pReader, const WCHAR* pszValue) STUB_ZERO
-HRESULT DUIXmlParser::_RecordSetValue(IXmlReader* pReader, const WCHAR* pszName, const WCHAR* pszValue) STUB_ZERO
-HRESULT DUIXmlParser::_RecordElementStyleSheet(const WCHAR* pszSheetName, bool fIgnoreMissingSheet) STUB_ZERO
-HRESULT DUIXmlParser::CreateStyleSheet(IXmlReader* pReader, const WCHAR* pszSheetResid, StyleSheet** ppSheet) STUB_ZERO
+HRESULT DUIXmlParser::_SetupParserState(HINSTANCE hResourceInstance, HINSTANCE hControlsInstance) STUB_ZERO;
+HRESULT DUIXmlParser::_RecordElementTrees(IXmlReader* pReader) STUB_ZERO;
+HRESULT DUIXmlParser::_RecordElementWithChildren(IXmlReader* pReader, bool fEmptyElem, WCHAR** ppszElemName) STUB_ZERO;
+HRESULT DUIXmlParser::_RecordInstantiateElement(IXmlReader* pReader, WCHAR** ppszElemName) STUB_ZERO;
+HRESULT DUIXmlParser::_RecordSetElementProperties(IXmlReader* pReader) STUB_ZERO;
+HRESULT DUIXmlParser::_RecordElementLayout(IXmlReader* pReader, const WCHAR* pszValue) STUB_ZERO;
+HRESULT DUIXmlParser::_RecordElementBehaviors(IXmlReader* pReader, const WCHAR* pszValue) STUB_ZERO;
+HRESULT DUIXmlParser::_RecordSetValue(IXmlReader* pReader, const WCHAR* pszName, const WCHAR* pszValue) STUB_ZERO;
+HRESULT DUIXmlParser::_RecordElementStyleSheet(const WCHAR* pszSheetName, bool fIgnoreMissingSheet) STUB_ZERO;
+HRESULT DUIXmlParser::CreateStyleSheet(IXmlReader* pReader, const WCHAR* pszSheetResid, StyleSheet** ppSheet) STUB_ZERO;
 HRESULT DUIXmlParser::AddRulesToStyleSheet(IXmlReader* pReader, StyleSheet* pSheet, const WCHAR* pszSheetResid, DynamicArray<XMLParserCond>* pdaXMLConds, DynamicArray<WCHAR*>* pdaCondStrings) STUB_ZERO;
-HRESULT DUIXmlParser::_ResolveStyleSheet(const WCHAR* pszReference, Value** ppvSheet, UINT* pSheetId) STUB_ZERO
-HRESULT DUIXmlParser::MapPropertyNameToPropertyInfo(LINEINFO li, IClassInfo* pci, const WCHAR* pszName, const PropertyInfo** ppInfo) STUB_ZERO
-HRESULT DUIXmlParser::GetPropValPairInfo(LINEINFO li, IClassInfo* pci, const WCHAR* pszProperty, const WCHAR* pszValue, const PropertyInfo** ppInfo, Value** ppValue) STUB_ZERO
-HRESULT DUIXmlParser::GetPropValPairInfo(IXmlReader* pReader, IClassInfo* pci, const WCHAR* pszProperty, const WCHAR* pszValue, const PropertyInfo** ppInfo, Value** ppValue) STUB_ZERO
-HRESULT DUIXmlParser::_ParseValue(const PropertyInfo* ppi, WCHAR* pszValue, Value** ppValue) STUB_ZERO
-void DUIXmlParser::SendParseError(const WCHAR* pszError, const WCHAR* pszToken, int dLine, int dCol, HRESULT hr) STUB_VOID
-void DUIXmlParser::SendParseError(const WCHAR* pszError, const WCHAR* pszToken, IXmlReader* pReader, HRESULT hr) STUB_VOID
-int DUIXmlParser::QuerySysMetric(int idx, bool* pfDynamicScaling) STUB_ZERO
-const WCHAR* DUIXmlParser::QuerySysMetricStr(int idx, WCHAR* pszMetric, UINT c) STUB_ZERO
-HRESULT DUIXmlParser::ParseArgs(const ParserTools::ExprNode* pen, ParsedArg* rgpa, UINT cpa, const CHAR* pszSignature) STUB_ZERO
-HRESULT DUIXmlParser::ParseFunction(const WCHAR* pszName, const ParserTools::ExprNode* pen, ParsedArg* rgpa, UINT cpa, const CHAR* pszSignature) STUB_ZERO
-bool DUIXmlParser::IsThemeClassName(const ParserTools::ExprNode* pen) STUB_ZERO
-HRESULT DUIXmlParser::ParseMagnitude(const WCHAR* pszMag, int* pMagOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseMagnitudeFloat(const WCHAR* pszMag, float* pMagOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseLiteralNumber(const WCHAR* psz, int* pnOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseColorInt(WCHAR*, int*) STUB_ZERO
-HRESULT DUIXmlParser::ParseLiteralColorInt(const WCHAR* pszValue, int* piOut) STUB_ZERO
-HRESULT DUIXmlParser::ParseLiteralColor(const WCHAR* pszValue, COLORREF* pclrOut) STUB_ZERO
-HRESULT DUIXmlParser::ParseSysMetricInt(const ParserTools::ExprNode* pen, int* piOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseGTMetInt(const ParserTools::ExprNode* pen, int* piOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseARGBColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseRGBColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseGTCColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseResStr(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseSysMetricStr(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseGTFStr(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseRectRect(const ParserTools::ExprNode* pen, ScaledRECT* prcOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseGTMarRect(const ParserTools::ExprNode* pen, ScaledRECT* prcOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseSizeSize(const ParserTools::ExprNode* pen, ScaledSIZE* pszOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseGTPartSize(const ParserTools::ExprNode* pen, ScaledSIZE* pszOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseSGraphicHelper(bool, const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseSGraphicGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseGraphicHelper(bool fGraphic, const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseGraphicGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseImageGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseIconGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseLiteral(const ParserTools::ExprNode* pen, const WCHAR** ppszOut) STUB_ZERO
-HRESULT DUIXmlParser::ParseNumber(const ParserTools::ExprNode* pen, int* pnOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseFloat(const ParserTools::ExprNode* pen, float* pflOut, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut) STUB_ZERO
-HRESULT DUIXmlParser::ParseQuotedString(const ParserTools::ExprNode* pen, WCHAR** ppszOut) STUB_ZERO
-HRESULT DUIXmlParser::ParseResid(const ParserTools::ExprNode* pen, const WCHAR** ppszOut) STUB_ZERO
-HRESULT DUIXmlParser::ParseTheme(const ParserTools::ExprNode* pen, bool use96dpi, HTHEME* phtheme) STUB_ZERO
-HRESULT DUIXmlParser::ParseLibrary(const ParserTools::ExprNode* pen, HMODULE* phmod) STUB_ZERO
-HRESULT DUIXmlParser::ParseRect(const ParserTools::ExprNode* pen, ScaledRECT* prcOut) STUB_ZERO
-HRESULT DUIXmlParser::ParseSize(const ParserTools::ExprNode* pen, ScaledSIZE* pszOut) STUB_ZERO
-HRESULT DUIXmlParser::ParseGradientFill(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseDFCFill(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO
-HRESULT DUIXmlParser::ParseDTBFill(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO
+HRESULT DUIXmlParser::_ResolveStyleSheet(const WCHAR* pszReference, Value** ppvSheet, UINT* pSheetId) STUB_ZERO;
+HRESULT DUIXmlParser::MapPropertyNameToPropertyInfo(LINEINFO li, IClassInfo* pci, const WCHAR* pszName, const PropertyInfo** ppInfo) STUB_ZERO;
+HRESULT DUIXmlParser::GetPropValPairInfo(LINEINFO li, IClassInfo* pci, const WCHAR* pszProperty, const WCHAR* pszValue, const PropertyInfo** ppInfo, Value** ppValue) STUB_ZERO;
+HRESULT DUIXmlParser::GetPropValPairInfo(IXmlReader* pReader, IClassInfo* pci, const WCHAR* pszProperty, const WCHAR* pszValue, const PropertyInfo** ppInfo, Value** ppValue) STUB_ZERO;
+HRESULT DUIXmlParser::_ParseValue(const PropertyInfo* ppi, WCHAR* pszValue, Value** ppValue) STUB_ZERO;
+void DUIXmlParser::SendParseError(const WCHAR* pszError, const WCHAR* pszToken, int dLine, int dCol, HRESULT hr) STUB_VOID;
+void DUIXmlParser::SendParseError(const WCHAR* pszError, const WCHAR* pszToken, IXmlReader* pReader, HRESULT hr) STUB_VOID;
+int DUIXmlParser::QuerySysMetric(int idx, bool* pfDynamicScaling) STUB_ZERO;
+const WCHAR* DUIXmlParser::QuerySysMetricStr(int idx, WCHAR* pszMetric, UINT c) STUB_ZERO;
+HRESULT DUIXmlParser::ParseArgs(const ParserTools::ExprNode* pen, ParsedArg* rgpa, UINT cpa, const CHAR* pszSignature) STUB_ZERO;
+HRESULT DUIXmlParser::ParseFunction(const WCHAR* pszName, const ParserTools::ExprNode* pen, ParsedArg* rgpa, UINT cpa, const CHAR* pszSignature) STUB_ZERO;
+bool DUIXmlParser::IsThemeClassName(const ParserTools::ExprNode* pen) STUB_ZERO;
+HRESULT DUIXmlParser::ParseMagnitude(const WCHAR* pszMag, int* pMagOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseMagnitudeFloat(const WCHAR* pszMag, float* pMagOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseLiteralNumber(const WCHAR* psz, int* pnOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseColorInt(const WCHAR*, int*) STUB_ZERO;
+HRESULT DUIXmlParser::ParseLiteralColorInt(const WCHAR* pszValue, int* piOut) STUB_ZERO;
+HRESULT DUIXmlParser::ParseLiteralColor(const WCHAR* pszValue, COLORREF* pclrOut) STUB_ZERO;
+HRESULT DUIXmlParser::ParseSysMetricInt(const ParserTools::ExprNode* pen, int* piOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseGTMetInt(const ParserTools::ExprNode* pen, int* piOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseARGBColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseRGBColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseGTCColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseResStr(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseSysMetricStr(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseGTFStr(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseRectRect(const ParserTools::ExprNode* pen, ScaledRECT* prcOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseGTMarRect(const ParserTools::ExprNode* pen, ScaledRECT* prcOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseSizeSize(const ParserTools::ExprNode* pen, ScaledSIZE* pszOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseGTPartSize(const ParserTools::ExprNode* pen, ScaledSIZE* pszOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseSGraphicHelper(bool, const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseSGraphicGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseGraphicHelper(bool fGraphic, const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseGraphicGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseImageGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseIconGraphic(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseLiteral(const ParserTools::ExprNode* pen, const WCHAR** ppszOut) STUB_ZERO;
+HRESULT DUIXmlParser::ParseNumber(const ParserTools::ExprNode* pen, int* pnOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseFloat(const ParserTools::ExprNode* pen, float* pflOut, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseColor(const ParserTools::ExprNode* pen, COLORREF* pclrOut) STUB_ZERO;
+HRESULT DUIXmlParser::ParseQuotedString(const ParserTools::ExprNode* pen, WCHAR** ppszOut) STUB_ZERO;
+HRESULT DUIXmlParser::ParseResid(const ParserTools::ExprNode* pen, const WCHAR** ppszOut) STUB_ZERO;
+HRESULT DUIXmlParser::ParseTheme(const ParserTools::ExprNode* pen, bool use96dpi, HTHEME* phtheme) STUB_ZERO;
+HRESULT DUIXmlParser::ParseLibrary(const ParserTools::ExprNode* pen, HMODULE* phmod) STUB_ZERO;
+HRESULT DUIXmlParser::ParseRect(const ParserTools::ExprNode* pen, ScaledRECT* prcOut) STUB_ZERO;
+HRESULT DUIXmlParser::ParseSize(const ParserTools::ExprNode* pen, ScaledSIZE* pszOut) STUB_ZERO;
+HRESULT DUIXmlParser::ParseGradientFill(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseDFCFill(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO;
+HRESULT DUIXmlParser::ParseDTBFill(const ParserTools::ExprNode* pen, Value** ppVal, bool* pfDynamicScaling) STUB_ZERO;
 HRESULT DUIXmlParser::CreateLayout(const ParserTools::ExprNode* pen, PLAYTCREATE pfnCreate) STUB_ZERO;
-HRESULT DUIXmlParser::ParseIntValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseFloatValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseBoolValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseStringValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseRectValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseSizeValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParsePointValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseFillValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseLayoutValue(const ParserTools::ExprNode* pen) STUB_ZERO
-HRESULT DUIXmlParser::ParseGraphicValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseSheetValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseAtomValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseCursorValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseBehaviorArgValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::ParseBehavior(const ParserTools::ExprNode* pen) STUB_ZERO
-HRESULT DUIXmlParser::ParseDoubleListValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO
-HRESULT DUIXmlParser::MapPropertyEnumValue(const EnumMap* pMap, const WCHAR* pszValue, int* piVal) STUB_ZERO
-HRESULT DUIXmlParser::GetValueParser(ParserTools::ValueParser** ppvp) STUB_ZERO
-void DUIXmlParser::ReturnValueParser(ParserTools::ValueParser* pvp) STUB_VOID
-HRESULT DUIXmlParser::GetParserCommon(DUIXmlParser** ppParserCommon) STUB_ZERO
-float DUIXmlParser::_ScaleRelativePixels(float nRelPix) STUB_ZERO
-int DUIXmlParser::_ScaleRelativePixels(int nRelPix) STUB_ZERO
-float DUIXmlParser::_ScalePointsToPixels(float flPoint) STUB_ZERO
-int DUIXmlParser::_ScalePointsToPixels(int nPoint) STUB_ZERO
-void DUIXmlParser::SetParseState(DUI_PARSE_STATE eParseState) STUB_VOID
-
-/*template<typename T>
-DUIXmlParser::FunctionDefinition<T> & DUIXmlParser::FunctionDefinition<T>::operator=(const FunctionDefinition<T> &)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}*/
+HRESULT DUIXmlParser::ParseIntValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseFloatValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseBoolValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseStringValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseRectValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseSizeValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParsePointValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseFillValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseLayoutValue(const ParserTools::ExprNode* pen) STUB_ZERO;
+HRESULT DUIXmlParser::ParseGraphicValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseSheetValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseAtomValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseCursorValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseBehaviorArgValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::ParseBehavior(const ParserTools::ExprNode* pen) STUB_ZERO;
+HRESULT DUIXmlParser::ParseDoubleListValue(const ParserTools::ExprNode* pen, Value** ppVal) STUB_ZERO;
+HRESULT DUIXmlParser::MapPropertyEnumValue(const EnumMap* pMap, const WCHAR* pszValue, int* piVal) STUB_ZERO;
+HRESULT DUIXmlParser::GetValueParser(ParserTools::ValueParser** ppvp) STUB_ZERO;
+void DUIXmlParser::ReturnValueParser(ParserTools::ValueParser* pvp) STUB_VOID;
+HRESULT DUIXmlParser::GetParserCommon(DUIXmlParser** ppParserCommon) STUB_ZERO;
+float DUIXmlParser::_ScaleRelativePixels(float nRelPix) STUB_ZERO;
+int DUIXmlParser::_ScaleRelativePixels(int nRelPix) STUB_ZERO;
+float DUIXmlParser::_ScalePointsToPixels(float flPoint) STUB_ZERO;
+int DUIXmlParser::_ScalePointsToPixels(int nPoint) STUB_ZERO;
+void DUIXmlParser::SetParseState(DUI_PARSE_STATE eParseState) STUB_VOID;
 
 UINT NativeHWNDHost::DestroyMsg() STUB_ZERO;
 HRESULT NativeHWNDHost::Create(const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO;

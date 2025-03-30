@@ -144,8 +144,9 @@ namespace DirectUI
 	class UILIB_API DUIXmlParser
 	{
 	public:
-		DUIXmlParser(const DUIXmlParser&);
 		DUIXmlParser();
+		DUIXmlParser(const DUIXmlParser&) = default;
+
 		virtual ~DUIXmlParser();
 
 		static HRESULT WINAPI Create(DUIXmlParser** ppParserOut, PXMLGETSHEETCB pfnGetSheetCallback, void* pGetSheetContext, PXMLPARSEERRORCB pfnErrorCallback, void* pErrorContext);
@@ -161,7 +162,7 @@ namespace DirectUI
 		HRESULT SetXMLFromResource(const WCHAR* pszResid, HINSTANCE hResInstance, HINSTANCE hControlsInstance);
 		HRESULT SetXMLFromResource(UINT uRCID, const WCHAR* pszResType, HINSTANCE hResInstance, HINSTANCE hControlsInstance);
 		HRESULT SetXMLFromResource(UINT uRCID, HINSTANCE hResInstance, HINSTANCE hControlsInstance);
-		
+
 		void SetRootWindowForTheming(HWND);
 		Value* GetMappedValue(WCHAR*);
 
@@ -189,7 +190,7 @@ namespace DirectUI
 		bool IsDynamicScaling();
 		HRESULT CopySheets(DynamicArray<Value*>** ppdaSheets);
 		void SetOverrideScaleFactor(float scaleFactor);
-		bool GetOverrideScaleFactor(float* pScaleFactor);
+		bool GetOverrideScaleFactor(float* pScaleFactor) const;
 
 	protected:
 		HRESULT Initialize();
@@ -201,7 +202,7 @@ namespace DirectUI
 		HRESULT _EnterOnCurrentThread();
 		void _LeaveOnCurrentThread();
 
-		static HRESULT GetXmlLiteDll(HMODULE* phXmlLiteDll);
+		static HRESULT WINAPI GetXmlLiteDll(HMODULE* phXmlLiteDll);
 		HRESULT CreateXmlReader(IXmlReader** ppReader);
 		HRESULT CreateXmlReaderFromHGLOBAL(HGLOBAL hglob, IXmlReader** ppReader);
 		HRESULT CreateXmlReaderInputWithEncodingName(IStream* pInput, const WCHAR* pszEncodingName, IUnknown** ppReaderInput);
@@ -248,7 +249,6 @@ namespace DirectUI
 		int QuerySysMetric(int idx, bool* pfDynamicScaling);
 		const WCHAR* QuerySysMetricStr(int idx, WCHAR* pszMetric, UINT c);
 
-		
 		template <typename T>
 		struct UILIB_API FunctionDefinition
 		{
@@ -292,7 +292,7 @@ namespace DirectUI
 		HRESULT ParseMagnitudeFloat(const WCHAR* pszMag, float* pMagOut, bool* pfDynamicScaling);
 
 		HRESULT ParseLiteralNumber(const WCHAR* psz, int* pnOut, bool* pfDynamicScaling);
-		HRESULT ParseColorInt(WCHAR*, int*);
+		HRESULT ParseColorInt(const WCHAR*, int*); // @Note: Not exported
 		HRESULT ParseLiteralColorInt(const WCHAR* pszValue, int* piOut);
 		HRESULT ParseLiteralColor(const WCHAR* pszValue, COLORREF* pclrOut);
 
@@ -371,7 +371,7 @@ namespace DirectUI
 		PXMLPARSEERRORCB _pfnErrorCB;
 		PXMLGETSHEETCB _pfnGetSheetCB;
 		PUNKNOWNATTRCB _pfnUnknownAttrCallback;
-		
+
 		void* _pErrorContext;
 		void* _pGetSheetContext;
 		void* _pfnUnknownAttrContext;
@@ -385,24 +385,23 @@ namespace DirectUI
 		int _fHighContrast;
 		int _fComposited;
 		bool _fOverrideScale;
-		
+
 		const PropertyInfo* _ppiValue;
 		const WCHAR* _pszError;
-		
+
 		ParserTools::ValueParser* _pvpCache;
 		DynamicArray<Value*>* _pdaSheetList;
 		DynamicArray<Value*>* _pdaTrackedValues;
 		DUIXmlParser* _pParserCommon;
 		IXmlReader* _pCurrentReader;
-		
+
 		IDuiParserCache* _pParserCache;
 		IDuiBinaryReader* _pBinaryReader;
-		
+
 		int _nCreateDepth;
-		
+
 		DynamicArray<int>* _prgLayoutArgs;
-		
-		
+
 	private:
 		float _ScaleRelativePixels(float nRelPix);
 		int _ScaleRelativePixels(int nRelPix);
@@ -417,9 +416,6 @@ namespace DirectUI
 		DWORD _dwThreadId;
 		ULONG _cRefThread;
 		HWND _rootWindowForTheming;
-
-	public:
-		DUIXmlParser& operator=(DUIXmlParser const&);
 	};
 
 	class DUIFactory

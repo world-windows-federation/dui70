@@ -159,7 +159,7 @@
 
 UILIB_API void WINAPI DumpDuiTree(DirectUI::Element* pe, BOOL fShowProperties);
 UILIB_API void WINAPI DumpDuiProperties(DirectUI::Element* pe);
-UILIB_API HRESULT WINAPI DuiCreateObject(REFCLSID rclsid, REFIID riid, void** ppv);
+extern "C" UILIB_API HRESULT WINAPI DuiCreateObject(REFCLSID rclsid, REFIID riid, void** ppv);
 
 #include "PVLTrigger.h"
 #include "PVLLauncherTrigger.h"
@@ -248,6 +248,7 @@ namespace DirectUI
 
 		HRESULT WINAPI RegisterPVLBehaviorFactory();
 		void WINAPI DUIStopPVLAnimation(Element* peAnimating, UINT nDCProperty, BOOL fFinal);
+		HRESULT WINAPI DuiCreateObject(REFCLSID rclsid, REFIID riid, void** ppv);
 	}
 
 	inline int GetPixelHelper(Element* pe, const PropertyInfo* ppi, bool fUseDefault)

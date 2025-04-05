@@ -100,8 +100,8 @@ namespace DirectUI
 
 		UILIB_API ~TouchButton() override;
 
-		UILIB_API void FireClickEvent(UINT cClick, UINT uModifiers, ClickDevice clickDevice, POINT* ppt);
-		UILIB_API void FireRightClickEvent(UINT uModifiers, POINT* ppt);
+		UILIB_API virtual void FireClickEvent(UINT cClick, UINT uModifiers, ClickDevice clickDevice, POINT* ppt);
+		UILIB_API virtual void FireRightClickEvent(UINT uModifiers, POINT* ppt);
 
 	private:
 		class TouchButtonListenerHelper : public CSafeElementListenerCB

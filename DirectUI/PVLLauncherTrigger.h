@@ -109,8 +109,10 @@ namespace DirectUI
 		}
 
 		HRESULT TriggerLauncher(
-			UINT, UINT, ElementOffsetPair*, DynamicArray<Element*>*, DynamicArray<Element*>*, Element*, Element*,
-			Element*, Element*, Element*, POINT, DWORD* pdwCookie)
+			UINT uiVersion, UINT uiState, ElementOffsetPair* peopLauncher, DynamicArray<Element*>* pelTowers,
+			DynamicArray<Element*>* pelGroupHeaders, Element* peStartText, Element* peUserTile,
+			Element* peLauncherContent, Element* peSortDropdown, Element* peSearchBox, POINT ptTowerOffset,
+			DWORD* pdwCookie)
 		{
 			HRESULT hr = EnsureObject();
 			if (SUCCEEDED(hr))

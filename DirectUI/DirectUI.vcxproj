@@ -324,6 +324,7 @@
     <ClInclude Include="TouchEditInner.h" />
     <ClInclude Include="TouchScrollBar.h" />
     <ClInclude Include="TouchScrollViewer.h" />
+    <ClInclude Include="TouchSelect.h" />
     <ClInclude Include="TouchTooltip.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UiaSchema.h" />

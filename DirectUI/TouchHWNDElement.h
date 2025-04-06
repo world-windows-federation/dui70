@@ -24,6 +24,15 @@ namespace DirectUI
 
 	DEFINE_ENUM_FLAG_OPERATORS(TouchHWNDElementFlags);
 
+	struct WindowMessageEvent : Event
+	{
+		HWND hWnd;
+		UINT uMsg;
+		WPARAM wParam;
+		LPARAM lParam;
+		LRESULT lRes;
+	};
+
 	// NOTE: 56 exports for DirectUI::TouchHWNDElement
 	class TouchHWNDElement : public HWNDElement
 	{

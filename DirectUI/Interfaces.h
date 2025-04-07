@@ -70,13 +70,19 @@ namespace DirectUI
 	{
 	public:
 		RefcountBase();
+
+	private:
 		RefcountBase(const RefcountBase&) = delete;
 		RefcountBase& operator=(const RefcountBase&) = delete;
 
+	public:
 		virtual ~RefcountBase();
 
 		long AddRef();
 		long Release();
+
+	private:
+		long _refCount;
 	};
 
 	struct UILIB_API ISBLeak

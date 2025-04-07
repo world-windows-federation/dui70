@@ -9362,6 +9362,7 @@ HRESULT ElementProvider::get_ProviderOptions(ProviderOptions* pRetVal) STUB_ZERO
 HRESULT ElementProvider::GetPatternProvider(PATTERNID id, IUnknown** ppunk) STUB_ZERO;
 HRESULT ElementProvider::GetPropertyValue(PROPERTYID propertyID, VARIANT* pvar) STUB_ZERO;
 HRESULT ElementProvider::get_HostRawElementProvider(IRawElementProviderSimple** ppprv) STUB_ZERO;
+HRESULT ElementProvider::ShowContextMenu() STUB_ZERO;
 HRESULT ElementProvider::Navigate(NavigateDirection direction, IRawElementProviderFragment** ppprv) STUB_ZERO;
 HRESULT ElementProvider::GetRuntimeId(SAFEARRAY** pparray) STUB_ZERO;
 HRESULT ElementProvider::get_BoundingRectangle(UiaRect* prect) STUB_ZERO;

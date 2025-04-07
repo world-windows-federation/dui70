@@ -709,7 +709,7 @@ namespace DirectUI
 
 	class UILIB_API ElementProvider
 		: public RefcountBase
-		, public IRawElementProviderSimple
+		, public IRawElementProviderSimple2
 		, public IRawElementProviderFragment
 		, public IRawElementProviderAdviseEvents
 	{
@@ -741,6 +741,10 @@ namespace DirectUI
 		STDMETHODIMP GetPropertyValue(PROPERTYID propertyID, VARIANT* pvar) override;
 		STDMETHODIMP get_HostRawElementProvider(IRawElementProviderSimple** ppprv) override;
 		//~ End IRawElementProviderSimple Interface
+
+		//~ Begin IRawElementProviderSimple2 Interface
+		STDMETHODIMP ShowContextMenu() override;
+		//~ End IRawElementProviderSimple2 Interface
 
 		//~ Begin IRawElementProviderFragment Interface
 		STDMETHODIMP Navigate(NavigateDirection direction, IRawElementProviderFragment** ppprv) override;

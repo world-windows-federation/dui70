@@ -12,7 +12,7 @@ IDuiBehaviorFactory : IUnknown
 	virtual HRESULT STDMETHODCALLTYPE CreateBehavior(const WCHAR*, IDuiBehavior**) = 0;
 };
 
-MIDL_INTERFACE("e0857125-39fc-4f59-a56d-0e8a82902f3a")
+MIDL_INTERFACE("11322f06-9f1e-48c6-8d47-20398011a462")
 IDuiBehaviorEngine : IUnknown
 {
 	virtual HRESULT STDMETHODCALLTYPE RegisterBehaviorFactory(const WCHAR* pwzNamespace, IDuiBehaviorFactory* pFactory) = 0;

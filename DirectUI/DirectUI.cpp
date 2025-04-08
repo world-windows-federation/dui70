@@ -1308,19 +1308,8 @@ long AutoButton::Initialize(Element*, unsigned long*)
 
 IClassInfo* AutoButton::s_pClassInfo;
 
-AutoLock::AutoLock(LPCRITICAL_SECTION lpCriticalSection)
-{
-}
-
-AutoLock& AutoLock::operator=(const AutoLock&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-AutoLock::~AutoLock()
-{
-}
+AutoLock::AutoLock(LPCRITICAL_SECTION lpCriticalSection) STUB_VOID;
+AutoLock::~AutoLock() STUB_VOID;
 
 AutoThread::AutoThread()
 {

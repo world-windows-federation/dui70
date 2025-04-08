@@ -5,8 +5,10 @@ namespace DirectUI
 	class UILIB_API AutoLock
 	{
 	public:
-		AutoLock(LPCRITICAL_SECTION lpCriticalSection);
-		AutoLock& operator=(const AutoLock& );
+		AutoLock(RTL_CRITICAL_SECTION* pacs);
 		~AutoLock();
+
+	private:
+		RTL_CRITICAL_SECTION* _pacs;
 	};
 }

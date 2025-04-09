@@ -258,7 +258,7 @@ namespace DirectUI
 template <typename T>
 BOOL IsSubclassOf(DirectUI::Element* pe)
 {
-	return pe->GetClassInfoW()->IsSubclassOf(T::GetClassInfoPtr()); // @Note: bool -> BOOL, no != 0
+	return pe->GetClassInfoW()->IsSubclassOf(((T*)pe)->T::GetClassInfoW()); // @Note: bool -> BOOL, no != 0
 }
 
 template <typename T>
@@ -289,7 +289,7 @@ T* element_interface_cast(DirectUI::Element* pe)
 template <typename T>
 BOOL IsClassOf(DirectUI::Element* pe)
 {
-	return pe->GetClassInfoW() == T::GetClassInfoPtr();
+	return pe->GetClassInfoW() == ((T*)pe)->T::GetClassInfoW();
 }
 
 #undef DUI_SET_CLASS_INFO

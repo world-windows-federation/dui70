@@ -547,15 +547,16 @@ namespace DirectUI
 		virtual HRESULT STDMETHODCALLTYPE AddInputPaneSlide(int nStoryboardId, Element* peToSlide, const POINT* pptInit, const POINT* pptDest, const RECT* prcInputPane, int, int iInputPaneDeltaY) = 0;
 	};
 
-	MIDL_INTERFACE("390E8C35-5643-4FFA-A0CC-BEE64802A534")
+	// MIDL_INTERFACE("390E8C35-5643-4FFA-A0CC-BEE64802A534")
+	MIDL_INTERFACE("A658A77F-0729-4714-BA5F-4CC1BCD5D727")
 	IDuiLauncherAnimationTriggers : IUnknown
 	{
 		virtual HRESULT STDMETHODCALLTYPE TriggerTap(Element* peToTap, UINT uiState, POINT ptContact, UINT uiVersion, DWORD* pdwCookie) = 0;
 		virtual HRESULT STDMETHODCALLTYPE TriggerLaunch(Element* peToLaunch, DynamicArray<Element*>* pelUnk, DWORD* pdwCookie) = 0; // @NOTE: The parameter names here are guessed (therefore not accurate) based on other common naming schemes microsoft uses in Dui70, originally they were all __formal
 		virtual HRESULT STDMETHODCALLTYPE TriggerDrag(Element* peToDrag, DynamicArray<Element*>* pelRemaining, Element* peContent, Element* peAdornment, DynamicArray<ClipRectWithElement*>* pTowerClippingRects, UINT uiState, POINT ptContact, DWORD* pdwCookie) = 0;
 		virtual HRESULT STDMETHODCALLTYPE TriggerDrop(Element* peToDrop, DynamicArray<Element*>* pelRemaining, Element* peContent, Element* peAdornment, DynamicArray<ClipRectWithElement*>* pTowerClippingRects, Element* peParent, int nIndex, int nLayoutPos, POINT ptDest, DWORD* pdwCookie) = 0;
-		virtual HRESULT STDMETHODCALLTYPE TriggerSession(UINT uiVersion, UINT uiState, ElementOffsetPair* peopLauncher, DynamicArray<Element*>* pelTowers, DynamicArray<Element*>* pelGroupHeaders, ElementOffsetPair* peopStartText, ElementOffsetPair* peopUserTileIcon, ElementOffsetPair* peopUserTileText, Element* peLauncherContent, POINT ptTowerOffset, POINT ptGroupHeaderOffset, DWORD* pdwCookie) = 0;
-		virtual HRESULT STDMETHODCALLTYPE TriggerLogin(UINT uiVersion, Element* peLoginUserTile, Element* peLoginUserText, POINT ptOffset, DWORD* pdwCookie) = 0;
+		// virtual HRESULT STDMETHODCALLTYPE TriggerSession(UINT uiVersion, UINT uiState, ElementOffsetPair* peopLauncher, DynamicArray<Element*>* pelTowers, DynamicArray<Element*>* pelGroupHeaders, ElementOffsetPair* peopStartText, ElementOffsetPair* peopUserTileIcon, ElementOffsetPair* peopUserTileText, Element* peLauncherContent, POINT ptTowerOffset, POINT ptGroupHeaderOffset, DWORD* pdwCookie) = 0;
+		// virtual HRESULT STDMETHODCALLTYPE TriggerLogin(UINT uiVersion, Element* peLoginUserTile, Element* peLoginUserText, POINT ptOffset, DWORD* pdwCookie) = 0;
 		virtual HRESULT STDMETHODCALLTYPE TriggerLogonEntrance(DynamicArray<Element*>* pelToEnter, DynamicArray<POINT>* pdaOffsets, DWORD* pdwCookie) = 0;
 		virtual HRESULT STDMETHODCALLTYPE TriggerCrossfade(DynamicArray<Element*>* pelToFadeOut, DynamicArray<Element*>* pelToFadeIn, bool fCloneTransforms, bool fLayoutAlreadySet, bool fDestroy, bool fInplace, DWORD* pdwCookie) = 0;
 		virtual HRESULT STDMETHODCALLTYPE AddScale(int nStoryboardId, Element* peToScale, POINTFLOAT ptflOrigin, POINTFLOAT ptflScale, int nOrderNumber, int nCustomDuration) = 0;

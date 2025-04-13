@@ -131,9 +131,9 @@ namespace DirectUI
 			HRESULT hr = EnsureObject();
 			if (SUCCEEDED(hr))
 			{
-				hr = m_pde->TriggerSession(
+				hr = E_NOTIMPL; /*m_pde->TriggerSession(
 					uiVersion, uiState, peopLauncher, pelTowers, pelGroupHeaders, peopStartText, peopUserTileIcon,
-					peopUserTileText, peLauncherContent, ptTowerOffset, ptGroupHeaderOffset, pdwCookie);
+					peopUserTileText, peLauncherContent, ptTowerOffset, ptGroupHeaderOffset, pdwCookie);*/ // Nuked in 1703
 			}
 			return hr;
 		}
@@ -144,7 +144,7 @@ namespace DirectUI
 			HRESULT hr = EnsureObject();
 			if (SUCCEEDED(hr))
 			{
-				hr = m_pde->TriggerLogin(uiVersion, peLoginUserTile, peLoginUserText, ptOffset, pdwCookie);
+				hr = E_NOTIMPL; /*m_pde->TriggerLogin(uiVersion, peLoginUserTile, peLoginUserText, ptOffset, pdwCookie);*/ // Nuked in 1703
 			}
 			return hr;
 		}

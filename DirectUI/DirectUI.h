@@ -146,6 +146,7 @@
 #include "TouchScrollBar.h"
 #include "TouchScrollViewer.h"
 #include "TouchSelect.h"
+#include "TouchSlider.h"
 #include "TouchTooltip.h"
 
 #include "TouchEditBase.h"
@@ -170,15 +171,14 @@ extern "C" UILIB_API HRESULT WINAPI DuiCreateObject(REFCLSID rclsid, REFIID riid
 
 namespace DirectUI
 {
-	extern UILIB_API unsigned long g_dwElSlot;
+	extern UILIB_API DWORD g_dwElSlot;
 
 	extern "C"
 	{
-		// HRESULT WINAPI InitProcessPriv(int duiVersion, unsigned short*unk1, char unk2, bool bEnableUIAutomationProvider);
 		// @Careful: fInitCommctl is new in Windows 10
 		HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl);
 		HRESULT WINAPI UnInitProcessPriv(HMODULE hModule);
-		EXTERN_C HRESULT WINAPI InitThread(UINT nThreadMode);
+		HRESULT WINAPI InitThread(UINT nThreadMode);
 		void WINAPI UnInitThread();
 
 		HRESULT WINAPI CreateDUIWrapper(Element* pe, IUnknown** ppunk);

@@ -9736,7 +9736,6 @@ void TouchScrollBar::LineUp(UINT nCount) STUB_VOID;
 void TouchScrollBar::LineDown(UINT nCount) STUB_VOID;
 void TouchScrollBar::PageUp(UINT nCount) STUB_VOID;
 void TouchScrollBar::PageDown(UINT nCount) STUB_VOID;
-
 TouchScrollBar::InnerTouchScrollBarListener::InnerTouchScrollBarListener() STUB_VOID;
 void TouchScrollBar::InnerTouchScrollBarListener::OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
 
@@ -10021,6 +10020,66 @@ HRESULT TouchEdit2::SelectNone() STUB_ZERO;
 void TouchEdit2::DisableSelectionHandlesOnEmptyContent() STUB_VOID
 void TouchEdit2::OnListenerDetach(Element* peFrom) STUB_VOID;
 void TouchEdit2::OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+
+HRESULT TouchSlider::Register() STUB_ZERO
+IClassInfo* TouchSlider::GetClassInfoPtr() STUB_ZERO;
+IClassInfo* TouchSlider::GetClassInfoW() STUB_ZERO;
+HRESULT TouchSlider::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT TouchSlider::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+const PropertyInfo* TouchSlider::IsVerticalProp() STUB_ZERO;
+const PropertyInfo* TouchSlider::MeteringProp() STUB_ZERO;
+const PropertyInfo* TouchSlider::BufferingProp() STUB_ZERO;
+const PropertyInfo* TouchSlider::TickCountProp() STUB_ZERO;
+const PropertyInfo* TouchSlider::ShowTickProp() STUB_ZERO;
+const PropertyInfo* TouchSlider::IsContinuousProp() STUB_ZERO;
+const PropertyInfo* TouchSlider::IsShowOnOffFeedbackProp() STUB_ZERO;
+const PropertyInfo* TouchSlider::VisualStateProp() STUB_ZERO;
+const PropertyInfo* TouchSlider::IsPressedProp() STUB_ZERO;
+const PropertyInfo* TouchSlider::ThumbPositionProp() STUB_ZERO;
+bool TouchSlider::GetIsVertical() STUB_ZERO;
+int TouchSlider::GetMetering() STUB_ZERO;
+int TouchSlider::GetBuffering() STUB_ZERO;
+int TouchSlider::GetTickCount() STUB_ZERO;
+bool TouchSlider::GetShowTick() STUB_ZERO;
+bool TouchSlider::GetIsPressed() STUB_ZERO;
+bool TouchSlider::GetIsContinuous() STUB_ZERO;
+bool TouchSlider::GetIsShowOnOffFeedback() STUB_ZERO;
+int TouchSlider::GetVisualState() STUB_ZERO;
+HRESULT TouchSlider::SetIsVertical(bool v) STUB_ZERO;
+HRESULT TouchSlider::SetMetering(int v) STUB_ZERO;
+HRESULT TouchSlider::SetBuffering(int v) STUB_ZERO;
+HRESULT TouchSlider::SetTickCount(int v) STUB_ZERO;
+HRESULT TouchSlider::SetShowTick(bool v) STUB_ZERO;
+HRESULT TouchSlider::SetIsPressed(bool v) STUB_ZERO;
+HRESULT TouchSlider::SetIsContinuous(bool v) STUB_ZERO;
+HRESULT TouchSlider::SetIsShowOnOffFeedback(bool v) STUB_ZERO;
+void TouchSlider::SetRespondToMouseScroll(bool respondToMouseScroll) STUB_VOID;
+void TouchSlider::SetFireContinuousSliderEvent(bool fireContinuousSliderEvent) STUB_VOID;
+UID TouchSlider::SliderUpdated() STUB_ZERO;
+UID TouchSlider::MouseOrPointerReleased() STUB_ZERO;
+int TouchSlider::GetRangeMin() STUB_ZERO;
+int TouchSlider::GetRangeMax() STUB_ZERO;
+int TouchSlider::GetStepCount() STUB_ZERO;
+int TouchSlider::GetThumbValue() STUB_ZERO;
+void TouchSlider::SetRangeMinAndRangeMax(int RangeMin, int RangeMax) STUB_VOID;
+void TouchSlider::SetRangeMin(int RangeMin) STUB_VOID;
+void TouchSlider::SetRangeMax(int RangeMax) STUB_VOID;
+void TouchSlider::SetStepCount(int StepCount) STUB_VOID;
+void TouchSlider::SetThumbValue(int ThumbValue, bool RaiseEvent) STUB_VOID;
+void TouchSlider::SetThumbValue(int ThumbValue, bool RaiseEvent, bool fForce) STUB_VOID;
+Element* TouchSlider::GetTrackElement() STUB_ZERO;
+Button* TouchSlider::GetThumbElement() STUB_ZERO;
+Element* TouchSlider::GetFillpartElement() STUB_ZERO;
+void TouchSlider::RemoveRichDuiTooltip() STUB_VOID;
+void TouchSlider::SetTooltipText(const WCHAR* pszTooltipText) STUB_VOID;
+int TouchSlider::TranslateThumbPositionToThumbValue(int ThumbPosition) STUB_ZERO;
+void TouchSlider::FireEventOnMouseOrPointerRelease() STUB_VOID;
+void TouchSlider::SetRespectLanguageDirection(bool fRespectLanguageDirection) STUB_VOID;
+void TouchSlider::EraseFeedback() STUB_VOID;
+void TouchSlider::UseFixedTooltipOffset() STUB_VOID;
+void TouchSlider::ShowTooltipOnRightForLTRBuild() STUB_VOID;
+void TouchSlider::CancelCurrentDrag() STUB_VOID;
+	
 
 UID SemanticZoomToggle::Toggle() STUB_ZERO;
 HRESULT SemanticZoomToggle::Register() STUB_ZERO;

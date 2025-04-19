@@ -325,6 +325,7 @@
     <ClInclude Include="TouchScrollBar.h" />
     <ClInclude Include="TouchScrollViewer.h" />
     <ClInclude Include="TouchSelect.h" />
+    <ClInclude Include="TouchSwitch.h" />
     <ClInclude Include="TouchTooltip.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UiaSchema.h" />
@@ -355,6 +356,9 @@
       <Project>{11541c39-bde1-4aa4-8fc3-d1c209267802}</Project>
       <Name>DUser</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="\" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

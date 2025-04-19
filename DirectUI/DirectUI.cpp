@@ -10079,8 +10079,30 @@ void TouchSlider::EraseFeedback() STUB_VOID;
 void TouchSlider::UseFixedTooltipOffset() STUB_VOID;
 void TouchSlider::ShowTooltipOnRightForLTRBuild() STUB_VOID;
 void TouchSlider::CancelCurrentDrag() STUB_VOID;
-	
 
+//~ Begin DirectUI::TouchSwitch Class
+HRESULT TouchSwitch::Register() STUB_ZERO;
+IClassInfo* TouchSwitch::GetClassInfoPtr() STUB_ZERO;
+IClassInfo* TouchSwitch::GetClassInfoW() STUB_ZERO;
+HRESULT TouchSwitch::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT TouchSwitch::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+void TouchSwitch::SetOnOffText(const WCHAR* OnText, const WCHAR* OffText) STUB_VOID;
+void TouchSwitch::SetToggleSwitchText(const WCHAR* TitleText) STUB_VOID;
+const PropertyInfo* TouchSwitch::OnTextProp() STUB_ZERO;
+const WCHAR* TouchSwitch::GetOnText(Value** ppv) STUB_ZERO;
+HRESULT TouchSwitch::SetOnText(const WCHAR* psz) STUB_ZERO;
+const PropertyInfo* TouchSwitch::OffTextProp() STUB_ZERO;
+const WCHAR* TouchSwitch::GetOffText(Value** ppv) STUB_ZERO;
+HRESULT TouchSwitch::SetOffText(const WCHAR* psz) STUB_ZERO;
+const PropertyInfo* TouchSwitch::TitleTextProp() STUB_ZERO;
+const WCHAR* TouchSwitch::GetTitleText(Value** ppv) STUB_ZERO;
+HRESULT TouchSwitch::SetTitleText(const WCHAR* psz) STUB_ZERO;
+void TouchSwitch::SetToggleValue(int ToggleValue) STUB_VOID;
+void TouchSwitch::SetToggleValue(int ToggleValue, bool RaiseEvent) STUB_VOID;
+void TouchSwitch::SetToggleValue(int ToggleValue, bool fRaiseEvent, bool fForce) STUB_VOID;
+int TouchSwitch::GetToggleValue() STUB_ZERO;
+//~ End DirectUI::TouchSwitch Class
+	
 UID SemanticZoomToggle::Toggle() STUB_ZERO;
 HRESULT SemanticZoomToggle::Register() STUB_ZERO;
 IClassInfo* SemanticZoomToggle::GetClassInfoPtr() STUB_ZERO;

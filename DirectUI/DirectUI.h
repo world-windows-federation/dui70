@@ -147,6 +147,7 @@
 #include "TouchScrollViewer.h"
 #include "TouchSelect.h"
 #include "TouchSlider.h"
+#include "TouchSwitch.h"
 #include "TouchTooltip.h"
 
 #include "TouchEditBase.h"

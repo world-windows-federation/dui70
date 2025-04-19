@@ -2,6 +2,12 @@
 
 namespace DirectUI
 {
+    struct TouchSliderUpdatedEvent : Event
+    {
+        int NewValue;
+        bool fTriggeredByKeyboard;
+    };
+
     class TouchSlider : public Element
     {
     public:

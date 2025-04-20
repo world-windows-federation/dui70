@@ -2134,93 +2134,23 @@ void ClassInfoBase::RemoveChild() STUB_VOID;
 int ClassInfoBase::GetChildren() const STUB_ZERO;
 void ClassInfoBase::AssertPIZeroRef() const STUB_VOID;
 
-BaseScrollBar::BaseScrollBar(BaseScrollBar const&)
-{
-}
-
-BaseScrollBar::BaseScrollBar()
-{
-}
-
-BaseScrollBar& BaseScrollBar::operator=(BaseScrollBar const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-void BaseScrollBar::LineUp(unsigned int)
-{
-}
-
-void BaseScrollBar::LineDown(unsigned int)
-{
-}
-
-void BaseScrollBar::PageUp(unsigned int)
-{
-}
-
-void BaseScrollBar::PageDown(unsigned int)
-{
-}
-
-void BaseScrollBar::End()
-{
-}
-
-void BaseScrollBar::Home()
-{
-}
-
-bool BaseScrollBar::IsPinned()
-{
-	return false;
-}
-
-bool BaseScrollBar::IsScrollable()
-{
-	return false;
-}
-
-void BaseScrollBar::OnMaximumChanged(Value*)
-{
-}
-
-void BaseScrollBar::OnMinimumChanged(Value*)
-{
-}
-
-void BaseScrollBar::OnPageChanged(Value*)
-{
-}
-
-bool BaseScrollBar::OnPageChanging(Value*)
-{
-	return false;
-}
-
-void BaseScrollBar::OnPositionChanged(Value*)
-{
-}
-
-bool BaseScrollBar::OnPositionChanging(Value*)
-{
-	return false;
-}
-
-UID BaseScrollBar::Scroll()
-{
-	return UID();
-}
-
-void BaseScrollBar::SetPinned(bool)
-{
-}
-
-int BaseScrollBar::GetPageInc()
-{
-	return 0;
-}
+UID BaseScrollBar::Scroll() STUB_ZERO;
+bool BaseScrollBar::OnPositionChanging(Value* pvNew) STUB_ZERO;
+bool BaseScrollBar::OnPageChanging(Value* pvNew) STUB_ZERO;
+void BaseScrollBar::OnPositionChanged(Value* pvNew) STUB_VOID;
+void BaseScrollBar::OnMinimumChanged(Value* pvNew) STUB_VOID;
+void BaseScrollBar::OnMaximumChanged(Value* pvNew) STUB_VOID;
+void BaseScrollBar::OnPageChanged(Value* pvNew) STUB_VOID;
+void BaseScrollBar::LineUp(UINT nCount) STUB_VOID;
+void BaseScrollBar::LineDown(UINT nCount) STUB_VOID;
+void BaseScrollBar::PageUp(UINT nCount) STUB_VOID;
+void BaseScrollBar::PageDown(UINT nCount) STUB_VOID;
+void BaseScrollBar::Home() STUB_VOID;
+void BaseScrollBar::End() STUB_VOID;
+bool BaseScrollBar::IsScrollable() STUB_ZERO;
+bool BaseScrollBar::IsPinned() STUB_ZERO;
+void BaseScrollBar::SetPinned(bool fPinned) STUB_VOID;
+int BaseScrollBar::GetPageInc() STUB_ZERO;
 
 BaseScrollViewer::BaseScrollViewer() STUB_VOID;
 BaseScrollViewer::~BaseScrollViewer() STUB_VOID;
@@ -7324,234 +7254,51 @@ long ScrollProxy::SetScrollPercent(double, double)
 	return 0;
 }
 
-ScrollBar::ScrollBar(ScrollBar const&)
-{
-}
-
-ScrollBar::ScrollBar(void)
-{
-}
-
-ScrollBar::~ScrollBar(void)
-{
-}
-
-ScrollBar& ScrollBar::operator=(ScrollBar const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long ScrollBar::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long ScrollBar::Create(bool, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* ScrollBar::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* ScrollBar::LineProp(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* ScrollBar::MaximumProp(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* ScrollBar::MinimumProp(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* ScrollBar::OrderProp(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* ScrollBar::PageProp(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* ScrollBar::PositionProp(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* ScrollBar::ProportionalProp(void)
-{
-	return nullptr;
-}
-
-long ScrollBar::Register(void)
-{
-	return 0;
-}
-
-void ScrollBar::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-PropertyInfo const* ScrollBar::VerticalProp(void)
-{
-	return nullptr;
-}
-
-int ScrollBar::GetOrder(void)
-{
-	return 0;
-}
-
-bool ScrollBar::GetVertical(void)
-{
-	return false;
-}
-
-long ScrollBar::Initialize(bool, Element*, unsigned long*)
-{
-	return 0;
-}
-
-long ScrollBar::SetOrder(int)
-{
-	return 0;
-}
-
-long ScrollBar::SetProportional(bool)
-{
-	return 0;
-}
-
-long ScrollBar::SetVertical(bool)
-{
-	return 0;
-}
-
-IClassInfo* ScrollBar::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-Element* ScrollBar::GetElement(void)
-{
-	return nullptr;
-}
-
-int ScrollBar::GetLine(void)
-{
-	return 0;
-}
-
-int ScrollBar::GetMaximum(void)
-{
-	return 0;
-}
-
-int ScrollBar::GetMinimum(void)
-{
-	return 0;
-}
-
-int ScrollBar::GetPage(void)
-{
-	return 0;
-}
-
-int ScrollBar::GetPosition(void)
-{
-	return 0;
-}
-
-bool ScrollBar::GetProportional(void)
-{
-	return false;
-}
-
-void ScrollBar::OnEvent(Event*)
-{
-}
-
-void ScrollBar::OnPropertyChanged(PropertyInfo const*, int, Value*, Value*)
-{
-}
-
-bool ScrollBar::OnPropertyChanging(PropertyInfo const*, int, Value*, Value*)
-{
-	return false;
-}
-
-long ScrollBar::SetLine(int)
-{
-	return 0;
-}
-
-long ScrollBar::SetMaximum(int)
-{
-	return 0;
-}
-
-long ScrollBar::SetMinimum(int)
-{
-	return 0;
-}
-
-long ScrollBar::SetPage(int)
-{
-	return 0;
-}
-
-long ScrollBar::SetPosition(int)
-{
-	return 0;
-}
-
-void ScrollBar::_SelfLayoutDoLayout(int, int)
-{
-}
-
-SIZE ScrollBar::_SelfLayoutUpdateDesiredSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-long ScrollBar::CreateButtons(void)
-{
-	return 0;
-}
-
+HRESULT ScrollBar::Create(bool, Element*, DWORD*, Element**) STUB_ZERO;
+HRESULT ScrollBar::Create(Element*, DWORD*, Element**) STUB_ZERO;
+void ScrollBar::OnEvent(Event* pEvent) STUB_VOID;
+bool ScrollBar::OnPropertyChanging(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
+void ScrollBar::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void ScrollBar::_SelfLayoutDoLayout(int cx, int cy) STUB_VOID;
+SIZE ScrollBar::_SelfLayoutUpdateDesiredSize(int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+const PropertyInfo* ScrollBar::PositionProp() STUB_ZERO;
+const PropertyInfo* ScrollBar::MinimumProp() STUB_ZERO;
+const PropertyInfo* ScrollBar::MaximumProp() STUB_ZERO;
+const PropertyInfo* ScrollBar::PageProp() STUB_ZERO;
+const PropertyInfo* ScrollBar::LineProp() STUB_ZERO;
+const PropertyInfo* ScrollBar::VerticalProp() STUB_ZERO;
+const PropertyInfo* ScrollBar::ProportionalProp() STUB_ZERO;
+const PropertyInfo* ScrollBar::OrderProp() STUB_ZERO;
+Element* ScrollBar::GetElement() STUB_ZERO;
+int ScrollBar::GetPosition() STUB_ZERO;
+int ScrollBar::GetMaximum() STUB_ZERO;
+int ScrollBar::GetMinimum() STUB_ZERO;
+int ScrollBar::GetPage() STUB_ZERO;
+int ScrollBar::GetLine() STUB_ZERO;
+HRESULT ScrollBar::SetPosition(int v) STUB_ZERO;
+HRESULT ScrollBar::SetMaximum(int v) STUB_ZERO;
+HRESULT ScrollBar::SetMinimum(int v) STUB_ZERO;
+HRESULT ScrollBar::SetPage(int v) STUB_ZERO;
+HRESULT ScrollBar::SetLine(int v) STUB_ZERO;
+bool ScrollBar::GetProportional() STUB_ZERO;
+int ScrollBar::GetOrder() STUB_ZERO;
+bool ScrollBar::GetVertical() STUB_ZERO;
+HRESULT ScrollBar::SetOrder(int v) STUB_ZERO;
+HRESULT ScrollBar::SetProportional(bool v) STUB_ZERO;
+HRESULT ScrollBar::SetVertical(bool v) STUB_ZERO;
+IClassInfo* ScrollBar::GetClassInfoPtr() STUB_ZERO;
+void ScrollBar::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* ScrollBar::s_pClassInfo;
+IClassInfo* ScrollBar::GetClassInfoW() STUB_ZERO;
+HRESULT ScrollBar::Register() STUB_ZERO;
+ScrollBar::ScrollBar() STUB_VOID;
+HRESULT ScrollBar::Initialize(bool fBuildSubTree, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+ScrollBar::~ScrollBar() STUB_VOID;
+HRESULT ScrollBar::CreateButtons() STUB_ZERO;
 
-ScrollBarRangeValueProxy::ScrollBarRangeValueProxy(ScrollBarRangeValueProxy const&)
-{
-}
-
-ScrollBarRangeValueProxy::ScrollBarRangeValueProxy(void)
-{
-}
-
-ScrollBarRangeValueProxy& ScrollBarRangeValueProxy::operator=(ScrollBarRangeValueProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long ScrollBarRangeValueProxy::DoMethod(int, char*)
-{
-	return 0;
-}
-
-void ScrollBarRangeValueProxy::Init(Element*)
-{
-}
+ScrollBarRangeValueProxy::ScrollBarRangeValueProxy() STUB_VOID;
+HRESULT ScrollBarRangeValueProxy::DoMethod(MethodId methodId, va_list args) STUB_ZERO;
+void ScrollBarRangeValueProxy::Init(Element*) STUB_VOID;
 
 ScrollItemProvider::ScrollItemProvider(void)
 {

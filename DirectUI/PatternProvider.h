@@ -17,6 +17,7 @@ namespace DirectUI
 		virtual void Init(ElementProvider* pprv)
 		{
 			_pprv = pprv;
+			pprv->AddRef(); // TODO We don't have AutoReleasePointer yet
 		}
 
 		~PatternProvider() override

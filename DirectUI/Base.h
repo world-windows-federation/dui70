@@ -7,59 +7,45 @@ namespace DirectUI
 	class UILIB_API BaseScrollBar
 	{
 	public:
-		BaseScrollBar(BaseScrollBar const&);
-		BaseScrollBar();
-		BaseScrollBar& operator=(BaseScrollBar const&);
-		//0
-		virtual Element* GetElement() = 0;
-		//1
-		virtual int GetPosition() = 0;
-		//2
-		virtual int GetMaximum() = 0;
-		//3
-		virtual int GetMinimum() = 0;
-		//4
-		virtual int GetPage() = 0;
-		//5
-		virtual int GetLine() = 0;
-		//6
-		virtual long SetPosition(int) = 0;
-		//7
-		virtual long SetMaximum(int) = 0;
-		//8
-		virtual long SetMinimum(int) = 0;
-		//9
-		virtual long SetPage(int) = 0;
-		//10
-		virtual long SetLine(int) = 0;
-		//11
-		virtual bool CanSetFocus() = 0;
-		//12
-		virtual void LineUp(unsigned int);
-		//13
-		virtual void LineDown(unsigned int);
-		//14
-		virtual void PageUp(unsigned int);
-		//15
-		virtual void PageDown(unsigned int);
-		//16
-		virtual void End();
-		//17
-		virtual void Home();
-
-		bool IsPinned();
-		bool IsScrollable();
-		void OnMaximumChanged(Value*);
-		void OnMinimumChanged(Value*);
-		void OnPageChanged(Value*);
-		bool OnPageChanging(Value*);
-		void OnPositionChanged(Value*);
-		bool OnPositionChanging(Value*);
 		static UID WINAPI Scroll();
-		void SetPinned(bool);
+
+		virtual Element* GetElement() = 0;
+
+		bool OnPositionChanging(Value* pvNew);
+		bool OnPageChanging(Value* pvNew);
+		void OnPositionChanged(Value* pvNew);
+		void OnMinimumChanged(Value* pvNew);
+		void OnMaximumChanged(Value* pvNew);
+		void OnPageChanged(Value* pvNew);
+
+		virtual int GetPosition() = 0;
+		virtual int GetMaximum() = 0;
+		virtual int GetMinimum() = 0;
+		virtual int GetPage() = 0;
+		virtual int GetLine() = 0;
+
+		virtual HRESULT SetPosition(int v) = 0;
+		virtual HRESULT SetMaximum(int v) = 0;
+		virtual HRESULT SetMinimum(int v) = 0;
+		virtual HRESULT SetPage(int v) = 0;
+		virtual HRESULT SetLine(int v) = 0;
+
+		virtual bool GetProportional() = 0;
+
+		virtual void LineUp(UINT nCount);
+		virtual void LineDown(UINT nCount);
+		virtual void PageUp(UINT nCount);
+		virtual void PageDown(UINT nCount);
+		virtual void Home();
+		virtual void End();
+
+		bool IsScrollable();
+		bool IsPinned();
+		void SetPinned(bool fPinned);
+		int GetPageInc();
 
 	private:
-		int GetPageInc();
+		bool _fPinned;
 	};
 
 	class UILIB_API BaseScrollViewer

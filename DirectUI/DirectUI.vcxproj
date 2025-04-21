@@ -260,10 +260,13 @@
     <ClInclude Include="ExpandCollapse.h" />
     <ClInclude Include="Expando.h" />
     <ClInclude Include="ExpandoButtonGlyph.h" />
+    <ClInclude Include="FillLayout.h" />
+    <ClInclude Include="FlowLayout.h" />
     <ClInclude Include="FontCache.h" />
     <ClInclude Include="FontCheckOut.h" />
     <ClInclude Include="GridItem.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="GridLayout.h" />
     <ClInclude Include="Host.h" />
     <ClInclude Include="HWNDElement.h" />
     <ClInclude Include="HWNDHost.h" />
@@ -280,6 +283,7 @@
     <ClInclude Include="NativeHWNDHost.h" />
     <ClInclude Include="Navigator.h" />
     <ClInclude Include="NavScoring.h" />
+    <ClInclude Include="NineGridLayout.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="PatternProvider.h" />
@@ -298,6 +302,7 @@
     <ClInclude Include="RepeatButton.h" />
     <ClInclude Include="Repeater.h" />
     <ClInclude Include="RichText.h" />
+    <ClInclude Include="RowLayout.h" />
     <ClInclude Include="Scroll.h" />
     <ClInclude Include="ScrollBar.h" />
     <ClInclude Include="ScrollItem.h" />
@@ -313,6 +318,7 @@
     <ClInclude Include="StyledScrollViewer.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="TableItem.h" />
+    <ClInclude Include="TableLayout.h" />
     <ClInclude Include="TaskPage.h" />
     <ClInclude Include="TextGraphic.h" />
     <ClInclude Include="Thumb.h" />
@@ -332,6 +338,7 @@
     <ClInclude Include="UnknownElement.h" />
     <ClInclude Include="Value.h" />
     <ClInclude Include="ValuePtr.h" />
+    <ClInclude Include="VerticalFlowLayout.h" />
     <ClInclude Include="Viewer.h" />
     <ClInclude Include="XBaby.h" />
     <ClInclude Include="XElement.h" />
@@ -349,6 +356,7 @@
     <Text Include="msdef64.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ShellBorderLayout.h" />
     <Content Include="TouchHWNDElement.h" />
   </ItemGroup>
   <ItemGroup>

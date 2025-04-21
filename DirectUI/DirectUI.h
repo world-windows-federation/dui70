@@ -138,6 +138,19 @@
 #include "PromptText.h"
 #include "DuiAnimation.h"
 
+// Layout
+#include "Layout.h"
+#include "BorderLayout.h"
+#include "ShellBorderLayout.h"
+#include "VerticalFlowLayout.h"
+#include "FlowLayout.h"
+#include "NineGridLayout.h"
+#include "FillLayout.h"
+#include "TableLayout.h"
+#include "RowLayout.h"
+#include "GridLayout.h"
+
+
 // Touch elements
 #include "ModernProgressBar.h"
 #include "TouchButton.h"
@@ -149,13 +162,12 @@
 #include "TouchSlider.h"
 #include "TouchSwitch.h"
 #include "TouchTooltip.h"
-
 #include "TouchEditBase.h"
 #include "TouchEditInner.h"
 #include "TouchEdit2.h"
 
-#include "SemanticZoomToggle.h"
 
+#include "SemanticZoomToggle.h"
 #include "ElementProviderManager.h"
 
 //UnknownElement

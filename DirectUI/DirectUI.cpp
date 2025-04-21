@@ -1344,617 +1344,153 @@ AutoVariant::~AutoVariant()
 {
 }
 
-BorderLayout::BorderLayout(const BorderLayout&)
-{
-}
-
-BorderLayout::BorderLayout(void)
-{
-}
-
-BorderLayout::~BorderLayout(void)
-{
-}
-
-BorderLayout& BorderLayout::operator=(const BorderLayout&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long BorderLayout::Create(int, int*, Value**)
-{
-	return 0;
-}
-
-long BorderLayout::Create(Layout**)
-{
-	return 0;
-}
-
-void BorderLayout::DoLayout(Element*, int, int)
-{
-}
-
-Element* BorderLayout::GetAdjacent(Element*, Element*, int, const NavReference*, unsigned long)
-{
-	return nullptr;
-}
-
-void BorderLayout::Initialize(void)
-{
-}
-
-void BorderLayout::OnAdd(Element*, Element**, unsigned int)
-{
-}
-
-void BorderLayout::OnLayoutPosChanged(Element*, Element*, int, int)
-{
-}
-
-void BorderLayout::OnRemove(Element*, Element**, unsigned int)
-{
-}
-
-SIZE BorderLayout::UpdateDesiredSize(Element*, int, int, Surface*)
-{
-	return SIZE();
-}
-
-void BorderLayout::SetClient(Element*)
-{
-}
-
-Layout::Layout(const Layout&)
-{
-}
-
-Layout::Layout()
-{
-}
-
-Layout& Layout::operator=(const Layout&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-HRESULT Layout::Create(Layout**)
-{
-	return E_NOTIMPL;
-}
-
-void Layout::UpdateLayoutRect(Element*, int, int, Element*, int, int, int, int)
-{
-}
-
-void Layout::Destroy()
-{
-}
-
-Element* Layout::GetChildFromLayoutIndex(Element*, int, DynamicArray<Element*, 0>*)
-{
-	return nullptr;
-}
-
-unsigned int Layout::GetLayoutChildCount(Element*)
-{
-	return 0;
-}
-
-int Layout::GetLayoutIndexFromChild(Element*, Element*)
-{
-	return 0;
-}
-
-void Layout::Initialize()
-{
-}
-
-void Layout::DoLayout(Element*, int, int)
-{
-}
-
-SIZE Layout::UpdateDesiredSize(Element*, int, int, Surface*)
-{
-	return SIZE();
-}
-
-void Layout::OnAdd(Element*, Element**, unsigned int)
-{
-}
-
-void Layout::OnRemove(Element*, Element**, unsigned int)
-{
-}
-
-void Layout::OnLayoutPosChanged(Element*, Element*, int, int)
-{
-}
-
-void Layout::Attach(Element*)
-{
-}
-
-void Layout::Detach(Element*)
-{
-}
-
-Element* Layout::GetAdjacent(Element*, Element*, int, NavReference const*, unsigned long)
-{
-	return nullptr;
-}
-
-Layout::~Layout()
-{
-}
-
-void Layout::ClearCacheDirty()
-{
-}
-
-bool Layout::IsCacheDirty()
-{
-	return false;
-}
-
-void Layout::SetCacheDirty()
-{
-}
-
-FillLayout::FillLayout(FillLayout const&)
-{
-}
-
-FillLayout::FillLayout()
-{
-}
-
-FillLayout::~FillLayout()
-{
-}
-
-FillLayout& FillLayout::operator=(FillLayout const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-HRESULT FillLayout::Create(int, int*, Value**)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT FillLayout::Create(Layout**)
-{
-	return E_NOTIMPL;
-}
-
-void FillLayout::Initialize()
-{
-}
-
-void FillLayout::DoLayout(Element*, int, int)
-{
-}
-
-Element* FillLayout::GetAdjacent(Element*, Element*, int, NavReference const*, unsigned long)
-{
-	return nullptr;
-}
-
-SIZE FillLayout::UpdateDesiredSize(Element*, int, int, Surface*)
-{
-	return SIZE();
-}
-
-GridLayout::GridLayout(GridLayout const&)
-{
-}
-
-GridLayout::GridLayout(void)
-{
-}
-
-GridLayout::~GridLayout(void)
-{
-}
-
-GridLayout& GridLayout::operator=(GridLayout const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long GridLayout::Create(int, int, Layout**)
-{
-	return 0;
-}
-
-long GridLayout::Create(int, int*, Value**)
-{
-	return 0;
-}
-
-void GridLayout::Initialize(int, int)
-{
-}
-
-void GridLayout::DoLayout(Element*, int, int)
-{
-}
-
-Element* GridLayout::GetAdjacent(Element*, Element*, int, NavReference const*, unsigned long)
-{
-	return nullptr;
-}
-
-SIZE GridLayout::UpdateDesiredSize(Element*, int, int, Surface*)
-{
-	return SIZE();
-}
-
-unsigned int GridLayout::GetCurrentCols(int)
-{
-	return 0;
-}
-
-unsigned int GridLayout::GetCurrentCols(Element*)
-{
-	return 0;
-}
-
-unsigned int GridLayout::GetCurrentRows(int)
-{
-	return 0;
-}
-
-unsigned int GridLayout::GetCurrentRows(Element*)
-{
-	return 0;
-}
-
-FlowLayout::FlowLayout(FlowLayout const&)
-{
-}
-
-FlowLayout::FlowLayout(void)
-{
-}
-
-FlowLayout::~FlowLayout(void)
-{
-}
-
-FlowLayout& FlowLayout::operator=(FlowLayout const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long FlowLayout::Create(int, int*, Value**)
-{
-	return 0;
-}
-
-long FlowLayout::Create(bool, unsigned int, unsigned int, unsigned int, Layout**)
-{
-	return 0;
-}
-
-int FlowLayout::GetLine(Element*, Element*)
-{
-	return 0;
-}
-
-void FlowLayout::Initialize(bool, unsigned int, unsigned int, unsigned int)
-{
-}
-
-void FlowLayout::DoLayout(Element*, int, int)
-{
-}
-
-Element* FlowLayout::GetAdjacent(Element*, Element*, int, NavReference const*, unsigned long)
-{
-	return nullptr;
-}
-
-SIZE FlowLayout::UpdateDesiredSize(Element*, int, int, Surface*)
-{
-	return SIZE();
-}
-
-SIZE FlowLayout::SizeZero(void)
-{
-	return SIZE();
-}
-
-SIZE FlowLayout::BuildCacheInfo(Element*, int, int, Surface*, bool)
-{
-	return SIZE();
-}
-
-RowLayout::RowLayout(RowLayout const&)
-{
-}
-
-RowLayout::RowLayout(void)
-{
-}
-
-RowLayout::~RowLayout(void)
-{
-}
-
-RowLayout& RowLayout::operator=(RowLayout const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long RowLayout::Create(int, unsigned int, unsigned int, Layout**)
-{
-	return 0;
-}
-
-long RowLayout::Create(int, int*, Value**)
-{
-	return 0;
-}
-
-long RowLayout::Create(unsigned int, unsigned int, Layout**)
-{
-	return 0;
-}
-
-long RowLayout::Initialize(int, unsigned int, unsigned int)
-{
-	return 0;
-}
-
-void RowLayout::DoLayout(Element*, int, int)
-{
-}
-
-Element* RowLayout::GetAdjacent(Element*, Element*, int, NavReference const*, unsigned long)
-{
-	return nullptr;
-}
-
-tagSIZE RowLayout::UpdateDesiredSize(Element*, int, int, Surface*)
-{
-	return tagSIZE();
-}
-
-NineGridLayout::NineGridLayout(NineGridLayout const&)
-{
-}
-
-NineGridLayout::NineGridLayout(void)
-{
-}
-
-NineGridLayout::~NineGridLayout(void)
-{
-}
-
-NineGridLayout& NineGridLayout::operator=(NineGridLayout const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long NineGridLayout::Create(int, int*, Value**)
-{
-	return 0;
-}
-
-long NineGridLayout::Create(Layout**)
-{
-	return 0;
-}
-
-void NineGridLayout::Initialize(void)
-{
-}
-
-void NineGridLayout::DoLayout(Element*, int, int)
-{
-}
-
-Element* NineGridLayout::GetAdjacent(Element*, Element*, int, NavReference const*, unsigned long)
-{
-	return nullptr;
-}
-
-void NineGridLayout::OnAdd(Element*, Element**, unsigned int)
-{
-}
-
-void NineGridLayout::OnLayoutPosChanged(Element*, Element*, int, int)
-{
-}
-
-void NineGridLayout::OnRemove(Element*, Element**, unsigned int)
-{
-}
-
-SIZE NineGridLayout::UpdateDesiredSize(Element*, int, int, Surface*)
-{
-	return SIZE();
-}
-
-void NineGridLayout::_UpdateTileList(int, Element*)
-{
-}
-
-ShellBorderLayout::ShellBorderLayout(ShellBorderLayout const&)
-{
-}
-
-ShellBorderLayout::ShellBorderLayout(void)
-{
-}
-
-ShellBorderLayout::~ShellBorderLayout(void)
-{
-}
-
-ShellBorderLayout& ShellBorderLayout::operator=(ShellBorderLayout const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long ShellBorderLayout::Create(int, int*, Value**)
-{
-	return 0;
-}
-
-long ShellBorderLayout::Create(Layout**)
-{
-	return 0;
-}
-
-Element* ShellBorderLayout::GetAdjacent(Element*, Element*, int, NavReference const*, unsigned long)
-{
-	return nullptr;
-}
-
-void ShellBorderLayout::OnAdd(Element*, Element**, unsigned int)
-{
-}
-
-void ShellBorderLayout::OnLayoutPosChanged(Element*, Element*, int, int)
-{
-}
-
-void ShellBorderLayout::OnRemove(Element*, Element**, unsigned int)
-{
-}
-
-long ShellBorderLayout::_CalcTabOrder(Element*)
-{
-	return 0;
-}
-
-void ShellBorderLayout::_Reset(void)
-{
-}
-
-TableLayout::TableLayout(TableLayout const&)
-{
-}
-
-TableLayout::TableLayout(void)
-{
-}
-
-TableLayout::~TableLayout(void)
-{
-}
-
-TableLayout& TableLayout::operator=(TableLayout const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long TableLayout::Create(int, int*, Value**)
-{
-	return 0;
-}
-
-long TableLayout::InternalCreate(int, int, int, int*, Layout**)
-{
-	return 0;
-}
-
-CellInfo* TableLayout::GetCellInfo(int)
-{
-	return nullptr;
-}
-
-void TableLayout::Initialize(int, int, int, int*)
-{
-}
-
-void TableLayout::DoLayout(Element*, int, int)
-{
-}
-
-Element* TableLayout::GetAdjacent(Element*, Element*, int, NavReference const*, unsigned long)
-{
-	return nullptr;
-}
-
-SIZE TableLayout::UpdateDesiredSize(Element*, int, int, Surface*)
-{
-	return SIZE();
-}
-
-VerticalFlowLayout::VerticalFlowLayout(VerticalFlowLayout const&)
-{
-}
-
-VerticalFlowLayout::VerticalFlowLayout()
-{
-}
-
-VerticalFlowLayout::~VerticalFlowLayout()
-{
-}
-
-VerticalFlowLayout& VerticalFlowLayout::operator=(VerticalFlowLayout const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-HRESULT VerticalFlowLayout::Create(int, int*, Value**)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT VerticalFlowLayout::Create(bool, unsigned int horAlign, unsigned int, unsigned int vertAlign, Layout**)
-{
-	return E_NOTIMPL;
-}
-
-int VerticalFlowLayout::GetLine(Element*, Element*)
-{
-	return 0;
-}
-
-void VerticalFlowLayout::Initialize(bool, unsigned int, unsigned int, unsigned int)
-{
-}
-
-void VerticalFlowLayout::DoLayout(Element*, int, int)
-{
-}
-
-Element* VerticalFlowLayout::GetAdjacent(Element*, Element*, int, NavReference const*, unsigned long)
-{
-	return nullptr;
-}
-
-SIZE VerticalFlowLayout::UpdateDesiredSize(Element*, int, int, Surface*)
-{
-	return SIZE();
-}
-
-SIZE VerticalFlowLayout::BuildCacheInfo(Element*, int, int, Surface*, bool)
-{
-	return SIZE();
-}
-
-SIZE VerticalFlowLayout::SizeZero(void)
-{
-	return SIZE();
-}
+//~ Begin DirectUI::Layout Class
+HRESULT Layout::Create(Layout** ppLayout) STUB_ZERO;
+void Layout::Destroy() STUB_VOID;
+void Layout::DoLayout(Element* pec, int dWidth, int dHeight) STUB_VOID;
+SIZE Layout::UpdateDesiredSize(Element* pec, int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+void Layout::OnAdd(Element* pec, Element** ppeAdd, UINT cCount) STUB_VOID;
+void Layout::OnRemove(Element* pec, Element** ppeRemove, UINT cCount) STUB_VOID;
+void Layout::OnLayoutPosChanged(Element* pec, Element* peChanged, int dOldLP, int dNewLP) STUB_VOID;
+void Layout::Attach(Element* pec) STUB_VOID;
+void Layout::Detach(Element* pec) STUB_VOID;
+UINT Layout::GetLayoutChildCount(Element* pec) STUB_ZERO;
+int Layout::GetLayoutIndexFromChild(Element* pec, Element* peChild) STUB_ZERO;
+Element* Layout::GetChildFromLayoutIndex(Element* pec, int iLayoutIdx, DynamicArray<Element*>* peList) STUB_ZERO;
+Element* Layout::GetAdjacent(Element* pec, Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+Layout::Layout() STUB_VOID;
+void Layout::Initialize() STUB_VOID;
+Layout::~Layout() STUB_VOID;
+void Layout::UpdateLayoutRect(Element* pec, int cxContainer, int cyContainer, Element* peChild, int xElement, int yElement, int cxElement, int cyElement) STUB_VOID;
+bool Layout::IsCacheDirty() STUB_ZERO;
+void Layout::SetCacheDirty() STUB_VOID;
+void Layout::ClearCacheDirty() STUB_VOID;
+//~ End DirectUI::Layout Class
+
+//~ Begin DirectUI::BorderLayout Class
+HRESULT BorderLayout::Create(int dNumParams, int* pParams, Value** ppValue) STUB_ZERO;
+HRESULT BorderLayout::Create(Layout** ppLayout) STUB_ZERO;
+void BorderLayout::DoLayout(Element* pec, int cx, int cy) STUB_VOID;
+SIZE BorderLayout::UpdateDesiredSize(Element* pec, int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+void BorderLayout::OnAdd(Element* pec, Element** ppeAdd, UINT cCount) STUB_VOID;
+void BorderLayout::OnRemove(Element* pec, Element** ppeRemove, UINT cCount) STUB_VOID;
+void BorderLayout::OnLayoutPosChanged(Element* pec, Element* peChanged, int dOldLP, int dNewLP) STUB_VOID;
+Element* BorderLayout::GetAdjacent(Element* pec, Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+BorderLayout::BorderLayout() STUB_VOID;
+void BorderLayout::Initialize() STUB_VOID;
+BorderLayout::~BorderLayout() STUB_VOID;
+SIZE BorderLayout::GetMaxCenter(Element* pec, int x, int y, int cw, int ch, int mTop, int mLeft, int mRight, int mBottom, bool setValues, HDC hDC) STUB_ZERO;
+SIZE BorderLayout::GetMaxLeftRight(Element* pec, int current, int x, int y, int cw, int ch, int mTop, int mLeft, int mRight, int mBottom, bool setValues, HDC hDC) STUB_ZERO;
+SIZE BorderLayout::GetMaxTopBottom(Element* pec, int current, int x, int y, int cw, int ch, int mTop, int mLeft, int mRight, int mBottom, bool setValues, HDC hDC) STUB_ZERO;
+int BorderLayout::NextChild(int i, Element* pec, Element** ppeCurrent, int* playoutPos) STUB_ZERO;
+void BorderLayout::SetClient(Element* pe) STUB_VOID;
+//~ End DirectUI::BorderLayout Class
+
+//~ Begin DirectUI::FillLayout Class
+HRESULT FillLayout::Create(int dNumParams, int* pParams, Value** ppValue) STUB_ZERO;
+HRESULT FillLayout::Create(Layout** ppLayout) STUB_ZERO;
+void FillLayout::DoLayout(Element* pec, int cx, int cy) STUB_VOID;
+SIZE FillLayout::UpdateDesiredSize(Element* pec, int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+Element* FillLayout::GetAdjacent(Element* pec, Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+FillLayout::FillLayout() STUB_VOID;
+void FillLayout::Initialize() STUB_VOID;
+FillLayout::~FillLayout() STUB_VOID;
+//~ End DirectUI::FillLayout Class
+
+//~ Begin DirectUI::GridLayout Class
+HRESULT GridLayout::Create(int dNumParams, int* pParams, Value** ppValue) STUB_ZERO;
+HRESULT GridLayout::Create(int iRows, int iCols, Layout** ppLayout) STUB_ZERO;
+void GridLayout::DoLayout(Element* pec, int cx, int cy) STUB_VOID;
+SIZE GridLayout::UpdateDesiredSize(Element* pec, int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+Element* GridLayout::GetAdjacent(Element* pec, Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+GridLayout::GridLayout() STUB_VOID;
+void GridLayout::Initialize(int iRows, int iCols) STUB_VOID;
+GridLayout::~GridLayout() STUB_VOID;
+UINT GridLayout::GetCurrentRows(Element* pec) STUB_ZERO;
+UINT GridLayout::GetCurrentRows(int c) STUB_ZERO;
+UINT GridLayout::GetCurrentCols(Element* pec) STUB_ZERO;
+UINT GridLayout::GetCurrentCols(int c) STUB_ZERO;
+//~ End DirectUI::GridLayout Class
+
+
+//~ Begin DirectUI::FlowLayout Class
+HRESULT FlowLayout::Create(int dNumParams, int* pParams, Value** ppValue) STUB_ZERO;
+HRESULT FlowLayout::Create(bool fWrap, UINT uYAlign, UINT uXLineAlign, UINT uYLineAlign, Layout** ppLayout) STUB_ZERO;
+void FlowLayout::DoLayout(Element* pec, int cx, int cy) STUB_VOID;
+SIZE FlowLayout::UpdateDesiredSize(Element* pec, int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+Element* FlowLayout::GetAdjacent(Element* pec, Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+int FlowLayout::GetLine(Element* pec, Element* pe) STUB_ZERO;
+FlowLayout::FlowLayout() STUB_VOID;
+void FlowLayout::Initialize(bool fWrap, UINT uYAlign, UINT uXLineAlign, UINT uYLineAlign) STUB_VOID;
+FlowLayout::~FlowLayout() STUB_VOID;
+SIZE BuildCacheInfo(Element* pec, int cxConstraint, int cyConstraint, Surface* psrf, bool fRealSize) STUB_ZERO;
+SIZE SizeZero() STUB_ZERO;
+//~ End DirectUI::FlowLayout Class
+
+//~ Begin DirectUI::RowLayout Class
+HRESULT RowLayout::Create(int dNumParams, int* pParams, Value** ppValue) STUB_ZERO;
+HRESULT RowLayout::Create(UINT uXAlign, UINT uYAlign, Layout** ppLayout) STUB_ZERO;
+HRESULT RowLayout::Create(int idShare, UINT uXAlign, UINT uYAlign, Layout** ppLayout) STUB_ZERO;
+void RowLayout::DoLayout(Element* pec, int cx, int cy) STUB_VOID;
+SIZE RowLayout::UpdateDesiredSize(Element* pec, int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+Element* RowLayout::GetAdjacent(Element* pec, Element*, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+RowLayout::RowLayout() STUB_VOID;
+HRESULT RowLayout::Initialize(int idShare, UINT uXAlign, UINT uYAlign) STUB_ZERO;
+RowLayout::~RowLayout() STUB_VOID;
+//~ End DirectUI::RowLayout Class
+
+//~ Begin DirectUI::NineGridLayout Class
+HRESULT NineGridLayout::Create(int dNumParams, int* pParams, Value** ppValue) STUB_ZERO;
+HRESULT NineGridLayout::Create(Layout** ppLayout) STUB_ZERO;
+void NineGridLayout::DoLayout(Element* pec, int cx, int cy) STUB_VOID;
+SIZE NineGridLayout::UpdateDesiredSize(Element* pec, int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+void NineGridLayout::OnAdd(Element* pec, Element** ppeAdd, UINT cCount) STUB_VOID;
+void NineGridLayout::OnRemove(Element* pec, Element** ppeRemove, UINT cCount) STUB_VOID;
+void NineGridLayout::OnLayoutPosChanged(Element* pec, Element* peChanged, int dOldLP, int dNewLP) STUB_VOID;
+Element* NineGridLayout::GetAdjacent(Element* pec, Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+NineGridLayout::NineGridLayout() STUB_VOID;
+void NineGridLayout::Initialize() STUB_VOID;
+NineGridLayout::~NineGridLayout() STUB_VOID;
+void NineGridLayout::_UpdateTileList(int iTile, Element* pe) STUB_VOID;
+//~ End DirectUI::NineGridLayout Class
+
+//~ Begin DirectUI::ShellBorderLayout Class
+HRESULT ShellBorderLayout::Create(int dNumParams, int* pParams, Value** ppValue) STUB_ZERO;
+HRESULT ShellBorderLayout::Create(Layout** ppLayout) STUB_ZERO;
+void ShellBorderLayout::OnAdd(Element* pec, Element** ppeAdd, UINT cCount) STUB_VOID;
+void ShellBorderLayout::OnRemove(Element* pec, Element** ppeRemove, UINT cCount) STUB_VOID;
+void ShellBorderLayout::OnLayoutPosChanged(Element* pec, Element* peChanged, int dOldLP, int dNewLP) STUB_VOID;
+Element* ShellBorderLayout::GetAdjacent(Element* pec, Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+ShellBorderLayout::ShellBorderLayout() STUB_VOID;
+ShellBorderLayout::~ShellBorderLayout() STUB_VOID;
+void ShellBorderLayout::_Reset() STUB_VOID;
+HRESULT ShellBorderLayout::_CalcTabOrder(Element* pec) STUB_ZERO;
+//~ End DirectUI::ShellBorderLayout Class
+
+//~ Begin DirectUI::TableLayout
+HRESULT TableLayout::Create(int dNumParams, int* pParams, Value** ppValue) STUB_ZERO;
+void TableLayout::DoLayout(Element* pec, int cx, int cy) STUB_VOID;
+SIZE TableLayout::UpdateDesiredSize(Element* pec, int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+Element* TableLayout::GetAdjacent(Element* pec, Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+HRESULT TableLayout::InternalCreate(int flags, int cxMinWidth, int dNumParams, int* pParams, Layout** ppLayout) STUB_ZERO;
+void TableLayout::Initialize(int flags, int cxMinWidth, int dNumParams, int* pParams) STUB_VOID;
+TableLayout::~TableLayout() STUB_VOID;
+CellInfo* TableLayout::GetCellInfo(int nColumn) STUB_ZERO;
+//~ End DirectUI::TableLayout Class
+
+//~ Begin DirectUI::VerticalFlowLayout Class
+HRESULT VerticalFlowLayout::Create(int dNumParams, int* pParams, Value** ppValue) STUB_ZERO;
+HRESULT VerticalFlowLayout::Create(bool fWrap, UINT uXAlign, UINT uXLineAlign, UINT uYLineAlign, Layout** ppLayout) STUB_ZERO;
+void VerticalFlowLayout::DoLayout(Element* pec, int cx, int cy) STUB_VOID;
+SIZE VerticalFlowLayout::UpdateDesiredSize(Element* pec, int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+Element* VerticalFlowLayout::GetAdjacent(Element* pec, Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+int VerticalFlowLayout::GetLine(Element* pec, Element* pe) STUB_ZERO;
+VerticalFlowLayout::VerticalFlowLayout() STUB_VOID;
+void VerticalFlowLayout::Initialize(bool fWrap, UINT uXAlign, UINT uXLineAlign, UINT uYLineAlign) STUB_VOID;
+VerticalFlowLayout::~VerticalFlowLayout() STUB_VOID;
+SIZE VerticalFlowLayout::BuildCacheInfo(Element* pec, int cxConstraint, int cyConstraint, Surface* psrf, bool fRealSize) STUB_ZERO;
+SIZE VerticalFlowLayout::SizeZero() STUB_ZERO;
+//~ End DirectUI::VerticalFlowLayout Class
 
 AnimationStrip::AnimationStrip(const AnimationStrip&)
 {

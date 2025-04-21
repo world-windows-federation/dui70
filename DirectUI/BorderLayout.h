@@ -1,12 +1,3 @@
-/*
- * DirectUI::BorderLayout
- * File: BorderLayout.h
- * Author: Olivia "Olive6841"
- * Description: Contains the class definition for DirectUI::BorderLayout
- * History:
- * 	2025-04-21: (Olivia) Redo the class definition
- */
-
 #pragma once
 
 namespace DirectUI

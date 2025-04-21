@@ -1,12 +1,3 @@
-/*
- * DirectUI::RowLayoutSharedInfo, DirectUI::RowLayout
- * File: RowLayout.h
- * Author: Olivia "Olive6841"
- * Description: Contains the class definition for DirectUI::RowLayoutSharedInfo and DirectUI::RowLayout
- * History:
- * 	2025-April-21: (Olivia) Created
- */
-
 #pragma once
 
 namespace DirectUI

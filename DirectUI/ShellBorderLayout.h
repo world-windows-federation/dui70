@@ -1,12 +1,3 @@
-/*
- * DirectUI::ShellBorderLayout
- * File: ShellBorderLayout.h
- * Author: Olivia "Olive6841"
- * Description: Contains the class definition for DirectUI::ShellBorderLayout
- * History:
- * 	2025-April-21: (Olivia) Created
- */
-
 #pragma once
 
 namespace DirectUI

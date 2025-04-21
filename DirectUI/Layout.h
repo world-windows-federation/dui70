@@ -1,13 +1,3 @@
-/*
- * DirectUI::Layout
- * File: Layout.h
- * Author: Olivia "Olive6841"
- * Description: Contains the class definition for DirectUI::Layout
- * History:
- * 	2025-April-21: (Olivia) Redo the class definition
- */
-
-
 #pragma once
 
 namespace DirectUI

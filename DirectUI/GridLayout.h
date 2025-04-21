@@ -1,12 +1,3 @@
-/*
- * DirectUI::GridLayout
- * File: GridLayout.h
- * Author: Olivia "Olive6841"
- * Description: Contains the class definition for DirectUI::GridLayout
- * History:	
- * 	2025-April-21: (Olivia) Created
- */
-
 #pragma once
 
 namespace DirectUI

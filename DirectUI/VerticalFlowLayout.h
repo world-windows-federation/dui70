@@ -1,12 +1,3 @@
-/*
- * DirectUI::VerticalFlowLayout
- * File: VerticalFlowLayout.h
- * Author: Olivia "Olive6841"
- * Description: Contains the class definition for DirectUI::VerticalFlowLayout
- * History:
- * 	2025-April-21: (Olivia) Created
- */
-
 #pragma once
 
 namespace DirectUI

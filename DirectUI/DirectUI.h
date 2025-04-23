@@ -1,4 +1,5 @@
 #pragma once
+
 #include <Windows.h>
 #include <oleacc.h>
 #include <objbase.h>
@@ -13,6 +14,7 @@
 #include <InputScope.h> // for InputScope enum
 #include <intsafe.h>
 #include <crtdbg.h>
+#include <directmanipulation.h>
 
 #include "../DUser/DUser.h"
 

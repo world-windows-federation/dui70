@@ -8,6 +8,7 @@ namespace DirectUI
 
 	struct UpdateCache
 	{
+		bool fModified;
 	};
 
 	struct ElementIndexPair
@@ -768,7 +769,7 @@ namespace DirectUI
 
 		Element* _pe;
 		InvokeHelper* _pih;
-		IUnknown* _patternProviders[21];
+		IUnknown* _patternProviders[Schema::PatternCount];
 		RTL_CRITICAL_SECTION _cs;
 		bool _fDeleteCS;
 

@@ -1,60 +1,78 @@
 #pragma once
 
+typedef void (WINAPI *PfnSetState)(VARIANT*);
+
 namespace DirectUI
 {
+	struct RectangleChange
+	{
+		Element* _pe;
+		RECT _rcOld;
+		RECT _rcNew;
+		bool _fOffScreenOld;
+		bool _fOffScreenNew;
+	};
+
+	struct ElementRuntimeId
+	{
+		bool _fHwndElementSubclass;
+		ULONGLONG _id;
+	};
+
 	class UILIB_API EventManager
 	{
 	public:
-		EventManager & operator=(EventManager const &);
-
-		static long __stdcall AdviseEventAdded(int, SAFEARRAY *);
-		static long __stdcall AdviseEventRemoved(int, SAFEARRAY *);
-		static void __stdcall Close();
-		static void __stdcall DestroyListener(Element *);
-		static long __stdcall EndDefer(Element *);
-		static long __stdcall EventListener(Element *, Event *);
-		static bool __stdcall FWantAnyEvent(Element *);
-		static long __stdcall FireStructureChangedEvent(Element *, StructureChangeType);
-		
-		static long __stdcall Init();
-		static long __stdcall OnToolTip(Element *, unsigned long);
-		static long __stdcall PropertyChangingListener(Element *, const PropertyInfo *, bool *);
-		static long __stdcall PropertyListener(Element *, const PropertyInfo *, int, Value *, Value *);
-		static bool __stdcall WantEvent(Schema::Event);
-		static bool __stdcall WantPropertyEvent(int);
+		static HRESULT WINAPI Init();
+		static void WINAPI Close();
+		static HRESULT WINAPI AdviseEventAdded(int id, SAFEARRAY* propertyIds);
+		static HRESULT WINAPI AdviseEventRemoved(int id, SAFEARRAY* propertyIds);
+		static HRESULT WINAPI OnToolTip(Element* pe, DWORD dwFlags);
+		static void WINAPI DestroyListener(Element* pe);
+		static HRESULT WINAPI PropertyListener(Element* pe, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew);
+		static HRESULT WINAPI PropertyChangingListener(Element* pe, const PropertyInfo* ppi, bool* pfHandled);
+		static HRESULT WINAPI EventListener(Element* pe, Event* pEvent);
+		static HRESULT WINAPI EndDefer(Element* pe);
+		static bool WINAPI FWantAnyEvent(Element* pe);
+		static HRESULT WINAPI FireStructureChangedEvent(Element* pe, StructureChangeType type);
+		static bool WINAPI WantEvent(Schema::Event event);
 
 	private:
-		static long __stdcall GetBool(VARIANT *, Value *);
-		static void __stdcall GetExpandCollapseState(VARIANT *);
-		static long __stdcall GetInt(VARIANT *, Value *);
-		static long __stdcall GetString(VARIANT *, Value *);
-		static void __stdcall GetToggleState(VARIANT *);
-		static long __stdcall HandleAccChange(Element *, IRawElementProviderSimple *, Value *, Value *);
-		static long __stdcall HandleAccDesc(Element *, IRawElementProviderSimple *, Value *, Value *);
-		static long __stdcall HandleAccPatternChange(Element *, IRawElementProviderSimple *, unsigned int, unsigned int, int, VARIANT *, VARIANT *, void(__stdcall *)(VARIANT *));
-		static long __stdcall HandleAccRoleEvent(IRawElementProviderSimple *, Value *, Value *);
-		static long __stdcall HandleAccStateChange(IRawElementProviderSimple *, unsigned int, unsigned int, int, VARIANT *, VARIANT *);
-		static long __stdcall HandleBoolProp(Element *, bool(__stdcall *)(Element *), IRawElementProviderSimple *, int, Value *, Value *);
-		static long __stdcall HandleChildrenEvent(Element *, Value *, Value *);
-		static long __stdcall HandleRangeValue(Element *, IRawElementProviderSimple *, Value *, Value *);
-		static long __stdcall HandleScrollPos(Element *, IRawElementProviderSimple *, Value *, Value *);
-		static long __stdcall HandleSelectedChange(IRawElementProviderSimple *, Value *);
-		static long __stdcall HandleStringProp(IRawElementProviderSimple *, int, Value *, Value *);
-		static long __stdcall HandleVisibilityChange(Element *, unsigned int);
+		static bool WINAPI WantEvent(Schema::Event e, int propertyId);
 
-		static long __stdcall AddRectangleChange(Element *, bool, bool);
-		static bool __stdcall WantEvent(Schema::Event, int);
-		static long __stdcall RaiseVisibilityEvents();
-		static long __stdcall RaiseStructureEvents();
-		static long __stdcall RaiseStructureChangedEvent(Element *, StructureChangeType);
-		static long __stdcall RaiseChildRemovedEvent(const ElementRuntimeId &, Element *);
-		static long __stdcall RaiseGeometryEventWorker(RectangleChange *, bool, bool, bool, bool);
-		static long __stdcall RaiseGeometryEvents();
+	public:
+		static bool WINAPI WantPropertyEvent(int propertyId);
 
-		static UiaArray<int> * g_pArrayPropertyEvent;
-		static bool g_fWantAnyEvent;
-		static unsigned int * __ptr32 g_eventRegisteredMap;
+	private:
+		static HRESULT WINAPI HandleAccChange(Element* pe, IRawElementProviderSimple* pprv, Value* pvOld, Value* pvNew);
+		static HRESULT WINAPI HandleAccStateChange(IRawElementProviderSimple* pprv, UINT diff, UINT state, int id, VARIANT* pvarOld, VARIANT* pvarNew, bool fInvertValue);
+		static HRESULT WINAPI HandleAccPatternChange(Element* pe, IRawElementProviderSimple* pprv, UINT diff, UINT state, int id, VARIANT* pvarOld, VARIANT* pvarNew, PfnSetState pfn); // @NOTE: Not sure on that typedef
+		static HRESULT WINAPI HandleAccDesc(Element* pe, IRawElementProviderSimple* pprv, Value* pvOld, Value* pvNew);
+		static HRESULT WINAPI HandleChildrenEvent(Element* pe, Value* pvOld, Value* pvNew);
+		static HRESULT WINAPI HandleAccRoleEvent(IRawElementProviderSimple* pprv, Value* pvOld, Value* pvNew);
+		static HRESULT WINAPI HandleScrollPos(Element* peScrollBar, IRawElementProviderSimple* pprv, Value* pvOld, Value* pvNew);
+		static HRESULT WINAPI HandleBoolProp(Element* pe, bool (*)(Element*), IRawElementProviderSimple* pprv, int id, Value* pvOld, Value* pvNew);
+		static HRESULT WINAPI HandleVisibilityChange(Element* pe, UINT diff);
+		static HRESULT WINAPI HandleStringProp(IRawElementProviderSimple* pprv, int id, Value* pvOld, Value* pvNew);
+		static HRESULT WINAPI HandleRangeValue(Element* pe, IRawElementProviderSimple* pprv, Value* pvOld, Value* pvNew);
+		static HRESULT WINAPI HandleToggleValue(Element* pe, IRawElementProviderSimple* pprv, Value* pvOld, Value* pvNew);
+		static HRESULT WINAPI GetString(VARIANT* pvar, Value* pv);
+		static HRESULT WINAPI GetBool(VARIANT* pvar, Value* pv);
+		static HRESULT WINAPI GetInt(VARIANT* pvar, Value* pv);
+		static void WINAPI GetToggleState(VARIANT* pvar);
+		static void WINAPI GetExpandCollapseState(VARIANT* pvar);
+		static HRESULT WINAPI RaiseStructureChangedEvent(Element* pe, StructureChangeType type);
+		static HRESULT WINAPI RaiseChildRemovedEvent(const ElementRuntimeId& runtimeId, Element* peParent);
+		static HRESULT WINAPI RaiseGeometryEvents();
+		static HRESULT WINAPI RaiseStructureEvents();
+		static HRESULT WINAPI RaiseVisibilityEvents();
+		static HRESULT WINAPI AddRectangleChange(Element* pe, bool fWantRect, bool fWantOffScreen);
+		static HRESULT WINAPI RaiseGeometryEventWorker(RectangleChange* prc, bool fWantRect, bool fWantHorizontal, bool fWantVertical, bool fWantOffScreen);
+		static HRESULT WINAPI HandleSelectedChange(IRawElementProviderSimple* pPrv, Value* pvNew);
+
+		static UiaArray<int>* g_pArrayPropertyEvent;
+		static UINT g_eventRegisteredMap[Schema::EventCount];
 		static CRITICAL_SECTION g_cs;
-		static int const cChangeBulk;
+		static bool g_fWantAnyEvent;
+		static const int cChangeBulk = 25;
 	};
 }

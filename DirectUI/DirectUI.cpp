@@ -1492,161 +1492,40 @@ SIZE VerticalFlowLayout::BuildCacheInfo(Element* pec, int cxConstraint, int cyCo
 SIZE VerticalFlowLayout::SizeZero() STUB_ZERO;
 //~ End DirectUI::VerticalFlowLayout Class
 
-AnimationStrip::AnimationStrip(const AnimationStrip&)
-{
-}
-
-AnimationStrip::AnimationStrip()
-{
-}
-
-AnimationStrip& AnimationStrip::operator=(const AnimationStrip&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-AnimationStrip::~AnimationStrip()
-{
-}
-
-long AnimationStrip::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-const PropertyInfo* AnimationStrip::FrameDurationProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* AnimationStrip::FrameIndexProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* AnimationStrip::FrameWidthProp()
-{
-	return nullptr;
-}
-
-IClassInfo* AnimationStrip::GetClassInfoPtr()
-{
-	return nullptr;
-}
-
-const PropertyInfo* AnimationStrip::PlayProp(void)
-{
-	return nullptr;
-}
-
-long AnimationStrip::Register()
-{
-	return 0;
-}
-
-void AnimationStrip::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-int AnimationStrip::GetFrameDuration()
-{
-	return 0;
-}
-
-int AnimationStrip::GetFrameIndex()
-{
-	return 0;
-}
-
-int AnimationStrip::GetFrameWidth()
-{
-	return 0;
-}
-
-bool AnimationStrip::GetPlay()
-{
-	return false;
-}
-
-long AnimationStrip::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-long AnimationStrip::SetFrameDuration(int)
-{
-	return 0;
-}
-
-long AnimationStrip::SetFrameIndex(int)
-{
-	return 0;
-}
-
-long AnimationStrip::SetFrameWidth(int)
-{
-	return 0;
-}
-
-long AnimationStrip::SetPlay(bool)
-{
-	return 0;
-}
-
-IClassInfo* AnimationStrip::GetClassInfoW()
-{
-	return nullptr;
-}
-
-void AnimationStrip::OnDestroy(void)
-{
-}
-
-void AnimationStrip::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-void AnimationStrip::Paint(HDC, const RECT*, const RECT*, RECT*, RECT*)
-{
-}
-
-void AnimationStrip::AdvanceFrame(void)
-{
-}
-
-long AnimationStrip::LoadImagesIntoAnimationStrip()
-{
-	return 0;
-}
-
-void AnimationStrip::OnAction(GMA_ACTIONINFO*)
-{
-}
-
-void AnimationStrip::RawActionProc(GMA_ACTIONINFO*)
-{
-}
-
-long AnimationStrip::LoadCommonControlExports()
-{
-	return 0;
-}
-
-long AnimationStrip::Start()
-{
-	return 0;
-}
-
-void AnimationStrip::Stop()
-{
-}
-
-void AnimationStrip::UnloadCommonControlExports()
-{
-}
-
-IClassInfo* AnimationStrip::s_pClassInfo;
+//~ Begin DirectUI::AnimationStrip Class
+HRESULT AnimationStrip::LoadCommonControlExports() STUB_ZERO;
+void AnimationStrip::UnloadCommonControlExports() STUB_VOID;
+HRESULT AnimationStrip::Start() STUB_ZERO;
+void AnimationStrip::Stop() STUB_VOID;
+IClassInfo* AnimationStrip::GetClassInfoPtr() STUB_ZERO;
+void AnimationStrip::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
+IClassInfo* AnimationStrip::GetClassInfoW() STUB_ZERO;
+HRESULT AnimationStrip::Register() STUB_ZERO;
+HRESULT AnimationStrip::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT AnimationStrip::Initialize(UINT) STUB_ZERO;
+HRESULT AnimationStrip::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+AnimationStrip::AnimationStrip() STUB_VOID;
+AnimationStrip::~AnimationStrip() STUB_VOID;
+const PropertyInfo* AnimationStrip::FrameWidthProp() STUB_ZERO;
+const PropertyInfo* AnimationStrip::FrameDurationProp() STUB_ZERO;
+const PropertyInfo* AnimationStrip::FrameIndexProp() STUB_ZERO;
+const PropertyInfo* AnimationStrip::PlayProp() STUB_ZERO;
+int AnimationStrip::GetFrameWidth() STUB_ZERO;
+int AnimationStrip::GetFrameDuration() STUB_ZERO;
+int AnimationStrip::GetFrameIndex() STUB_ZERO;
+bool AnimationStrip::GetPlay() STUB_ZERO;
+HRESULT AnimationStrip::SetFrameWidth(int v) STUB_ZERO;
+HRESULT AnimationStrip::SetFrameDuration(int v) STUB_ZERO;
+HRESULT AnimationStrip::SetFrameIndex(int v) STUB_ZERO;
+HRESULT AnimationStrip::SetPlay(bool v) STUB_ZERO;
+void AnimationStrip::Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) STUB_VOID;
+void AnimationStrip::OnDestroy() STUB_VOID;
+void AnimationStrip::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+HRESULT AnimationStrip::LoadImagesIntoAnimationStrip() STUB_ZERO;
+void AnimationStrip::AdvanceFrame() STUB_VOID;
+void AnimationStrip::OnAction(GMA_ACTIONINFO* pActionInfo) STUB_VOID;
+void AnimationStrip::RawActionProc(GMA_ACTIONINFO* pActionInfo) STUB_VOID;
+//~ End DirectUI::AnimationStrip Class
 
 ClassInfoBase::ClassInfoBase() STUB_VOID;
 ClassInfoBase::~ClassInfoBase() STUB_VOID;
@@ -3982,208 +3861,48 @@ void Edit::PropertyChangedCore(const PropertyInfo*, int, Value*, HWND)
 
 IClassInfo* Edit::s_pClassInfo;
 
-EventManager& EventManager::operator=(EventManager const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long EventManager::AddRectangleChange(Element*, bool, bool)
-{
-	return 0;
-}
-
-long EventManager::AdviseEventAdded(int, SAFEARRAY*)
-{
-	return 0;
-}
-
-long EventManager::AdviseEventRemoved(int, SAFEARRAY*)
-{
-	return 0;
-}
-
-void EventManager::Close()
-{
-}
-
-void EventManager::DestroyListener(Element*)
-{
-}
-
-long EventManager::EndDefer(Element*)
-{
-	return 0;
-}
-
-long EventManager::EventListener(Element*, Event*)
-{
-	return 0;
-}
-
-bool EventManager::FWantAnyEvent(Element*)
-{
-	return false;
-}
-
-long EventManager::FireStructureChangedEvent(Element*, StructureChangeType)
-{
-	return 0;
-}
-
-long EventManager::GetBool(VARIANT*, Value*)
-{
-	return 0;
-}
-
-void EventManager::GetExpandCollapseState(VARIANT*)
-{
-}
-
-long EventManager::GetInt(VARIANT*, Value*)
-{
-	return 0;
-}
-
-long EventManager::GetString(VARIANT*, Value*)
-{
-	return 0;
-}
-
-void EventManager::GetToggleState(VARIANT*)
-{
-}
-
-long EventManager::HandleAccChange(Element*, IRawElementProviderSimple*, Value*, Value*)
-{
-	return 0;
-}
-
-long EventManager::HandleAccDesc(Element*, IRawElementProviderSimple*, Value*, Value*)
-{
-	return 0;
-}
-
-long EventManager::HandleAccPatternChange(Element*, IRawElementProviderSimple*, unsigned int, unsigned int, int, VARIANT*, VARIANT*, void (__stdcall *)(VARIANT*))
-{
-	return 0;
-}
-
-long EventManager::HandleAccRoleEvent(IRawElementProviderSimple*, Value*, Value*)
-{
-	return 0;
-}
-
-long EventManager::HandleAccStateChange(IRawElementProviderSimple*, unsigned int, unsigned int, int, VARIANT*, VARIANT*)
-{
-	return 0;
-}
-
-long EventManager::HandleBoolProp(Element*, bool (__stdcall *)(Element*), IRawElementProviderSimple*, int, Value*, Value*)
-{
-	return 0;
-}
-
-long EventManager::HandleChildrenEvent(Element*, Value*, Value*)
-{
-	return 0;
-}
-
-long EventManager::HandleRangeValue(Element*, IRawElementProviderSimple*, Value*, Value*)
-{
-	return 0;
-}
-
-long EventManager::HandleScrollPos(Element*, IRawElementProviderSimple*, Value*, Value*)
-{
-	return 0;
-}
-
-long EventManager::HandleSelectedChange(IRawElementProviderSimple*, Value*)
-{
-	return 0;
-}
-
-long EventManager::HandleStringProp(IRawElementProviderSimple*, int, Value*, Value*)
-{
-	return 0;
-}
-
-long EventManager::HandleVisibilityChange(Element*, unsigned int)
-{
-	return 0;
-}
-
-long WINAPI EventManager::Init()
-{
-	return 0;
-}
-
-long WINAPI EventManager::OnToolTip(Element*, unsigned long)
-{
-	return 0;
-}
-
-long WINAPI EventManager::PropertyChangingListener(Element*, const PropertyInfo*, bool*)
-{
-	return 0;
-}
-
-long WINAPI EventManager::PropertyListener(Element*, const PropertyInfo*, int, Value*, Value*)
-{
-	return 0;
-}
-
-long WINAPI EventManager::RaiseChildRemovedEvent(const ElementRuntimeId&, Element*)
-{
-	return 0;
-}
-
-long WINAPI EventManager::RaiseGeometryEventWorker(RectangleChange*, bool, bool, bool, bool)
-{
-	return 0;
-}
-
-long WINAPI EventManager::RaiseGeometryEvents()
-{
-	return 0;
-}
-
-UiaArray<int>* EventManager::g_pArrayPropertyEvent;
-bool EventManager::g_fWantAnyEvent;
-unsigned int* __ptr32 EventManager::g_eventRegisteredMap;
-CRITICAL_SECTION EventManager::g_cs;
-int const EventManager::cChangeBulk = 0;
-
-long WINAPI EventManager::RaiseStructureChangedEvent(Element*, StructureChangeType)
-{
-	return 0;
-}
-
-long EventManager::RaiseStructureEvents()
-{
-	return 0;
-}
-
-long WINAPI EventManager::RaiseVisibilityEvents()
-{
-	return 0;
-}
-
-bool EventManager::WantEvent(Schema::Event)
-{
-	return false;
-}
-
-bool EventManager::WantEvent(Schema::Event, int)
-{
-	return false;
-}
-
-bool EventManager::WantPropertyEvent(int)
-{
-	return false;
-}
+//~ Begin DirectUI::EventManager Class
+HRESULT EventManager::Init() STUB_ZERO;
+void EventManager::Close() STUB_VOID;
+HRESULT EventManager::AdviseEventAdded(int id, SAFEARRAY* propertyIds) STUB_ZERO;
+HRESULT EventManager::AdviseEventRemoved(int id, SAFEARRAY* propertyIds) STUB_ZERO;
+HRESULT EventManager::OnToolTip(Element* pe, DWORD dwFlags) STUB_ZERO;
+void EventManager::DestroyListener(Element* pe) STUB_VOID;
+HRESULT EventManager::PropertyListener(Element* pe, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
+HRESULT EventManager::PropertyChangingListener(Element* pe, const PropertyInfo* ppi, bool* pfHandled) STUB_ZERO;
+HRESULT EventManager::EventListener(Element* pe, Event* pEvent) STUB_ZERO;
+HRESULT EventManager::EndDefer(Element* pe) STUB_ZERO;
+bool EventManager::FWantAnyEvent(Element* pe) STUB_ZERO;
+HRESULT EventManager::FireStructureChangedEvent(Element* pe, StructureChangeType type) STUB_ZERO;
+bool EventManager::WantEvent(Schema::Event event) STUB_ZERO;
+bool EventManager::WantEvent(Schema::Event e, int propertyId) STUB_ZERO;
+bool EventManager::WantPropertyEvent(int propertyId) STUB_ZERO;
+HRESULT EventManager::HandleAccChange(Element* pe, IRawElementProviderSimple* pprv, Value* pvNew, Value* pvOld) STUB_ZERO;
+HRESULT EventManager::HandleAccStateChange(IRawElementProviderSimple* pprv, UINT diff, UINT state, int id, VARIANT* pvarOld, VARIANT* pvarNew, bool fInvertValue) STUB_ZERO;
+HRESULT EventManager::HandleAccPatternChange(Element* pe, IRawElementProviderSimple* pprv, UINT diff, UINT state, int id, VARIANT* pvarOld, VARIANT* pvarNew, PfnSetState pfn) STUB_ZERO;
+HRESULT EventManager::HandleAccDesc(Element* pe, IRawElementProviderSimple* pprv, Value* pvOld, Value* pvNew) STUB_ZERO;
+HRESULT EventManager::HandleChildrenEvent(Element* pe, Value* pvOld, Value* pvNew) STUB_ZERO;
+HRESULT EventManager::HandleAccRoleEvent(IRawElementProviderSimple* pprv, Value* pvOld, Value* pvNew) STUB_ZERO;
+HRESULT EventManager::HandleScrollPos(Element* peScrollBar, IRawElementProviderSimple* pprv, Value* pvOld, Value* pvNew) STUB_ZERO;
+HRESULT EventManager::HandleBoolProp(Element* pe, bool (*)(Element*), IRawElementProviderSimple* pprv, int id, Value* pvOld, Value* pvNew) STUB_ZERO;
+HRESULT EventManager::HandleVisibilityChange(Element* pe, UINT diff) STUB_ZERO;
+HRESULT EventManager::HandleStringProp(IRawElementProviderSimple* pprv, int id, Value* pvOld, Value* pvNew) STUB_ZERO;
+HRESULT EventManager::HandleRangeValue(Element* pe, IRawElementProviderSimple* pprv, Value* pvOld, Value* pvNew) STUB_ZERO;
+HRESULT EventManager::HandleToggleValue(Element* pe, IRawElementProviderSimple* pprv, Value* pvOld, Value* pvNew) STUB_ZERO;
+HRESULT EventManager::GetString(VARIANT* pvar, Value* pv) STUB_ZERO;
+HRESULT EventManager::GetBool(VARIANT* pvar, Value* pv) STUB_ZERO;
+HRESULT EventManager::GetInt(VARIANT* pvar, Value* pv) STUB_ZERO;
+void EventManager::GetToggleState(VARIANT* pvar) STUB_VOID;
+void EventManager::GetExpandCollapseState(VARIANT* pvar) STUB_VOID;
+HRESULT EventManager::RaiseStructureChangedEvent(Element* pe, StructureChangeType type) STUB_ZERO;
+HRESULT EventManager::RaiseChildRemovedEvent(const ElementRuntimeId& runtimeId, Element* peParent) STUB_ZERO;
+HRESULT EventManager::RaiseGeometryEvents() STUB_ZERO;
+HRESULT EventManager::RaiseStructureEvents() STUB_ZERO;
+HRESULT EventManager::RaiseVisibilityEvents() STUB_ZERO;
+HRESULT EventManager::AddRectangleChange(Element* pe, bool fWantRect, bool fWantOffScreen) STUB_ZERO;
+HRESULT EventManager::RaiseGeometryEventWorker(RectangleChange* prc, bool fWantRect, bool fWantHorizontal, bool fWantVertical, bool fWantOffScreen) STUB_ZERO;
+HRESULT EventManager::HandleSelectedChange(IRawElementProviderSimple* pPrv, Value* pvNew) STUB_ZERO;
+//~ End DirectUI::EventManager Class
 
 Expandable::Expandable(Expandable const&)
 {

@@ -2,53 +2,61 @@
 
 namespace DirectUI
 {
-	//此类虚函数全部来自父
 	class UILIB_API CCBaseScrollBar
 		: public CCBase
 		, public BaseScrollBar
 	{
 	public:
-		CCBaseScrollBar(const CCBaseScrollBar &);
-		CCBaseScrollBar(unsigned long v1=0);
-		CCBaseScrollBar & operator=(const CCBaseScrollBar &);
+		CCBaseScrollBar(DWORD dwStyle = WM_NULL);
+		CCBaseScrollBar(const CCBaseScrollBar& other) = default;
+		CCBaseScrollBar(CCBaseScrollBar&& other) noexcept = default;
 
-		virtual ~CCBaseScrollBar(void);
+		// ReSharper disable once CppHidingFunction
+		HRESULT Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
 
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static const PropertyInfo* __stdcall LineProp(void);
-		static const PropertyInfo* __stdcall MaximumProp(void);
-		static const PropertyInfo* __stdcall MinimumProp(void);
-		static const PropertyInfo* __stdcall PageProp(void);
-		static const PropertyInfo* __stdcall PositionProp(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		static const PropertyInfo* __stdcall TrackingProp(void);
+		HWND CreateHWND(HWND hwndParent) override;
 
-		bool GetTracking(void);
-		long Initialize(unsigned int, Element *, unsigned long *);
-		long SetTracking(bool);
-		void SyncScrollBar(void);
+		void SyncScrollBar();
 
+		bool OnMessage(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) override;
+		bool OnPropertyChanging(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
 
-		virtual HWND CreateHWND(HWND);
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual Element * GetElement(void);
-		virtual int GetLine(void);
-		virtual int GetMaximum(void);
-		virtual int GetMinimum(void);
-		virtual int GetPage(void);
-		virtual int GetPosition(void);
-		virtual bool GetProportional(void);
-		virtual bool OnMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* plResult);
-		virtual void OnPropertyChanged(const PropertyInfo*, int, Value *, Value *);
-		virtual bool OnPropertyChanging(const PropertyInfo*, int, Value *, Value *);
-		virtual long SetLine(int);
-		virtual long SetMaximum(int);
-		virtual long SetMinimum(int);
-		virtual long SetPage(int);
-		virtual long SetPosition(int);
+		static const PropertyInfo* WINAPI PositionProp();
+		static const PropertyInfo* WINAPI MinimumProp();
+		static const PropertyInfo* WINAPI MaximumProp();
+		static const PropertyInfo* WINAPI PageProp();
+		static const PropertyInfo* WINAPI LineProp();
+		static const PropertyInfo* WINAPI TrackingProp();
+
+		Element* GetElement() override;
+
+		int GetPosition() override;
+		int GetMaximum() override;
+		int GetMinimum() override;
+		int GetPage() override;
+		int GetLine() override;
+
+		HRESULT SetPosition(int v) override;
+		HRESULT SetMaximum(int v) override;
+		HRESULT SetMinimum(int v) override;
+		HRESULT SetPage(int v) override;
+		HRESULT SetLine(int v) override;
+
+		bool GetProportional() override;
+
+		bool GetTracking();
+		HRESULT SetTracking(bool v);
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+
+		static HRESULT WINAPI Register();
 	};
 }

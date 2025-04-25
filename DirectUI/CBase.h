@@ -2,47 +2,62 @@
 
 namespace DirectUI
 {
-	class UILIB_API CCBase :public HWNDHost
+	typedef int (WINAPI *NOTIFYHANDLER)(UINT, UINT, int, int*, void*); // @TODO: Check the types
+
+	class UILIB_API CCBase : public HWNDHost
 	{
 	public:
-		CCBase(const CCBase &);
-		CCBase(unsigned long v1 =0, const WCHAR* v2=NULL);
-		CCBase & operator=(const CCBase &);
+		CCBase(DWORD dwStyle = WM_NULL, const WCHAR* psz = nullptr);
+		CCBase(const CCBase& other) = default;
 
-		virtual ~CCBase(void);
+		~CCBase() override;
 
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static PropertyInfo const * __stdcall WinStyleProp(void);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		int GetWinStyle(void);
-		long Initialize(unsigned int, Element *, unsigned long *);
-		void SetNotifyHandler(BOOL (WINAPI*)(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult, void* pUserData), void* pUserData);
-		long SetWinStyle(int);
+		// ReSharper disable once CppHidingFunction
+		HRESULT Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
 
-		//父类父函数重载
-		virtual void OnPropertyChanged(PropertyInfo const *, int, Value *, Value *);
-		virtual HWND CreateHWND(HWND);
-		virtual long DefaultAction(void);
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual SIZE GetContentSize(int, int, Surface *);
-		virtual void OnInput(InputEvent *);
-		virtual bool OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult);
+		void OnInput(InputEvent* pie) override;
+		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+		bool OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) override;
 
-		//1
-		virtual bool OnCustomDraw(NMCUSTOMDRAW *, LRESULT *);
-		//2
-		virtual bool OnLostDialogFocus(DialogElement *);
-		//3
-		virtual bool OnReceivedDialogFocus(DialogElement *);
+		// Callbacks
+		virtual bool OnCustomDraw(NMCUSTOMDRAW* pnmcd, LRESULT* plRet);
+		virtual bool OnLostDialogFocus(IDialogElement* pDE);
+		virtual bool OnReceivedDialogFocus(IDialogElement* pDE);
+
+		SIZE GetContentSize(int dConstW, int dConstH, Surface* psrf) override;
+		HWND CreateHWND(HWND hwndParent) override;
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+
+	private:
+		IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+
+		static HRESULT WINAPI Register();
+
+		int AddString(const WCHAR* pszString);
+
+		UID WinStyleChange();
+
+		static const PropertyInfo* WINAPI WinStyleProp();
+		int GetWinStyle();
+		HRESULT SetWinStyle(int v);
+
+		void SetNotifyHandler(NOTIFYHANDLER pfnnh, HCONTEXT pContext);
+		HRESULT DefaultAction() override;
 
 	protected:
-		//4
-		virtual void PostCreate(HWND);
-	private:
-		static IClassInfo * s_pClassInfo;
+		DWORD _dwStyle;
+		const WCHAR* _pszWindowClass;
+		NOTIFYHANDLER _pfnnh;
+		HCONTEXT _pContext;
+
+		virtual void PostCreate(HWND hwnd);
 	};
 }

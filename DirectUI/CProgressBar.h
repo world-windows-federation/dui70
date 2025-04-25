@@ -2,26 +2,30 @@
 
 namespace DirectUI
 {
-	class UILIB_API CCProgressBar :public CCBase
+	class UILIB_API CCProgressBar : public CCBase
 	{
 	public:
-		CCProgressBar(CCProgressBar const &);
-		CCProgressBar(void);
-		virtual ~CCProgressBar(void);
-		CCProgressBar & operator=(CCProgressBar const &);
+		CCProgressBar();
+		CCProgressBar(const CCProgressBar&) = default;
+		CCProgressBar(CCProgressBar&& other) noexcept = default;
 
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		
-		long Initialize(unsigned int, Element *, unsigned long *);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual void OnInput(InputEvent *);
+		// ReSharper disable once CppHidingFunction
+		HRESULT Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+
+		static HRESULT WINAPI Register();
+
+		void OnInput(InputEvent* pInputEvent) override;
 	};
 }

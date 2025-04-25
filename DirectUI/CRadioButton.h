@@ -5,25 +5,29 @@ namespace DirectUI
 	class UILIB_API CCRadioButton : public CCBaseCheckRadioButton
 	{
 	public:
-		CCRadioButton(CCRadioButton const &);
-		CCRadioButton(void);
-		virtual ~CCRadioButton(void);
-		CCRadioButton & operator=(CCRadioButton const &);
+		CCRadioButton();
+		CCRadioButton(const CCRadioButton& other) = default;
+		CCRadioButton(CCRadioButton&& other) noexcept = default;
 
-		static PropertyInfo const * __stdcall AutoGroupingProp(void);
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		bool GetAutoGrouping(void);
-		long SetAutoGrouping(bool);
-		
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual void OnInput(InputEvent *);
-		virtual bool OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+
+		static HRESULT WINAPI Register();
+
+		static const PropertyInfo* WINAPI AutoGroupingProp();
+		bool GetAutoGrouping();
+		HRESULT SetAutoGrouping(bool v);
+
+		void OnInput(InputEvent* pInputEvent) override;
+		bool OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) override;
 	};
 }

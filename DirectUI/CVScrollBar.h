@@ -2,25 +2,27 @@
 
 namespace DirectUI
 {
-	class UILIB_API CCVScrollBar : public CCBaseScrollBar
+	class CCVScrollBar : public CCBaseScrollBar
 	{
 	public:
-		CCVScrollBar(CCVScrollBar const &);
-		CCVScrollBar(void);
-		virtual ~CCVScrollBar(void);
-		CCVScrollBar & operator=(CCVScrollBar const &);
+		CCVScrollBar();
+		CCVScrollBar(const CCVScrollBar& other) = default;
+		CCVScrollBar(CCVScrollBar&& other) noexcept = default;
 
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual SIZE GetContentSize(int, int, Surface *);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+
+		SIZE GetContentSize(int dConstW, int dConstH, Surface* psrf) override;
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
 
+	public:
+		IClassInfo* GetClassInfoW() override;
+
+		static HRESULT WINAPI Register();
 	};
 }

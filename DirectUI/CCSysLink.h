@@ -2,27 +2,30 @@
 
 namespace DirectUI
 {
-	class UILIB_API CCSysLink :public CCBase
+	class UILIB_API CCSysLink : public CCBase
 	{
 	public:
-		CCSysLink(CCSysLink const &);
-		CCSysLink(void);
-		virtual ~CCSysLink(void);
-		CCSysLink & operator=(CCSysLink const &);
+		CCSysLink();
+		CCSysLink(const CCSysLink& other) = default;
+		CCSysLink(CCSysLink&& other) noexcept = default;
 
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual struct tagSIZE GetContentSize(int, int, Surface *);
-		virtual void OnInput(InputEvent *);
-		virtual bool OnLostDialogFocus(DialogElement *);
-		virtual bool OnReceivedDialogFocus(DialogElement *);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+
+		static HRESULT WINAPI Register();
+
+		SIZE GetContentSize(int dConstW, int dConstH, Surface* psrf) override;
+		void OnInput(InputEvent* pInputEvent) override;
+		bool OnLostDialogFocus(IDialogElement* pDE) override;
+		bool OnReceivedDialogFocus(IDialogElement* pDE) override;
 	};
 }

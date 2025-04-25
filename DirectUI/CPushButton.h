@@ -5,45 +5,49 @@ namespace DirectUI
 	class UILIB_API CCPushButton : public CCBase
 	{
 	public:
-		CCPushButton(const CCPushButton &);
-		CCPushButton(unsigned long v1=0);
-		CCPushButton & operator=(const CCPushButton &);
-		
-		virtual ~CCPushButton(void);
+		CCPushButton(DWORD dwStyle = WM_NULL);
+		CCPushButton(const CCPushButton& other) = default;
+		CCPushButton(CCPushButton&& other) noexcept = default;
 
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static const PropertyInfo * __stdcall OverrideButtonBackgroundProp(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static const PropertyInfo * __stdcall HasShieldProp(void);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		long SetOverrideButtonBackground(bool);
-		bool GetHasShield(void);
-		bool GetOverrideButtonBackground(void);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
-		//父类虚函数重载
-		virtual long DefaultAction(void);
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual SIZE GetContentSize(int, int, Surface *);
-		virtual void OnInput(InputEvent *);
-		virtual bool OnLostDialogFocus(DialogElement *);
-		virtual bool OnMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* plResult);
-		virtual bool OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult);
-		virtual void OnPropertyChanged(const PropertyInfo *, int, Value *, Value *);
-		virtual bool OnReceivedDialogFocus(DialogElement *);
+	private:
+		static IClassInfo* s_pClassInfo;
 
-		//1
-		virtual bool GetButtonColor(HDC, HBRUSH*);
-		//2
-		virtual void OnSelectedPropertyChanged(void);
-		//3
-		virtual SIZE EstimateContentSize(int, int, Surface *);
+	public:
+		IClassInfo* GetClassInfoW() override;
+
+		static HRESULT WINAPI Register();
+
+		static const PropertyInfo* WINAPI OverrideButtonBackgroundProp();
+		static const PropertyInfo* WINAPI HasShieldProp();
+
+		bool GetOverrideButtonBackground();
+		bool GetHasShield();
+
+		HRESULT SetOverrideButtonBackground(bool v);
+
+		bool OnMessage(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) override;
+		bool GetButtonColor(HDC hdc, HBRUSH* phbrush);
+		void OnInput(InputEvent* pInputEvent) override;
+		bool OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) override;
+		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+
+		virtual void OnSelectedPropertyChanged();
+
+		SIZE GetContentSize(int dConstW, int dConstH, Surface* psrf) override;
+		virtual SIZE EstimateContentSize(int dConstW, int dConstH, Surface* psrf);
+
+		bool OnLostDialogFocus(IDialogElement* pDE) override;
+		bool OnReceivedDialogFocus(IDialogElement* pDE) override;
+
+		HRESULT DefaultAction() override;
 
 	protected:
-		void SetDefaultState(unsigned long, unsigned long);
-	private:
-		static IClassInfo * s_pClassInfo;
+		void SetDefaultState(DWORD dwTypeNormal, DWORD dwTypeDefault);
 	};
 }

@@ -1865,23 +1865,8 @@ int (__stdcall*CallstackTracker::s_pfnSymInitialize)(void*, char const*, int);
 unsigned __int64 (__stdcall*CallstackTracker::s_pfnSymLoadModule64)(void*, void*, char const*, char const*, unsigned __int64, unsigned long);
 unsigned long (__stdcall*CallstackTracker::s_pfnSymSetOptions)(unsigned long);
 
-CCAVI::CCAVI(const CCAVI&)
-	: CCBase(0, 0)
-{
-}
-
 CCAVI::CCAVI(void)
 	: CCBase(0, 0)
-{
-}
-
-CCAVI& CCAVI::operator=(const CCAVI&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-CCAVI::~CCAVI(void)
 {
 }
 
@@ -1933,18 +1918,8 @@ void CCAVI::OpenAnimation(HWND)
 IClassInfo* CCAVI::s_pClassInfo;
 
 
-CCBase::CCBase(const CCBase&)
-{
-}
-
 CCBase::CCBase(unsigned long, const WCHAR*)
 {
-}
-
-CCBase& CCBase::operator=(const CCBase&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 CCBase::~CCBase(void)
@@ -1990,7 +1965,7 @@ long CCBase::Initialize(unsigned int, Element*, unsigned long*)
 	return 0;
 }
 
-void CCBase::SetNotifyHandler(BOOL (WINAPI*)(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult, void* pUserData), void* pUserData)
+void CCBase::SetNotifyHandler(NOTIFYHANDLER, void* pUserData)
 {
 }
 
@@ -2037,12 +2012,12 @@ bool CCBase::OnCustomDraw(NMCUSTOMDRAW*, LRESULT*)
 	return false;
 }
 
-bool CCBase::OnLostDialogFocus(DialogElement*)
+bool CCBase::OnLostDialogFocus(IDialogElement*)
 {
 	return false;
 }
 
-bool CCBase::OnReceivedDialogFocus(DialogElement*)
+bool CCBase::OnReceivedDialogFocus(IDialogElement*)
 {
 	return false;
 }
@@ -2051,25 +2026,8 @@ void CCBase::PostCreate(HWND)
 {
 }
 
-IClassInfo* CCBase::s_pClassInfo;
-
-CCBaseCheckRadioButton::CCBaseCheckRadioButton(const CCBaseCheckRadioButton&)
-	: CCPushButton(0)
-{
-}
-
 CCBaseCheckRadioButton::CCBaseCheckRadioButton(unsigned long)
 	: CCPushButton(0)
-{
-}
-
-CCBaseCheckRadioButton& CCBaseCheckRadioButton::operator=(const CCBaseCheckRadioButton&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-CCBaseCheckRadioButton::~CCBaseCheckRadioButton(void)
 {
 }
 
@@ -2097,7 +2055,7 @@ SIZE CCBaseCheckRadioButton::GetContentSize(int, int, Surface*)
 	return SIZE();
 }
 
-bool CCBaseCheckRadioButton::OnLostDialogFocus(DialogElement*)
+bool CCBaseCheckRadioButton::OnLostDialogFocus(IDialogElement*)
 {
 	return false;
 }
@@ -2106,7 +2064,7 @@ void CCBaseCheckRadioButton::OnPropertyChanged(PropertyInfo const*, int, Value*,
 {
 }
 
-bool CCBaseCheckRadioButton::OnReceivedDialogFocus(DialogElement*)
+bool CCBaseCheckRadioButton::OnReceivedDialogFocus(IDialogElement*)
 {
 	return false;
 }
@@ -2117,23 +2075,8 @@ void CCBaseCheckRadioButton::PostCreate(HWND)
 
 IClassInfo* CCBaseCheckRadioButton::s_pClassInfo;
 
-CCBaseScrollBar::CCBaseScrollBar(const CCBaseScrollBar&)
-	: CCBase(0, 0)
-{
-}
-
 CCBaseScrollBar::CCBaseScrollBar(unsigned long)
 	: CCBase(0, 0)
-{
-}
-
-CCBaseScrollBar& CCBaseScrollBar::operator=(const CCBaseScrollBar&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-CCBaseScrollBar::~CCBaseScrollBar(void)
 {
 }
 
@@ -2286,23 +2229,8 @@ long CCBaseScrollBar::SetPosition(int)
 
 IClassInfo* CCBaseScrollBar::s_pClassInfo;
 
-CCCheckBox::CCCheckBox(const CCCheckBox&)
-	: CCBaseCheckRadioButton(0)
-{
-}
-
 CCCheckBox::CCCheckBox(unsigned long)
 	: CCBaseCheckRadioButton(0)
-{
-}
-
-CCCheckBox& CCCheckBox::operator=(const CCCheckBox&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-CCCheckBox::~CCCheckBox(void)
 {
 }
 
@@ -2346,24 +2274,9 @@ bool CCCheckBox::OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRe
 
 IClassInfo* CCCheckBox::s_pClassInfo;
 
-CCCommandLink::CCCommandLink(CCCommandLink const&)
-	: CCPushButton(0)
-{
-}
-
 CCCommandLink::CCCommandLink(unsigned long)
 	: CCPushButton(0)
 {
-}
-
-CCCommandLink::~CCCommandLink(void)
-{
-}
-
-CCCommandLink& CCCommandLink::operator=(CCCommandLink const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long CCCommandLink::Create(unsigned int, Element*, unsigned long*, Element**)
@@ -2433,24 +2346,9 @@ void CCCommandLink::PostCreate(HWND)
 
 IClassInfo* CCCommandLink::s_pClassInfo;
 
-CCSysLink::CCSysLink(CCSysLink const&)
-	: CCBase(0, 0)
-{
-}
-
 CCSysLink::CCSysLink(void)
 	: CCBase(0, 0)
 {
-}
-
-CCSysLink::~CCSysLink(void)
-{
-}
-
-CCSysLink& CCSysLink::operator=(CCSysLink const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long CCSysLink::Create(unsigned int, Element*, unsigned long*, Element**)
@@ -2491,12 +2389,12 @@ void CCSysLink::OnInput(InputEvent*)
 {
 }
 
-bool CCSysLink::OnLostDialogFocus(DialogElement*)
+bool CCSysLink::OnLostDialogFocus(IDialogElement*)
 {
 	return false;
 }
 
-bool CCSysLink::OnReceivedDialogFocus(DialogElement*)
+bool CCSysLink::OnReceivedDialogFocus(IDialogElement*)
 {
 	return false;
 }
@@ -2567,23 +2465,8 @@ bool CheckBoxGlyph::OnReceivedDialogFocus(DialogElement*)
 
 IClassInfo* CheckBoxGlyph::s_pClassInfo;
 
-CCHScrollBar::CCHScrollBar(const CCHScrollBar&)
-	: CCBaseScrollBar(0)
-{
-}
-
 CCHScrollBar::CCHScrollBar(void)
 	: CCBaseScrollBar(0)
-{
-}
-
-CCHScrollBar& CCHScrollBar::operator=(const CCHScrollBar&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-CCHScrollBar::~CCHScrollBar(void)
 {
 }
 
@@ -2681,24 +2564,9 @@ SIZE Clipper::_SelfLayoutUpdateDesiredSize(int, int, Surface*)
 
 IClassInfo* Clipper::s_pClassInfo;
 
-CCListBox::CCListBox(CCListBox const&)
-	: CCBase(0, 0)
-{
-}
-
 CCListBox::CCListBox(void)
 	: CCBase(0, 0)
 {
-}
-
-CCListBox::~CCListBox(void)
-{
-}
-
-CCListBox& CCListBox::operator=(CCListBox const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long CCListBox::Create(unsigned int, Element*, unsigned long*, Element**)
@@ -2752,24 +2620,9 @@ SIZE CCListBox::GetContentSize(int, int, Surface*)
 
 IClassInfo* CCListBox::s_pClassInfo;
 
-CCListView::CCListView(CCListView const&)
-	: CCBase(0, 0)
-{
-}
-
 CCListView::CCListView(void)
 	: CCBase(0, 0)
 {
-}
-
-CCListView::~CCListView(void)
-{
-}
-
-CCListView& CCListView::operator=(CCListView const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long CCListView::Create(unsigned int, Element*, unsigned long*, Element**)
@@ -2924,24 +2777,9 @@ void Combobox::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
 
 IClassInfo* Combobox::s_pClassInfo;
 
-CCProgressBar::CCProgressBar(CCProgressBar const&)
-	: CCBase(0, 0)
-{
-}
-
 CCProgressBar::CCProgressBar(void)
 	: CCBase(0, 0)
 {
-}
-
-CCProgressBar::~CCProgressBar(void)
-{
-}
-
-CCProgressBar& CCProgressBar::operator=(CCProgressBar const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long CCProgressBar::Create(unsigned int, Element*, unsigned long*, Element**)
@@ -2984,23 +2822,8 @@ void CCProgressBar::OnInput(InputEvent*)
 
 IClassInfo* CCProgressBar::s_pClassInfo;
 
-CCPushButton::CCPushButton(const CCPushButton&)
-	: CCBase(0, 0)
-{
-}
-
 CCPushButton::CCPushButton(unsigned long)
 	: CCBase(0, 0)
-{
-}
-
-CCPushButton& CCPushButton::operator=(const CCPushButton&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-CCPushButton::~CCPushButton(void)
 {
 }
 
@@ -3072,7 +2895,7 @@ void CCPushButton::OnInput(InputEvent*)
 {
 }
 
-bool CCPushButton::OnLostDialogFocus(DialogElement*)
+bool CCPushButton::OnLostDialogFocus(IDialogElement*)
 {
 	return false;
 }
@@ -3091,7 +2914,7 @@ void CCPushButton::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
 {
 }
 
-bool CCPushButton::OnReceivedDialogFocus(DialogElement*)
+bool CCPushButton::OnReceivedDialogFocus(IDialogElement*)
 {
 	return false;
 }
@@ -3116,24 +2939,9 @@ void CCPushButton::SetDefaultState(unsigned long, unsigned long)
 
 IClassInfo* CCPushButton::s_pClassInfo;
 
-CCRadioButton::CCRadioButton(CCRadioButton const&)
-	: CCBaseCheckRadioButton(0)
-{
-}
-
 CCRadioButton::CCRadioButton(void)
 	: CCBaseCheckRadioButton(0)
 {
-}
-
-CCRadioButton::~CCRadioButton(void)
-{
-}
-
-CCRadioButton& CCRadioButton::operator=(CCRadioButton const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 PropertyInfo const* CCRadioButton::AutoGroupingProp(void)
@@ -3191,24 +2999,9 @@ bool CCRadioButton::OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* p
 
 IClassInfo* CCRadioButton::s_pClassInfo;
 
-CCTrackBar::CCTrackBar(CCTrackBar const&)
-	: CCBase(0, 0)
-{
-}
-
 CCTrackBar::CCTrackBar(void)
 	: CCBase(0, 0)
 {
-}
-
-CCTrackBar::~CCTrackBar(void)
-{
-}
-
-CCTrackBar& CCTrackBar::operator=(CCTrackBar const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long CCTrackBar::Create(unsigned int, Element*, unsigned long*, Element**)
@@ -3320,24 +3113,9 @@ void CCTrackBar::PostCreate(HWND)
 
 IClassInfo* CCTrackBar::s_pClassInfo;
 
-CCTreeView::CCTreeView(CCTreeView const&)
-	: CCBase(0, 0)
-{
-}
-
 CCTreeView::CCTreeView(unsigned long)
 	: CCBase(0, 0)
 {
-}
-
-CCTreeView::~CCTreeView(void)
-{
-}
-
-CCTreeView& CCTreeView::operator=(CCTreeView const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long CCTreeView::Create(unsigned int, Element*, unsigned long*, Element**)
@@ -3420,24 +3198,9 @@ long CCTreeView::_OnItemChanged(NMTVITEMCHANGE const*)
 
 IClassInfo* CCTreeView::s_pClassInfo;
 
-CCVScrollBar::CCVScrollBar(CCVScrollBar const&)
-	: CCBaseScrollBar(0)
-{
-}
-
 CCVScrollBar::CCVScrollBar(void)
 	: CCBaseScrollBar(0)
 {
-}
-
-CCVScrollBar::~CCVScrollBar(void)
-{
-}
-
-CCVScrollBar& CCVScrollBar::operator=(CCVScrollBar const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long CCVScrollBar::Create(unsigned int, Element*, unsigned long*, Element**)

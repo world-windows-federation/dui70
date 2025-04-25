@@ -26,7 +26,20 @@
 
 #include "Types.h"
 #include "Misc.h"
+#include "Event.h"
 #include "Interfaces.h"
+
+// Layout
+#include "Layout.h"
+#include "BorderLayout.h"
+#include "ShellBorderLayout.h"
+#include "VerticalFlowLayout.h"
+#include "FlowLayout.h"
+#include "NineGridLayout.h"
+#include "FillLayout.h"
+#include "TableLayout.h"
+#include "RowLayout.h"
+#include "GridLayout.h"
 
 #include "AutoLock.h"
 #include "AutoThread.h"
@@ -139,19 +152,6 @@
 #include "ManipulationHelper.h"
 #include "PromptText.h"
 #include "DuiAnimation.h"
-
-// Layout
-#include "Layout.h"
-#include "BorderLayout.h"
-#include "ShellBorderLayout.h"
-#include "VerticalFlowLayout.h"
-#include "FlowLayout.h"
-#include "NineGridLayout.h"
-#include "FillLayout.h"
-#include "TableLayout.h"
-#include "RowLayout.h"
-#include "GridLayout.h"
-
 
 // Touch elements
 #include "ModernProgressBar.h"

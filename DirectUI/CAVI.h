@@ -2,29 +2,34 @@
 
 namespace DirectUI
 {
-	class UILIB_API CCAVI :public CCBase
+	class UILIB_API CCAVI : public CCBase
 	{
 	public:
-		CCAVI(const CCAVI &);
-		CCAVI(void);
-		CCAVI & operator=(const CCAVI &);
+		CCAVI();
+		CCAVI(const CCAVI& other) = default;
+		CCAVI(CCAVI&& other) noexcept = default;
 
-		virtual ~CCAVI(void);
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		void Play(HWND);
-		void Stop(void);
-		virtual IClassInfo * GetClassInfoW(void);
-	protected:
-		virtual void PostCreate(HWND);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+
 	private:
-		void OpenAnimation(HWND);
+		static IClassInfo* s_pClassInfo;
 
-		static IClassInfo * s_pClassInfo;
-		
+	public:
+		IClassInfo* GetClassInfoW() override;
+
+		static HRESULT WINAPI Register();
+
+		void Play(HWND hwnd);
+		void Stop();
+
+	protected:
+		void PostCreate(HWND hwnd) override;
+
+	private:
+		void OpenAnimation(HWND hwnd);
 	};
 }

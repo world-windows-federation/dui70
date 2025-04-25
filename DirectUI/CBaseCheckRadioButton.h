@@ -2,29 +2,30 @@
 
 namespace DirectUI
 {
-	//此类无新增虚函数
 	class UILIB_API CCBaseCheckRadioButton : public CCPushButton
 	{
 	public:
-		CCBaseCheckRadioButton(const CCBaseCheckRadioButton &);
-		CCBaseCheckRadioButton(unsigned long);
-		CCBaseCheckRadioButton & operator=(const CCBaseCheckRadioButton &);
+		CCBaseCheckRadioButton(DWORD dwStyle);
+		CCBaseCheckRadioButton(const CCBaseCheckRadioButton& other) = default;
+		CCBaseCheckRadioButton(CCBaseCheckRadioButton&& other) noexcept = default;
 
-		virtual ~CCBaseCheckRadioButton(void);
-
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual SIZE GetContentSize(int, int, Surface *);
-		virtual bool OnLostDialogFocus(DialogElement *);
-		virtual void OnPropertyChanged(PropertyInfo const *, int, Value *, Value *);
-		virtual bool OnReceivedDialogFocus(DialogElement *);
-	protected:
-		virtual void PostCreate(HWND);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+
+		static HRESULT WINAPI Register();
+
+		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+		SIZE GetContentSize(int dConstW, int dConstH, Surface* psrf) override;
+		bool OnLostDialogFocus(IDialogElement* pDE) override;
+		bool OnReceivedDialogFocus(IDialogElement* pDE) override;
+
+	protected:
+		void PostCreate(HWND hwnd) override;
 	};
 }

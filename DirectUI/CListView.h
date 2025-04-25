@@ -5,22 +5,27 @@ namespace DirectUI
 	class UILIB_API CCListView : public CCBase
 	{
 	public:
-		CCListView(CCListView const &);
-		CCListView(void);
-		virtual ~CCListView(void);
-		CCListView & operator=(CCListView const &);
+		CCListView();
+		CCListView(const CCListView& other) = default;
+		CCListView(CCListView&& other) noexcept = default;
 
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		long Initialize(unsigned int, Element *, unsigned long *);
+		SIZE GetContentSize(int dConstW, int dConstH, Surface* psrf) override;
 
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual SIZE GetContentSize(int, int, Surface *);
+		// ReSharper disable once CppHidingFunction
+		HRESULT Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+
+		static HRESULT WINAPI Register();
 	};
 }

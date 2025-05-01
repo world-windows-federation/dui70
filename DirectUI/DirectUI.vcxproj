@@ -279,6 +279,7 @@
     <ClInclude Include="ManipulationHelper.h" />
     <ClInclude Include="Misc.h" />
     <ClInclude Include="ModernProgressBar.h" />
+    <ClInclude Include="ModernProgressRing.h" />
     <ClInclude Include="Movie.h" />
     <ClInclude Include="NativeHWNDHost.h" />
     <ClInclude Include="Navigator.h" />

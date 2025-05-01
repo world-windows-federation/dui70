@@ -2,23 +2,25 @@
 
 namespace DirectUI
 {
-	class UILIB_API DuiAccessible :
-		public IAccessible
+	class UILIB_API DuiAccessible
+		: public IAccessible
 		, public IEnumVARIANT
 		, public IOleWindow
 		, public IAccIdentity
 		, public IServiceProvider
 	{
 	public:
-		HRESULT Create(Element*, DuiAccessible**);
+		static HRESULT WINAPI Create(Element* pe, DuiAccessible** ppDA);
+
 		DuiAccessible();
 
 	private:
-		DuiAccessible(DuiAccessible&);
+		DuiAccessible(const DuiAccessible& other) = delete;
 		DuiAccessible& operator=(DuiAccessible&);
 
 	public:
 		virtual HRESULT Disconnect();
+
 		void Initialize(Element* pe);
 
 		virtual ~DuiAccessible();
@@ -64,7 +66,7 @@ namespace DirectUI
 		STDMETHODIMP Next(ULONG celt, VARIANT* rgVar, ULONG* pCeltFetched) override;
 		STDMETHODIMP Skip(ULONG celt) override;
 		STDMETHODIMP Reset() override;
-		STDMETHODIMP Clone(IEnumVARIANT** ppenum) override;
+		STDMETHODIMP Clone(IEnumVARIANT** ppEnum) override;
 		//~ End IEnumVARIANT Interface
 
 		//~ Begin IOleWindow Interface
@@ -80,7 +82,8 @@ namespace DirectUI
 		STDMETHODIMP QueryService(REFGUID guidService, REFIID riid, void** ppvObject) override;
 		//~ End IServiceProvider Interface
 
-		static HRESULT WINAPI AccNavigate(Element* pe, LONG navDir, Element** ppe);
+		static HRESULT WINAPI AccNavigate(Element* pe, long navDir, Element** ppe);
+
 		static Element* WINAPI GetAccessibleParent(Element* pe);
 
 	protected:
@@ -91,7 +94,7 @@ namespace DirectUI
 		Element* _pe;
 
 	private:
-		LONG _cRefs;
+		long _cRefs;
 	};
 
 	class UILIB_API HWNDHostAccessible : public DuiAccessible

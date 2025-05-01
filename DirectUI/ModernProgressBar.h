@@ -1,8 +1,6 @@
 #pragma once
 
-interface IDCompositionAnimation;
-interface IDCompositionDevice;
-interface IDCompositionVisual;
+#include <dcomp.h>
 
 namespace DirectUI
 {

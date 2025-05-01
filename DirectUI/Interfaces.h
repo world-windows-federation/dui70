@@ -2,7 +2,7 @@
 
 namespace DirectUI
 {
-	struct DECLSPEC_NOVTABLE IDialogElement
+	DECLARE_INTERFACE(IDialogElement)
 	{
 		virtual bool GetButtonClassAcceptsEnterKey() = 0;
 		virtual bool GetDefaultButtonTracking() = 0;
@@ -15,36 +15,36 @@ namespace DirectUI
 		virtual Element* GetDefaultButton() = 0;
 	};
 
-	struct DECLSPEC_NOVTABLE IElementListener
+	DECLARE_INTERFACE(IElementListener)
 	{
-		virtual void OnListenerAttach(Element* peFrom) = 0;
-		virtual void OnListenerDetach(Element* peFrom) = 0;
-		virtual bool OnListenedPropertyChanging(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) = 0;
-		virtual void OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) = 0;
-		virtual void OnListenedInput(Element* peFrom, InputEvent* pInput) = 0;
-		virtual void OnListenedEvent(Element* peFrom, Event* pEvent) = 0;
+		STDMETHODV_(void, OnListenerAttach)(Element* peFrom) PURE;
+		STDMETHODV_(void, OnListenerDetach)(Element* peFrom) PURE;
+		STDMETHODV_(bool, OnListenedPropertyChanging)(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) PURE;
+		STDMETHODV_(void, OnListenedPropertyChanged)(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) PURE;
+		STDMETHODV_(void, OnListenedInput)(Element* peFrom, InputEvent* pInput) PURE;
+		STDMETHODV_(void, OnListenedEvent)(Element* peFrom, Event* pEvent) PURE;
 	};
 
-	struct DECLSPEC_NOVTABLE IClassInfo
+	DECLARE_INTERFACE(IClassInfo)
 	{
-		virtual void AddRef() = 0;
-		virtual int Release() = 0;
-		virtual HRESULT CreateInstance(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) = 0;
-		virtual const PropertyInfo* EnumPropertyInfo(UINT nEnum) = 0;
-		virtual const PropertyInfo* GetByClassIndex(UINT iIndex) = 0;
-		virtual UINT GetPICount() const = 0;
-		virtual UINT GetGlobalIndex() const = 0;
-		virtual IClassInfo* GetBaseClass() = 0;
-		virtual const WCHAR* GetName() const = 0;
-		virtual bool IsValidProperty(const PropertyInfo* ppi) const = 0;
-		virtual bool IsSubclassOf(IClassInfo* pci) const = 0;
-		virtual void Destroy() = 0;
-		virtual HMODULE GetModule() const = 0;
-		virtual bool IsGlobal() const = 0;
-		virtual void AddChild() = 0;
-		virtual void RemoveChild() = 0;
-		virtual int GetChildren() const = 0;
-		virtual void AssertPIZeroRef() const = 0;
+		STDMETHODV_(void, AddRef)() PURE;
+		STDMETHODV_(int, Release)() PURE;
+		STDMETHODV(CreateInstance)(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) PURE;
+		STDMETHODV_(const PropertyInfo*, EnumPropertyInfo)(UINT nEnum) PURE;
+		STDMETHODV_(const PropertyInfo*, GetByClassIndex)(UINT iIndex) PURE;
+		STDMETHODV_(UINT, GetPICount)() const PURE;
+		STDMETHODV_(UINT, GetGlobalIndex)() const PURE;
+		STDMETHODV_(IClassInfo*, GetBaseClass)() PURE;
+		STDMETHODV_(const WCHAR*, GetName)() const PURE;
+		STDMETHODV_(bool, IsValidProperty)(const PropertyInfo* ppi) const PURE;
+		STDMETHODV_(bool, IsSubclassOf)(IClassInfo* pci) const PURE;
+		STDMETHODV_(void, Destroy)() PURE;
+		STDMETHODV_(HMODULE, GetModule)() const PURE;
+		STDMETHODV_(bool, IsGlobal)() const PURE;
+		STDMETHODV_(void, AddChild)() PURE;
+		STDMETHODV_(void, RemoveChild)() PURE;
+		STDMETHODV_(int, GetChildren)() const PURE;
+		STDMETHODV_(void, AssertPIZeroRef)() const PURE;
 	};
 
 	struct UILIB_API IDataEntry
@@ -197,25 +197,24 @@ namespace DirectUI
 	};
 }
 
-MIDL_INTERFACE("70650A6D-8987-4D93-9B1D-ACEB9D92F485")
-IDuiBehavior : IUnknown
+DECLARE_INTERFACE_IID_(IDuiBehavior, IUnknown, "70650A6D-8987-4D93-9B1D-ACEB9D92F485")
 {
-	virtual HRESULT STDMETHODCALLTYPE Init(DirectUI::Value* pvArgs) = 0;
-	virtual HRESULT STDMETHODCALLTYPE GetCallbackFilters(DuiBehaviorFilters::Flags* pFilters) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnAttach(DirectUI::Element* pe) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnDetach(DirectUI::Element* pe) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnHosted(DirectUI::Element* peFrom, DirectUI::Element* pe) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnUnHosted(DirectUI::Element* peFrom, DirectUI::Element* peOldHost) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnPropertyChanging(DirectUI::Element* peFrom, const DirectUI::PropertyInfo* ppi, int iIndex, DirectUI::Value* pvOld, DirectUI::Value* pvNew, BOOL* pfAllowProcess) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnPropertyChanged(DirectUI::Element* peFrom, const DirectUI::PropertyInfo* ppi, int iIndex, DirectUI::Value* pvOld, DirectUI::Value* pvNew) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnInput(DirectUI::Element* peFrom, DirectUI::InputEvent* pInput) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnKeyFocusMoved(DirectUI::Element* peFrom, DirectUI::Element* peOld, DirectUI::Element* peNew) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnEvent(DirectUI::Element* peFrom, DirectUI::Event* pEvent) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnDoLayout(DirectUI::Element* peFrom, int dWidth, int dHeight) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnUpdateDesiredSize(DirectUI::Element* peFrom, int dConstW, int dConstH, DirectUI::Surface* psrf, SIZE* pszDesired) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnPaint(DirectUI::Element* peFrom, HDC hdc, const RECT* prcGadgetPxl, const RECT* prcInvalidPxl) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnGetAdjacent(DirectUI::Element* peFrom, int iNavDir, const DirectUI::NavReference* pnr, DWORD dwFlags, DirectUI::Element** ppeTo) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnDisplayNodeCallback(DirectUI::Element* peFrom, EventMsg* pGMsg) = 0;
+	STDMETHOD(Init)(DirectUI::Value* pvArgs) PURE;
+	STDMETHOD(GetCallbackFilters)(DuiBehaviorFilters::Flags* pFilters) PURE;
+	STDMETHOD(OnAttach)(DirectUI::Element* pe) PURE;
+	STDMETHOD(OnDetach)(DirectUI::Element* pe) PURE;
+	STDMETHOD(OnHosted)(DirectUI::Element* peFrom, DirectUI::Element* pe) PURE;
+	STDMETHOD(OnUnHosted)(DirectUI::Element* peFrom, DirectUI::Element* peOldHost) PURE;
+	STDMETHOD(OnPropertyChanging)(DirectUI::Element* peFrom, const DirectUI::PropertyInfo* ppi, int iIndex, DirectUI::Value* pvOld, DirectUI::Value* pvNew, BOOL* pfAllowProcess) PURE;
+	STDMETHOD(OnPropertyChanged)(DirectUI::Element* peFrom, const DirectUI::PropertyInfo* ppi, int iIndex, DirectUI::Value* pvOld, DirectUI::Value* pvNew) PURE;
+	STDMETHOD(OnInput)(DirectUI::Element* peFrom, DirectUI::InputEvent* pInput) PURE;
+	STDMETHOD(OnKeyFocusMoved)(DirectUI::Element* peFrom, DirectUI::Element* peOld, DirectUI::Element* peNew) PURE;
+	STDMETHOD(OnEvent)(DirectUI::Element* peFrom, DirectUI::Event* pEvent) PURE;
+	STDMETHOD(OnDoLayout)(DirectUI::Element* peFrom, int dWidth, int dHeight) PURE;
+	STDMETHOD(OnUpdateDesiredSize)(DirectUI::Element* peFrom, int dConstW, int dConstH, DirectUI::Surface* psrf, SIZE* pszDesired) PURE;
+	STDMETHOD(OnPaint)(DirectUI::Element* peFrom, HDC hdc, const RECT* prcGadgetPxl, const RECT* prcInvalidPxl) PURE;
+	STDMETHOD(OnGetAdjacent)(DirectUI::Element* peFrom, int iNavDir, const DirectUI::NavReference* pnr, DWORD dwFlags, DirectUI::Element** ppeTo) PURE;
+	STDMETHOD(OnDisplayNodeCallback)(DirectUI::Element* peFrom, EventMsg* pGMsg) PURE;
 };
 
 class IDuiBehaviorImpl : public IDuiBehavior
@@ -237,11 +236,10 @@ class IDuiBehaviorImpl : public IDuiBehavior
 	STDMETHODIMP OnDisplayNodeCallback(DirectUI::Element* peFrom, EventMsg* pGMsg) override;
 };
 
-MIDL_INTERFACE("2D97ED04-C05F-4302-9462-8A9EC79F1464")
-ITouchTooltipEventSink : IUnknown
+DECLARE_INTERFACE_IID_(ITouchTooltipEventSink, IUnknown, "2D97ED04-C05F-4302-9462-8A9EC79F1464")
 {
-	virtual HRESULT STDMETHODCALLTYPE OnTooltipTimerFired(DirectUI::TOUCHTOOLTIP_INPUT touchTooltipInput, DirectUI::TOUCHTOOLTIP_TYPE touchTooltipType, DirectUI::TOUCHTOOLTIP_DELAY touchTooltipDelay) = 0;
-	virtual HRESULT STDMETHODCALLTYPE OnTooltipHidden() = 0;
+	STDMETHOD(OnTooltipTimerFired)(DirectUI::TOUCHTOOLTIP_INPUT touchTooltipInput, DirectUI::TOUCHTOOLTIP_TYPE touchTooltipType, DirectUI::TOUCHTOOLTIP_DELAY touchTooltipDelay) PURE;
+	STDMETHOD(OnTooltipHidden)() PURE;
 };
 
 MIDL_INTERFACE("13450B2E-1819-49A5-B997-800D02CC0980")
@@ -264,13 +262,12 @@ ITouchTooltip : IUnknown
 	virtual HRESULT STDMETHODCALLTYPE Unadvise() = 0;
 };
 
-MIDL_INTERFACE("C1F02EF9-E2EB-47B2-BF2C-EEF7449FC1F6")
-IDuiBinaryReader : IUnknown
+DECLARE_INTERFACE_IID_(IDuiBinaryReader, IUnknown, "C1F02EF9-E2EB-47B2-BF2C-EEF7449FC1F6")
 {
-	virtual HRESULT STDMETHODCALLTYPE GetResource(UINT index, const WCHAR** ppszResid) = 0;
-	virtual HRESULT STDMETHODCALLTYPE SeekToResource(const WCHAR* pszResid) = 0;
-	virtual HRESULT STDMETHODCALLTYPE PushState() = 0;
-	virtual HRESULT STDMETHODCALLTYPE PopState() = 0;
+	STDMETHODV_(HRESULT, GetResource)(UINT index, LPCWSTR* ppszResid) PURE;
+	STDMETHODV_(HRESULT, SeekToResource)(LPCWSTR pszResid) PURE;
+	STDMETHODV_(HRESULT, PushState)() PURE;
+	STDMETHODV_(HRESULT, PopState)() PURE;
 };
 
 MIDL_INTERFACE("B97EE329-6B9C-471F-A52A-3F99D814F17A")

@@ -5646,22 +5646,8 @@ void XResourceProvider::DestroyCP()
 {
 }
 
-PText::PText(PText const&)
-{
-}
-
-PText::PText(void)
-{
-}
-
 PText::~PText(void)
 {
-}
-
-PText& PText::operator=(PText const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long PText::Create(Element*, unsigned long*, Element**)
@@ -7239,24 +7225,6 @@ long TaskPage::CreateParserCP(DUIXmlParser**)
 
 void TaskPage::DestroyCP(void)
 {
-}
-
-TextGraphic::TextGraphic(TextGraphic const&)
-{
-}
-
-TextGraphic::TextGraphic()
-{
-}
-
-TextGraphic::~TextGraphic(void)
-{
-}
-
-TextGraphic& TextGraphic::operator=(TextGraphic const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long TextGraphic::Create(Element*, unsigned long*, Element**)

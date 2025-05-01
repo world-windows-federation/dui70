@@ -172,6 +172,8 @@
 #include "SemanticZoomToggle.h"
 #include "ElementProviderManager.h"
 
+#include "ModernProgressRing.h"
+
 //UnknownElement
 
 UILIB_API void WINAPI DumpDuiTree(DirectUI::Element* pe, BOOL fShowProperties);

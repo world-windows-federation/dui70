@@ -182,6 +182,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	// uncomment to update class definitions
 	// HookClassFactoryRegister();
 	THROW_IF_FAILED(RegisterAllControls());
+	THROW_IF_FAILED(RegisterPVLBehaviorFactory());
 
 	HMONITOR hMonitor = MonitorFromWindow(nullptr, MONITOR_DEFAULTTOPRIMARY);
 	MONITORINFO mi = { sizeof(mi) };
@@ -209,7 +210,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	pParser->SetParseErrorCallback([](const WCHAR* pszError, const WCHAR* pszToken, int dLine, void* pContext)
 	{
-		MessageBox(nullptr, std::format(L"err: {}; {}; {}\n", pszError, pszToken, dLine).c_str(), L"Error while parsing DirectUI", 0);
+		MessageBox(nullptr, std::format(L"Error: {}; {}; {}\n", pszError, pszToken, dLine).c_str(), L"Error while parsing DirectUI", 0);
 		DebugBreak();
 	}, nullptr);
 

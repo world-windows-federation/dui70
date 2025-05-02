@@ -4,6 +4,7 @@ typedef const DirectUI::PropertyInfo* (WINAPI *PropertyProcT)();
 
 namespace DirectUI
 {
+	class StyleSheet;
 	int GetPixelHelper(Element* pe, const PropertyInfo* ppi, bool fUseDefault = false);
 
 	struct UpdateCache

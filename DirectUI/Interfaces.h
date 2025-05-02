@@ -112,26 +112,6 @@ namespace DirectUI
 		virtual UINT GetSize() = 0;
 		virtual IDataEntry* GetEntry(UINT) = 0;
 	};
-
-	struct Cond;
-	struct Decl;
-	struct DepRecs;
-
-	class UILIB_API StyleSheet
-	{
-	public:
-		static HRESULT WINAPI Create(StyleSheet** ppSheet);
-
-		virtual void Destroy() = 0;
-		virtual HRESULT AddRule(const WCHAR* pszSheetResid, IClassInfo* pci, Cond* pConds, Decl* pDecls) = 0;
-		virtual void MakeImmutable() = 0;
-		virtual Value* GetSheetValue(Element* pe, const PropertyInfo* ppi) = 0;
-		virtual void GetSheetDependencies(Element* pe, const PropertyInfo* ppi, DepRecs* pdr, DeferCycle* pdc, HRESULT* phr) = 0;
-		virtual void GetSheetScope(Element* pe, DepRecs* pdr, DeferCycle* pdc, HRESULT* phr) = 0;
-		virtual const WCHAR* GetSheetResid() = 0;
-		virtual HRESULT SetSheetResid(const WCHAR* pszResid) = 0;
-		virtual HRESULT SetBaseSheet(Value* pvSheet, UINT sheetId) = 0;
-	};
 }
 
 class CSafeElementListenerCB : public DirectUI::IElementListener
@@ -245,10 +225,10 @@ ITouchTooltip : IUnknown
 
 DECLARE_INTERFACE_IID_(IDuiBinaryReader, IUnknown, "C1F02EF9-E2EB-47B2-BF2C-EEF7449FC1F6")
 {
-	STDMETHODV_(HRESULT, GetResource)(UINT index, LPCWSTR* ppszResid) PURE;
-	STDMETHODV_(HRESULT, SeekToResource)(LPCWSTR pszResid) PURE;
-	STDMETHODV_(HRESULT, PushState)() PURE;
-	STDMETHODV_(HRESULT, PopState)() PURE;
+	STDMETHOD_(HRESULT, GetResource)(UINT index, LPCWSTR* ppszResid) PURE;
+	STDMETHOD_(HRESULT, SeekToResource)(LPCWSTR pszResid) PURE;
+	STDMETHOD_(HRESULT, PushState)() PURE;
+	STDMETHOD_(HRESULT, PopState)() PURE;
 };
 
 MIDL_INTERFACE("B97EE329-6B9C-471F-A52A-3F99D814F17A")

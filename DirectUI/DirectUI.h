@@ -57,6 +57,7 @@
 #include "Value.h"
 #include "ValuePtr.h"
 #include "Parser.h"
+#include "Sheet.h"
 #include "Browser.h"
 #include "Bind.h"
 #include "AnimationStrip.h"

@@ -6604,22 +6604,8 @@ void SelectionItemProxy::Init(Element*)
 {
 }
 
-Selector::Selector(Selector const&)
-{
-}
-
 Selector::Selector(void)
 {
-}
-
-Selector::~Selector(void)
-{
-}
-
-Selector& Selector::operator=(Selector const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long Selector::Create(Element*, unsigned long*, Element**)
@@ -6693,23 +6679,9 @@ long Selector::SetSelection(Element*)
 }
 
 IClassInfo* Selector::s_pClassInfo;
-
-SelectorNoDefault::SelectorNoDefault(SelectorNoDefault const&)
-{
-}
-
+	
 SelectorNoDefault::SelectorNoDefault(void)
 {
-}
-
-SelectorNoDefault::~SelectorNoDefault(void)
-{
-}
-
-SelectorNoDefault& SelectorNoDefault::operator=(SelectorNoDefault const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long SelectorNoDefault::Create(Element*, unsigned long*, Element**)

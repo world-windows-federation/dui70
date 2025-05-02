@@ -299,6 +299,7 @@
     <ClInclude Include="PVLTrigger.h" />
     <ClInclude Include="RadioButtonGlyph.h" />
     <ClInclude Include="RangeValue.h" />
+    <ClInclude Include="RefcountBase.h" />
     <ClInclude Include="RefPointElement.h" />
     <ClInclude Include="RepeatButton.h" />
     <ClInclude Include="Repeater.h" />

@@ -46,6 +46,7 @@
 #include "AutoVariant.h"
 #include "SafeElementPtr.h"
 #include "SimpleTimer.h"
+#include "RefcountBase.h"
 
 #include "Primitives.h"
 #include "DuiProxy.h"

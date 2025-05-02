@@ -1,5 +1,5 @@
 #pragma once
-#include "RangeValue.h"
+#include "RangeValueProvider.h"
 
 namespace DirectUI
 {

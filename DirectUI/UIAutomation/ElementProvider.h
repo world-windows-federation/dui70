@@ -64,7 +64,7 @@ namespace DirectUI
 		Element* _pe;
 		InvokeHelper* _pih;
 		IUnknown* _patternProviders[Schema::PatternCount];
-		RTL_CRITICAL_SECTION _cs;
+		CRITICAL_SECTION _cs;
 		bool _fDeleteCS;
 
 	private:

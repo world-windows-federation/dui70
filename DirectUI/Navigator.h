@@ -1,5 +1,5 @@
 #pragma once
-#include "SelectionItemProvider.h"
+#include "UIAutomation\SelectionItemProvider.h"
 
 namespace DirectUI
 {

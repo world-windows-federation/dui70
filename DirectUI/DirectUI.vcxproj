@@ -207,22 +207,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Accessibility.h" />
-    <ClInclude Include="AccessibleButton.h" />
-    <ClInclude Include="AnimationStrip.h" />
-    <ClInclude Include="AutoButton.h" />
     <ClInclude Include="AutoLock.h" />
     <ClInclude Include="AutoVariant.h" />
     <ClInclude Include="AutoThread.h" />
     <ClInclude Include="Base.h" />
-    <ClInclude Include="BehaviorEngine.h" />
-    <ClInclude Include="BehaviorEngineHelper.h" />
     <ClInclude Include="Bind.h" />
-    <ClInclude Include="BorderLayout.h" />
-    <ClInclude Include="Browser.h" />
     <ClInclude Include="BrowserSelection.h" />
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="CallstackTracker.h" />
     <ClInclude Include="CAVI.h" />
     <ClInclude Include="CBase.h" />
     <ClInclude Include="CBaseCheckRadioButton.h" />
@@ -236,141 +226,88 @@
     <ClInclude Include="CCommandLink.h" />
     <ClInclude Include="CHScrollBar.h" />
     <ClInclude Include="CListBox.h" />
-    <ClInclude Include="Combobox.h" />
     <ClInclude Include="ContextMenuBehavior.h" />
+    <ClInclude Include="Control\AnimationStrip.h" />
+    <ClInclude Include="Core\BehaviorEngine.h" />
     <ClInclude Include="CProgressBar.h" />
     <ClInclude Include="CPushButton.h" />
     <ClInclude Include="CRadioButton.h" />
     <ClInclude Include="CTrackBar.h" />
     <ClInclude Include="CTreeView.h" />
     <ClInclude Include="CVScrollBar.h" />
-    <ClInclude Include="DialogElement.h" />
     <ClInclude Include="DirectUI.h" />
     <ClInclude Include="DuiAnimation.h" />
     <ClInclude Include="DuiNavigate.h" />
     <ClInclude Include="DuiProxy.h" />
-    <ClInclude Include="Edit.h" />
-    <ClInclude Include="Element.h" />
-    <ClInclude Include="ElementProvider.h" />
     <ClInclude Include="ElementProviderManager.h" />
-    <ClInclude Include="ElementWithHWND.h" />
     <ClInclude Include="ElementWithProxy.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventManager.h" />
-    <ClInclude Include="Expandable.h" />
-    <ClInclude Include="ExpandCollapseProvider.h" />
     <ClInclude Include="Expando.h" />
     <ClInclude Include="ExpandoButtonGlyph.h" />
-    <ClInclude Include="FillLayout.h" />
-    <ClInclude Include="FlowLayout.h" />
-    <ClInclude Include="FontCache.h" />
     <ClInclude Include="FontCheckOut.h" />
-    <ClInclude Include="GridItemProvider.h" />
-    <ClInclude Include="GridLayout.h" />
-    <ClInclude Include="GridProvider.h" />
-    <ClInclude Include="Host.h" />
     <ClInclude Include="HWNDElement.h" />
-    <ClInclude Include="HWNDElementProvider.h" />
-    <ClInclude Include="HWNDHost.h" />
     <ClInclude Include="Interfaces.h" />
-    <ClInclude Include="InvokeProvider.h" />
-    <ClInclude Include="ItemList.h" />
-    <ClInclude Include="Layout.h" />
-    <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="Macro.h" />
-    <ClInclude Include="ManipulationHelper.h" />
-    <ClInclude Include="Misc.h" />
-    <ClInclude Include="ModernProgressBar.h" />
-    <ClInclude Include="ModernProgressRing.h" />
+    <ClInclude Include="Layout\BorderLayout.h" />
+    <ClInclude Include="Layout\FillLayout.h" />
+    <ClInclude Include="Layout\FlowLayout.h" />
+    <ClInclude Include="Layout\GridLayout.h" />
+    <ClInclude Include="Layout\NineGridLayout.h" />
+    <ClInclude Include="Layout\RowLayout.h" />
+    <ClInclude Include="Layout\ShellBorderLayout.h" />
+    <ClInclude Include="Layout\TableLayout.h" />
+    <ClInclude Include="Layout\VerticalFlowLayout.h" />
     <ClInclude Include="Movie.h" />
-    <ClInclude Include="NativeHWNDHost.h" />
     <ClInclude Include="Navigator.h" />
     <ClInclude Include="NavScoring.h" />
-    <ClInclude Include="NineGridLayout.h" />
     <ClInclude Include="Page.h" />
-    <ClInclude Include="Parser.h" />
-    <ClInclude Include="PatternProvider.h" />
+    <ClInclude Include="Parser\Parser.h" />
     <ClInclude Include="Primitives.h" />
-    <ClInclude Include="Progress.h" />
     <ClInclude Include="PromptText.h" />
     <ClInclude Include="PropNotify.h" />
-    <ClInclude Include="Provider.h" />
     <ClInclude Include="PText.h" />
-    <ClInclude Include="PushButton.h" />
     <ClInclude Include="PVLLauncherTrigger.h" />
     <ClInclude Include="PVLTrigger.h" />
     <ClInclude Include="RadioButtonGlyph.h" />
-    <ClInclude Include="RangeValueProvider.h" />
-    <ClInclude Include="RefcountBase.h" />
-    <ClInclude Include="RefPointElement.h" />
-    <ClInclude Include="RepeatButton.h" />
     <ClInclude Include="Repeater.h" />
-    <ClInclude Include="RichText.h" />
-    <ClInclude Include="RowLayout.h" />
-    <ClInclude Include="ScrollBar.h" />
-    <ClInclude Include="ScrollItemProvider.h" />
-    <ClInclude Include="ScrollProvider.h" />
-    <ClInclude Include="ScrollViewer.h" />
-    <ClInclude Include="SelectionItemProvider.h" />
-    <ClInclude Include="SelectionProvider.h" />
-    <ClInclude Include="Selector.h" />
     <ClInclude Include="SelectorNoDefault.h" />
     <ClInclude Include="SelectorSelection.h" />
     <ClInclude Include="SelectorSelectionItem.h" />
-    <ClInclude Include="SemanticController.h" />
     <ClInclude Include="SemanticZoomToggle.h" />
-    <ClInclude Include="Sheet.h" />
     <ClInclude Include="StyledScrollViewer.h" />
-    <ClInclude Include="TableItemProvider.h" />
-    <ClInclude Include="TableLayout.h" />
-    <ClInclude Include="TableProvider.h" />
     <ClInclude Include="TaskPage.h" />
     <ClInclude Include="TextGraphic.h" />
-    <ClInclude Include="Thumb.h" />
-    <ClInclude Include="ToggleProvider.h" />
-    <ClInclude Include="TouchButton.h" />
     <ClInclude Include="TouchCheckBox.h" />
-    <ClInclude Include="TouchEdit2.h" />
-    <ClInclude Include="TouchEditBase.h" />
-    <ClInclude Include="TouchEditInner.h" />
-    <ClInclude Include="TouchScrollBar.h" />
-    <ClInclude Include="TouchScrollViewer.h" />
-    <ClInclude Include="TouchSelect.h" />
-    <ClInclude Include="TouchSelectProvider.h" />
-    <ClInclude Include="TouchSwitch.h" />
-    <ClInclude Include="TouchTooltip.h" />
     <ClInclude Include="Types.h" />
-    <ClInclude Include="UiaSchema.h" />
-    <ClInclude Include="UnknownElement.h" />
-    <ClInclude Include="Value.h" />
-    <ClInclude Include="ValueProvider.h" />
+    <ClInclude Include="UIAutomation\ElementProvider.h" />
+    <ClInclude Include="UIAutomation\ExpandCollapseProvider.h" />
+    <ClInclude Include="UIAutomation\GridItemProvider.h" />
+    <ClInclude Include="UIAutomation\GridProvider.h" />
+    <ClInclude Include="UIAutomation\HWNDElementProvider.h" />
+    <ClInclude Include="UIAutomation\InvokeProvider.h" />
+    <ClInclude Include="UIAutomation\PatternProvider.h" />
+    <ClInclude Include="UIAutomation\RangeValueProvider.h" />
+    <ClInclude Include="UIAutomation\ScrollItemProvider.h" />
+    <ClInclude Include="UIAutomation\ScrollProvider.h" />
+    <ClInclude Include="UIAutomation\SelectionItemProvider.h" />
+    <ClInclude Include="UIAutomation\SelectionProvider.h" />
+    <ClInclude Include="UIAutomation\TableItemProvider.h" />
+    <ClInclude Include="UIAutomation\TableProvider.h" />
+    <ClInclude Include="UIAutomation\ToggleProvider.h" />
+    <ClInclude Include="UIAutomation\ValueProvider.h" />
     <ClInclude Include="ValuePtr.h" />
-    <ClInclude Include="VerticalFlowLayout.h" />
-    <ClInclude Include="Viewer.h" />
     <ClInclude Include="XBaby.h" />
-    <ClInclude Include="XElement.h" />
     <ClInclude Include="XProvider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectUI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\README.md" />
     <None Include="DirectUI.def" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="msdef.txt" />
     <Text Include="msdef64.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ShellBorderLayout.h" />
-    <Content Include="TouchHWNDElement.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DUser\DUser.vcxproj">
-      <Project>{11541c39-bde1-4aa4-8fc3-d1c209267802}</Project>
-      <Name>DUser</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="\" />

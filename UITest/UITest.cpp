@@ -171,10 +171,15 @@ static void CALLBACK WilLogCallback(wil::FailureInfo const &failure) noexcept
 
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+	if (WINVER >= 15063)
+	{
+		SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+	}
+	SetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);
+
 	wil::SetResultLoggingCallback(WilLogCallback);
 
-	CoInitializeEx(nullptr, 0);
+	THROW_IF_FAILED(CoInitializeEx(nullptr, 0));
 
 	THROW_IF_FAILED(InitProcessPriv(14, nullptr, true, true, true));
 	THROW_IF_FAILED(InitThread(TSM_IMMERSIVE));
@@ -210,7 +215,9 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	pParser->SetParseErrorCallback([](const WCHAR* pszError, const WCHAR* pszToken, int dLine, void* pContext)
 	{
-		MessageBox(nullptr, std::format(L"Error: {}; {}; {}\n", pszError, pszToken, dLine).c_str(), L"Error while parsing DirectUI", 0);
+		WCHAR szParserError[1024];
+		StringCchPrintfW(szParserError, ARRAYSIZE(szParserError), L"%s '%s' (%d)", pszError, pszToken, dLine);
+		MessageBox(nullptr, szParserError, L"Error while parsing DirectUI", MB_ICONERROR);
 		DebugBreak();
 	}, nullptr);
 

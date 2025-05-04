@@ -30,6 +30,11 @@ namespace DirectUI
 		struct ListenerData;
 	}
 
+	class DeferCycle
+	{
+		
+	};
+
 	class DuiAccessible;
 
 	typedef int (__cdecl *CompareCallback)(const void*, const void*);

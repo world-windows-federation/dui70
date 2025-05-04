@@ -4,6 +4,5 @@ namespace DirectUI
 {
 	class PromptText : public RichText
 	{
-		
 	};
 }

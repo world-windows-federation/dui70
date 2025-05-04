@@ -26,6 +26,7 @@
 
 #include "Types.h"
 #include "Extensions\Misc.h"
+#include "Base\Surface.h"
 #include "Event.h"
 #include "Interfaces.h"
 
@@ -55,10 +56,11 @@
 #include "UIAutomation\ElementProvider.h"
 #include "UIAutomation\PatternProvider.h"
 #include "PropNotify.h"
+#include "Base\Expression.h"
 #include "Core\Value.h"
 #include "UIAutomation\ValueProvider.h"
 #include "ValuePtr.h"
-#include "Parser\Parser.h"
+#include "Parser\XmlParser.h"
 #include "Core\Sheet.h"
 #include "Extensions\Browser.h"
 #include "Bind.h"
@@ -188,7 +190,7 @@ extern "C" UILIB_API HRESULT WINAPI DuiCreateObject(REFCLSID rclsid, REFIID riid
 #include "PVLLauncherTrigger.h"
 #include "Core\BehaviorEngine.h"
 #include "Core\BehaviorEngineHelper.h"
-#include "ContextMenuBehavior.h"
+#include "StockBehaviors\ContextMenuBehavior.h"
 
 namespace DirectUI
 {

@@ -211,8 +211,10 @@
     <ClInclude Include="AutoVariant.h" />
     <ClInclude Include="AutoThread.h" />
     <ClInclude Include="Base.h" />
+    <ClInclude Include="Base\Expression.h" />
     <ClInclude Include="Base\FontCache.h" />
     <ClInclude Include="Base\LinkedList.h" />
+    <ClInclude Include="Base\Surface.h" />
     <ClInclude Include="Bind.h" />
     <ClInclude Include="BrowserSelection.h" />
     <ClInclude Include="CAVI.h" />
@@ -228,7 +230,6 @@
     <ClInclude Include="CCommandLink.h" />
     <ClInclude Include="CHScrollBar.h" />
     <ClInclude Include="CListBox.h" />
-    <ClInclude Include="ContextMenuBehavior.h" />
     <ClInclude Include="Control\AnimationStrip.h" />
     <ClInclude Include="Control\Button.h" />
     <ClInclude Include="Control\Combobox.h" />
@@ -313,7 +314,7 @@
     <ClInclude Include="Navigator.h" />
     <ClInclude Include="NavScoring.h" />
     <ClInclude Include="Page.h" />
-    <ClInclude Include="Parser\Parser.h" />
+    <ClInclude Include="Parser\XmlParser.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="PromptText.h" />
     <ClInclude Include="PropNotify.h" />
@@ -326,6 +327,7 @@
     <ClInclude Include="SelectorSelection.h" />
     <ClInclude Include="SelectorSelectionItem.h" />
     <ClInclude Include="SemanticZoomToggle.h" />
+    <ClInclude Include="StockBehaviors\ContextMenuBehavior.h" />
     <ClInclude Include="StyledScrollViewer.h" />
     <ClInclude Include="TaskPage.h" />
     <ClInclude Include="TextGraphic.h" />

@@ -162,9 +162,6 @@
     <ClInclude Include="ClassInfo.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
-    <ClInclude Include="ContextMenuBehavior.h">
-      <Filter>Header Files\DirectUI</Filter>
-    </ClInclude>
     <ClInclude Include="DuiAnimation.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
@@ -417,9 +414,6 @@
     <ClInclude Include="Control\Progress.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
-    <ClInclude Include="Parser\Parser.h">
-      <Filter>Header Files\DirectUI</Filter>
-    </ClInclude>
     <ClInclude Include="UIAutomation\PatternProvider.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
@@ -451,6 +445,18 @@
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
     <ClInclude Include="AutoVariant.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="StockBehaviors\ContextMenuBehavior.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Expression.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Surface.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\XmlParser.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
   </ItemGroup>

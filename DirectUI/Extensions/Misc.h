@@ -799,48 +799,7 @@ namespace DirectUI
 			return hr;
 		}
 	};
-
-	class UILIB_API Expression
-	{
-	public:
-		Expression() = delete;
-		Expression(const Expression&) = delete;
-		~Expression() = delete;
-
-		Expression& operator=(Expression const&);
-		void Destroy();
-	};
 	
-	class UILIB_API Surface
-	{
-	public:
-		enum EType
-		{
-		};
-
-		Surface(Surface const&);
-		Surface();
-		virtual ~Surface();
-		Surface& operator=(Surface const&);
-
-		static enum EType __stdcall GetSurfaceType(unsigned int);
-		static unsigned int __stdcall GetSurfaceType(enum EType);
-
-		virtual void T1() = 0;
-	};
-
-	class UILIB_API DCSurface
-	{
-	public:
-		DCSurface(DCSurface const&);
-		DCSurface(HDC);
-		virtual ~DCSurface();
-		DCSurface& operator=(DCSurface const&);
-
-		HDC GetHDC();
-		virtual Surface::EType GetType() const;
-	};
-
 	enum DUSER_MSG_FLAG : UINT32
 	{
 		GMF_DIRECT = 0x00000000, // OnMessage
@@ -976,9 +935,5 @@ namespace DirectUI
 	class UiaArray
 	{
 	public:
-	};
-
-	class DeferCycle
-	{
 	};
 } // namespace DirectUI

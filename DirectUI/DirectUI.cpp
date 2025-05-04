@@ -4697,9 +4697,6 @@ void Expression::Destroy(void)
 {
 }
 
-Surface::Surface(Surface const&)
-{
-}
 
 Surface::Surface(void)
 {
@@ -4707,12 +4704,6 @@ Surface::Surface(void)
 
 Surface::~Surface(void)
 {
-}
-
-Surface& Surface::operator=(Surface const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 Surface::EType Surface::GetSurfaceType(unsigned int)
@@ -4725,22 +4716,12 @@ unsigned int Surface::GetSurfaceType(Surface::EType)
 	return 0;
 }
 
-DCSurface::DCSurface(DCSurface const&)
-{
-}
-
 DCSurface::DCSurface(HDC)
 {
 }
 
 DCSurface::~DCSurface(void)
 {
-}
-
-DCSurface& DCSurface::operator=(DCSurface const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 HDC DCSurface::GetHDC(void)

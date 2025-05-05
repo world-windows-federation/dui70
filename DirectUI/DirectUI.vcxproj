@@ -84,25 +84,31 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <TargetName>dui70</TargetName>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\Dui\</OutDir>
+    <OutDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -271,7 +277,9 @@
     <ClInclude Include="Core\Element.h" />
     <ClInclude Include="Core\Host.h" />
     <ClInclude Include="Core\Layout.h" />
+    <ClInclude Include="Core\Navigation.h" />
     <ClInclude Include="Core\Sheet.h" />
+    <ClInclude Include="Core\Thread.h" />
     <ClInclude Include="Core\UnknownElement.h" />
     <ClInclude Include="Core\Value.h" />
     <ClInclude Include="CProgressBar.h" />
@@ -282,7 +290,6 @@
     <ClInclude Include="CVScrollBar.h" />
     <ClInclude Include="DirectUI.h" />
     <ClInclude Include="DuiAnimation.h" />
-    <ClInclude Include="DuiNavigate.h" />
     <ClInclude Include="DuiProxy.h" />
     <ClInclude Include="ElementProviderManager.h" />
     <ClInclude Include="ElementWithProxy.h" />

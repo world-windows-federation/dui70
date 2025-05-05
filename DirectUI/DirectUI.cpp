@@ -3944,37 +3944,16 @@ bool ExpandoButtonGlyph::OnReceivedDialogFocus(DialogElement*)
 
 IClassInfo* ExpandoButtonGlyph::s_pClassInfo;
 
-FontCache::FontCache(FontCache const&)
-{
-}
-
-FontCache::FontCache(void)
-{
-}
-
-FontCache& FontCache::operator=(FontCache const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long FontCache::InitProcess(void)
-{
-	return 0;
-}
-
-long FontCache::InitThread(void)
-{
-	return 0;
-}
-
-void FontCache::UninitProcess(void)
-{
-}
-
-void FontCache::UninitThread(void)
-{
-}
+//~ Begin DirectUI::FontCache Class
+HRESULT FontCache::InitProcess() STUB_ZERO
+HRESULT FontCache::InitThread() STUB_ZERO
+void FontCache::UninitProcess() STUB_VOID
+void FontCache::UninitThread() STUB_VOID
+HFONT FontCache::CheckOutFont(LPCWSTR szFamily, int dSize, int dWeight, int dStyle, int dQuality, int dAngle) STUB_ZERO
+void FontCache::CheckInFont() STUB_VOID
+HBRUSH FontCache::AcquireBrush(HBITMAP hbmp, HBRUSH hbrush) STUB_ZERO
+void FontCache::ReleaseBrush() STUB_VOID
+//~ End DirectUI::FontCache Class
 
 FontCheckOut::FontCheckOut(Element*, HDC)
 {
@@ -4734,26 +4713,10 @@ Surface::EType DCSurface::GetType(void) const
 	return Surface::EType();
 }
 
-ResourceModuleHandles::ResourceModuleHandles(void)
-{
-}
-
-ResourceModuleHandles::~ResourceModuleHandles(void)
-{
-}
-
-ResourceModuleHandles& ResourceModuleHandles::operator=(ResourceModuleHandles const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long ResourceModuleHandles::GetHandle(unsigned short const*, HINSTANCE*)
-{
-	return 0;
-}
-
-long volatile ResourceModuleHandles::g_cRefCount;
+ResourceModuleHandles::ResourceModuleHandles(void) STUB_VOID;
+ResourceModuleHandles::~ResourceModuleHandles(void) STUB_VOID;
+HRESULT ResourceModuleHandles::GetHandle(LPCWSTR pszFile, HMODULE* phModule) STUB_ZERO;
+long volatile ResourceModuleHandles::g_cRefCount STUB_VOID;
 
 Movie::Movie(Movie const&)
 {

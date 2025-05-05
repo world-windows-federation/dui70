@@ -60,6 +60,7 @@
 #include "Core\Value.h"
 #include "UIAutomation\ValueProvider.h"
 #include "ValuePtr.h"
+#include "Core\Thread.h"
 #include "Parser\XmlParser.h"
 #include "Core\Sheet.h"
 #include "Extensions\Browser.h"
@@ -72,7 +73,6 @@
 #include "Extensions\AccessibleButton.h"
 #include "Extensions\AutoButton.h"
 #include "Extensions\PushButton.h"
-#include "Event.h"
 #include "Core\Host.h"
 #include "Core\Accessibility.h"
 #include "Provider.h"
@@ -103,7 +103,7 @@
 #include "Control\Expandable.h"
 #include "Clipper.h"
 #include "Control\Combobox.h"
-#include "DuiNavigate.h"
+#include "Core\Navigation.h"
 #include "Control\Edit.h"
 #include "EventManager.h"
 #include "UIAutomation\ExpandCollapseProvider.h"
@@ -113,7 +113,6 @@
 #include "FontCheckOut.h"
 #include "UIAutomation\GridItemProvider.h"
 #include "UIAutomation\GridProvider.h"
-#include "HWNDElement.h"
 #include "UIAutomation\HWNDElementProvider.h"
 #include "UIAutomation\InvokeProvider.h"
 #include "Base\LinkedList.h"
@@ -156,6 +155,7 @@
 #include "Control\SemanticController.h"
 #include "Control\ManipulationHelper.h"
 #include "PromptText.h"
+//#include "Core\IDuiLauncherAnimationTriggers.h"
 #include "DuiAnimation.h"
 
 // Touch elements
@@ -184,6 +184,7 @@
 
 UILIB_API void WINAPI DumpDuiTree(DirectUI::Element* pe, BOOL fShowProperties);
 UILIB_API void WINAPI DumpDuiProperties(DirectUI::Element* pe);
+
 extern "C" UILIB_API HRESULT WINAPI DuiCreateObject(REFCLSID rclsid, REFIID riid, void** ppv);
 
 #include "PVLTrigger.h"

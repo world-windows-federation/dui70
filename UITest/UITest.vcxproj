@@ -83,24 +83,30 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\$(BaseIntermediateOutputPath)</IntDir>
   </PropertyGroup>
   <PropertyGroup>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\UITest\</OutDir>
+    <OutDir>$(SolutionDir)build\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <LibraryPath>$(OutDir)dui;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

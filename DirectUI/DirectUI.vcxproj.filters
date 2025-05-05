@@ -99,9 +99,6 @@
     <ClInclude Include="Clipper.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
-    <ClInclude Include="DuiNavigate.h">
-      <Filter>Header Files\DirectUI</Filter>
-    </ClInclude>
     <ClInclude Include="EventManager.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
@@ -458,6 +455,12 @@
     </ClInclude>
     <ClInclude Include="Parser\XmlParser.h">
       <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Thread.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Navigation.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

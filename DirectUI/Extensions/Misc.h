@@ -919,18 +919,6 @@ namespace DirectUI
 		AS_PAN = 3,
 	};
 	
-	class UILIB_API ResourceModuleHandles
-	{
-	public:
-		ResourceModuleHandles();
-		~ResourceModuleHandles();
-		ResourceModuleHandles& operator=(ResourceModuleHandles const&);
-		long GetHandle(unsigned short const*, HINSTANCE*);
-
-	private:
-		static long volatile g_cRefCount;
-	};
-
 	template <class T>
 	class UiaArray
 	{

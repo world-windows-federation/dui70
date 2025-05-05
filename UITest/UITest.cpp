@@ -241,7 +241,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	{
 		if (pEvent->uidType == TouchButton::Click)
 		{
-			MessageBoxW(pHost->GetHWND(), L"TouchButton clicked!", L"UITest", 0);
+			MessageBoxW(pHost->GetHWND(), L"TouchButton clicked!", L"UITest", MB_OK);
 		}
 	});
 

@@ -5,18 +5,14 @@ namespace DirectUI
 	class UILIB_API FontCache
 	{
 	public:
-		FontCache(FontCache const &);
-		FontCache(void);
-		FontCache & operator=(FontCache const &);
+		static HRESULT WINAPI InitProcess();
+		static HRESULT WINAPI InitThread();
+		static void WINAPI UninitProcess();
+		static void WINAPI UninitThread();
 
-		static long __stdcall InitProcess(void);
-		static long __stdcall InitThread(void);
-		static void __stdcall UninitProcess(void);
-		static void __stdcall UninitThread(void);
-
-		virtual void T1() = 0;
-		virtual void T2() = 0;
-		virtual void T3() = 0;
-		virtual void T4() = 0;
+		virtual HFONT CheckOutFont(LPCWSTR szFamily, int dSize, int dWeight, int dStyle, int dQuality, int dAngle);
+		virtual void CheckInFont();
+		virtual HBRUSH AcquireBrush(HBITMAP hbmp, HBRUSH hbrush);
+		virtual void ReleaseBrush();
 	};
 }

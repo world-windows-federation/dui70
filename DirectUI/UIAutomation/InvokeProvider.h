@@ -2,77 +2,36 @@
 
 namespace DirectUI
 {
-	class UILIB_API InvokeHelper : public RefcountBase
-	{
-	public:
-		struct InvokeArgs
-		{
-
-		};
-
-
-		InvokeHelper(void);
-		InvokeHelper(const InvokeHelper&) = delete;
-		InvokeHelper&operator=(const InvokeHelper&) = delete;
-		virtual ~InvokeHelper(void);
-
-		long DoInvoke(int, ElementProvider *, PfnCreateProxy, char *);
-		int Init(unsigned long);
-		void Uninit(void);
-
-	private:
-		static int __stdcall _WndProc(void *, HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult);
-		static unsigned int const s_uInvokeHelperMsg;
-
-		void OnInvoke(InvokeArgs *);
-
-	};
-
-
-	class UILIB_API InvokeManager
-	{
-	public:
-		InvokeManager& operator=(InvokeManager const &);
-		static void __stdcall Close(void);
-		static void __stdcall CloseThread(void);
-		static long __stdcall GetInvokeHelper(InvokeHelper * *);
-		static long __stdcall Init(void);
-
-	private:
-		static InvokeHelper * __stdcall FindInvokeHelper(unsigned int *);
-		static UiaArray<InvokeHelper *> * g_pArrayInvokeHelper;
-		static CRITICAL_SECTION g_cs;
-	};
-
-	class UILIB_API InvokeProvider 
+	class InvokeProvider
 		: public PatternProvider<InvokeProvider, IInvokeProvider, Schema::Pattern::Invoke>
-		, public IInvokeProvider
+		  , public IInvokeProvider
 	{
 	public:
-		InvokeProvider(void);
-		virtual ~InvokeProvider(void);
+		InvokeProvider();
 
-		virtual unsigned long __stdcall AddRef(void);
-		virtual PfnCreateProxy GetProxyCreator(void);
-		virtual long __stdcall Invoke(void);
-		virtual long __stdcall QueryInterface(GUID const &, void * *);
-		virtual unsigned long __stdcall Release(void);
+		PfnCreateProxy GetProxyCreator() override;
+
+		HRESULT QueryInterface(REFIID riid, void** ppvObj) override;
+		ULONG AddRef();
+		ULONG Release();
+
+		HRESULT Invoke() override;
 	};
 
-	//推测DoMethod 以及Init 来自一个纯虚类……，但是目前没有直接证据
-	class UILIB_API InvokeProxy
+	class UILIB_API InvokeProxy : public ProviderProxy
 	{
 	public:
-		InvokeProxy(InvokeProxy const &);
-		InvokeProxy(void);
-		InvokeProxy & operator=(InvokeProxy const &);
+		static InvokeProxy* WINAPI Create(Element* pe);
 
-		static InvokeProxy * __stdcall Create(Element *);
-		static bool __stdcall IsPatternSupported(Element *);
+		InvokeProxy();
+		InvokeProxy(const InvokeProxy& other) = default;
+		InvokeProxy(InvokeProxy&& other) noexcept = default;
 
-		virtual long DoMethod(int, char *);
+		HRESULT DoMethod(MethodId methodId, va_list args) override;
+
+		static bool WINAPI IsPatternSupported(Element* pe);
 
 	protected:
-		virtual void Init(Element *);
+		void Init(Element* pe) override;
 	};
 }

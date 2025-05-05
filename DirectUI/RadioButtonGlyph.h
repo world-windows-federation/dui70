@@ -5,24 +5,23 @@ namespace DirectUI
 	class UILIB_API RadioButtonGlyph : public Button
 	{
 	public:
-		RadioButtonGlyph(RadioButtonGlyph const &);
-		RadioButtonGlyph(void);
-		virtual ~RadioButtonGlyph(void);
-		RadioButtonGlyph & operator=(RadioButtonGlyph const &);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		
-		long Initialize(unsigned int, Element *, unsigned long *);
+		// ReSharper disable once CppHidingFunction
+		HRESULT Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
 
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual bool OnLostDialogFocus(DialogElement *);
-		virtual bool OnReceivedDialogFocus(DialogElement *);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
 
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT Register();
+
+		bool OnLostDialogFocus(IDialogElement* pDE) override;
+		bool OnReceivedDialogFocus(IDialogElement* pDE) override;
 	};
 }

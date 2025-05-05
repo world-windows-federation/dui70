@@ -767,8 +767,8 @@ void Element::_Fill(HDC hDC, DWORD crFill, int left, int top, int right, int bot
 class __Element_Check final : public Element
 {
 #ifdef _WIN64
-	static_assert(sizeof(Element) == 0xC8);
-	static_assert(__builtin_offsetof(Element, _rootWindowForTheming) == 0xC0);
+	static_assert(sizeof(Element) == 0xC8, "Error");
+	static_assert(__builtin_offsetof(Element, _rootWindowForTheming) == 0xC0, "Error");
 #else
 	static_assert(sizeof(Element) == 0x84);
 	static_assert(__builtin_offsetof(Element, _rootWindowForTheming) == 0x80);
@@ -2401,69 +2401,17 @@ bool CCSysLink::OnReceivedDialogFocus(IDialogElement*)
 
 IClassInfo* CCSysLink::s_pClassInfo;
 
-CheckBoxGlyph::CheckBoxGlyph(CheckBoxGlyph const&)
-{
-}
-
-CheckBoxGlyph::CheckBoxGlyph(void)
-{
-}
-
-CheckBoxGlyph::~CheckBoxGlyph(void)
-{
-}
-
-CheckBoxGlyph& CheckBoxGlyph::operator=(CheckBoxGlyph const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long CheckBoxGlyph::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CheckBoxGlyph::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* CheckBoxGlyph::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CheckBoxGlyph::Register(void)
-{
-	return 0;
-}
-
-void CheckBoxGlyph::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long CheckBoxGlyph::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-IClassInfo* CheckBoxGlyph::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-bool CheckBoxGlyph::OnLostDialogFocus(DialogElement*)
-{
-	return false;
-}
-
-bool CheckBoxGlyph::OnReceivedDialogFocus(DialogElement*)
-{
-	return false;
-}
-
-IClassInfo* CheckBoxGlyph::s_pClassInfo;
+//~ Begin DirectUI::CheckBoxGlyph Class
+HRESULT CheckBoxGlyph::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CheckBoxGlyph::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CheckBoxGlyph::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+IClassInfo* CheckBoxGlyph::GetClassInfoPtr() STUB_ZERO;
+void CheckBoxGlyph::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
+IClassInfo* CheckBoxGlyph::GetClassInfoW() STUB_ZERO;
+HRESULT CheckBoxGlyph::Register() STUB_ZERO;
+bool CheckBoxGlyph::OnLostDialogFocus(IDialogElement* pDE) STUB_ZERO;
+bool CheckBoxGlyph::OnReceivedDialogFocus(IDialogElement* pDE) STUB_ZERO;
+//~ End DirectUI::CheckBoxGlyph Class
 
 CCHScrollBar::CCHScrollBar(void)
 	: CCBaseScrollBar(0)
@@ -4476,136 +4424,41 @@ IDataEngine::~IDataEngine(void)
 
 HRESULT StyleSheet::Create(StyleSheet** ppSheet) STUB_ZERO;
 
-InvokeHelper::InvokeHelper(void)
-{
-}
+//~ Begin DirectUI::InvokeHelper Class
+InvokeHelper::InvokeHelper() STUB_VOID;
+InvokeHelper::~InvokeHelper() STUB_VOID;
+int InvokeHelper::Init(ULONG idThread) STUB_ZERO;
+void InvokeHelper::Uninit() STUB_VOID;
+HRESULT InvokeHelper::DoInvoke(MethodId methodId, ElementProvider* pElementProvider, PfnCreateProxy pfnCreate, va_list args) STUB_ZERO;
+InvokeHelper::InvokeArgs::InvokeArgs(MethodId methodId, ElementProvider* pElementProvider, PfnCreateProxy pfnCreate, va_list args) STUB_VOID;
+int InvokeHelper::_WndProc(void* pThis, HWND hwnd, UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+void InvokeHelper::OnInvoke(InvokeArgs* pInvokeArgs) STUB_VOID;
+//~ End DirectUI::InvokeHelper Class
 
-InvokeHelper::~InvokeHelper(void)
-{
-}
+//~ Begin DirectUI::InvokeManager Class
+HRESULT InvokeManager::GetInvokeHelper(InvokeHelper** ppih) STUB_ZERO;
+void InvokeManager::CloseThread() STUB_VOID;
+HRESULT InvokeManager::Init() STUB_ZERO;
+void InvokeManager::Close() STUB_VOID;
+InvokeHelper* InvokeManager::FindInvokeHelper(UINT* idThread) STUB_ZERO;
+//~ End DirectUI::InvokeManager Class
 
-long InvokeHelper::DoInvoke(int, ElementProvider*, ProviderProxy*(__stdcall *)(Element*), char*)
-{
-	return 0;
-}
+//~ Begin DirectUI::InvokeProvider Class
+InvokeProvider::InvokeProvider() STUB_VOID;
+PfnCreateProxy InvokeProvider::GetProxyCreator() STUB_ZERO;
+HRESULT InvokeProvider::QueryInterface(REFIID riid, void** ppvObj) STUB_ZERO;
+ULONG InvokeProvider::AddRef() STUB_ZERO;
+ULONG InvokeProvider::Release() STUB_ZERO;
+HRESULT InvokeProvider::Invoke() STUB_ZERO;
+//~ End DirectUI::InvokeProvider Class
 
-int InvokeHelper::Init(unsigned long)
-{
-	return 0;
-}
-
-void InvokeHelper::Uninit(void)
-{
-}
-
-int InvokeHelper::_WndProc(void*, HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return 0;
-}
-
-unsigned int const InvokeHelper::s_uInvokeHelperMsg = 0;
-
-void InvokeHelper::OnInvoke(InvokeHelper::InvokeArgs*)
-{
-}
-
-InvokeManager& InvokeManager::operator=(InvokeManager const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-void InvokeManager::Close(void)
-{
-}
-
-void InvokeManager::CloseThread(void)
-{
-}
-
-long InvokeManager::GetInvokeHelper(InvokeHelper**)
-{
-	return 0;
-}
-
-long InvokeManager::Init(void)
-{
-	return 0;
-}
-
-InvokeHelper* InvokeManager::FindInvokeHelper(unsigned int*)
-{
-	return nullptr;
-}
-
-UiaArray<InvokeHelper*>* InvokeManager::g_pArrayInvokeHelper;
-CRITICAL_SECTION InvokeManager::g_cs;
-
-InvokeProvider::InvokeProvider(void)
-{
-}
-
-InvokeProvider::~InvokeProvider(void)
-{
-}
-
-unsigned long InvokeProvider::AddRef(void)
-{
-	return 0;
-}
-
-PfnCreateProxy InvokeProvider::GetProxyCreator(void)
-{
-	return PfnCreateProxy();
-}
-
-long InvokeProvider::Invoke(void)
-{
-	return 0;
-}
-
-long InvokeProvider::QueryInterface(GUID const&, void**)
-{
-	return 0;
-}
-
-unsigned long InvokeProvider::Release(void)
-{
-	return 0;
-}
-
-InvokeProxy::InvokeProxy(InvokeProxy const&)
-{
-}
-
-InvokeProxy::InvokeProxy(void)
-{
-}
-
-InvokeProxy& InvokeProxy::operator=(InvokeProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-InvokeProxy* InvokeProxy::Create(Element*)
-{
-	return nullptr;
-}
-
-bool InvokeProxy::IsPatternSupported(Element*)
-{
-	return false;
-}
-
-long InvokeProxy::DoMethod(int, char*)
-{
-	return 0;
-}
-
-void InvokeProxy::Init(Element*)
-{
-}
+//~ Begin DirectUI::InvokeProxy Class
+InvokeProxy* InvokeProxy::Create(Element* pe) STUB_ZERO;
+InvokeProxy::InvokeProxy() STUB_VOID;
+HRESULT InvokeProxy::DoMethod(MethodId methodId, va_list args) STUB_ZERO;
+bool InvokeProxy::IsPatternSupported(Element* pe) STUB_ZERO;
+void InvokeProxy::Init(Element* pe) STUB_VOID;
+//~ End DirectUI::InvokeProxy Class
 
 LinkedListNode& LinkedListNode::operator=(LinkedListNode const&)
 {
@@ -4666,16 +4519,9 @@ CritSecLock::CritSecLock(CRITICAL_SECTION* pacs) STUB_VOID;
 CritSecLock::~CritSecLock() STUB_VOID;
 void CritSecLock::Unlock() STUB_VOID;
 
-Expression& Expression::operator=(Expression const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-void Expression::Destroy(void)
-{
-}
-
+//~ Begin DirectUI::Expression Class
+void Expression::Destroy() STUB_VOID;
+//~ End DirectUI::Expression Class
 
 Surface::Surface(void)
 {
@@ -5715,69 +5561,18 @@ void PushButton::FireHostEvent(Element*, bool)
 
 IClassInfo* PushButton::s_pClassInfo;
 
-RadioButtonGlyph::RadioButtonGlyph(RadioButtonGlyph const&)
-{
-}
 
-RadioButtonGlyph::RadioButtonGlyph(void)
-{
-}
-
-RadioButtonGlyph::~RadioButtonGlyph(void)
-{
-}
-
-RadioButtonGlyph& RadioButtonGlyph::operator=(RadioButtonGlyph const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long RadioButtonGlyph::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long RadioButtonGlyph::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* RadioButtonGlyph::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long RadioButtonGlyph::Register(void)
-{
-	return 0;
-}
-
-void RadioButtonGlyph::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long RadioButtonGlyph::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-IClassInfo* RadioButtonGlyph::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-bool RadioButtonGlyph::OnLostDialogFocus(DialogElement*)
-{
-	return false;
-}
-
-bool RadioButtonGlyph::OnReceivedDialogFocus(DialogElement*)
-{
-	return false;
-}
-
-IClassInfo* RadioButtonGlyph::s_pClassInfo;
+//~ Begin DirectUI::RadioButtonGlyph Class
+HRESULT RadioButtonGlyph::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT RadioButtonGlyph::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT RadioButtonGlyph::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+IClassInfo* RadioButtonGlyph::GetClassInfoPtr() STUB_ZERO;
+void RadioButtonGlyph::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
+IClassInfo* RadioButtonGlyph::GetClassInfoW() STUB_ZERO;
+HRESULT RadioButtonGlyph::Register() STUB_ZERO;
+bool RadioButtonGlyph::OnLostDialogFocus(IDialogElement* pDE) STUB_ZERO;
+bool RadioButtonGlyph::OnReceivedDialogFocus(IDialogElement* pDE) STUB_ZERO;
+//~ End DirectUI::RadioButtonGlyph Class
 
 RangeValueProvider::RangeValueProvider(void)
 {

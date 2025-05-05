@@ -24,6 +24,9 @@
 #define UILIB_API __declspec(dllimport)
 #endif
 
+#define DUICLASS(className) class UILIB_API className
+#define DUICLASS_(className, baseClass) class UILIB_API className : public baseClass
+
 #include "Types.h"
 #include "Extensions\Misc.h"
 #include "Base\Surface.h"
@@ -56,7 +59,7 @@
 #include "UIAutomation\ElementProvider.h"
 #include "UIAutomation\PatternProvider.h"
 #include "PropNotify.h"
-#include "Base\Expression.h"
+#include "Core\Expression.h"
 #include "Core\Value.h"
 #include "UIAutomation\ValueProvider.h"
 #include "ValuePtr.h"
@@ -105,7 +108,7 @@
 #include "Control\Combobox.h"
 #include "Core\Navigation.h"
 #include "Control\Edit.h"
-#include "EventManager.h"
+#include "UIAutomation\EventManager.h"
 #include "UIAutomation\ExpandCollapseProvider.h"
 #include "Expando.h"
 #include "ExpandoButtonGlyph.h"
@@ -114,6 +117,7 @@
 #include "UIAutomation\GridItemProvider.h"
 #include "UIAutomation\GridProvider.h"
 #include "UIAutomation\HWNDElementProvider.h"
+#include "UIAutomation\InvokeManager.h"
 #include "UIAutomation\InvokeProvider.h"
 #include "Base\LinkedList.h"
 #include "Extensions\Macro.h"

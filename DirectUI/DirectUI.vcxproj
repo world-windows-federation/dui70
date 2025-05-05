@@ -217,7 +217,6 @@
     <ClInclude Include="AutoVariant.h" />
     <ClInclude Include="AutoThread.h" />
     <ClInclude Include="Base.h" />
-    <ClInclude Include="Base\Expression.h" />
     <ClInclude Include="Base\FontCache.h" />
     <ClInclude Include="Base\LinkedList.h" />
     <ClInclude Include="Base\Surface.h" />
@@ -275,6 +274,7 @@
     <ClInclude Include="Core\BehaviorEngineHelper.h" />
     <ClInclude Include="Core\CallstackTracker.h" />
     <ClInclude Include="Core\Element.h" />
+    <ClInclude Include="Core\Expression.h" />
     <ClInclude Include="Core\Host.h" />
     <ClInclude Include="Core\Layout.h" />
     <ClInclude Include="Core\Navigation.h" />
@@ -294,7 +294,6 @@
     <ClInclude Include="ElementProviderManager.h" />
     <ClInclude Include="ElementWithProxy.h" />
     <ClInclude Include="Event.h" />
-    <ClInclude Include="EventManager.h" />
     <ClInclude Include="Expando.h" />
     <ClInclude Include="ExpandoButtonGlyph.h" />
     <ClInclude Include="Extensions\AccessibleButton.h" />
@@ -341,10 +340,12 @@
     <ClInclude Include="TouchCheckBox.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UIAutomation\ElementProvider.h" />
+    <ClInclude Include="UIAutomation\EventManager.h" />
     <ClInclude Include="UIAutomation\ExpandCollapseProvider.h" />
     <ClInclude Include="UIAutomation\GridItemProvider.h" />
     <ClInclude Include="UIAutomation\GridProvider.h" />
     <ClInclude Include="UIAutomation\HWNDElementProvider.h" />
+    <ClInclude Include="UIAutomation\InvokeManager.h" />
     <ClInclude Include="UIAutomation\InvokeProvider.h" />
     <ClInclude Include="UIAutomation\PatternProvider.h" />
     <ClInclude Include="UIAutomation\RangeValueProvider.h" />

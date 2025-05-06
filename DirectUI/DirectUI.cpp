@@ -1688,101 +1688,27 @@ long Bind::SetProperty(const WCHAR*)
 {
 	return 0;
 }
-
 IClassInfo* Bind::s_pClassInfo;
 
-Browser::Browser(const Browser&)
-{
-}
-
-Browser::Browser(void)
-{
-}
-
-Browser& Browser::operator=(const Browser&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-Browser::~Browser(void)
-{
-}
-
-long Browser::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-UID Browser::Entered(void)
-{
-	return UID();
-}
-
-IClassInfo* Browser::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-UID Browser::Leaving(void)
-{
-	return UID();
-}
-
-long Browser::Register(void)
-{
-	return 0;
-}
-
-void Browser::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-UID Browser::StartNavigate(void)
-{
-	return UID();
-}
-
-Element* Browser::GetCurrentPage(void)
-{
-	return nullptr;
-}
-
-unsigned short Browser::GetCurrentPageID(void)
-{
-	return 0;
-}
-
-Pages* Browser::GetPages(void)
-{
-	return nullptr;
-}
-
-long Browser::Initialize(Element*, unsigned long*)
-{
-	return 0;
-}
-
-IClassInfo* Browser::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void Browser::OnEvent(Event*)
-{
-}
-
-void Browser::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-int Browser::FireNavigate(unsigned short)
-{
-	return 0;
-}
-
+//~ Begin DirectUI::Browser Class
+HRESULT Browser::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT Browser::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+UID Browser::StartNavigate() STUB_ZERO;
+UID Browser::Entered() STUB_ZERO;
+UID Browser::Leaving() STUB_ZERO;
+void Browser::OnEvent(Event* pEvent) STUB_VOID;
+void Browser::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+IClassInfo* Browser::GetClassInfoPtr() STUB_ZERO;
+void Browser::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Browser::s_pClassInfo;
-
+IClassInfo* Browser::GetClassInfoW() STUB_ZERO;
+HRESULT Browser::Register() STUB_ZERO;
+Element* Browser::GetCurrentPage() STUB_ZERO;
+ATOM Browser::GetCurrentPageID() STUB_ZERO;
+Pages* Browser::GetPages() STUB_ZERO;
+int Browser::FireNavigate(ATOM aNewPage) STUB_ZERO;
+//~ End DirectUI::Browser Class
+	
 CallstackTracker::CallstackTracker(void)
 {
 }

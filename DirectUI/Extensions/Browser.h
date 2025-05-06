@@ -2,32 +2,36 @@
 
 namespace DirectUI
 {
-	class UILIB_API Browser :public Element
+	class UILIB_API Browser : public Element
 	{
 	public:
-		Browser(const Browser &);
-		Browser(void);
-		Browser & operator=(const Browser &);
-		virtual ~Browser(void);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Initialize(Element* pParent, DWORD* pdwDeferCookie);
 
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static UID __stdcall Entered(void);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static UID __stdcall Leaving(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		static UID __stdcall StartNavigate(void);
+		static UID WINAPI StartNavigate();
+		static UID WINAPI Entered();
+		static UID WINAPI Leaving();
 
-		Element * GetCurrentPage(void);
-		unsigned short GetCurrentPageID(void);
-		class Pages * GetPages(void);
-		long Initialize(Element *, unsigned long *);
+		void OnEvent(Event* pEvent) override;
+		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
 
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual void OnEvent(Event *);
-		virtual void OnPropertyChanged(const PropertyInfo *, int, Value *, Value *);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+
 	private:
-		int FireNavigate(unsigned short);
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
+
+		Element* GetCurrentPage();
+		ATOM GetCurrentPageID();
+		class Pages* GetPages();
+
+	private:
+		int FireNavigate(ATOM aNewPage);
+
+		Element* _peCurrentPage;
 	};
 }

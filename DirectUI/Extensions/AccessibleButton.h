@@ -5,42 +5,42 @@ namespace DirectUI
 	class UILIB_API AccessibleButton : public Button
 	{
 	public:
-		AccessibleButton(const AccessibleButton&);
-		AccessibleButton();
-		
-		virtual ~AccessibleButton();
-		AccessibleButton& operator=(const AccessibleButton&);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		HRESULT Initialize(Element* pParent, DWORD* pdwDeferCookie);
 
-		static HRESULT WINAPI Create(Element*, unsigned long*, Element**);
-		static IClassInfo* WINAPI GetClassInfoPtr();
-		//Button函数重写
-		//0
-		virtual void OnPropertyChanged(const PropertyInfo*, int, Value*, Value*);
-		//1
-		virtual IClassInfo* GetClassInfoW();
-
-		long Initialize(Element*, unsigned long*);
+		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
 
 		void Recalc();
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+
+	private:
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
 		static HRESULT WINAPI Register();
-		static void WINAPI SetClassInfoPtr(IClassInfo*);
 
-		// member types
-		struct UILIB_API ACCESSIBLEROLE
+		AccessibleButton();
+		AccessibleButton(const AccessibleButton& other) = default;
+		AccessibleButton(AccessibleButton&& other) noexcept = default;
+
+		struct ACCESSIBLEROLE
 		{
-			ACCESSIBLEROLE() = delete;
-			ACCESSIBLEROLE(const ACCESSIBLEROLE&) = delete;
-			~ACCESSIBLEROLE() = delete;
-
-			// see http://msdn.microsoft.com/en-us/library/system.windows.forms.accessiblerole.aspx
-			ACCESSIBLEROLE& operator=(const ACCESSIBLEROLE&);
+			int accRole;
+			int stateUnselected;
+			int unselectedAction;
+			int stateSelected;
+			int selectedAction;
 		};
 
 	private:
-		static const ACCESSIBLEROLE* WINAPI FindAccessibleRole(int);
-		
-		static const ACCESSIBLEROLE* __ptr32 c_rgar;
-		static IClassInfo* s_pClassInfo;
-	};
+		static const ACCESSIBLEROLE c_rgar[];
 
+		const ACCESSIBLEROLE* WINAPI FindAccessibleRole(int role);
+		void UpdateState(ACCESSIBLEROLE*);
+
+		UINT _uLastAction;
+	};
 }

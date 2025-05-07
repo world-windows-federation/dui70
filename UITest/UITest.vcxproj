@@ -228,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="UITest.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="UITest.rc" />

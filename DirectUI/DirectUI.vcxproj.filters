@@ -99,9 +99,6 @@
     <ClInclude Include="Clipper.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>Header Files\DirectUI</Filter>
-    </ClInclude>
     <ClInclude Include="Expando.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
@@ -447,9 +444,6 @@
     <ClInclude Include="StockBehaviors\ContextMenuBehavior.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
-    <ClInclude Include="Base\Expression.h">
-      <Filter>Header Files\DirectUI</Filter>
-    </ClInclude>
     <ClInclude Include="Base\Surface.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
@@ -460,7 +454,16 @@
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
     <ClInclude Include="Core\Navigation.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Expression.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIAutomation\InvokeManager.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIAutomation\EventManager.h">
+      <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

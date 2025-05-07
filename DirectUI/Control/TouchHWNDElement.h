@@ -161,7 +161,7 @@ namespace DirectUI
 		bool _fLightDismissIHMUnregisterIHMChanges;
 		HANDLE _hEventScaleChange;
 		PTP_WAIT _ptpwScaleChange;
-		UINT64 _dwScaleChangeEventCookie;
+		DWORD _dwScaleChangeEventCookie;
 
 		class TooltipEventSink : public CSafeElementListenerCB, public ITouchTooltipEventSink
 		{

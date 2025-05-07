@@ -1182,131 +1182,33 @@ HRESULT HWNDElementAccessible::get_accParent(IDispatch**)
 	return E_NOTIMPL;
 }
 
-AccessibleButton::AccessibleButton(const AccessibleButton&)
-{
-}
-
-AccessibleButton::AccessibleButton()
-{
-}
-
-AccessibleButton::~AccessibleButton()
-{
-}
-
-AccessibleButton& AccessibleButton::operator=(const AccessibleButton&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-HRESULT AccessibleButton::Create(Element*, unsigned long*, Element**)
-{
-	return E_NOTIMPL;
-}
-
-IClassInfo* AccessibleButton::GetClassInfoPtr()
-{
-	return nullptr;
-}
-
-void AccessibleButton::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-IClassInfo* AccessibleButton::GetClassInfoW()
-{
-	return nullptr;
-}
-
-long AccessibleButton::Initialize(Element*, unsigned long*)
-{
-	return 0;
-}
-
-void AccessibleButton::Recalc()
-{
-}
-
-HRESULT AccessibleButton::Register()
-{
-	return E_NOTIMPL;
-}
-
-void AccessibleButton::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-AccessibleButton::ACCESSIBLEROLE& AccessibleButton::ACCESSIBLEROLE::operator=(const AccessibleButton::ACCESSIBLEROLE&)
-{
-	return *this;
-}
-
-const AccessibleButton::ACCESSIBLEROLE* WINAPI AccessibleButton::FindAccessibleRole(int)
-{
-	return nullptr;
-}
-
-const AccessibleButton::ACCESSIBLEROLE* __ptr32 AccessibleButton::c_rgar;
+//~ Begin DirectUI::AccessibleButton Class
+HRESULT AccessibleButton::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT AccessibleButton::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+void AccessibleButton::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void AccessibleButton::Recalc() STUB_VOID;
+IClassInfo* AccessibleButton::GetClassInfoPtr() STUB_ZERO;
+void AccessibleButton::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* AccessibleButton::s_pClassInfo;
+IClassInfo* AccessibleButton::GetClassInfoW() STUB_ZERO;
+HRESULT AccessibleButton::Register() STUB_ZERO;
+AccessibleButton::AccessibleButton() STUB_VOID;
+//const AccessibleButton::ACCESSIBLEROLE c_rgar[] = {};
+const AccessibleButton::ACCESSIBLEROLE* AccessibleButton::FindAccessibleRole(int role) STUB_ZERO;
+void AccessibleButton::UpdateState(ACCESSIBLEROLE*) STUB_VOID;
+//~ End DirectUI::AccessibleButton Class
 
-AutoButton::AutoButton(const AutoButton&)
-{
-}
-
-AutoButton::AutoButton()
-{
-}
-
-AutoButton& AutoButton::operator=(const AutoButton&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-AutoButton::~AutoButton()
-{
-}
-
-long AutoButton::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* AutoButton::GetClassInfoPtr()
-{
-	return nullptr;
-}
-
-long AutoButton::Register()
-{
-	return 0;
-}
-
-void __stdcall AutoButton::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-UID AutoButton::Toggle()
-{
-	return UID();
-}
-
-IClassInfo* AutoButton::GetClassInfoW()
-{
-	return nullptr;
-}
-
-void AutoButton::OnEvent(Event*)
-{
-}
-
-long AutoButton::Initialize(Element*, unsigned long*)
-{
-	return 0;
-}
-
+//~ Begin DirectUI::AutoButton Class
+HRESULT AutoButton::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT AutoButton::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+void AutoButton::OnEvent(Event* pEvent) STUB_VOID;
+UID AutoButton::Toggle() STUB_ZERO;
+IClassInfo* AutoButton::GetClassInfoPtr() STUB_ZERO;
+void AutoButton::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* AutoButton::s_pClassInfo;
+IClassInfo* AutoButton::GetClassInfoW() STUB_ZERO;
+HRESULT AutoButton::Register() STUB_ZERO;
+//~ End DirectUI::AutoButton Class
 
 AutoLock::AutoLock(LPCRITICAL_SECTION lpCriticalSection) STUB_VOID;
 AutoLock::~AutoLock() STUB_VOID;
@@ -5406,87 +5308,22 @@ bool PText::OnPropertyChanging(PropertyInfo const*, int, Value*, Value*)
 
 IClassInfo* PText::s_pClassInfo;
 
-PushButton::PushButton(PushButton const&)
-{
-}
-
-PushButton::PushButton(void)
-{
-}
-
-PushButton::~PushButton(void)
-{
-}
-
-PushButton& PushButton::operator=(PushButton const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long PushButton::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-PropertyInfo const* PushButton::EnforceSizeProp(void)
-{
-	return nullptr;
-}
-
-IClassInfo* PushButton::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-UID PushButton::Hosted(void)
-{
-	return UID();
-}
-
-long PushButton::Register(void)
-{
-	return 0;
-}
-
-void PushButton::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-bool PushButton::GetEnforceSize(void)
-{
-	return false;
-}
-
-long PushButton::SetEnforceSize(bool)
-{
-	return 0;
-}
-
-IClassInfo* PushButton::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE PushButton::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-void PushButton::OnHosted(Element*)
-{
-}
-
-void PushButton::OnUnHosted(Element*)
-{
-}
-
-void PushButton::FireHostEvent(Element*, bool)
-{
-}
-
+//~ Begin DirectUI::PushButton Class
+HRESULT PushButton::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+const PropertyInfo* PushButton::EnforceSizeProp() STUB_ZERO;
+bool PushButton::GetEnforceSize() STUB_ZERO;
+HRESULT PushButton::SetEnforceSize(bool v) STUB_ZERO;
+UID PushButton::Hosted() STUB_ZERO;
+SIZE PushButton::GetContentSize(int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+void PushButton::OnHosted(Element* peNewHost) STUB_VOID;
+void PushButton::OnUnHosted(Element* peOldHost) STUB_VOID;
+IClassInfo* PushButton::GetClassInfoPtr() STUB_ZERO;
+void PushButton::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* PushButton::s_pClassInfo;
-
+IClassInfo* PushButton::GetClassInfoW() STUB_ZERO;
+HRESULT PushButton::Register() STUB_ZERO;
+void PushButton::FireHostEvent(Element* peTarget, bool fHosted) STUB_VOID;
+//~ End DirectUI::PushButton Class
 
 //~ Begin DirectUI::RadioButtonGlyph Class
 HRESULT RadioButtonGlyph::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;

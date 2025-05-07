@@ -2,27 +2,24 @@
 
 namespace DirectUI
 {
-	//所有虚函数均是重载，无需调整顺序
-	class UILIB_API AutoButton :public AccessibleButton
+	class UILIB_API AutoButton : public AccessibleButton
 	{
 	public:
-		AutoButton(const AutoButton &);
-		AutoButton();
-		AutoButton & operator=(const AutoButton&);
-		virtual ~AutoButton();
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Initialize(Element* pParent, DWORD* pdwDeferCookie);
 
-		static long __stdcall Create(Element* , unsigned long *, Element** );
-		static IClassInfo* __stdcall GetClassInfoPtr();
-		static long __stdcall Register();
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		static UID __stdcall Toggle();
+		void OnEvent(Event* pEvent) override;
 
-		virtual IClassInfo* GetClassInfoW();
-		virtual void OnEvent(Event *);
+		static UID WINAPI Toggle();
 
-		long Initialize(Element *, unsigned long *);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
 	};
 }

@@ -1,24 +1,4 @@
-#include <Windows.h>
-
-#include <ShellScalingApi.h>
-#include <Vsstyle.h>
-#include <vssym32.h>
-
-#include <wil/common.h>
-#include <wil/result.h>
-
-#include <fstream>
-#include <sstream>
-#include <format>
-#include <functional>
-#include <filesystem>
-
-#include "../DirectUI/DirectUI.h"
-
-#pragma comment(lib, "dui70.lib")
-#pragma comment(lib, "comctl32.lib")
-#pragma comment(lib, "Shcore.lib")
-#include "resource.h"
+#include "UITest.h"
 
 using namespace DirectUI;
 

@@ -145,7 +145,7 @@ namespace DirectUI
 	{
 	public:
 		DUIXmlParser();
-		DUIXmlParser(const DUIXmlParser&) = default;
+		DUIXmlParser(const DUIXmlParser& other) = default;
 
 		virtual ~DUIXmlParser();
 

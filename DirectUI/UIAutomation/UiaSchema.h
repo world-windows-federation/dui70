@@ -1,5 +1,12 @@
 ﻿#pragma once
 
+typedef int (CALLBACK *PfnUiaLookupId)(AutomationIdentifierType, const GUID*);
+typedef LRESULT (CALLBACK *PfnUiaReturnRawElementProvider)(HWND hwnd, WPARAM wParam, LPARAM lParam, IRawElementProviderSimple*);
+typedef HRESULT (CALLBACK *PfnUiaHostProviderFromHwnd)(HWND, IRawElementProviderSimple**);
+typedef HRESULT (CALLBACK *PfnUiaRaiseAutomationEvent)(IRawElementProviderSimple*, int);
+typedef HRESULT (CALLBACK *PfnUiaRaiseAutomationPropertyChangedEvent)(IRawElementProviderSimple*, int, VARIANT, VARIANT);
+typedef HRESULT (CALLBACK *PfnUiaRaiseStructureChangedEvent)(IRawElementProviderSimple*, StructureChangeType, int*, int);
+
 namespace DirectUI
 {
 	typedef HRESULT (CALLBACK *PfnCreate)(ElementProvider*, IUnknown** ppunk);

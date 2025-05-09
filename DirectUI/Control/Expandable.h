@@ -2,27 +2,23 @@
 
 namespace DirectUI
 {
-	class UILIB_API Expandable :public Element
+	class UILIB_API Expandable : public Element
 	{
 	public:
-		Expandable(Expandable const &);
-		Expandable(void);
-		virtual ~Expandable(void);
-		Expandable & operator=(Expandable const &);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static const PropertyInfo* __stdcall ExpandedProp(void);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		
-		bool GetExpanded(void);
-		long SetExpanded(bool);
+		static const PropertyInfo* WINAPI ExpandedProp();
+		bool GetExpanded();
+		HRESULT SetExpanded(bool v);
 
-		virtual IClassInfo * GetClassInfoW(void);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
 
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
 	};
 }

@@ -79,7 +79,7 @@
 #include "Core\Host.h"
 #include "Core\Accessibility.h"
 #include "Provider.h"
-#include "Movie.h"
+#include "Control\Movie.h"
 #include "Control\ElementWithHWND.h"
 #include "HWNDElement.h"
 #include "Extensions\DialogElement.h"

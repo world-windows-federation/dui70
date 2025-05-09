@@ -5,23 +5,20 @@ namespace DirectUI
 	class UILIB_API Clipper : public Expandable
 	{
 	public:
-		Clipper(Clipper const &);
-		Clipper(void);
-		virtual ~Clipper(void);
-		Clipper & operator=(Clipper const &);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		
-		long Initialize(Element *, unsigned long *);
+		void _SelfLayoutDoLayout(int cx, int cy) override;
+		SIZE _SelfLayoutUpdateDesiredSize(int cxConstraint, int cyConstraint, Surface* psrf) override;
 
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual void _SelfLayoutDoLayout(int, int);
-		virtual SIZE _SelfLayoutUpdateDesiredSize(int, int, Surface *);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
+		HRESULT Initialize(Element* pParent, DWORD* pdwDeferCookie);
 	};
 }

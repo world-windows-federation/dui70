@@ -17,7 +17,7 @@ DWORD g_dwElSlot;
 
 extern "C"
 {
-
+HRESULT WINAPI InitProcess(DWORD dwExpectedVersion) { return InitProcessPriv(dwExpectedVersion, GetModuleHandle(NULL), true, true, true); }
 HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl) STUB_ZERO;
 HRESULT WINAPI UnInitProcessPriv(HMODULE hModule) STUB_ZERO;
 HRESULT WINAPI InitThread(UINT nThreadMode) STUB_ZERO;
@@ -1514,83 +1514,21 @@ HRESULT BaseScrollViewer::Register() STUB_ZERO;
 void BaseScrollViewer::FireAnimationChangeEvent(bool fStart) STUB_VOID;
 void BaseScrollViewer::CheckScroll(BaseScrollBar* psb, BOOL fScrollable, int iVisibility, BOOL fPreventLoop) STUB_VOID;
 
-Bind::Bind(const Bind&)
-{
-}
-
-Bind::Bind(void)
-{
-}
-
-Bind& Bind::operator=(const Bind&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-Bind::~Bind(void)
-{
-}
-
-const PropertyInfo* Bind::ConnectProp(void)
-{
-	return nullptr;
-}
-
-long Bind::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* Bind::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* Bind::PropertyProp(void)
-{
-	return nullptr;
-}
-
-long Bind::Register(void)
-{
-	return 0;
-}
-
-void Bind::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-IClassInfo* Bind::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-const WCHAR* Bind::GetConnect(Value**)
-{
-	return nullptr;
-}
-
-const WCHAR* Bind::GetProperty(Value**)
-{
-	return nullptr;
-}
-
-long Bind::Initialize(Element*, unsigned long*)
-{
-	return 0;
-}
-
-long Bind::SetConnect(const WCHAR*)
-{
-	return 0;
-}
-
-long Bind::SetProperty(const WCHAR*)
-{
-	return 0;
-}
+//~ Begin DirectUI::Bind Class
+HRESULT Bind::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT Bind::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+const PropertyInfo* Bind::ConnectProp() STUB_ZERO;
+const PropertyInfo* Bind::PropertyProp() STUB_ZERO;
+const WCHAR* Bind::GetConnect(Value** ppv) STUB_ZERO;
+HRESULT Bind::SetConnect(const WCHAR* v) STUB_ZERO;
+const WCHAR* Bind::GetProperty(Value** ppv) STUB_ZERO;
+HRESULT Bind::SetProperty(const WCHAR* v) STUB_ZERO;
+IClassInfo* Bind::GetClassInfoPtr() STUB_ZERO;
+void Bind::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Bind::s_pClassInfo;
+IClassInfo* Bind::GetClassInfoW() STUB_ZERO;
+HRESULT Bind::Register() STUB_ZERO;
+//~ End DirectUI::Bind Class
 
 //~ Begin DirectUI::Browser Class
 HRESULT Browser::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
@@ -2282,63 +2220,17 @@ SIZE CCHScrollBar::GetContentSize(int, int, Surface*)
 
 IClassInfo* CCHScrollBar::s_pClassInfo;
 
-Clipper::Clipper(Clipper const&)
-{
-}
-
-Clipper::Clipper(void)
-{
-}
-
-Clipper::~Clipper(void)
-{
-}
-
-Clipper& Clipper::operator=(Clipper const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long Clipper::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* Clipper::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long Clipper::Register(void)
-{
-	return 0;
-}
-
-void Clipper::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long Clipper::Initialize(Element*, unsigned long*)
-{
-	return 0;
-}
-
-IClassInfo* Clipper::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void Clipper::_SelfLayoutDoLayout(int, int)
-{
-}
-
-SIZE Clipper::_SelfLayoutUpdateDesiredSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
+//~ Begin DirectUI::Clipper Class
+HRESULT Clipper::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void Clipper::_SelfLayoutDoLayout(int cx, int cy) STUB_VOID;
+SIZE Clipper::_SelfLayoutUpdateDesiredSize(int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+IClassInfo* Clipper::GetClassInfoPtr() STUB_ZERO;
+void Clipper::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Clipper::s_pClassInfo;
+IClassInfo* Clipper::GetClassInfoW() STUB_ZERO;
+HRESULT Clipper::Register() STUB_ZERO;
+HRESULT Clipper::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+//~ End DirectUI::Clipper Class
 
 CCListBox::CCListBox(void)
 	: CCBase(0, 0)
@@ -3443,64 +3335,17 @@ HRESULT EventManager::RaiseGeometryEventWorker(RectangleChange* prc, bool fWantR
 HRESULT EventManager::HandleSelectedChange(IRawElementProviderSimple* pPrv, Value* pvNew) STUB_ZERO;
 //~ End DirectUI::EventManager Class
 
-Expandable::Expandable(Expandable const&)
-{
-}
-
-Expandable::Expandable(void)
-{
-}
-
-Expandable::~Expandable(void)
-{
-}
-
-Expandable& Expandable::operator=(Expandable const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long Expandable::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-const PropertyInfo* Expandable::ExpandedProp(void)
-{
-	return nullptr;
-}
-
-IClassInfo* Expandable::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long Expandable::Register(void)
-{
-	return 0;
-}
-
-void Expandable::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-bool Expandable::GetExpanded(void)
-{
-	return false;
-}
-
-long Expandable::SetExpanded(bool)
-{
-	return 0;
-}
-
-IClassInfo* Expandable::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
+//~ Begin DirectUI::Expandable Class
+HRESULT Expandable::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+const PropertyInfo* Expandable::ExpandedProp() STUB_ZERO;
+bool Expandable::GetExpanded() STUB_ZERO;
+HRESULT Expandable::SetExpanded(bool v) STUB_ZERO;
+IClassInfo* Expandable::GetClassInfoPtr() STUB_ZERO;
+void Expandable::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Expandable::s_pClassInfo;
+IClassInfo* Expandable::GetClassInfoW() STUB_ZERO;
+HRESULT Expandable::Register() STUB_ZERO;
+//~ End DirectUI::Expandable Class
 
 ExpandCollapseProvider::ExpandCollapseProvider(void)
 {
@@ -3578,83 +3423,23 @@ void ExpandCollapseProxy::Init(Element*)
 {
 }
 
-Expando::Expando(Expando const&)
-{
-}
-
-Expando::Expando(void)
-{
-}
-
-Expando::~Expando(void)
-{
-}
-
-Expando& Expando::operator=(Expando const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long Expando::Register(void)
-{
-	return 0;
-}
-
-void Expando::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long Expando::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* Expando::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long Expando::Initialize(Element*, unsigned long*)
-{
-	return 0;
-}
-
-long Expando::Add(Element**, unsigned int)
-{
-	return 0;
-}
-
-IClassInfo* Expando::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void Expando::OnEvent(Event*)
-{
-}
-
-void Expando::OnPropertyChanged(PropertyInfo const*, int, Value*, Value*)
-{
-}
-
-unsigned short Expando::Arrow(void)
-{
-	return 0;
-}
-
-unsigned short Expando::Clipper(void)
-{
-	return 0;
-}
-
-void Expando::UpdateChildren(Value*)
-{
-}
-
-unsigned short Expando::_atmArrow;
-unsigned short Expando::_atmClipper;
+//~ Begin DirectUI::Expando Class
+HRESULT Expando::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void Expando::OnEvent(Event* pEvent) STUB_VOID;
+void Expando::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+HRESULT Expando::Add(Element** ppe, UINT cCount) STUB_ZERO;
+IClassInfo* Expando::GetClassInfoPtr() STUB_ZERO;
+void Expando::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Expando::s_pClassInfo;
+IClassInfo* Expando::GetClassInfoW() STUB_ZERO;
+HRESULT Expando::Register() STUB_ZERO;
+HRESULT Expando::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+ATOM Expando::Arrow() STUB_ZERO;
+ATOM Expando::Clipper() STUB_ZERO;
+void Expando::UpdateChildren(Value* pvNew) STUB_VOID;
+ATOM Expando::_atmArrow;
+ATOM Expando::_atmClipper;
+//~ End DirectUI::Expando Class
 
 ExpandoButtonGlyph::ExpandoButtonGlyph(ExpandoButtonGlyph const&)
 {
@@ -4392,271 +4177,63 @@ ResourceModuleHandles::~ResourceModuleHandles(void) STUB_VOID;
 HRESULT ResourceModuleHandles::GetHandle(LPCWSTR pszFile, HMODULE* phModule) STUB_ZERO;
 long volatile ResourceModuleHandles::g_cRefCount STUB_VOID;
 
-Movie::Movie(Movie const&)
-{
-}
-
-Movie::Movie()
-{
-}
-
-Movie::~Movie()
-{
-}
-
-Movie& Movie::operator=(Movie const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long Movie::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long Movie::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-UID Movie::AdvanceFrame()
-{
-	return UID();
-}
-
-void Movie::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-void Movie::RawActionProc(GMA_ACTIONINFO*)
-{
-}
-
-long Movie::Register()
-{
-	return 0;
-}
-
-IClassInfo* Movie::GetClassInfoPtr()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Movie::AutoStartProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Movie::AutoStopProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Movie::CompositingQualityProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Movie::DrawOutlinesProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Movie::InterpolationModeProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Movie::PathProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Movie::PixelOffsetModeProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Movie::PlayAllFramesModeProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Movie::RepeatProp()
-{
-	return nullptr;
-}
-
-const PropertyInfo* Movie::SmoothingModeProp()
-{
-	return nullptr;
-}
-
-void Movie::Forward()
-{
-}
-
-bool Movie::GetAutoStart()
-{
-	return false;
-}
-
-bool Movie::GetAutoStop()
-{
-	return false;
-}
-
-int Movie::GetCompositingQuality()
-{
-	return 0;
-}
-
-bool Movie::GetDrawOutlines()
-{
-	return false;
-}
-
-int Movie::GetInterpolationMode()
-{
-	return 0;
-}
-
-const WCHAR* Movie::GetPath(Value**)
-{
-	return nullptr;
-}
-
-int Movie::GetPixelOffsetMode()
-{
-	return 0;
-}
-
-bool Movie::GetPlayAllFramesMode()
-{
-	return false;
-}
-
-bool Movie::GetRepeat()
-{
-	return false;
-}
-
-int Movie::GetSmoothingMode()
-{
-	return 0;
-}
-
-HRESULT Movie::LoadFromPath(const WCHAR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT Movie::LoadFromResource(HINSTANCE, int)
-{
-	return E_NOTIMPL;
-}
-
-void Movie::Pause()
-{
-}
-
-void Movie::Play()
-{
-}
-
-void Movie::Resume()
-{
-}
-
-void Movie::Rewind()
-{
-}
-
-long Movie::SetAutoStart(bool)
-{
-	return 0;
-}
-
-long Movie::SetAutoStop(bool)
-{
-	return 0;
-}
-
-long Movie::SetCompositingQuality(int)
-{
-	return 0;
-}
-
-long Movie::SetDrawOutlines(bool)
-{
-	return 0;
-}
-
-long Movie::SetInterpolationMode(int)
-{
-	return 0;
-}
-
-long Movie::SetPath(const WCHAR*)
-{
-	return 0;
-}
-
-long Movie::SetPixelOffsetMode(int)
-{
-	return 0;
-}
-
-long Movie::SetPlayAllFramesMode(bool)
-{
-	return 0;
-}
-
-long Movie::SetRepeat(bool)
-{
-	return 0;
-}
-
-long Movie::SetSmoothingMode(int)
-{
-	return 0;
-}
-
-void Movie::doAction(GMA_ACTIONINFO*)
-{
-}
-
-IClassInfo* Movie::GetClassInfoW()
-{
-	return nullptr;
-}
-
-void Movie::OnDestroy()
-{
-}
-
-void Movie::OnEvent(Event*)
-{
-}
-
-void Movie::OnHosted(Element*)
-{
-}
-
-void Movie::Paint(HDC, LPCRECT, LPCRECT, LPRECT, LPRECT)
-{
-}
-
-void Movie::advanceFrameActionStart()
-{
-}
-
-void Movie::advanceFrameActionStop()
-{
-}
-
+//~ Begin DirectUI::Movie Class
+Movie::Movie() STUB_VOID;
+Movie::~Movie() STUB_VOID;
+HRESULT Movie::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT Movie::Create(UINT nActive, Element*, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+UID Movie::AdvanceFrame() STUB_ZERO;
+IClassInfo* Movie::GetClassInfoPtr() STUB_ZERO;
+void Movie::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Movie::s_pClassInfo;
+IClassInfo* Movie::GetClassInfoW() STUB_ZERO;
+HRESULT Movie::Register() STUB_ZERO;
+const PropertyInfo* Movie::PathProp() STUB_ZERO;
+const WCHAR* Movie::GetPath(Value** ppv) STUB_ZERO;
+HRESULT Movie::SetPath(const WCHAR* v) STUB_ZERO;
+const PropertyInfo* Movie::AutoStartProp() STUB_ZERO;
+bool Movie::GetAutoStart() STUB_ZERO;
+HRESULT Movie::SetAutoStart(bool v) STUB_ZERO;
+const PropertyInfo* Movie::AutoStopProp() STUB_ZERO;
+bool Movie::GetAutoStop() STUB_ZERO;
+HRESULT Movie::SetAutoStop(bool v) STUB_ZERO;
+const PropertyInfo* Movie::RepeatProp() STUB_ZERO;
+bool Movie::GetRepeat() STUB_ZERO;
+HRESULT Movie::SetRepeat(bool v) STUB_ZERO;
+const PropertyInfo* Movie::DrawOutlinesProp() STUB_ZERO;
+bool Movie::GetDrawOutlines() STUB_ZERO;
+HRESULT Movie::SetDrawOutlines(bool v) STUB_ZERO;
+const PropertyInfo* Movie::CompositingQualityProp() STUB_ZERO;
+int Movie::GetCompositingQuality() STUB_ZERO;
+HRESULT Movie::SetCompositingQuality(int v) STUB_ZERO;
+const PropertyInfo* Movie::InterpolationModeProp() STUB_ZERO;
+int Movie::GetInterpolationMode() STUB_ZERO;
+HRESULT Movie::SetInterpolationMode(int v) STUB_ZERO;
+const PropertyInfo* Movie::PixelOffsetModeProp() STUB_ZERO;
+int Movie::GetPixelOffsetMode() STUB_ZERO;
+HRESULT Movie::SetPixelOffsetMode(int v) STUB_ZERO;
+const PropertyInfo* Movie::PlayAllFramesModeProp() STUB_ZERO;
+bool Movie::GetPlayAllFramesMode() STUB_ZERO;
+HRESULT Movie::SetPlayAllFramesMode(bool v) STUB_ZERO;
+const PropertyInfo* Movie::SmoothingModeProp() STUB_ZERO;
+int Movie::GetSmoothingMode() STUB_ZERO;
+HRESULT Movie::SetSmoothingMode(int v) STUB_ZERO;
+void Movie::Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) STUB_VOID;
+void Movie::OnHosted(Element* peNewRoot) STUB_VOID;
+void Movie::OnEvent(Event* pEvent) STUB_VOID;
+void Movie::OnDestroy() STUB_VOID;
+void Movie::RawActionProc(GMA_ACTIONINFO* pActionInfo) STUB_VOID;
+void Movie::doAction(GMA_ACTIONINFO* pActionInfo) STUB_VOID;
+HRESULT Movie::LoadFromResource(HINSTANCE hinst, int iResourceId) STUB_ZERO;
+HRESULT Movie::LoadFromPath(const WCHAR* pszPath) STUB_ZERO;
+void Movie::Play() STUB_VOID;
+void Movie::Pause() STUB_VOID;
+void Movie::Resume() STUB_VOID;
+void Movie::Rewind() STUB_VOID;
+void Movie::Forward() STUB_VOID;
+void Movie::advanceFrameActionStart() STUB_VOID;
+void Movie::advanceFrameActionStop() STUB_VOID;
+//~ End DirectUI::Movie Class
 
 Navigator::Navigator(Navigator const&)
 {
@@ -5095,108 +4672,27 @@ int Schema::WindowWindowOpenedEvent;
 
 void NavReference::Init(Element* pe, RECT* prc) STUB_VOID;
 
-Progress::Progress(Progress const&)
-{
-}
-
-Progress::Progress(void)
-{
-}
-
-Progress::~Progress(void)
-{
-}
-
-Progress& Progress::operator=(Progress const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long Progress::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* Progress::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* Progress::PositionProp(void)
-{
-	return nullptr;
-}
-
-long Progress::Register(void)
-{
-	return 0;
-}
-
-void Progress::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-PropertyInfo const* Progress::MaximumProp(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* Progress::MinimumProp(void)
-{
-	return nullptr;
-}
-
-int Progress::GetMaximum(void)
-{
-	return 0;
-}
-
-int Progress::GetMinimum(void)
-{
-	return 0;
-}
-
-int Progress::GetPosition(void)
-{
-	return 0;
-}
-
-long Progress::Initialize(Element*, unsigned long*)
-{
-	return 0;
-}
-
-long Progress::SetMaximum(int)
-{
-	return 0;
-}
-
-long Progress::SetMinimum(int)
-{
-	return 0;
-}
-
-long Progress::SetPosition(int)
-{
-	return 0;
-}
-
-IClassInfo* Progress::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE Progress::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-void Progress::Paint(HDC, RECT const*, RECT const*, RECT*, RECT*)
-{
-}
-
+//~ Begin DirectUI::Progress Class
+HRESULT Progress::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void Progress::Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) STUB_VOID;
+SIZE Progress::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+const PropertyInfo* Progress::PositionProp() STUB_ZERO;
+const PropertyInfo* Progress::MinimumProp() STUB_ZERO;
+const PropertyInfo* Progress::MaximumProp() STUB_ZERO;
+int Progress::GetPosition() STUB_ZERO;
+int Progress::GetMaximum() STUB_ZERO;
+int Progress::GetMinimum() STUB_ZERO;
+HRESULT Progress::SetPosition(int v) STUB_ZERO;
+HRESULT Progress::SetMaximum(int v) STUB_ZERO;
+HRESULT Progress::SetMinimum(int v) STUB_ZERO;
+IClassInfo* Progress::GetClassInfoPtr() STUB_ZERO;
+void Progress::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Progress::s_pClassInfo;
+IClassInfo* Progress::GetClassInfoW() STUB_ZERO;
+HRESULT Progress::Register() STUB_ZERO;
+Progress::Progress() STUB_VOID;
+HRESULT Progress::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+//~ End DirectUI::Progress Class
 
 ProgressRangeValueProxy::ProgressRangeValueProxy(ProgressRangeValueProxy const&)
 {

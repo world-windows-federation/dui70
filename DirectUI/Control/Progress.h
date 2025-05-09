@@ -6,44 +6,47 @@ namespace DirectUI
 	class UILIB_API Progress : public Element
 	{
 	public:
-		Progress(Progress const &);
-		Progress(void);
-		virtual ~Progress(void);
-		Progress & operator=(Progress const &);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static PropertyInfo const * __stdcall PositionProp(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		static PropertyInfo const * __stdcall MaximumProp(void);
-		static PropertyInfo const * __stdcall MinimumProp(void);
+		void Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) override;
+		SIZE GetContentSize(int dConstW, int dConstH, Surface* psrf) override;
 
-		int GetMaximum(void);
-		int GetMinimum(void);
-		int GetPosition(void);
-		long Initialize(Element *, unsigned long *);
-		long SetMaximum(int);
-		long SetMinimum(int);
-		long SetPosition(int);
+		static const PropertyInfo* WINAPI PositionProp();
+		static const PropertyInfo* WINAPI MinimumProp();
+		static const PropertyInfo* WINAPI MaximumProp();
+		int GetPosition();
+		int GetMaximum();
+		int GetMinimum();
+		HRESULT SetPosition(int v);
+		HRESULT SetMaximum(int v);
+		HRESULT SetMinimum(int v);
 
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual SIZE GetContentSize(int, int, Surface *);
-		virtual void Paint(HDC, RECT const *, RECT const *, RECT *, RECT *);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
 
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
+
+		Progress();
+		Progress(const Progress& other) = default;
+
+		HRESULT Initialize(Element* pParent, DWORD* pdwDeferCookie);
 	};
 
 	class UILIB_API ProgressRangeValueProxy : public RangeValueProxy
 	{
 	public:
-		ProgressRangeValueProxy(ProgressRangeValueProxy const &);
+		ProgressRangeValueProxy(ProgressRangeValueProxy const&);
 		ProgressRangeValueProxy(void);
-		ProgressRangeValueProxy & operator=(ProgressRangeValueProxy const &);
+		ProgressRangeValueProxy& operator=(ProgressRangeValueProxy const&);
 
-		virtual long DoMethod(int, char *);
+		virtual long DoMethod(int, char*);
+
 	protected:
-		virtual void Init(Element *);
+		virtual void Init(Element*);
 	};
 }

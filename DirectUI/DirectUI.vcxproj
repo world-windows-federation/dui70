@@ -246,6 +246,7 @@
     <ClInclude Include="Control\ManipulationHelper.h" />
     <ClInclude Include="Control\ModernProgressBar.h" />
     <ClInclude Include="Control\ModernProgressRing.h" />
+    <ClInclude Include="Control\Movie.h" />
     <ClInclude Include="Control\NativeHWNDHost.h" />
     <ClInclude Include="Control\Progress.h" />
     <ClInclude Include="Control\RefPointElement.h" />
@@ -316,7 +317,6 @@
     <ClInclude Include="Layout\ShellBorderLayout.h" />
     <ClInclude Include="Layout\TableLayout.h" />
     <ClInclude Include="Layout\VerticalFlowLayout.h" />
-    <ClInclude Include="Movie.h" />
     <ClInclude Include="Navigator.h" />
     <ClInclude Include="NavScoring.h" />
     <ClInclude Include="Page.h" />

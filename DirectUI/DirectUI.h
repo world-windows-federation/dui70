@@ -4,7 +4,6 @@
 #include <oleacc.h>
 #include <objbase.h>
 #include <initguid.h>
-#include <oleacc.h>
 #include <Commctrl.h>
 #include <UIAutomationCore.h>
 #include <UIAutomationCoreApi.h>
@@ -23,6 +22,11 @@
 #else
 #define UILIB_API __declspec(dllimport)
 #endif
+
+EXTERN_C IMAGE_DOS_HEADER __ImageBase;
+#define HINST_THISCOMPONENT ((HINSTANCE)&__ImageBase)
+
+#define DUI_VERSION 14
 
 #define DUICLASS(className) class UILIB_API className
 #define DUICLASS_(className, baseClass) class UILIB_API className : public baseClass
@@ -205,7 +209,10 @@ namespace DirectUI
 	{
 		// @Careful: fInitCommctl is new in Windows 10
 		HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl);
+		// @Note: The following is purely guessed based on https://github.com/i2ali/RAD/blob/develop/RADv2/Samples/Slicer/DuiInitializer.h#L29
+		FORCEINLINE HRESULT WINAPI InitProcess(DWORD dwExpectedVersion) { return InitProcessPriv(dwExpectedVersion, HINST_THISCOMPONENT, true, true, true); }
 		HRESULT WINAPI UnInitProcessPriv(HMODULE hModule);
+		FORCEINLINE HRESULT WINAPI UnInitProcess() { return UnInitProcessPriv(HINST_THISCOMPONENT); }
 		HRESULT WINAPI InitThread(UINT nThreadMode);
 		void WINAPI UnInitThread();
 

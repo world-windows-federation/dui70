@@ -17,7 +17,6 @@ DWORD g_dwElSlot;
 
 extern "C"
 {
-HRESULT WINAPI InitProcess(DWORD dwExpectedVersion) { return InitProcessPriv(dwExpectedVersion, GetModuleHandle(NULL), true, true, true); }
 HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl) STUB_ZERO;
 HRESULT WINAPI UnInitProcessPriv(HMODULE hModule) STUB_ZERO;
 HRESULT WINAPI InitThread(UINT nThreadMode) STUB_ZERO;

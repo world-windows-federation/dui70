@@ -149,6 +149,22 @@ static void CALLBACK WilLogCallback(wil::FailureInfo const &failure) noexcept
 	}
 }
 
+HRESULT WINAPI DUI_InitializeDUI()
+{
+	HRESULT hr = S_OK;
+
+	hr = DirectUI::InitProcess(DUI_VERSION);
+	if (SUCCEEDED(hr))
+	{
+		hr = DirectUI::InitThread(TSM_IMMERSIVE);
+		if (FAILED(hr))
+		{
+			DirectUI::UnInitProcess();
+		}
+	}
+	return hr;
+}
+
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	if (WINVER >= 15063)
@@ -161,12 +177,10 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	THROW_IF_FAILED(CoInitializeEx(nullptr, 0));
 
-	THROW_IF_FAILED(InitProcessPriv(14, nullptr, true, true, true));
-	THROW_IF_FAILED(InitThread(TSM_IMMERSIVE));
+	THROW_IF_FAILED(DUI_InitializeDUI());
 
 	// uncomment to update class definitions
 	// HookClassFactoryRegister();
-	THROW_IF_FAILED(RegisterAllControls());
 	THROW_IF_FAILED(RegisterPVLBehaviorFactory());
 
 	HMONITOR hMonitor = MonitorFromWindow(nullptr, MONITOR_DEFAULTTOPRIMARY);
@@ -282,6 +296,6 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	pvRefDuiSheet->Release();
 	pHost->Destroy();
 
-	UnInitProcessPriv(nullptr);
+	UnInitProcess();
 	return 0;
 }

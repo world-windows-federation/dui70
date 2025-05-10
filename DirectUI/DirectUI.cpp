@@ -1548,88 +1548,36 @@ ATOM Browser::GetCurrentPageID() STUB_ZERO;
 Pages* Browser::GetPages() STUB_ZERO;
 int Browser::FireNavigate(ATOM aNewPage) STUB_ZERO;
 //~ End DirectUI::Browser Class
-	
-CallstackTracker::CallstackTracker(void)
-{
-}
 
-CallstackTracker::~CallstackTracker(void)
-{
-}
-
-CallstackTracker& CallstackTracker::operator=(CallstackTracker const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-int CallstackTracker::CaptureCallstackFrames(void)
-{
-	return 0;
-}
-
-int CallstackTracker::EnumCallstackFrames(void (__stdcall*)(char const*, char const*, unsigned long, unsigned long))
-{
-	return 0;
-}
-
-void CallstackTracker::Uninit(void)
-{
-}
-
-int CallstackTracker::Init(void)
-{
-	return 0;
-}
-
-int CallstackTracker::InitFailed(void)
-{
-	return 0;
-}
-
-int CallstackTracker::InitializeDllInfo(void)
-{
-	return 0;
-}
-
-int CallstackTracker::InitializeSymbols(void)
-{
-	return 0;
-}
-
-int CallstackTracker::IsCorrectImageHlpVersion(void)
-{
-	return 0;
-}
-
-int CallstackTracker::DllsLoaded(void)
-{
-	return 0;
-}
-
-void CallstackTracker::FillSymbolInfo(CallstackTracker::STACK_SYMBOL_INFO*, unsigned __int64)
-{
-}
-
-unsigned __int64 CallstackTracker::GetModuleBase(void*, unsigned __int64)
-{
-	return 0;
-}
-
-int const CallstackTracker::STACKDEPTH = 0;
-int const CallstackTracker::INITIALSTACKSKIP = 0;
-CallstackTracker::IMGHLPFN_LOAD* __ptr32 CallstackTracker::s_ImageHlpFuncList;
-int CallstackTracker::s_fInitFailed;
-void* CallstackTracker::s_hProcess;
+//~ Begin DirectUI::CallstackTracker Class
+CallstackTracker::CallstackTracker() STUB_VOID;
+CallstackTracker::~CallstackTracker() STUB_VOID;
+int CallstackTracker::CaptureCallstackFrames() STUB_ZERO;
+int CallstackTracker::EnumCallstackFrames(PENUMFRAMESCALLBACK pfnEnumFramesCallback) STUB_ZERO;
+int CallstackTracker::Init() STUB_ZERO;
+void CallstackTracker::Uninit() STUB_VOID;
+const int CallstackTracker::INITIALSTACKSKIP = 0;
+const int CallstackTracker::STACKDEPTH = 0;
+void CallstackTracker::FillSymbolInfo(STACK_SYMBOL_INFO* psi, DWORD_PTR dwAddr) STUB_VOID;
+DWORD_PTR CallstackTracker::GetModuleBase(HANDLE hProcess, DWORD_PTR dwAddr) STUB_ZERO;
+CallstackTracker::IMGHLPFN_LOAD CallstackTracker::s_ImageHlpFuncList[];
+pfnNtDll_RtlCaptureStackBackTrace CallstackTracker::s_pfnRtlCaptureStackBackTrace;
+pfnImgHlp_ImagehlpApiVersionEx CallstackTracker::s_pfnImagehlpApiVersionEx;
+pfnImgHlp_SymGetModuleInfo64 CallstackTracker::s_pfnSymGetModuleInfo64;
+pfnImgHlp_SymFromAddr CallstackTracker::s_pfnSymFromAddr;
+pfnImgHlp_SymInitialize CallstackTracker::s_pfnSymInitialize;
+pfnImgHlp_SymLoadModule64 CallstackTracker::s_pfnSymLoadModule64;
+pfnImgHlp_SymSetOptions CallstackTracker::s_pfnSymSetOptions;
 HINSTANCE CallstackTracker::s_hinstImageHlp;
 HINSTANCE CallstackTracker::s_hinstNtDll;
-API_VERSION* (__stdcall*CallstackTracker::s_pfnImagehlpApiVersionEx)(API_VERSION*);
-unsigned short (__stdcall*CallstackTracker::s_pfnRtlCaptureStackBackTrace)(unsigned long, unsigned long, void* *, unsigned long*);
-int (__stdcall*CallstackTracker::s_pfnSymFromAddr)(void*, unsigned __int64, unsigned __int64*, SYMBOL_INFO*);
-int (__stdcall*CallstackTracker::s_pfnSymGetModuleInfo64)(void*, unsigned __int64, IMAGEHLP_MODULE64*);
-int (__stdcall*CallstackTracker::s_pfnSymInitialize)(void*, char const*, int);
-unsigned __int64 (__stdcall*CallstackTracker::s_pfnSymLoadModule64)(void*, void*, char const*, char const*, unsigned __int64, unsigned long);
-unsigned long (__stdcall*CallstackTracker::s_pfnSymSetOptions)(unsigned long);
+RTL_RUN_ONCE CallstackTracker::s_initonceInit;
+HANDLE CallstackTracker::s_hProcess;
+BOOL CallstackTracker::DllsLoaded() STUB_ZERO;
+int CallstackTracker::InitOnceCallback(RTL_RUN_ONCE*, void*, void**) STUB_ZERO;
+int CallstackTracker::InitializeDllInfo() STUB_ZERO;
+BOOL CallstackTracker::IsCorrectImageHlpVersion() STUB_ZERO;
+int CallstackTracker::InitializeSymbols() STUB_ZERO;
+//~ End DirectUI::CallstackTracker Class
 
 CCAVI::CCAVI(void)
 	: CCBase(0, 0)

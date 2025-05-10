@@ -11,11 +11,11 @@ namespace DirectUI
 
 		PfnCreateProxy GetProxyCreator() override;
 
-		HRESULT QueryInterface(REFIID riid, void** ppvObj) override;
-		ULONG AddRef();
-		ULONG Release();
+		STDMETHODIMP QueryInterface(REFIID riid, void** ppvObj) override;
+		STDMETHODIMP_(ULONG) AddRef() override;
+		STDMETHODIMP_(ULONG) Release() override;
 
-		HRESULT Invoke() override;
+		STDMETHODIMP Invoke() override;
 	};
 
 	class UILIB_API InvokeProxy : public ProviderProxy

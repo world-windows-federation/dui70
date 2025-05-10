@@ -17,34 +17,34 @@ namespace DirectUI
 
 	DECLARE_INTERFACE(IElementListener)
 	{
-		STDMETHODV_(void, OnListenerAttach)(Element* peFrom) PURE;
-		STDMETHODV_(void, OnListenerDetach)(Element* peFrom) PURE;
-		STDMETHODV_(bool, OnListenedPropertyChanging)(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) PURE;
-		STDMETHODV_(void, OnListenedPropertyChanged)(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) PURE;
-		STDMETHODV_(void, OnListenedInput)(Element* peFrom, InputEvent* pInput) PURE;
-		STDMETHODV_(void, OnListenedEvent)(Element* peFrom, Event* pEvent) PURE;
+		virtual void OnListenerAttach(Element* peFrom) = 0;
+		virtual void OnListenerDetach(Element* peFrom) = 0;
+		virtual bool OnListenedPropertyChanging(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) = 0;
+		virtual void OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) = 0;
+		virtual void OnListenedInput(Element* peFrom, InputEvent* pInput) = 0;
+		virtual void OnListenedEvent(Element* peFrom, Event* pEvent) = 0;
 	};
 
 	DECLARE_INTERFACE(IClassInfo)
 	{
-		STDMETHODV_(void, AddRef)() PURE;
-		STDMETHODV_(int, Release)() PURE;
-		STDMETHODV(CreateInstance)(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) PURE;
-		STDMETHODV_(const PropertyInfo*, EnumPropertyInfo)(UINT nEnum) PURE;
-		STDMETHODV_(const PropertyInfo*, GetByClassIndex)(UINT iIndex) PURE;
-		STDMETHODV_(UINT, GetPICount)() const PURE;
-		STDMETHODV_(UINT, GetGlobalIndex)() const PURE;
-		STDMETHODV_(IClassInfo*, GetBaseClass)() PURE;
-		STDMETHODV_(const WCHAR*, GetName)() const PURE;
-		STDMETHODV_(bool, IsValidProperty)(const PropertyInfo* ppi) const PURE;
-		STDMETHODV_(bool, IsSubclassOf)(IClassInfo* pci) const PURE;
-		STDMETHODV_(void, Destroy)() PURE;
-		STDMETHODV_(HMODULE, GetModule)() const PURE;
-		STDMETHODV_(bool, IsGlobal)() const PURE;
-		STDMETHODV_(void, AddChild)() PURE;
-		STDMETHODV_(void, RemoveChild)() PURE;
-		STDMETHODV_(int, GetChildren)() const PURE;
-		STDMETHODV_(void, AssertPIZeroRef)() const PURE;
+		virtual void AddRef() = 0;
+		virtual int Release() = 0;
+		virtual HRESULT CreateInstance(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) = 0;
+		virtual const PropertyInfo* EnumPropertyInfo(UINT nEnum) = 0;
+		virtual const PropertyInfo* GetByClassIndex(UINT iIndex) = 0;
+		virtual UINT GetPICount() const = 0;
+		virtual UINT GetGlobalIndex() const = 0;
+		virtual IClassInfo* GetBaseClass() = 0;
+		virtual const WCHAR* GetName() const = 0;
+		virtual bool IsValidProperty(const PropertyInfo* ppi) const = 0;
+		virtual bool IsSubclassOf(IClassInfo* pci) const = 0;
+		virtual void Destroy() = 0;
+		virtual HMODULE GetModule() const = 0;
+		virtual bool IsGlobal() const = 0;
+		virtual void AddChild() = 0;
+		virtual void RemoveChild() = 0;
+		virtual int GetChildren() const = 0;
+		virtual void AssertPIZeroRef() const = 0;
 	};
 
 	struct UILIB_API IDataEntry

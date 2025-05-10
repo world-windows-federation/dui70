@@ -2854,187 +2854,61 @@ SIZE CCVScrollBar::GetContentSize(int, int, Surface*)
 
 IClassInfo* CCVScrollBar::s_pClassInfo;
 
-DialogElement::DialogElement(DialogElement const&)
-{
-}
+//~ Begin DirectUI::DialogElementCore Class
+void DialogElementCore::Initialize(IDialogElement* pIDialogElement, IElementListener* pIParentListener) STUB_VOID;
+Element* DialogElementCore::GetDefaultButton() STUB_ZERO;
+bool DialogElementCore::ClickDefaultButton() STUB_ZERO;
+void DialogElementCore::OnRegisteredDefaultButtonChanged(Value* pvOld, Value* pvNew) STUB_VOID;
+void DialogElementCore::OnDefaultButtonTrackingChanged(Value* pvNew) STUB_VOID;
+void DialogElementCore::OnKeyFocusMoved(Element* peFrom, Element* peTo) STUB_VOID;
+void DialogElementCore::UpdateChildFocus(Element* peFrom, Element* peTo) STUB_VOID;
+bool DialogElementCore::OnChildLostFocus(Element* peFrom) STUB_ZERO;
+bool DialogElementCore::OnChildReceivedFocus(Element* peTo) STUB_ZERO;
+void DialogElementCore::OnGetDlgCode(MSG* pmsg, LRESULT* plResult) STUB_VOID;
+void DialogElementCore::OnInput(InputEvent* pie) STUB_VOID;
+void DialogElementCore::OnListenerDetach(Element* pe) STUB_VOID;
+void DialogElementCore::OnDestroy() STUB_VOID;
+void DialogElementCore::SetRegisteredDefaultButtonSelectedState(bool fSelected) STUB_VOID;
+bool DialogElementCore::IsButtonEnabledAndVisible(Element* pe) STUB_ZERO;
+//~ End DirectUI::DialogElementCore Class
 
-DialogElement::DialogElement(void)
-{
-}
-
-DialogElement::~DialogElement(void)
-{
-}
-
-DialogElement& DialogElement::operator=(DialogElement const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-const PropertyInfo* DialogElement::ButtonClassAcceptsEnterKeyProp(void)
-{
-	return nullptr;
-}
-
-long DialogElement::Create(HWND__*, bool, unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-const PropertyInfo* DialogElement::DefaultButtonTrackingProp(void)
-{
-	return nullptr;
-}
-
-IClassInfo* DialogElement::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* DialogElement::HandleEnterKeyProp(void)
-{
-	return nullptr;
-}
-
-long DialogElement::Register(void)
-{
-	return 0;
-}
-
-const PropertyInfo* DialogElement::RegisteredDefaultButtonProp(void)
-{
-	return nullptr;
-}
-
-void DialogElement::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-bool DialogElement::GetButtonClassAcceptsEnterKey(void)
-{
-	return false;
-}
-
-bool DialogElement::GetDefaultButtonTracking(void)
-{
-	return false;
-}
-
-bool DialogElement::GetHandleEnterKey(void)
-{
-	return false;
-}
-
-Element* DialogElement::GetRegisteredDefaultButton(void)
-{
-	return nullptr;
-}
-
-long DialogElement::SetButtonClassAcceptsEnterKey(bool)
-{
-	return 0;
-}
-
-long DialogElement::SetDefaultButtonTracking(bool)
-{
-	return 0;
-}
-
-long DialogElement::SetHandleEnterKey(bool)
-{
-	return 0;
-}
-
-long DialogElement::SetRegisteredDefaultButton(Element*)
-{
-	return 0;
-}
-
-void DialogElement::OnDestroy(void)
-{
-}
-
-void DialogElement::OnGetDlgCode(MSG*, LRESULT*)
-{
-}
-
-void DialogElement::OnInput(InputEvent*)
-{
-}
-
-void DialogElement::OnKeyFocusMoved(Element*, Element*)
-{
-}
-
-void DialogElement::OnListenedEvent(Element*, Event*)
-{
-}
-
-void DialogElement::OnListenedInput(Element*, InputEvent*)
-{
-}
-
-void DialogElement::OnListenedPropertyChanged(Element*, const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-bool DialogElement::OnListenedPropertyChanging(Element*, const PropertyInfo*, int, Value*, Value*)
-{
-	return false;
-}
-
-void DialogElement::OnListenerAttach(Element*)
-{
-}
-
-void DialogElement::OnListenerDetach(Element*)
-{
-}
-
-void DialogElement::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-IClassInfo* DialogElement::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-Element* DialogElement::GetDefaultButton(void)
-{
-	return nullptr;
-}
-
-bool DialogElement::ClickDefaultButton(void)
-{
-	return false;
-}
-
-void DialogElement::UpdateChildFocus(Element*, Element*)
-{
-}
-
-bool DialogElement::OnChildLostFocus(Element*)
-{
-	return false;
-}
-
-bool DialogElement::OnChildReceivedFocus(Element*)
-{
-	return false;
-}
-
-void DialogElement::SetRegisteredDefaultButtonSelectedState(bool)
-{
-}
-
-bool DialogElement::IsButtonEnabledAndVisible(Element*)
-{
-	return false;
-}
-
+//~ Begin DirectUI::DialogElement Class
+DialogElement::DialogElement() STUB_VOID;
+HRESULT DialogElement::Create(HWND hwndParent, bool fDblBuffer, UINT nCreate, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+Element* DialogElement::GetDefaultButton() STUB_ZERO;
+bool DialogElement::ClickDefaultButton() STUB_ZERO;
+void DialogElement::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void DialogElement::OnKeyFocusMoved(Element* peFrom, Element* peTo) STUB_VOID;
+void DialogElement::OnInput(InputEvent* pie) STUB_VOID;
+void DialogElement::OnGetDlgCode(MSG* pmsg, LRESULT* plResult) STUB_VOID;
+void DialogElement::OnDestroy() STUB_VOID;
+bool DialogElement::OnChildLostFocus(Element* peFrom) STUB_ZERO;
+bool DialogElement::OnChildReceivedFocus(Element* peTo) STUB_ZERO;
+const PropertyInfo* DialogElement::DefaultButtonTrackingProp() STUB_ZERO;
+const PropertyInfo* DialogElement::RegisteredDefaultButtonProp() STUB_ZERO;
+const PropertyInfo* DialogElement::HandleEnterKeyProp() STUB_ZERO;
+const PropertyInfo* DialogElement::ButtonClassAcceptsEnterKeyProp() STUB_ZERO;
+bool DialogElement::GetDefaultButtonTracking() STUB_ZERO;
+Element* DialogElement::GetRegisteredDefaultButton() STUB_ZERO;
+bool DialogElement::GetHandleEnterKey() STUB_ZERO;
+bool DialogElement::GetButtonClassAcceptsEnterKey() STUB_ZERO;
+HRESULT DialogElement::SetDefaultButtonTracking(bool v) STUB_ZERO;
+HRESULT DialogElement::SetRegisteredDefaultButton(Element* v) STUB_ZERO;
+HRESULT DialogElement::SetHandleEnterKey(bool v) STUB_ZERO;
+HRESULT DialogElement::SetButtonClassAcceptsEnterKey(bool v) STUB_ZERO;
+Element* DialogElement::GetKeyFocusedElement() STUB_ZERO;
+IClassInfo* DialogElement::GetClassInfoPtr() STUB_ZERO;
+void DialogElement::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* DialogElement::s_pClassInfo;
+IClassInfo* DialogElement::GetClassInfoW() STUB_ZERO;
+HRESULT DialogElement::Register() STUB_ZERO;
+void DialogElement::OnListenerAttach(Element* peFrom) STUB_VOID;
+void DialogElement::OnListenerDetach(Element* peFrom) STUB_VOID;
+bool DialogElement::OnListenedPropertyChanging(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
+void DialogElement::OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void DialogElement::OnListenedInput(Element* peFrom, InputEvent* pInput) STUB_VOID;
+void DialogElement::OnListenedEvent(Element* peFrom, Event* pEvent) STUB_VOID;
+//~ End DirectUI::DialogElement Class
 
 Element* DuiNavigate::Navigate(Element* peFrom, DynamicArray<Element*>* pelConsider, int nNavDir) STUB_ZERO;
 

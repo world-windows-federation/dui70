@@ -36,7 +36,7 @@ namespace DirectUI
 		};
 
 	private:
-		static const ACCESSIBLEROLE c_rgar[];
+		static const ACCESSIBLEROLE c_rgar[0];
 
 		const ACCESSIBLEROLE* WINAPI FindAccessibleRole(int role);
 		void UpdateState(ACCESSIBLEROLE*);

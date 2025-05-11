@@ -305,8 +305,8 @@
     <ClInclude Include="Extensions\Misc.h" />
     <ClInclude Include="Extensions\PushButton.h" />
     <ClInclude Include="Extensions\XElement.h" />
+    <ClInclude Include="Extensions\XHost.h" />
     <ClInclude Include="FontCheckOut.h" />
-    <ClInclude Include="HWNDElement.h" />
     <ClInclude Include="Interfaces.h" />
     <ClInclude Include="Layout\BorderLayout.h" />
     <ClInclude Include="Layout\FillLayout.h" />

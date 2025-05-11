@@ -100,15 +100,8 @@ namespace DirectUI
 		virtual HWND GetNotificationSinkHWND() = 0;
 	};
 
-	struct UILIB_API IDataEngine
+	interface IDataEngine
 	{
-	public:
-		IDataEngine(const IDataEngine&);
-		IDataEngine();
-		IDataEngine& operator=(const IDataEngine&);
-
-		virtual ~IDataEngine();
-
 		virtual UINT GetSize() = 0;
 		virtual IDataEntry* GetEntry(UINT) = 0;
 	};

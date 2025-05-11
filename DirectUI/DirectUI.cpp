@@ -344,6 +344,7 @@ Button::Button() STUB_VOID;
 HRESULT Button::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
 Button::~Button() STUB_VOID;
 
+//~ Begin DirectUI::Element Class
 HRESULT Element::Create(UINT nCreate, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 HRESULT Element::Destroy(bool fDelayed) STUB_ZERO;
 HRESULT Element::DestroyAll(bool fDelayed) STUB_ZERO;
@@ -762,6 +763,7 @@ void Element::HandleUiaEventListener(Event* pEvent) STUB_VOID;
 Element* Element::GetUiaFocusDelegate() STUB_ZERO;
 void Element::SetOverrideScaleFactor(float flscale) STUB_VOID;
 void Element::_Fill(HDC hDC, DWORD crFill, int left, int top, int right, int bottom, bool fForceOpaque) STUB_VOID;
+//~ End DirectUI::Element Class
 
 class __Element_Check final : public Element
 {
@@ -774,6 +776,7 @@ class __Element_Check final : public Element
 #endif
 };
 
+//~ Begin DirectUI::ElementWithHWND Class
 HRESULT WINAPI ElementWithHWND::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 HWND ElementWithHWND::GetHWND() STUB_ZERO;
 IClassInfo* WINAPI ElementWithHWND::GetClassInfoPtr() STUB_ZERO;
@@ -781,7 +784,9 @@ void WINAPI ElementWithHWND::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* ElementWithHWND::s_pClassInfo;
 IClassInfo* ElementWithHWND::GetClassInfoW() STUB_ZERO;
 HRESULT WINAPI ElementWithHWND::Register() STUB_ZERO;
+//~ End DirectUI::ElementWithHWND Class
 
+//~ Begin DirectUI::DUIXmlParser Class
 DUIXmlParser::DUIXmlParser() STUB_VOID;
 DUIXmlParser::~DUIXmlParser() STUB_VOID;
 HRESULT WINAPI DUIXmlParser::Create(DUIXmlParser** ppParserOut, PXMLGETSHEETCB pfnGetSheetCallback, void* sheetParam, PXMLPARSEERRORCB, void* parseErrorParam) STUB_ZERO;
@@ -929,7 +934,9 @@ int DUIXmlParser::_ScaleRelativePixels(int nRelPix) STUB_ZERO;
 float DUIXmlParser::_ScalePointsToPixels(float flPoint) STUB_ZERO;
 int DUIXmlParser::_ScalePointsToPixels(int nPoint) STUB_ZERO;
 void DUIXmlParser::SetParseState(DUI_PARSE_STATE eParseState) STUB_VOID;
+//~ End DirectUI::DUIXmlParser Class
 
+//~ Begin DirectUI::NativeHWNDHost Class
 UINT NativeHWNDHost::DestroyMsg() STUB_ZERO;
 HRESULT NativeHWNDHost::Create(const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO;
 HRESULT NativeHWNDHost::Create(const WCHAR* pszClassName, const WCHAR* pszTitle, HWND hWndParent, HICON hIcon, int dX, int dY, int dWidth, int dHeight, int iExStyle, int iStyle, HINSTANCE hInstance, UINT nOptions, NativeHWNDHost** ppHost) STUB_ZERO;
@@ -951,6 +958,7 @@ void NativeHWNDHost::SaveFocus() STUB_VOID;
 int NativeHWNDHost::RestoreFocus() STUB_ZERO;
 HWND NativeHWNDHost::CreateHostWindow(DWORD dwExStyle, const WCHAR* lpClassName, const WCHAR* lpWindowName, DWORD dwStyle, int nX, int nY, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) STUB_ZERO;
 HRESULT NativeHWNDHost::OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+//~ End DirectUI::NativeHWNDHost Class
 
 HWNDHostAccessible::HWNDHostAccessible()
 {
@@ -1313,7 +1321,6 @@ UINT GridLayout::GetCurrentCols(Element* pec) STUB_ZERO;
 UINT GridLayout::GetCurrentCols(int c) STUB_ZERO;
 //~ End DirectUI::GridLayout Class
 
-
 //~ Begin DirectUI::FlowLayout Class
 HRESULT FlowLayout::Create(int dNumParams, int* pParams, Value** ppValue) STUB_ZERO;
 HRESULT FlowLayout::Create(bool fWrap, UINT uYAlign, UINT uXLineAlign, UINT uYLineAlign, Layout** ppLayout) STUB_ZERO;
@@ -1400,6 +1407,7 @@ HRESULT AnimationStrip::Start() STUB_ZERO;
 void AnimationStrip::Stop() STUB_VOID;
 IClassInfo* AnimationStrip::GetClassInfoPtr() STUB_ZERO;
 void AnimationStrip::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
+IClassInfo* AnimationStrip::s_pClassInfo;
 IClassInfo* AnimationStrip::GetClassInfoW() STUB_ZERO;
 HRESULT AnimationStrip::Register() STUB_ZERO;
 HRESULT AnimationStrip::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
@@ -1428,6 +1436,7 @@ void AnimationStrip::OnAction(GMA_ACTIONINFO* pActionInfo) STUB_VOID;
 void AnimationStrip::RawActionProc(GMA_ACTIONINFO* pActionInfo) STUB_VOID;
 //~ End DirectUI::AnimationStrip Class
 
+//~ Begin DirectUI::ClassInfoBase Class
 ClassInfoBase::ClassInfoBase() STUB_VOID;
 ClassInfoBase::~ClassInfoBase() STUB_VOID;
 HRESULT ClassInfoBase::Initialize(HINSTANCE hModule, const WCHAR* pszName, bool fGlobal, const PropertyInfo* const* ppPI, UINT cPI) STUB_ZERO;
@@ -1449,7 +1458,9 @@ void ClassInfoBase::AddChild() STUB_VOID;
 void ClassInfoBase::RemoveChild() STUB_VOID;
 int ClassInfoBase::GetChildren() const STUB_ZERO;
 void ClassInfoBase::AssertPIZeroRef() const STUB_VOID;
+//~ End DirectUI::ClassInfoBase Class
 
+//~ Begin DirectUI::BaseScrollBar Class
 UID BaseScrollBar::Scroll() STUB_ZERO;
 bool BaseScrollBar::OnPositionChanging(Value* pvNew) STUB_ZERO;
 bool BaseScrollBar::OnPageChanging(Value* pvNew) STUB_ZERO;
@@ -1467,7 +1478,9 @@ bool BaseScrollBar::IsScrollable() STUB_ZERO;
 bool BaseScrollBar::IsPinned() STUB_ZERO;
 void BaseScrollBar::SetPinned(bool fPinned) STUB_VOID;
 int BaseScrollBar::GetPageInc() STUB_ZERO;
+//~ End DirectUI::BaseScrollBar Class
 
+//~ Begin DirectUI::BaseScrollViewer Class
 BaseScrollViewer::BaseScrollViewer() STUB_VOID;
 BaseScrollViewer::~BaseScrollViewer() STUB_VOID;
 HRESULT BaseScrollViewer::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
@@ -1512,6 +1525,7 @@ IClassInfo* BaseScrollViewer::GetClassInfoW() STUB_ZERO;
 HRESULT BaseScrollViewer::Register() STUB_ZERO;
 void BaseScrollViewer::FireAnimationChangeEvent(bool fStart) STUB_VOID;
 void BaseScrollViewer::CheckScroll(BaseScrollBar* psb, BOOL fScrollable, int iVisibility, BOOL fPreventLoop) STUB_VOID;
+//~ End DirectUI::BaseScrollViewer Class
 
 //~ Begin DirectUI::Bind Class
 HRESULT Bind::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
@@ -3543,65 +3557,22 @@ long GridItemProxy::GetRow(int*)
 	return 0;
 }
 
-XHost::XHost()
-{
-}
+//~ Begin DirectUI::XHost Class
+XHost::XHost() STUB_VOID;
+XHost::~XHost() STUB_VOID;
+HRESULT XHost::Initialize(IXElementCP* pcp) STUB_ZERO;
+HRESULT XHost::Create(IXElementCP* pcp, XHost** ppHost) STUB_ZERO;
+void XHost::Destroy() STUB_VOID;
+HWND XHost::GetHWND() STUB_ZERO;
+Element* XHost::GetElement() STUB_ZERO;
+void XHost::Host(Element* pe) STUB_VOID;
+void XHost::ShowWindow(int iShow) STUB_VOID;
+void XHost::HideWindow() STUB_VOID;
+void XHost::DestroyWindow() STUB_VOID;
+LRESULT XHost::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO;
+//~ End DirectUI::XHost Class
 
-XHost::~XHost()
-{
-}
-
-XHost& XHost::operator=(XHost const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long WINAPI XHost::Create(IXElementCP*, XHost**)
-{
-	return 0;
-}
-
-void XHost::Destroy()
-{
-}
-
-void XHost::DestroyWindow()
-{
-}
-
-Element* XHost::GetElement()
-{
-	return nullptr;
-}
-
-HWND XHost::GetHWND()
-{
-	return HWND();
-}
-
-void XHost::HideWindow()
-{
-}
-
-void XHost::Host(Element*)
-{
-}
-
-long XHost::Initialize(IXElementCP*)
-{
-	return 0;
-}
-
-void XHost::ShowWindow(int)
-{
-}
-
-LRESULT WINAPI XHost::WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	return LRESULT();
-}
-
+//~ Begin DirectUI::HWNDElement Class
 HRESULT WINAPI HWNDElement::Create(HWND hParent, bool fDblBuffer, UINT nCreate, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 void HWNDElement::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
 void HWNDElement::OnGroupChanged(int fGroups, bool bLowPri) STUB_VOID;
@@ -3665,7 +3636,9 @@ void HWNDElement::_HandleImmersiveColorSchemeChange() STUB_VOID;
 int HWNDElement::_GetPerMonitorScaleFactorForDesktopWindow(HWND hwnd) STUB_ZERO;
 void HWNDElement::_FireWindowDpiChangeEvent() STUB_VOID;
 int HWNDElement::_UpdateDesktopScaleFactor() STUB_ZERO;
+//~ End DirectUI::HWNDElement Class
 
+//~ Begin DirectUI::HWNDElementProvider Class
 PfnCreateProxy HWNDElementProvider::GetProxyCreator() STUB_ZERO;
 HRESULT HWNDElementProvider::Create(HWNDElement* pe, InvokeHelper* pih, HWNDElementProvider** ppprv) STUB_ZERO;
 HWNDElementProvider::HWNDElementProvider() STUB_VOID;
@@ -3675,14 +3648,18 @@ HRESULT HWNDElementProvider::QueryInterface(REFIID riid, void** ppvObject) STUB_
 HRESULT HWNDElementProvider::ElementProviderFromPoint(double x, double y, IRawElementProviderFragment** ppprv) STUB_ZERO;
 HRESULT HWNDElementProvider::GetFocus(IRawElementProviderFragment** ppprv) STUB_ZERO;
 HRESULT HWNDElementProvider::Init(HWNDElement* pe, InvokeHelper* pih) STUB_ZERO;
+//~ End DirectUI::HWNDElementProvider Class
 
+//~ Begin DirectUI::HWNDElementProxy Class
 HWNDElementProxy* HWNDElementProxy::Create(HWNDElement* pe) STUB_ZERO;
 void HWNDElementProxy::Init(HWNDElement* pe) STUB_VOID;
 HRESULT HWNDElementProxy::DoMethod(MethodId methodId, va_list args) STUB_ZERO;
 HWNDElementProxy::HWNDElementProxy() STUB_VOID;
 HRESULT HWNDElementProxy::ElementFromPoint(double x, double y, IRawElementProviderFragment** ppprv) STUB_ZERO;
 HRESULT HWNDElementProxy::GetFocus(IRawElementProviderFragment** ppprv) STUB_ZERO;
+//~ End DirectUI::HWNDElementProxy Class
 
+//~ Begin DirectUI::HWNDHost Class
 HRESULT HWNDHost::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 HRESULT HWNDHost::Create(UINT nCreate, UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 void HWNDHost::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
@@ -3758,6 +3735,7 @@ void HWNDHost::ApplySinkRegion(const RECT* prcSink, bool bForceSync) STUB_VOID;
 void HWNDHost::GetSinkRect(const RECT* prcConPxl, RECT* prcSink) STUB_VOID;
 bool HWNDHost::HaveWin32Focus() STUB_ZERO;
 const UINT HWNDHost::g_rgMouseMap[8][3] = {};
+//~ End DirectUI::HWNDHost Class
 
 Proxy::Proxy(void)
 {
@@ -3836,24 +3814,6 @@ IXElementCP& IXElementCP::operator=(IXElementCP const&)
 {
 	// TODO: 在此处插入 return 语句
 	return *this;
-}
-
-IDataEngine::IDataEngine(IDataEngine const&)
-{
-}
-
-IDataEngine::IDataEngine(void)
-{
-}
-
-IDataEngine& IDataEngine::operator=(IDataEngine const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-IDataEngine::~IDataEngine(void)
-{
 }
 
 HRESULT StyleSheet::Create(StyleSheet** ppSheet) STUB_ZERO;

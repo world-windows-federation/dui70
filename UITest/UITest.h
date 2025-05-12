@@ -21,3 +21,6 @@
 #pragma comment(lib, "comctl32.lib")
 #pragma comment(lib, "Shcore.lib")
 #include "resource.h"
+
+#define RECTWIDTH(rc)   ((rc).right-(rc).left)
+#define RECTHEIGHT(rc)  ((rc).bottom-(rc).top)

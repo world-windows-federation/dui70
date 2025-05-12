@@ -149,6 +149,19 @@ static void CALLBACK WilLogCallback(wil::FailureInfo const &failure) noexcept
 	}
 }
 
+void CALLBACK DUI_ParserErrorCB(const WCHAR* pszError, const WCHAR* pszToken, int dLine, void* pContext)
+{
+	//WCHAR szParserError[1024];
+	//StringCchPrintfW(szParserError, ARRAYSIZE(szParserError), L"%s '%s' (%d)", pszError, pszToken, (dLine != -1) ? dLine : 0);
+	//MessageBox(nullptr, szParserError, L"Error while parsing DirectUI", MB_ICONERROR);
+	if (pszError != nullptr)
+	{
+		MessageBox(nullptr, pszError, L"Error while parsing DirectUI", MB_ICONERROR);
+		OutputDebugString(pszError);
+		DebugBreak();
+	}
+}
+
 HRESULT WINAPI DUI_InitializeDUI()
 {
 	HRESULT hr = S_OK;
@@ -167,11 +180,9 @@ HRESULT WINAPI DUI_InitializeDUI()
 
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	if (WINVER >= 15063)
-	{
-		SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
-	}
-	SetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);
+	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+	// uncomment for earlier than 1703
+	//SetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);
 
 	wil::SetResultLoggingCallback(WilLogCallback);
 
@@ -193,32 +204,24 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	int initHeight = MulDiv(600, dpiY, 96);
 
 	RECT rcWindow;
-	rcWindow.left = mi.rcWork.left + (mi.rcWork.right - mi.rcWork.left - initWidth) / 2;
-	rcWindow.top = mi.rcWork.top + (mi.rcWork.bottom - mi.rcWork.top - initHeight) / 2;
+	rcWindow.left = mi.rcWork.left + (RECTWIDTH(mi.rcWork) - initWidth) / 2;
+	rcWindow.top = mi.rcWork.top + (RECTHEIGHT(mi.rcWork) - initHeight) / 2;
 	rcWindow.right = rcWindow.left + initWidth;
 	rcWindow.bottom = rcWindow.top + initHeight;
 
 	NativeHWNDHost* pHost;
 	THROW_IF_FAILED(NativeHWNDHost::Create(
 		L"Microsoft DirectUI Test", nullptr, nullptr,
-		rcWindow.left, rcWindow.top, rcWindow.right - rcWindow.left, rcWindow.bottom - rcWindow.top,
+		rcWindow.left, rcWindow.top, RECTWIDTH(rcWindow), RECTHEIGHT(rcWindow),
 		WS_EX_WINDOWEDGE, WS_OVERLAPPEDWINDOW | WS_VISIBLE, 0, &pHost));
 
 	DUIXmlParser* pParser;
-	THROW_IF_FAILED(DUIXmlParser::Create(&pParser, nullptr, nullptr, nullptr, nullptr));
+	THROW_IF_FAILED(DUIXmlParser::Create(&pParser, nullptr, nullptr, DUI_ParserErrorCB, nullptr));
 
-	pParser->SetParseErrorCallback([](const WCHAR* pszError, const WCHAR* pszToken, int dLine, void* pContext)
-	{
-		WCHAR szParserError[1024];
-		StringCchPrintfW(szParserError, ARRAYSIZE(szParserError), L"%s '%s' (%d)", pszError, pszToken, dLine);
-		MessageBox(nullptr, szParserError, L"Error while parsing DirectUI", MB_ICONERROR);
-		DebugBreak();
-	}, nullptr);
-
-	THROW_IF_FAILED(pParser->SetXMLFromResource(IDR_UIFILE1, hInstance, hInstance));
+	THROW_IF_FAILED(pParser->SetXMLFromResource(IDR_UIFILE1, hInstance, HINST_THISCOMPONENT));
 
 	Value* pvRefDuiSheet;
-	THROW_IF_FAILED(pParser->GetSheet(L"RefDui", &pvRefDuiSheet));
+	THROW_IF_FAILED(pParser->GetSheet(L"ImmersiveLight", &pvRefDuiSheet));
 
 	DWORD dwDeferCookie;
 	HWNDElement* peHwndElement;
@@ -289,7 +292,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	pHost->ShowWindow(SW_SHOW);
 
-	//DumpDuiTree(pWizardMain, 0);
+	//DumpDuiTree(peWizardMain, TRUE);
 
 	StartMessagePump();
 

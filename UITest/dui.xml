@@ -156,9 +156,7 @@
                 <viewer layoutpos="nineclient"/>
             </if>
         </style>
-        <style resid="RefDui" base="ressheet(ImmersiveStyles, library(dui70.dll), Light)">
-
-        </style>
+	<style resid="ImmersiveLight" base="ressheet(ImmersiveStyles, library(dui70.dll), Light)"/>
     </stylesheets>
     <HWNDElement resid="WizardMain" layout="BorderLayout()" id="Atom(SXWizard)" sheet="SXStyles">
         <element layoutpos="top" class="WizardPageTitle" id="Atom(SXTitle)" content="Click the buttons to get started"/>
@@ -181,10 +179,10 @@
         <element layoutpos="bottom" class="WizardButtonBar" contentalign="middleright" layout="BorderLayout()"
                  id="Atom(SXWizardButtonBar)">
             <TouchButton accessible="true" layoutpos="right" minsize="size(144rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)"
-                         sheet="RefDui" class="default" accrole="pushbutton" id="Atom(SXWizardDefaultButton)"
+                         sheet="ImmersiveLight" class="default" accrole="pushbutton" id="Atom(SXWizardDefaultButton)"
                          active="mouse | keyboard" content="Accept"/>
             <TouchButton accessible="true" layoutpos="right" minsize="size(144rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)"
-                         sheet="RefDui" accrole="pushbutton" id="Atom(SXWizardAlternateButton)"
+                         sheet="ImmersiveLight" accrole="pushbutton" id="Atom(SXWizardAlternateButton)"
                          active="mouse | keyboard" content="Reject"/>
         </element>
         <element layoutpos="client" class="WizardPageContainer" layout="FillLayout()" id="Atom(SXWizardPageContainer)">

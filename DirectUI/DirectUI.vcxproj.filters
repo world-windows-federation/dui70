@@ -36,12 +36,6 @@
     <ClInclude Include="Primitives.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
-    <ClInclude Include="Movie.h">
-      <Filter>Header Files\DirectUI</Filter>
-    </ClInclude>
-    <ClInclude Include="HWNDElement.h">
-      <Filter>Header Files\DirectUI</Filter>
-    </ClInclude>
     <ClInclude Include="Bind.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
@@ -163,9 +157,6 @@
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
     <ClInclude Include="ElementProviderManager.h">
-      <Filter>Header Files\DirectUI</Filter>
-    </ClInclude>
-    <ClInclude Include="ElementWithProxy.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
     <ClInclude Include="PromptText.h">
@@ -463,6 +454,18 @@
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
     <ClInclude Include="UIAutomation\EventManager.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ElementHelpers.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Control\Movie.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\SBAlloc.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Extensions\XHost.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
   </ItemGroup>

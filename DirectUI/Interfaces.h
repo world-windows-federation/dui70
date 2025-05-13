@@ -65,19 +65,7 @@ namespace DirectUI
 
 		virtual PfnCreateProxy GetProxyCreator() = 0;
 	};
-
-	struct UILIB_API ISBLeak
-	{
-	public:
-		ISBLeak(const ISBLeak&);
-		ISBLeak();
-		ISBLeak& operator=(const ISBLeak&);
-
-		virtual void T1() = 0;
-		virtual void T2() = 0;
-		virtual void T3() = 0;
-	};
-
+	
 	class UILIB_API IXProviderCP
 	{
 	public:

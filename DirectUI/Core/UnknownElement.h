@@ -5,22 +5,17 @@ namespace DirectUI
 	class UILIB_API UnknownElement : public Element
 	{
 	public:
-		UnknownElement(UnknownElement const &);
-		UnknownElement(void);
-		virtual ~UnknownElement(void);
-		UnknownElement & operator=(UnknownElement const &);
-		
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		
-		long Initialize(unsigned int, Element *, unsigned long *);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element*, DWORD* pdwDeferCookie, Element** ppElement);
 
-		virtual IClassInfo * GetClassInfoW(void);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
 
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
 	};
 }

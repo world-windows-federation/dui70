@@ -75,232 +75,54 @@ void WINAPI DUIStopPVLAnimation(Element* peAnimating, UINT nDCProperty, BOOL fFi
 
 } // extern "C"
 
-DuiAccessible::DuiAccessible()
-{
-}
-
-DuiAccessible::~DuiAccessible()
-{
-}
-
-void DuiAccessible::Initialize(Element* pe)
-{
-}
-
-HRESULT DuiAccessible::Create(Element* pe, DuiAccessible**)
-{
-	return E_NOTIMPL;
-}
-
-Element* DuiAccessible::GetAccessibleParent(Element* pe)
-{
-	return nullptr;
-}
-
-HRESULT DuiAccessible::AccNavigate(Element* pe, long, Element** ppe)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::Disconnect()
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::QueryInterface(REFIID riid, void** ppvObject)
-{
-	return E_NOTIMPL;
-}
-
-ULONG DuiAccessible::AddRef()
-{
-	return 0;
-}
-
-ULONG DuiAccessible::Release()
-{
-	return 0;
-}
-
-HRESULT DuiAccessible::GetTypeInfoCount(UINT* pctinfo)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::GetIdentityString(DWORD dwIDChild, BYTE** ppIDString, DWORD* pdwIDStringLen)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accParent(IDispatch** ppdispParent)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accChildCount(long* pcountChildren)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accChild(VARIANT varChild, IDispatch** ppdispChild)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accName(VARIANT varChild, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accValue(VARIANT, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accDescription(VARIANT, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accRole(VARIANT, VARIANT*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accState(VARIANT, VARIANT*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accHelp(VARIANT, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accHelpTopic(BSTR*, VARIANT, long*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accKeyboardShortcut(VARIANT, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accFocus(VARIANT*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accSelection(VARIANT*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::get_accDefaultAction(VARIANT, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::accSelect(long flagsSelect, VARIANT varID)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::accLocation(long* pxLeft, long* pyTop, long* pcxWidth, long* pcyHeight, VARIANT varID)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::accNavigate(long navDir, VARIANT varStart, VARIANT* pvarEnd)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::accHitTest(long xLeft, long yTop, VARIANT* pvarID)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::accDoDefaultAction(VARIANT varID)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::put_accName(VARIANT varID, BSTR pszValue)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::put_accValue(VARIANT varID, BSTR pszValue)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::Clone(IEnumVARIANT** ppEnum)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::Next(unsigned long celt, VARIANT* rgVar, unsigned long* pCeltFetched)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::Reset()
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::Skip(unsigned long celt)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::GetWindow(HWND* phwnd)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::ContextSensitiveHelp(BOOL fEnterMode)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT DuiAccessible::QueryService(REFGUID guidService, REFIID riid, void** ppv)
-{
-	return E_NOTIMPL;
-}
-
-long DuiAccessible::GetAccName(VARIANT, int, unsigned short**)
-{
-	return 0;
-}
-
-long DuiAccessible::GetAccNameFromContent(unsigned short**)
-{
-	return 0;
-}
-
-long DuiAccessible::GetDispatchFromElement(Element*, IDispatch**)
-{
-	return 0;
-}
+//~ Begin DirectUI::DuiAccessible Class
+HRESULT DuiAccessible::Create(Element* pe, DuiAccessible** ppDA) STUB_ZERO;
+DuiAccessible::DuiAccessible() STUB_VOID;
+HRESULT DuiAccessible::Disconnect() STUB_ZERO;
+void DuiAccessible::Initialize(Element* pe) STUB_VOID;
+DuiAccessible::~DuiAccessible() STUB_VOID;
+HRESULT DuiAccessible::QueryInterface(REFIID riid, void** ppvObj) STUB_ZERO;
+ULONG DuiAccessible::AddRef() STUB_ZERO;
+ULONG DuiAccessible::Release() STUB_ZERO;
+HRESULT DuiAccessible::GetTypeInfoCount(UINT* pctinfo) STUB_ZERO;
+HRESULT DuiAccessible::GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo) STUB_ZERO;
+HRESULT DuiAccessible::GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId) STUB_ZERO;
+HRESULT DuiAccessible::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr) STUB_ZERO;
+HRESULT DuiAccessible::get_accParent(IDispatch** ppdispParent) STUB_ZERO;
+HRESULT DuiAccessible::get_accChildCount(long* pcountChildren) STUB_ZERO;
+HRESULT DuiAccessible::get_accChild(VARIANT varChild, IDispatch** ppdispChild) STUB_ZERO;
+HRESULT DuiAccessible::get_accName(VARIANT varChild, BSTR* pszName) STUB_ZERO;
+HRESULT DuiAccessible::get_accValue(VARIANT varChild, BSTR* pszValue) STUB_ZERO;
+HRESULT DuiAccessible::get_accDescription(VARIANT varChild, BSTR* pszDescription) STUB_ZERO;
+HRESULT DuiAccessible::get_accRole(VARIANT varChild, VARIANT* pvarRole) STUB_ZERO;
+HRESULT DuiAccessible::get_accState(VARIANT varChild, VARIANT* pvarState) STUB_ZERO;
+HRESULT DuiAccessible::get_accHelp(VARIANT varChild, BSTR* pszHelp) STUB_ZERO;
+HRESULT DuiAccessible::get_accHelpTopic(BSTR* pszHelpFile, VARIANT varChild, long* pidTopic) STUB_ZERO;
+HRESULT DuiAccessible::get_accKeyboardShortcut(VARIANT varChild, BSTR* pszKeyboardShortcut) STUB_ZERO;
+HRESULT DuiAccessible::get_accFocus(VARIANT* pvarChild) STUB_ZERO;
+HRESULT DuiAccessible::get_accSelection(VARIANT* pvarChildren) STUB_ZERO;
+HRESULT DuiAccessible::get_accDefaultAction(VARIANT varChild, BSTR* pszDefaultAction) STUB_ZERO;
+HRESULT DuiAccessible::accSelect(long flagsSelect, VARIANT varChild) STUB_ZERO;
+HRESULT DuiAccessible::accLocation(long* pxLeft, long* pyTop, long* pcxWidth, long* pcyHeight, VARIANT varChild) STUB_ZERO;
+HRESULT DuiAccessible::accNavigate(long navDir, VARIANT varStart, VARIANT* pvarEndUpAt) STUB_ZERO;
+HRESULT DuiAccessible::accHitTest(long xLeft, long yTop, VARIANT* pvarChild) STUB_ZERO;
+HRESULT DuiAccessible::accDoDefaultAction(VARIANT varChild) STUB_ZERO;
+HRESULT DuiAccessible::put_accName(VARIANT varChild, BSTR szName) STUB_ZERO;
+HRESULT DuiAccessible::put_accValue(VARIANT varChild, BSTR szValue) STUB_ZERO;
+HRESULT DuiAccessible::Next(ULONG celt, VARIANT* rgVar, ULONG* pCeltFetched) STUB_ZERO;
+HRESULT DuiAccessible::Skip(ULONG celt) STUB_ZERO;
+HRESULT DuiAccessible::Reset() STUB_ZERO;
+HRESULT DuiAccessible::Clone(IEnumVARIANT** ppEnum) STUB_ZERO;
+HRESULT DuiAccessible::GetWindow(HWND* phwnd) STUB_ZERO;
+HRESULT DuiAccessible::ContextSensitiveHelp(BOOL fEnterMode) STUB_ZERO;
+HRESULT DuiAccessible::GetIdentityString(DWORD dwIDChild, BYTE** ppIDString, DWORD* pdwIDStringLen) STUB_ZERO;
+HRESULT DuiAccessible::QueryService(REFGUID guidService, REFIID riid, void** ppvObject) STUB_ZERO;
+HRESULT DuiAccessible::AccNavigate(Element* pe, long navDir, Element** ppe) STUB_ZERO;
+Element* DuiAccessible::GetAccessibleParent(Element* pe) STUB_ZERO;
+HRESULT DuiAccessible::GetDispatchFromElement(Element* pe, IDispatch** ppDispatch) STUB_ZERO;
+HRESULT DuiAccessible::GetAccName(VARIANT varChild, BOOL fAllowSubstitution, BSTR* pbstrName) STUB_ZERO;
+HRESULT DuiAccessible::GetAccNameFromContent(BSTR* pbstrName) STUB_ZERO;
+//~ End DirectUI::DuiAccessible Class
 
 RefcountBase::RefcountBase()
 {
@@ -960,234 +782,59 @@ HWND NativeHWNDHost::CreateHostWindow(DWORD dwExStyle, const WCHAR* lpClassName,
 HRESULT NativeHWNDHost::OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
 //~ End DirectUI::NativeHWNDHost Class
 
-HWNDHostAccessible::HWNDHostAccessible()
-{
-}
+//~ Begin DirectUI::HWNDHostAccessible Class
+HRESULT HWNDHostAccessible::Create(Element* pe, IAccessible* pCtrl, DuiAccessible** ppDA) STUB_ZERO;
+HWNDHostAccessible::HWNDHostAccessible() STUB_VOID;
+HRESULT HWNDHostAccessible::Disconnect() STUB_ZERO;
+HRESULT HWNDHostAccessible::Initialize(Element* pe, IAccessible* pCtrl) STUB_ZERO;
+HWNDHostAccessible::~HWNDHostAccessible() STUB_VOID;
+HRESULT HWNDHostAccessible::QueryInterface(REFIID riid, void** ppvObj) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accParent(IDispatch** ppdispParent) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accChildCount(long* pcountChildren) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accChild(VARIANT varChild, IDispatch** ppdispChild) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accName(VARIANT varChild, BSTR* pszName) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accValue(VARIANT varChild, BSTR* pszValue) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accDescription(VARIANT varChild, BSTR* pszDescription) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accRole(VARIANT varChild, VARIANT* pvarRole) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accState(VARIANT varChild, VARIANT* pvarState) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accHelp(VARIANT varChild, BSTR* pszHelp) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accHelpTopic(BSTR* pszHelpFile, VARIANT varChild, long* pidTopic) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accKeyboardShortcut(VARIANT varChild, BSTR* pszKeyboardShortcut) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accFocus(VARIANT* pvarChild) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accSelection(VARIANT* pvarChildren) STUB_ZERO;
+HRESULT HWNDHostAccessible::get_accDefaultAction(VARIANT varChild, BSTR* pszDefaultAction) STUB_ZERO;
+HRESULT HWNDHostAccessible::accSelect(long flagsSelect, VARIANT varChild) STUB_ZERO;
+HRESULT HWNDHostAccessible::accLocation(long* pxLeft, long* pyTop, long* pcxWidth, long* pcyHeight, VARIANT varChild) STUB_ZERO;
+HRESULT HWNDHostAccessible::accNavigate(long navDir, VARIANT varStart, VARIANT* pvarEndUpAt) STUB_ZERO;
+HRESULT HWNDHostAccessible::accHitTest(long xLeft, long yTop, VARIANT* pvarChild) STUB_ZERO;
+HRESULT HWNDHostAccessible::accDoDefaultAction(VARIANT varChild) STUB_ZERO;
+HRESULT HWNDHostAccessible::put_accName(VARIANT varChild, BSTR szName) STUB_ZERO;
+HRESULT HWNDHostAccessible::put_accValue(VARIANT varChild, BSTR szValue) STUB_ZERO;
+HRESULT HWNDHostAccessible::Next(ULONG celt, VARIANT* rgVar, ULONG* pCeltFetched) STUB_ZERO;
+HRESULT HWNDHostAccessible::Skip(ULONG celt) STUB_ZERO;
+HRESULT HWNDHostAccessible::Reset() STUB_ZERO;
+HRESULT HWNDHostAccessible::Clone(IEnumVARIANT** ppEnum) STUB_ZERO;
+HRESULT HWNDHostAccessible::GetWindow(HWND* phwnd) STUB_ZERO;
+HRESULT HWNDHostAccessible::ContextSensitiveHelp(BOOL fEnterMode) STUB_ZERO;
+HRESULT HWNDHostAccessible::GetIdentityString(DWORD dwIDChild, BYTE** ppIDString, DWORD* pdwIDStringLen) STUB_ZERO;
+HRESULT HWNDHostAccessible::QueryService(REFGUID guidService, REFIID riid, void** ppvObject) STUB_ZERO;
+//~ End DirectUI::HWNDHostAccessible Class
 
-HWNDHostAccessible::~HWNDHostAccessible()
-{
-}
+//~ Begin DirectUI::HWNDHostClientAccessible Class
+HRESULT HWNDHostClientAccessible::Create(Element* pe, IAccessible* pCtrl, DuiAccessible** ppDA) STUB_ZERO;
+HRESULT HWNDHostClientAccessible::get_accParent(IDispatch** ppdispParent) STUB_ZERO;
+HRESULT HWNDHostClientAccessible::get_accRole(VARIANT varChild, VARIANT* pvarRole) STUB_ZERO;
+HRESULT HWNDHostClientAccessible::accNavigate(long navDir, VARIANT varStart, VARIANT* pvarEndUpAt) STUB_ZERO
+//~ End DirectUI::HWNDHostClientAccessible Class
 
-long HWNDHostAccessible::Initialize(Element*, IAccessible*)
-{
-	return 0;
-}
-
-HRESULT HWNDHostAccessible::Create(Element*, IAccessible*, DuiAccessible**)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::GetIdentityString(unsigned long, unsigned char**, unsigned long*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::Clone(IEnumVARIANT**)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::ContextSensitiveHelp(int)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::Disconnect()
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::GetWindow(HWND*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::Next(unsigned long, VARIANT*, unsigned long*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::QueryInterface(const IID&, void**)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::QueryService(const IID&, const IID&, void**)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::Reset()
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::Skip(unsigned long)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::accDoDefaultAction(VARIANT)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::accHitTest(long, long, VARIANT*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::accLocation(long*, long*, long*, long*, VARIANT)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::accNavigate(long, VARIANT, VARIANT*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::accSelect(long, VARIANT)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accChild(VARIANT, IDispatch**)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accChildCount(long*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accDefaultAction(VARIANT, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accDescription(VARIANT, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accFocus(VARIANT*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accHelp(VARIANT, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accHelpTopic(BSTR*, VARIANT, long*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accKeyboardShortcut(VARIANT, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accName(VARIANT, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accParent(IDispatch**)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accRole(VARIANT, VARIANT*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accSelection(VARIANT*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accState(VARIANT, VARIANT*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::get_accValue(VARIANT, BSTR*)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::put_accName(VARIANT, BSTR)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostAccessible::put_accValue(VARIANT, BSTR)
-{
-	return E_NOTIMPL;
-}
-
-HWNDHostClientAccessible::HWNDHostClientAccessible()
-{
-}
-
-HWNDHostClientAccessible::~HWNDHostClientAccessible()
-{
-}
-
-HRESULT HWNDHostClientAccessible::Create(Element*, IAccessible*, DuiAccessible**)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostClientAccessible::accNavigate(long, VARIANT, LPVARIANT)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostClientAccessible::get_accParent(IDispatch**)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDHostClientAccessible::get_accRole(VARIANT, VARIANT*)
-{
-	return E_NOTIMPL;
-}
-
-HWNDElementAccessible::HWNDElementAccessible()
-{
-}
-
-HWNDElementAccessible::~HWNDElementAccessible()
-{
-}
-
-long HWNDElementAccessible::Initialize(HWNDElement*)
-{
-	return 0;
-}
-
-HRESULT HWNDElementAccessible::Create(HWNDElement*, DuiAccessible**)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDElementAccessible::Disconnect()
-{
-	return E_NOTIMPL;
-}
-
-HRESULT HWNDElementAccessible::get_accParent(IDispatch**)
-{
-	return E_NOTIMPL;
-}
+//~ Begin DirectUI::HWNDElementAccessible Class
+HRESULT HWNDElementAccessible::Create(HWNDElement* pe, DuiAccessible** ppDA) STUB_ZERO;
+HWNDElementAccessible::HWNDElementAccessible() STUB_VOID;
+HRESULT HWNDElementAccessible::Disconnect() STUB_ZERO;
+HRESULT HWNDElementAccessible::Initialize(HWNDElement* pe) STUB_ZERO;
+HWNDElementAccessible::~HWNDElementAccessible() STUB_VOID;
+HRESULT HWNDElementAccessible::get_accParent(IDispatch** ppdispParent) STUB_ZERO;
+//~ End DirectUI::HWNDElementAccessible Class
 
 //~ Begin DirectUI::AccessibleButton Class
 HRESULT AccessibleButton::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
@@ -3774,20 +3421,6 @@ IProvider& IProvider::operator=(IProvider const&)
 	return *this;
 }
 
-ISBLeak::ISBLeak(ISBLeak const&)
-{
-}
-
-ISBLeak::ISBLeak(void)
-{
-}
-
-ISBLeak& ISBLeak::operator=(ISBLeak const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
 IXProviderCP::IXProviderCP(IXProviderCP const&)
 {
 }
@@ -3854,38 +3487,13 @@ bool InvokeProxy::IsPatternSupported(Element* pe) STUB_ZERO;
 void InvokeProxy::Init(Element* pe) STUB_VOID;
 //~ End DirectUI::InvokeProxy Class
 
-LinkedListNode& LinkedListNode::operator=(LinkedListNode const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-LinkedList::LinkedList(void)
-{
-}
-
-LinkedList::~LinkedList(void)
-{
-}
-
-LinkedList& LinkedList::operator=(LinkedList const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-void LinkedList::Add(LinkedListNode*)
-{
-}
-
-void LinkedList::Remove(LinkedListNode*)
-{
-}
-
-LinkedListNode* LinkedList::RemoveTail(void)
-{
-	return nullptr;
-}
+//~ Begin DirectUI::LinkedList Class
+LinkedList::LinkedList() STUB_VOID;
+LinkedList::~LinkedList() STUB_VOID;
+void LinkedList::Add(LinkedListNode* pNode) STUB_VOID;
+void LinkedList::Remove(LinkedListNode* pNode) STUB_VOID;
+LinkedListNode* LinkedList::RemoveTail() STUB_ZERO;
+//~ End DirectUI::LinkedList Class
 
 HRESULT Macro::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 HRESULT Macro::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
@@ -3917,46 +3525,27 @@ void CritSecLock::Unlock() STUB_VOID;
 void Expression::Destroy() STUB_VOID;
 //~ End DirectUI::Expression Class
 
-Surface::Surface(void)
-{
-}
+//~ Begin DirectUI::Surface Class
+Surface::Surface() STUB_VOID;
+Surface::~Surface() STUB_VOID;
+Surface::EType Surface::GetType() const STUB_ZERO;
+Surface::EType Surface::GetSurfaceType(UINT nSurfaceType) STUB_ZERO;
+UINT Surface::GetSurfaceType(EType type) STUB_ZERO;
+//~ End DirectUI::Surface Class
 
-Surface::~Surface(void)
-{
-}
+//~ Begin DirectUI::DCSurface Class
+DCSurface::DCSurface(HDC hdc) STUB_VOID;
+DCSurface::~DCSurface() STUB_VOID;
+DCSurface::EType DCSurface::GetType() const STUB_ZERO;
+HDC DCSurface::GetHDC() STUB_ZERO;
+//~ End DirectUI::DCSurface Class
 
-Surface::EType Surface::GetSurfaceType(unsigned int)
-{
-	return Surface::EType();
-}
-
-unsigned int Surface::GetSurfaceType(Surface::EType)
-{
-	return 0;
-}
-
-DCSurface::DCSurface(HDC)
-{
-}
-
-DCSurface::~DCSurface(void)
-{
-}
-
-HDC DCSurface::GetHDC(void)
-{
-	return HDC();
-}
-
-Surface::EType DCSurface::GetType(void) const
-{
-	return Surface::EType();
-}
-
+//~ Begin DirectUI::ResourceModuleHandles Class
 ResourceModuleHandles::ResourceModuleHandles(void) STUB_VOID;
 ResourceModuleHandles::~ResourceModuleHandles(void) STUB_VOID;
 HRESULT ResourceModuleHandles::GetHandle(LPCWSTR pszFile, HMODULE* phModule) STUB_ZERO;
 long volatile ResourceModuleHandles::g_cRefCount STUB_VOID;
+//~ End DirectUI::ResourceModuleHandles Class
 
 //~ Begin DirectUI::Movie Class
 Movie::Movie() STUB_VOID;
@@ -6167,60 +5756,15 @@ long ToggleProxy::GetToggleState(ToggleState*)
 	return 0;
 }
 
-UnknownElement::UnknownElement(UnknownElement const&)
-{
-}
-
-UnknownElement::UnknownElement()
-{
-}
-
-UnknownElement::~UnknownElement(void)
-{
-}
-
-UnknownElement& UnknownElement::operator=(UnknownElement const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long UnknownElement::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long UnknownElement::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* UnknownElement::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long UnknownElement::Register(void)
-{
-	return 0;
-}
-
-void UnknownElement::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long UnknownElement::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-IClassInfo* UnknownElement::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
+//~ Begin DirectUI::UnknownElement Class
+HRESULT UnknownElement::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT UnknownElement::Create(UINT nActive, Element*, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+IClassInfo* UnknownElement::GetClassInfoPtr() STUB_ZERO;
+void UnknownElement::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* UnknownElement::s_pClassInfo;
-
+IClassInfo* UnknownElement::GetClassInfoW() STUB_ZERO;
+HRESULT UnknownElement::Register() STUB_ZERO;
+//~ End DirectUI::UnknownElement Class
 
 //~ Begin DirectUI::Value Class
 void Value::_ZeroRelease() STUB_VOID

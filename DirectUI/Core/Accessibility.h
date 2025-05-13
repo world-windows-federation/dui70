@@ -16,7 +16,7 @@ namespace DirectUI
 
 	private:
 		DuiAccessible(const DuiAccessible& other) = delete;
-		DuiAccessible& operator=(DuiAccessible&);
+		DuiAccessible& operator=(const DuiAccessible& other) = delete;
 
 	public:
 		virtual HRESULT Disconnect();
@@ -100,74 +100,106 @@ namespace DirectUI
 	class UILIB_API HWNDHostAccessible : public DuiAccessible
 	{
 	public:
+		static HRESULT WINAPI Create(Element* pe, IAccessible* pCtrl, DuiAccessible** ppDA);
+
 		HWNDHostAccessible();
-		virtual ~HWNDHostAccessible();
 
-		long Initialize(Element*, IAccessible*);
-		static HRESULT WINAPI Create(Element*, IAccessible*, DuiAccessible**);
+	private:
+		HWNDHostAccessible(const HWNDHostAccessible& other) = delete;
+		HWNDHostAccessible& operator=(const HWNDHostAccessible& other) = delete;
 
-		//IAccIdentity
-		virtual HRESULT WINAPI GetIdentityString(unsigned long, unsigned char**, unsigned long*);
+	public:
+		HRESULT Disconnect() override;
 
-		virtual HRESULT WINAPI Clone(IEnumVARIANT**);
-		virtual HRESULT WINAPI ContextSensitiveHelp(int);
-		virtual HRESULT Disconnect();
-		virtual HRESULT WINAPI GetWindow(HWND*);
-		virtual HRESULT WINAPI Next(unsigned long, VARIANT*, unsigned long*);
-		virtual HRESULT WINAPI QueryInterface(const IID&, void**);
-		virtual HRESULT WINAPI QueryService(const IID&, const IID&, void**);
-		virtual HRESULT WINAPI Reset();
-		virtual HRESULT WINAPI Skip(unsigned long);
-		virtual HRESULT WINAPI accDoDefaultAction(VARIANT);
-		virtual HRESULT WINAPI accHitTest(long, long, VARIANT*);
-		virtual HRESULT WINAPI accLocation(long*, long*, long*, long*, VARIANT);
-		virtual HRESULT WINAPI accNavigate(long, VARIANT, VARIANT*);
-		virtual HRESULT WINAPI accSelect(long, VARIANT);
+		HRESULT Initialize(Element* pe, IAccessible* pCtrl);
 
-		// IAccessible
-		virtual HRESULT WINAPI get_accChild(VARIANT, IDispatch**);
-		virtual HRESULT WINAPI get_accChildCount(long*);
-		virtual HRESULT WINAPI get_accDefaultAction(VARIANT, BSTR*);
-		virtual HRESULT WINAPI get_accDescription(VARIANT, BSTR*);
-		virtual HRESULT WINAPI get_accFocus(VARIANT*);
-		virtual HRESULT WINAPI get_accHelp(VARIANT, BSTR*);
-		virtual HRESULT WINAPI get_accHelpTopic(BSTR*, VARIANT, long*);
-		virtual HRESULT WINAPI get_accKeyboardShortcut(VARIANT, BSTR*);
-		virtual HRESULT WINAPI get_accName(VARIANT, BSTR*);
-		virtual HRESULT WINAPI get_accParent(IDispatch**);
-		virtual HRESULT WINAPI get_accRole(VARIANT, VARIANT*);
-		virtual HRESULT WINAPI get_accSelection(VARIANT*);
-		virtual HRESULT WINAPI get_accState(VARIANT, VARIANT*);
-		virtual HRESULT WINAPI get_accValue(VARIANT, BSTR*);
-		virtual HRESULT WINAPI put_accName(VARIANT, BSTR);
-		virtual HRESULT WINAPI put_accValue(VARIANT, BSTR);
+		~HWNDHostAccessible() override;
+
+		//~ Begin IUnknown Interface
+		STDMETHODIMP QueryInterface(REFIID riid, void** ppvObj) override;
+		//~ End IUnknown Interface
+
+		//~ Begin IAccessible Interface
+		STDMETHODIMP get_accParent(IDispatch** ppdispParent) override;
+		STDMETHODIMP get_accChildCount(long* pcountChildren) override;
+		STDMETHODIMP get_accChild(VARIANT varChild, IDispatch** ppdispChild) override;
+		STDMETHODIMP get_accName(VARIANT varChild, BSTR* pszName) override;
+		STDMETHODIMP get_accValue(VARIANT varChild, BSTR* pszValue) override;
+		STDMETHODIMP get_accDescription(VARIANT varChild, BSTR* pszDescription) override;
+		STDMETHODIMP get_accRole(VARIANT varChild, VARIANT* pvarRole) override;
+		STDMETHODIMP get_accState(VARIANT varChild, VARIANT* pvarState) override;
+		STDMETHODIMP get_accHelp(VARIANT varChild, BSTR* pszHelp) override;
+		STDMETHODIMP get_accHelpTopic(BSTR* pszHelpFile, VARIANT varChild, long* pidTopic) override;
+		STDMETHODIMP get_accKeyboardShortcut(VARIANT varChild, BSTR* pszKeyboardShortcut) override;
+		STDMETHODIMP get_accFocus(VARIANT* pvarChild) override;
+		STDMETHODIMP get_accSelection(VARIANT* pvarChildren) override;
+		STDMETHODIMP get_accDefaultAction(VARIANT varChild, BSTR* pszDefaultAction) override;
+		STDMETHODIMP accSelect(long flagsSelect, VARIANT varChild) override;
+		STDMETHODIMP accLocation(long* pxLeft, long* pyTop, long* pcxWidth, long* pcyHeight, VARIANT varChild) override;
+		STDMETHODIMP accNavigate(long navDir, VARIANT varStart, VARIANT* pvarEndUpAt) override;
+		STDMETHODIMP accHitTest(long xLeft, long yTop, VARIANT* pvarChild) override;
+		STDMETHODIMP accDoDefaultAction(VARIANT varChild) override;
+		STDMETHODIMP put_accName(VARIANT varChild, BSTR szName) override;
+		STDMETHODIMP put_accValue(VARIANT varChild, BSTR szValue) override;
+		//~ End IAccessible Interface
+
+		//~ Begin IEnumVARIANT Interface
+		STDMETHODIMP Next(ULONG celt, VARIANT* rgVar, ULONG* pCeltFetched) override;
+		STDMETHODIMP Skip(ULONG celt) override;
+		STDMETHODIMP Reset() override;
+		STDMETHODIMP Clone(IEnumVARIANT** ppEnum) override;
+		//~ End IEnumVARIANT Interface
+
+		//~ Begin IOleWindow Interface
+		STDMETHODIMP GetWindow(HWND* phwnd) override;
+		STDMETHODIMP ContextSensitiveHelp(BOOL fEnterMode) override;
+		//~ End IOleWindow Interface
+
+		//~ Begin IAccIdentity Interface
+		STDMETHODIMP GetIdentityString(DWORD dwIDChild, BYTE** ppIDString, DWORD* pdwIDStringLen) override;
+		//~ End IAccIdentity Interface
+
+		//~ Begin IServiceProvider Interface
+		STDMETHODIMP QueryService(REFGUID guidService, REFIID riid, void** ppvObject) override;
+		//~ End IServiceProvider Interface
+
+	protected:
+		IAccessible* _pCtrl;
+
+	private:
+		IEnumVARIANT* _pEnum;
+		IOleWindow* _pOleWindow;
 	};
 
 	class UILIB_API HWNDHostClientAccessible : public HWNDHostAccessible
 	{
 	public:
-		HWNDHostClientAccessible();
-		HWNDHostClientAccessible(const HWNDHostClientAccessible&) = delete;
-		HWNDHostClientAccessible& operator=(const HWNDHostClientAccessible&) = delete;
+		static HRESULT WINAPI Create(Element* pe, IAccessible* pCtrl, DuiAccessible** ppDA);
 
-		virtual ~HWNDHostClientAccessible();
-
-		static HRESULT WINAPI Create(Element*, IAccessible*, DuiAccessible**);
-		virtual HRESULT WINAPI accNavigate(long, VARIANT, LPVARIANT);
-		virtual HRESULT WINAPI get_accParent(IDispatch**);
-		virtual HRESULT WINAPI get_accRole(VARIANT, VARIANT*);
+		STDMETHODIMP get_accParent(IDispatch** ppdispParent) override;
+		STDMETHODIMP get_accRole(VARIANT varChild, VARIANT* pvarRole) override;
+		STDMETHODIMP accNavigate(long navDir, VARIANT varStart, VARIANT* pvarEndUpAt) override;
 	};
 
-	class UILIB_API HWNDElementAccessible : DuiAccessible
+	class UILIB_API HWNDElementAccessible : public DuiAccessible
 	{
 	public:
+		static HRESULT WINAPI Create(HWNDElement* pe, DuiAccessible** ppDA);
 		HWNDElementAccessible();
-		virtual ~HWNDElementAccessible();
 
-		long Initialize(HWNDElement*);
-		static HRESULT WINAPI Create(HWNDElement*, DuiAccessible**);
+	private:
+		HWNDElementAccessible(const HWNDElementAccessible& other) = delete;
+		HWNDElementAccessible& operator=(const HWNDElementAccessible& other) = delete;
 
-		virtual HRESULT Disconnect();
-		virtual HRESULT WINAPI get_accParent(IDispatch**);
+	public:
+		HRESULT Disconnect() override;
+		HRESULT Initialize(HWNDElement* pe);
+		
+		~HWNDElementAccessible() override;
+
+		STDMETHODIMP get_accParent(IDispatch** ppdispParent) override;
+
+	private:
+		IAccessible* _pParent;
 	};
 }

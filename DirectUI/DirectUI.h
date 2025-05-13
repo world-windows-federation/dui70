@@ -34,6 +34,7 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #include "Types.h"
 #include "Extensions\Misc.h"
 #include "Base\Surface.h"
+#include "Base\SBAlloc.h"
 #include "Event.h"
 #include "Interfaces.h"
 
@@ -76,7 +77,7 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #include "Control\Button.h"
 #include "Base.h"
 #include "ClassInfo.h"
-#include "ElementWithProxy.h"
+#include "Core\ElementHelpers.h"
 #include "Extensions\AccessibleButton.h"
 #include "Extensions\AutoButton.h"
 #include "Extensions\PushButton.h"

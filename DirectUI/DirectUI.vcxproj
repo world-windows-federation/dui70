@@ -219,6 +219,7 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Base\FontCache.h" />
     <ClInclude Include="Base\LinkedList.h" />
+    <ClInclude Include="Base\SBAlloc.h" />
     <ClInclude Include="Base\Surface.h" />
     <ClInclude Include="Bind.h" />
     <ClInclude Include="BrowserSelection.h" />
@@ -275,6 +276,7 @@
     <ClInclude Include="Core\BehaviorEngineHelper.h" />
     <ClInclude Include="Core\CallstackTracker.h" />
     <ClInclude Include="Core\Element.h" />
+    <ClInclude Include="Core\ElementHelpers.h" />
     <ClInclude Include="Core\Expression.h" />
     <ClInclude Include="Core\Host.h" />
     <ClInclude Include="Core\Layout.h" />
@@ -293,7 +295,6 @@
     <ClInclude Include="DuiAnimation.h" />
     <ClInclude Include="DuiProxy.h" />
     <ClInclude Include="ElementProviderManager.h" />
-    <ClInclude Include="ElementWithProxy.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="Expando.h" />
     <ClInclude Include="ExpandoButtonGlyph.h" />

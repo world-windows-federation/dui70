@@ -5,18 +5,22 @@ namespace DirectUI
 	class UILIB_API LinkedListNode
 	{
 	public:
-		LinkedListNode& operator=(LinkedListNode const &);
+		LinkedListNode* pNext;
+		LinkedListNode* pPrev;
 	};
 
 	class UILIB_API LinkedList
 	{
 	public:
-		LinkedList(void);
-		~LinkedList(void);
-		LinkedList & operator=(LinkedList const &);
-		void Add(LinkedListNode *);
-		void Remove(LinkedListNode *);
-		class LinkedListNode * RemoveTail(void);
-	};
+		LinkedList();
+		~LinkedList();
 
+		void Add(LinkedListNode* pNode);
+		void Remove(LinkedListNode* pNode);
+		LinkedListNode* RemoveTail();
+
+	private:
+		LinkedListNode* pHead;
+		LinkedListNode* pTail;
+	};
 }

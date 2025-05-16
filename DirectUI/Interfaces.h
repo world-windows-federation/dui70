@@ -90,6 +90,7 @@ namespace DirectUI
 
 	interface IDataEngine
 	{
+		virtual ~IDataEngine() = 0;
 		virtual UINT GetSize() = 0;
 		virtual IDataEntry* GetEntry(UINT) = 0;
 	};

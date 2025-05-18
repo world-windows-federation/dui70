@@ -7,7 +7,7 @@ namespace DirectUI
 	public:
 		AutoThread();
 		~AutoThread();
-		AutoThread& operator=(const AutoThread &);
+
 		HRESULT Init();
 	};
 }

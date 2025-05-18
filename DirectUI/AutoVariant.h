@@ -6,7 +6,6 @@ namespace DirectUI
 	{
 	public:
 		AutoVariant();
-		AutoVariant& operator=(const AutoVariant &);
 		~AutoVariant();
 	};
 }

@@ -34,7 +34,7 @@ namespace DirectUI
 		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		IClassInfo* s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
 
 	public:
 		IClassInfo* GetClassInfoW() override;

@@ -864,41 +864,21 @@ IClassInfo* AutoButton::GetClassInfoW() STUB_ZERO;
 HRESULT AutoButton::Register() STUB_ZERO;
 //~ End DirectUI::AutoButton Class
 
-AutoLock::AutoLock(LPCRITICAL_SECTION lpCriticalSection) STUB_VOID;
+//~ Begin DirectUI::AutoLock Class
+AutoLock::AutoLock(CRITICAL_SECTION* pacs) STUB_VOID;
 AutoLock::~AutoLock() STUB_VOID;
+//~ End DirectUI::AutoLock Class
 
-AutoThread::AutoThread()
-{
-}
+//~ Begin DirectUI::AutoThread Class
+AutoThread::AutoThread() STUB_VOID
+AutoThread::~AutoThread() STUB_VOID
+HRESULT AutoThread::Init() STUB_ZERO
+//~ End DirectUI::AutoThread Class
 
-AutoThread::~AutoThread()
-{
-}
-
-AutoThread& AutoThread::operator=(const AutoThread&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-HRESULT AutoThread::Init()
-{
-	return E_NOTIMPL;
-}
-
-AutoVariant::AutoVariant()
-{
-}
-
-AutoVariant& AutoVariant::operator=(const AutoVariant&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-AutoVariant::~AutoVariant()
-{
-}
+//~ Begin DirectUI::AutoVariant Class
+AutoVariant::AutoVariant() STUB_VOID
+AutoVariant::~AutoVariant() STUB_VOID
+//~ End DirectUI::AutoVariant Class
 
 //~ Begin DirectUI::Layout Class
 HRESULT Layout::Create(Layout** ppLayout) STUB_ZERO;
@@ -1239,541 +1219,145 @@ BOOL CallstackTracker::IsCorrectImageHlpVersion() STUB_ZERO;
 int CallstackTracker::InitializeSymbols() STUB_ZERO;
 //~ End DirectUI::CallstackTracker Class
 
-CCAVI::CCAVI(void)
-	: CCBase(0, 0)
-{
-}
-
-long CCAVI::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCAVI::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* CCAVI::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CCAVI::Register(void)
-{
-	return 0;
-}
-
-void CCAVI::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-void CCAVI::Play(HWND)
-{
-}
-
-void CCAVI::Stop(void)
-{
-}
-
-IClassInfo* CCAVI::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void CCAVI::PostCreate(HWND)
-{
-}
-
-void CCAVI::OpenAnimation(HWND)
-{
-}
-
+//~ Begin DirectUI::CCAVI Class
+CCAVI::CCAVI() STUB_VOID;
+HRESULT CCAVI::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCAVI::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+IClassInfo* CCAVI::GetClassInfoPtr() STUB_ZERO;
+void CCAVI::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCAVI::s_pClassInfo;
+IClassInfo* CCAVI::GetClassInfoW() STUB_ZERO;
+HRESULT CCAVI::Register() STUB_ZERO;
+void CCAVI::Play(HWND hwnd) STUB_VOID;
+void CCAVI::Stop() STUB_VOID;
+void CCAVI::PostCreate(HWND hwnd) STUB_VOID;
+void CCAVI::OpenAnimation(HWND hwnd) STUB_VOID;
+//~ End DirectUI::CCAVI Class
 
+//~ Begin DirectUI::CCBase Class
+CCBase::CCBase(DWORD dwStyle, const WCHAR* psz) STUB_VOID;
+CCBase::~CCBase() STUB_VOID;
+HRESULT CCBase::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCBase::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCBase::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+void CCBase::OnInput(InputEvent* pie) STUB_VOID;
+void CCBase::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+bool CCBase::OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+bool CCBase::OnCustomDraw(NMCUSTOMDRAW* pnmcd, LRESULT* plRet) STUB_ZERO;
+bool CCBase::OnLostDialogFocus(IDialogElement* pDE) STUB_ZERO;
+bool CCBase::OnReceivedDialogFocus(IDialogElement* pDE) STUB_ZERO;
+SIZE CCBase::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+HWND CCBase::CreateHWND(HWND hwndParent) STUB_ZERO;
+IClassInfo* CCBase::GetClassInfoPtr() STUB_ZERO;
+void CCBase::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
+IClassInfo* CCBase::s_pClassInfo;
+IClassInfo* CCBase::GetClassInfoW() STUB_ZERO;
+HRESULT CCBase::Register() STUB_ZERO;
+int CCBase::AddString(const WCHAR* pszString) STUB_ZERO;
+UID CCBase::WinStyleChange() STUB_ZERO;
+const PropertyInfo* CCBase::WinStyleProp() STUB_ZERO;
+int CCBase::GetWinStyle() STUB_ZERO;
+HRESULT CCBase::SetWinStyle(int v) STUB_ZERO;
+void CCBase::SetNotifyHandler(NOTIFYHANDLER pfnnh, HCONTEXT pContext) STUB_VOID;
+HRESULT CCBase::DefaultAction() STUB_ZERO;
+void CCBase::PostCreate(HWND hwnd) STUB_VOID;
+//~ End DirectUI::CCBase Class
 
-CCBase::CCBase(unsigned long, const WCHAR*)
-{
-}
-
-CCBase::~CCBase(void)
-{
-}
-
-long CCBase::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCBase::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCBase::Register(void)
-{
-	return 0;
-}
-
-void CCBase::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-IClassInfo* CCBase::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* CCBase::WinStyleProp(void)
-{
-	return nullptr;
-}
-
-int CCBase::GetWinStyle(void)
-{
-	return 0;
-}
-
-long CCBase::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-void CCBase::SetNotifyHandler(NOTIFYHANDLER, void* pUserData)
-{
-}
-
-long CCBase::SetWinStyle(int)
-{
-	return 0;
-}
-
-void CCBase::OnPropertyChanged(PropertyInfo const*, int, Value*, Value*)
-{
-}
-
-HWND CCBase::CreateHWND(HWND)
-{
-	return HWND();
-}
-
-long CCBase::DefaultAction(void)
-{
-	return 0;
-}
-
-IClassInfo* CCBase::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE CCBase::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-void CCBase::OnInput(InputEvent*)
-{
-}
-
-bool CCBase::OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return false;
-}
-
-bool CCBase::OnCustomDraw(NMCUSTOMDRAW*, LRESULT*)
-{
-	return false;
-}
-
-bool CCBase::OnLostDialogFocus(IDialogElement*)
-{
-	return false;
-}
-
-bool CCBase::OnReceivedDialogFocus(IDialogElement*)
-{
-	return false;
-}
-
-void CCBase::PostCreate(HWND)
-{
-}
-
-CCBaseCheckRadioButton::CCBaseCheckRadioButton(unsigned long)
-	: CCPushButton(0)
-{
-}
-
-IClassInfo* CCBaseCheckRadioButton::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CCBaseCheckRadioButton::Register(void)
-{
-	return 0;
-}
-
-void CCBaseCheckRadioButton::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-IClassInfo* CCBaseCheckRadioButton::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE CCBaseCheckRadioButton::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-bool CCBaseCheckRadioButton::OnLostDialogFocus(IDialogElement*)
-{
-	return false;
-}
-
-void CCBaseCheckRadioButton::OnPropertyChanged(PropertyInfo const*, int, Value*, Value*)
-{
-}
-
-bool CCBaseCheckRadioButton::OnReceivedDialogFocus(IDialogElement*)
-{
-	return false;
-}
-
-void CCBaseCheckRadioButton::PostCreate(HWND)
-{
-}
-
+//~ Begin DirectUI::CCBaseCheckRadioButton Class
+CCBaseCheckRadioButton::CCBaseCheckRadioButton(DWORD dwStyle) STUB_ZERO;
+IClassInfo* CCBaseCheckRadioButton::GetClassInfoPtr() STUB_ZERO;
+void CCBaseCheckRadioButton::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCBaseCheckRadioButton::s_pClassInfo;
+IClassInfo* CCBaseCheckRadioButton::GetClassInfoW() STUB_ZERO;
+HRESULT CCBaseCheckRadioButton::Register() STUB_ZERO;
+void CCBaseCheckRadioButton::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+SIZE CCBaseCheckRadioButton::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+bool CCBaseCheckRadioButton::OnLostDialogFocus(IDialogElement* pDE) STUB_ZERO;
+bool CCBaseCheckRadioButton::OnReceivedDialogFocus(IDialogElement* pDE) STUB_ZERO;
+void CCBaseCheckRadioButton::PostCreate(HWND hwnd) STUB_VOID;
+//~ End DirectUI::CCBaseCheckRadioButton Class
 
-CCBaseScrollBar::CCBaseScrollBar(unsigned long)
-	: CCBase(0, 0)
-{
-}
-
-IClassInfo* CCBaseScrollBar::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* CCBaseScrollBar::LineProp(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* CCBaseScrollBar::MaximumProp(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* CCBaseScrollBar::MinimumProp(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* CCBaseScrollBar::PageProp(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* CCBaseScrollBar::PositionProp(void)
-{
-	return nullptr;
-}
-
-long CCBaseScrollBar::Register(void)
-{
-	return 0;
-}
-
-void CCBaseScrollBar::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-const PropertyInfo* CCBaseScrollBar::TrackingProp(void)
-{
-	return nullptr;
-}
-
-bool CCBaseScrollBar::GetTracking(void)
-{
-	return false;
-}
-
-long CCBaseScrollBar::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-long CCBaseScrollBar::SetTracking(bool)
-{
-	return 0;
-}
-
-void CCBaseScrollBar::SyncScrollBar(void)
-{
-}
-
-HWND CCBaseScrollBar::CreateHWND(HWND)
-{
-	return HWND();
-}
-
-IClassInfo* CCBaseScrollBar::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-Element* CCBaseScrollBar::GetElement(void)
-{
-	return nullptr;
-}
-
-int CCBaseScrollBar::GetLine(void)
-{
-	return 0;
-}
-
-int CCBaseScrollBar::GetMaximum(void)
-{
-	return 0;
-}
-
-int CCBaseScrollBar::GetMinimum(void)
-{
-	return 0;
-}
-
-int CCBaseScrollBar::GetPage(void)
-{
-	return 0;
-}
-
-int CCBaseScrollBar::GetPosition(void)
-{
-	return 0;
-}
-
-bool CCBaseScrollBar::GetProportional(void)
-{
-	return false;
-}
-
-bool CCBaseScrollBar::OnMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return false;
-}
-
-void CCBaseScrollBar::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-bool CCBaseScrollBar::OnPropertyChanging(const PropertyInfo*, int, Value*, Value*)
-{
-	return false;
-}
-
-long CCBaseScrollBar::SetLine(int)
-{
-	return 0;
-}
-
-long CCBaseScrollBar::SetMaximum(int)
-{
-	return 0;
-}
-
-long CCBaseScrollBar::SetMinimum(int)
-{
-	return 0;
-}
-
-long CCBaseScrollBar::SetPage(int)
-{
-	return 0;
-}
-
-long CCBaseScrollBar::SetPosition(int)
-{
-	return 0;
-}
-
+//~ Begin DirectUI::CCBaseScrollBar Class
+CCBaseScrollBar::CCBaseScrollBar(DWORD dwStyle) STUB_VOID;
+HRESULT CCBaseScrollBar::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+HWND CCBaseScrollBar::CreateHWND(HWND hwndParent) STUB_ZERO;
+void CCBaseScrollBar::SyncScrollBar() STUB_VOID;
+bool CCBaseScrollBar::OnMessage(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+bool CCBaseScrollBar::OnPropertyChanging(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
+void CCBaseScrollBar::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+const PropertyInfo* CCBaseScrollBar::PositionProp() STUB_ZERO;
+const PropertyInfo* CCBaseScrollBar::MinimumProp() STUB_ZERO;
+const PropertyInfo* CCBaseScrollBar::MaximumProp() STUB_ZERO;
+const PropertyInfo* CCBaseScrollBar::PageProp() STUB_ZERO;
+const PropertyInfo* CCBaseScrollBar::LineProp() STUB_ZERO;
+const PropertyInfo* CCBaseScrollBar::TrackingProp() STUB_ZERO;
+Element* CCBaseScrollBar::GetElement() STUB_ZERO;
+int CCBaseScrollBar::GetPosition() STUB_ZERO;
+int CCBaseScrollBar::GetMaximum() STUB_ZERO;
+int CCBaseScrollBar::GetMinimum() STUB_ZERO;
+int CCBaseScrollBar::GetPage() STUB_ZERO;
+int CCBaseScrollBar::GetLine() STUB_ZERO;
+HRESULT CCBaseScrollBar::SetPosition(int v) STUB_ZERO;
+HRESULT CCBaseScrollBar::SetMaximum(int v) STUB_ZERO;
+HRESULT CCBaseScrollBar::SetMinimum(int v) STUB_ZERO;
+HRESULT CCBaseScrollBar::SetPage(int v) STUB_ZERO;
+HRESULT CCBaseScrollBar::SetLine(int v) STUB_ZERO;
+bool CCBaseScrollBar::GetProportional() STUB_ZERO;
+bool CCBaseScrollBar::GetTracking() STUB_ZERO;
+HRESULT CCBaseScrollBar::SetTracking(bool v) STUB_ZERO;
+IClassInfo* CCBaseScrollBar::GetClassInfoPtr() STUB_ZERO;
+void CCBaseScrollBar::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCBaseScrollBar::s_pClassInfo;
+IClassInfo* CCBaseScrollBar::GetClassInfoW() STUB_ZERO;
+HRESULT CCBaseScrollBar::Register() STUB_ZERO;
+//~ End DirectUI::CCBaseScrollBar Class
 
-CCCheckBox::CCCheckBox(unsigned long)
-	: CCBaseCheckRadioButton(0)
-{
-}
-
-long CCCheckBox::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCCheckBox::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCCheckBox::Register(void)
-{
-	return 0;
-}
-
-void CCCheckBox::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-IClassInfo* CCCheckBox::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-IClassInfo* CCCheckBox::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void CCCheckBox::OnInput(InputEvent*)
-{
-}
-
-bool CCCheckBox::OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return false;
-}
-
+//~ Begin DirectUI::CCCheckBox Class
+CCCheckBox::CCCheckBox(DWORD dwStyle): CCBaseCheckRadioButton(NULL) STUB_VOID;
+HRESULT CCCheckBox::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCCheckBox::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+IClassInfo* CCCheckBox::GetClassInfoPtr() STUB_ZERO;
+void CCCheckBox::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCCheckBox::s_pClassInfo;
+IClassInfo* CCCheckBox::GetClassInfoW() STUB_ZERO;
+HRESULT CCCheckBox::Register() STUB_ZERO;
+void CCCheckBox::OnInput(InputEvent* pInputEvent) STUB_VOID;
+bool CCCheckBox::OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+//~ End DirectUI::CCCheckBox Class
 
-CCCommandLink::CCCommandLink(unsigned long)
-	: CCPushButton(0)
-{
-}
-
-long CCCommandLink::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCCommandLink::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* CCCommandLink::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CCCommandLink::Register(void)
-{
-	return 0;
-}
-
-void CCCommandLink::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-PropertyInfo const* CCCommandLink::NoteProp(void)
-{
-	return nullptr;
-}
-
-const WCHAR* CCCommandLink::GetNote(Value**)
-{
-	return nullptr;
-}
-
-long CCCommandLink::SetNote(const WCHAR*)
-{
-	return 0;
-}
-
-IClassInfo* CCCommandLink::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE CCCommandLink::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-void CCCommandLink::OnPropertyChanged(PropertyInfo const*, int, Value*, Value*)
-{
-}
-
-void CCCommandLink::OnSelectedPropertyChanged(void)
-{
-}
-
-void CCCommandLink::SyncNoteAndGlyph(HWND)
-{
-}
-
-void CCCommandLink::PostCreate(HWND)
-{
-}
-
+//~ Begin DirectUI::CCCommandLink Class
+CCCommandLink::CCCommandLink(DWORD dwStyle) STUB_VOID;
+HRESULT CCCommandLink::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCCommandLink::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+IClassInfo* CCCommandLink::GetClassInfoPtr() STUB_ZERO;
+void CCCommandLink::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCCommandLink::s_pClassInfo;
+IClassInfo* CCCommandLink::GetClassInfoW() STUB_ZERO;
+HRESULT CCCommandLink::Register() STUB_ZERO;
+const PropertyInfo* CCCommandLink::NoteProp() STUB_ZERO;
+const WCHAR* CCCommandLink::GetNote(Value** ppv) STUB_ZERO;
+HRESULT CCCommandLink::SetNote(const WCHAR* v) STUB_ZERO;
+void CCCommandLink::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void CCCommandLink::OnSelectedPropertyChanged() STUB_VOID;
+SIZE CCCommandLink::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+void CCCommandLink::PostCreate(HWND hwnd) STUB_VOID;
+void CCCommandLink::SyncNoteAndGlyph(HWND hwnd) STUB_VOID;
+//~ End DirectUI::CCCommandLink Class
 
-CCSysLink::CCSysLink(void)
-	: CCBase(0, 0)
-{
-}
-
-long CCSysLink::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCSysLink::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* CCSysLink::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CCSysLink::Register(void)
-{
-	return 0;
-}
-
-void CCSysLink::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-IClassInfo* CCSysLink::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-tagSIZE CCSysLink::GetContentSize(int, int, Surface*)
-{
-	return tagSIZE();
-}
-
-void CCSysLink::OnInput(InputEvent*)
-{
-}
-
-bool CCSysLink::OnLostDialogFocus(IDialogElement*)
-{
-	return false;
-}
-
-bool CCSysLink::OnReceivedDialogFocus(IDialogElement*)
-{
-	return false;
-}
-
+//~ Begin DirectUI::CCSysLink Class
+CCSysLink::CCSysLink() STUB_VOID;
+HRESULT CCSysLink::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCSysLink::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+IClassInfo* CCSysLink::GetClassInfoPtr() STUB_ZERO;
+void CCSysLink::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCSysLink::s_pClassInfo;
+IClassInfo* CCSysLink::GetClassInfoW() STUB_ZERO;
+HRESULT CCSysLink::Register() STUB_ZERO;
+SIZE CCSysLink::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+void CCSysLink::OnInput(InputEvent* pInputEvent) STUB_VOID;
+bool CCSysLink::OnLostDialogFocus(IDialogElement* pDE) STUB_ZERO;
+bool CCSysLink::OnReceivedDialogFocus(IDialogElement* pDE) STUB_ZERO;
+//~ End DirectUI::CCSysLink Class
 
 //~ Begin DirectUI::CheckBoxGlyph Class
 HRESULT CheckBoxGlyph::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
@@ -1787,46 +1371,17 @@ bool CheckBoxGlyph::OnLostDialogFocus(IDialogElement* pDE) STUB_ZERO;
 bool CheckBoxGlyph::OnReceivedDialogFocus(IDialogElement* pDE) STUB_ZERO;
 //~ End DirectUI::CheckBoxGlyph Class
 
-CCHScrollBar::CCHScrollBar(void)
-	: CCBaseScrollBar(0)
-{
-}
-
-long CCHScrollBar::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCHScrollBar::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* CCHScrollBar::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CCHScrollBar::Register(void)
-{
-	return 0;
-}
-
-void CCHScrollBar::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-IClassInfo* CCHScrollBar::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE CCHScrollBar::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
+//~ Begin DirectUI::CCHScrollBar Class
+CCHScrollBar::CCHScrollBar() STUB_VOID;
+HRESULT CCHScrollBar::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCHScrollBar::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+SIZE CCHScrollBar::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+IClassInfo* CCHScrollBar::GetClassInfoPtr() STUB_ZERO;
+void CCHScrollBar::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCHScrollBar::s_pClassInfo;
+IClassInfo* CCHScrollBar::GetClassInfoW() STUB_ZERO;
+HRESULT CCHScrollBar::Register() STUB_ZERO;
+//~ End DirectUI::CCHScrollBar Class
 
 //~ Begin DirectUI::Clipper Class
 HRESULT Clipper::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
@@ -1840,107 +1395,33 @@ HRESULT Clipper::Register() STUB_ZERO;
 HRESULT Clipper::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
 //~ End DirectUI::Clipper Class
 
-CCListBox::CCListBox(void)
-	: CCBase(0, 0)
-{
-}
-
-long CCListBox::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCListBox::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* CCListBox::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CCListBox::Register(void)
-{
-	return 0;
-}
-
-void CCListBox::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-int CCListBox::DeleteString(int)
-{
-	return 0;
-}
-
-int CCListBox::AddString(unsigned short const*)
-{
-	return 0;
-}
-
-int CCListBox::GetCount(void)
-{
-	return 0;
-}
-
-IClassInfo* CCListBox::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE CCListBox::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
+//~ Begin DirectUI::CCListBox Class
+CCListBox::CCListBox() STUB_VOID;
+HRESULT CCListBox::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCListBox::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+IClassInfo* CCListBox::GetClassInfoPtr() STUB_ZERO;
+void CCListBox::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCListBox::s_pClassInfo;
+IClassInfo* CCListBox::GetClassInfoW() STUB_ZERO;
+HRESULT CCListBox::Register() STUB_ZERO;
+int CCListBox::AddString(const WCHAR* pszString) STUB_ZERO;
+int CCListBox::DeleteString(int iDelete) STUB_ZERO;
+int CCListBox::GetCount() STUB_ZERO;
+SIZE CCListBox::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+//~ End DirectUI::CCListBox Class
 
-CCListView::CCListView(void)
-	: CCBase(0, 0)
-{
-}
-
-long CCListView::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCListView::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* CCListView::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CCListView::Register(void)
-{
-	return 0;
-}
-
-void CCListView::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long CCListView::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-IClassInfo* CCListView::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE CCListView::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
+//~ Begin DirectUI::CCListView Class
+CCListView::CCListView() STUB_VOID;
+HRESULT CCListView::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCListView::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+SIZE CCListView::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+HRESULT CCListView::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+IClassInfo* CCListView::GetClassInfoPtr() STUB_ZERO;
+void CCListView::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCListView::s_pClassInfo;
+IClassInfo* CCListView::GetClassInfoW() STUB_ZERO;
+HRESULT CCListView::Register() STUB_ZERO;
+//~ End DirectUI::CCListView Class
 
 Combobox::Combobox(Combobox const&)
 {
@@ -2053,467 +1534,122 @@ void Combobox::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
 
 IClassInfo* Combobox::s_pClassInfo;
 
-CCProgressBar::CCProgressBar(void)
-	: CCBase(0, 0)
-{
-}
-
-long CCProgressBar::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCProgressBar::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* CCProgressBar::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CCProgressBar::Register(void)
-{
-	return 0;
-}
-
-void CCProgressBar::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long CCProgressBar::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-IClassInfo* CCProgressBar::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void CCProgressBar::OnInput(InputEvent*)
-{
-}
-
+//~ Begin DirectUI::CCProgressBar Class
+CCProgressBar::CCProgressBar() STUB_VOID;
+HRESULT CCProgressBar::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCProgressBar::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCProgressBar::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+IClassInfo* CCProgressBar::GetClassInfoPtr() STUB_ZERO;
+void CCProgressBar::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCProgressBar::s_pClassInfo;
+IClassInfo* CCProgressBar::GetClassInfoW() STUB_ZERO;
+HRESULT CCProgressBar::Register() STUB_ZERO;
+void CCProgressBar::OnInput(InputEvent* pInputEvent) STUB_VOID;
+//~ End DirectUI::CCProgressBar Class
 
-CCPushButton::CCPushButton(unsigned long)
-	: CCBase(0, 0)
-{
-}
-
-long CCPushButton::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCPushButton::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-const PropertyInfo* CCPushButton::OverrideButtonBackgroundProp(void)
-{
-	return nullptr;
-}
-
-long CCPushButton::Register(void)
-{
-	return 0;
-}
-
-void CCPushButton::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-IClassInfo* CCPushButton::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* CCPushButton::HasShieldProp(void)
-{
-	return nullptr;
-}
-
-long CCPushButton::SetOverrideButtonBackground(bool)
-{
-	return 0;
-}
-
-bool CCPushButton::GetHasShield(void)
-{
-	return false;
-}
-
-bool CCPushButton::GetOverrideButtonBackground(void)
-{
-	return false;
-}
-
-long CCPushButton::DefaultAction(void)
-{
-	return 0;
-}
-
-IClassInfo* CCPushButton::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE CCPushButton::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-void CCPushButton::OnInput(InputEvent*)
-{
-}
-
-bool CCPushButton::OnLostDialogFocus(IDialogElement*)
-{
-	return false;
-}
-
-bool CCPushButton::OnMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return false;
-}
-
-bool CCPushButton::OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return false;
-}
-
-void CCPushButton::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-bool CCPushButton::OnReceivedDialogFocus(IDialogElement*)
-{
-	return false;
-}
-
-bool CCPushButton::GetButtonColor(HDC, HBRUSH*)
-{
-	return false;
-}
-
-void CCPushButton::OnSelectedPropertyChanged(void)
-{
-}
-
-SIZE CCPushButton::EstimateContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-void CCPushButton::SetDefaultState(unsigned long, unsigned long)
-{
-}
-
+//~ Begin DirectUI::CCPushButton Class
+CCPushButton::CCPushButton(DWORD dwStyle) STUB_VOID;
+HRESULT CCPushButton::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCPushButton::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+IClassInfo* CCPushButton::GetClassInfoPtr() STUB_ZERO;
+void CCPushButton::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCPushButton::s_pClassInfo;
+IClassInfo* CCPushButton::GetClassInfoW() STUB_ZERO;
+HRESULT CCPushButton::Register() STUB_ZERO;
+const PropertyInfo* CCPushButton::OverrideButtonBackgroundProp() STUB_ZERO;
+const PropertyInfo* CCPushButton::HasShieldProp() STUB_ZERO;
+bool CCPushButton::GetOverrideButtonBackground() STUB_ZERO;
+bool CCPushButton::GetHasShield() STUB_ZERO;
+HRESULT CCPushButton::SetOverrideButtonBackground(bool v) STUB_ZERO;
+bool CCPushButton::OnMessage(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+bool CCPushButton::GetButtonColor(HDC hdc, HBRUSH* phbrush) STUB_ZERO;
+void CCPushButton::OnInput(InputEvent* pInputEvent) STUB_VOID;
+bool CCPushButton::OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+void CCPushButton::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void CCPushButton::OnSelectedPropertyChanged() STUB_VOID;
+SIZE CCPushButton::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+SIZE CCPushButton::EstimateContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+bool CCPushButton::OnLostDialogFocus(IDialogElement* pDE) STUB_ZERO;
+bool CCPushButton::OnReceivedDialogFocus(IDialogElement* pDE) STUB_ZERO;
+HRESULT CCPushButton::DefaultAction() STUB_ZERO;
+void CCPushButton::SetDefaultState(DWORD dwTypeNormal, DWORD dwTypeDefault) STUB_VOID;
+//~ End DirectUI::CCPushButton Class
 
-CCRadioButton::CCRadioButton(void)
-	: CCBaseCheckRadioButton(0)
-{
-}
-
-PropertyInfo const* CCRadioButton::AutoGroupingProp(void)
-{
-	return nullptr;
-}
-
-long CCRadioButton::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCRadioButton::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-void CCRadioButton::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-IClassInfo* CCRadioButton::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CCRadioButton::Register(void)
-{
-	return 0;
-}
-
-bool CCRadioButton::GetAutoGrouping(void)
-{
-	return false;
-}
-
-long CCRadioButton::SetAutoGrouping(bool)
-{
-	return 0;
-}
-
-IClassInfo* CCRadioButton::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void CCRadioButton::OnInput(InputEvent*)
-{
-}
-
-bool CCRadioButton::OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return false;
-}
-
+//~ Begin DirectUI::CCRadioButton Class
+CCRadioButton::CCRadioButton(): CCBaseCheckRadioButton(NULL) STUB_VOID;
+HRESULT CCRadioButton::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCRadioButton::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+IClassInfo* CCRadioButton::GetClassInfoPtr() STUB_ZERO;
+void CCRadioButton::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCRadioButton::s_pClassInfo;
+IClassInfo* CCRadioButton::GetClassInfoW() STUB_ZERO;
+HRESULT CCRadioButton::Register() STUB_ZERO;
+const PropertyInfo* CCRadioButton::AutoGroupingProp() STUB_ZERO;
+bool CCRadioButton::GetAutoGrouping() STUB_ZERO;
+HRESULT CCRadioButton::SetAutoGrouping(bool v) STUB_ZERO;
+void CCRadioButton::OnInput(InputEvent* pInputEvent) STUB_VOID;
+bool CCRadioButton::OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+//~ Begin DirectUI::CCRadioButton Class
 
-CCTrackBar::CCTrackBar(void)
-	: CCBase(0, 0)
-{
-}
-
-long CCTrackBar::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCTrackBar::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* CCTrackBar::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* CCTrackBar::LineSizeProp(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* CCTrackBar::ThumbPositionProp(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* CCTrackBar::RangeMaxProp(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* CCTrackBar::RangeMinProp(void)
-{
-	return nullptr;
-}
-
-long CCTrackBar::Register(void)
-{
-	return 0;
-}
-
-void CCTrackBar::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-int CCTrackBar::GetLineSize(void)
-{
-	return 0;
-}
-
-int CCTrackBar::GetRangeMax(void)
-{
-	return 0;
-}
-
-int CCTrackBar::GetRangeMin(void)
-{
-	return 0;
-}
-
-int CCTrackBar::GetThumbPosition(void)
-{
-	return 0;
-}
-
-long CCTrackBar::SetLineSize(int)
-{
-	return 0;
-}
-
-long CCTrackBar::SetRangeMax(int)
-{
-	return 0;
-}
-
-long CCTrackBar::SetRangeMin(int)
-{
-	return 0;
-}
-
-long CCTrackBar::SetThumbPosition(int)
-{
-	return 0;
-}
-
-IClassInfo* CCTrackBar::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-bool CCTrackBar::OnMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return false;
-}
-
-void CCTrackBar::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-bool CCTrackBar::OnPropertyChanging(const PropertyInfo*, int, Value*, Value*)
-{
-	return false;
-}
-
-void CCTrackBar::PostCreate(HWND)
-{
-}
-
+//~ Begin DirectUI::CCTrackBar Class
+CCTrackBar::CCTrackBar() STUB_VOID;
+HRESULT CCTrackBar::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCTrackBar::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+IClassInfo* CCTrackBar::GetClassInfoPtr() STUB_ZERO;
+void CCTrackBar::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCTrackBar::s_pClassInfo;
+IClassInfo* CCTrackBar::GetClassInfoW() STUB_ZERO;
+HRESULT CCTrackBar::Register() STUB_ZERO;
+const PropertyInfo* CCTrackBar::RangeMinProp() STUB_ZERO;
+const PropertyInfo* CCTrackBar::RangeMaxProp() STUB_ZERO;
+const PropertyInfo* LineSizeProp() STUB_ZERO;
+const PropertyInfo* CCTrackBar::ThumbPositionProp() STUB_ZERO;
+int CCTrackBar::GetRangeMin() STUB_ZERO;
+int CCTrackBar::GetRangeMax() STUB_ZERO;
+int CCTrackBar::GetLineSize() STUB_ZERO;
+int CCTrackBar::GetThumbPosition() STUB_ZERO;
+HRESULT CCTrackBar::SetRangeMin(int v) STUB_ZERO;
+HRESULT CCTrackBar::SetRangeMax(int v) STUB_ZERO;
+HRESULT CCTrackBar::SetLineSize(int v) STUB_ZERO;
+HRESULT CCTrackBar::SetThumbPosition(int v) STUB_ZERO;
+bool CCTrackBar::OnPropertyChanging(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
+void CCTrackBar::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+bool CCTrackBar::OnMessage(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+void CCTrackBar::PostCreate(HWND hwnd) STUB_VOID;
+//~ End DirectUI::CCTrackBar Class
 
-CCTreeView::CCTreeView(unsigned long)
-	: CCBase(0, 0)
-{
-}
-
-long CCTreeView::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCTreeView::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* CCTreeView::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CCTreeView::Register(void)
-{
-	return 0;
-}
-
-void CCTreeView::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-HTREEITEM CCTreeView::InsertItem(unsigned short*, unsigned int, const HTREEITEM, const HTREEITEM)
-{
-	return HTREEITEM();
-}
-
-HTREEITEM CCTreeView::InsertItem(const TVINSERTSTRUCTW*)
-{
-	return HTREEITEM();
-}
-
-unsigned int CCTreeView::GetItemState(HTREEITEM const)
-{
-	return 0;
-}
-
-unsigned long CCTreeView::GetStyle(void)
-{
-	return 0;
-}
-
-void CCTreeView::SetItemState(HTREEITEM, unsigned int)
-{
-}
-
-IClassInfo* CCTreeView::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE CCTreeView::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-bool CCTreeView::OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return false;
-}
-
-unsigned long CCTreeView::SetStyle(unsigned long)
-{
-	return 0;
-}
-
-long CCTreeView::_OnGetInfoTip(NMTVGETINFOTIPW const*)
-{
-	return 0;
-}
-
-long CCTreeView::_OnItemChanged(NMTVITEMCHANGE const*)
-{
-	return 0;
-}
-
+//~ Begin DirectUI::CCTreeView Class
+CCTreeView::CCTreeView(DWORD dwStyle) STUB_ZERO;
+HRESULT CCTreeView::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCTreeView::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+bool CCTreeView::OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO ;
+SIZE CCTreeView::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO ;
+DWORD CCTreeView::GetStyle() STUB_ZERO;
+DWORD CCTreeView::SetStyle(DWORD dwStyle) STUB_ZERO;
+UINT CCTreeView::GetItemState(const HTREEITEM hItem) STUB_ZERO;
+void CCTreeView::SetItemState(HTREEITEM hItem, UINT uState) STUB_VOID;
+HTREEITEM CCTreeView::InsertItem(const TVINSERTSTRUCT* pInsertStruct) STUB_ZERO;
+HTREEITEM CCTreeView::InsertItem(WCHAR* pszItem, UINT uState, const HTREEITEM htiParent, const HTREEITEM htiInsertAfter) STUB_ZERO;
+IClassInfo* CCTreeView::GetClassInfoPtr() STUB_ZERO;
+void CCTreeView::SetClassInfoPtr(IClassInfo*) STUB_VOID;
 IClassInfo* CCTreeView::s_pClassInfo;
+IClassInfo* CCTreeView::GetClassInfoW() STUB_ZERO ;
+HRESULT CCTreeView::Register() STUB_ZERO;
+HRESULT CCTreeView::_OnGetInfoTip(const NMTVGETINFOTIP*) STUB_ZERO;
+HRESULT CCTreeView::_OnItemChanged(const NMTVITEMCHANGE*) STUB_ZERO;
+//~ End DirectUI::CCTreeView Class
 
-CCVScrollBar::CCVScrollBar(void)
-	: CCBaseScrollBar(0)
-{
-}
-
-long CCVScrollBar::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long CCVScrollBar::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* CCVScrollBar::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long CCVScrollBar::Register(void)
-{
-	return 0;
-}
-
-void CCVScrollBar::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-IClassInfo* CCVScrollBar::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE CCVScrollBar::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
+//~ Begin DirectUI::CCVScrollBar Class
+CCVScrollBar::CCVScrollBar() STUB_VOID;
+HRESULT CCVScrollBar::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT CCVScrollBar::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+SIZE CCVScrollBar::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO ;
+IClassInfo* CCVScrollBar::GetClassInfoPtr() STUB_ZERO;
+void CCVScrollBar::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCVScrollBar::s_pClassInfo;
+IClassInfo* CCVScrollBar::GetClassInfoW() STUB_ZERO ;
+HRESULT CCVScrollBar::Register() STUB_ZERO;
+//~ End DirectUI::CCVScrollBar Class
 
 //~ Begin DirectUI::DialogElementCore Class
 void DialogElementCore::Initialize(IDialogElement* pIDialogElement, IElementListener* pIParentListener) STUB_VOID;

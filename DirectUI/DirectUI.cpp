@@ -1264,7 +1264,7 @@ void CCBase::PostCreate(HWND hwnd) STUB_VOID;
 //~ End DirectUI::CCBase Class
 
 //~ Begin DirectUI::CCBaseCheckRadioButton Class
-CCBaseCheckRadioButton::CCBaseCheckRadioButton(DWORD dwStyle) STUB_ZERO;
+CCBaseCheckRadioButton::CCBaseCheckRadioButton(DWORD dwStyle) STUB_VOID;
 IClassInfo* CCBaseCheckRadioButton::GetClassInfoPtr() STUB_ZERO;
 void CCBaseCheckRadioButton::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* CCBaseCheckRadioButton::s_pClassInfo;
@@ -1619,7 +1619,7 @@ void CCTrackBar::PostCreate(HWND hwnd) STUB_VOID;
 //~ End DirectUI::CCTrackBar Class
 
 //~ Begin DirectUI::CCTreeView Class
-CCTreeView::CCTreeView(DWORD dwStyle) STUB_ZERO;
+CCTreeView::CCTreeView(DWORD dwStyle) STUB_VOID;
 HRESULT CCTreeView::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 HRESULT CCTreeView::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 bool CCTreeView::OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO ;

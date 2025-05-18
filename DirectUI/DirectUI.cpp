@@ -5388,184 +5388,44 @@ void TableItemProxy::Init(Element*)
 {
 }
 
-TaskPage::TaskPage(TaskPage const&)
-{
-}
-
-TaskPage::TaskPage()
-{
-}
-
-TaskPage::~TaskPage(void)
-{
-}
-
-TaskPage& TaskPage::operator=(TaskPage const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-TaskPage::operator struct _PSP*(void)
-{
-	return NULL;
-}
-
-long TaskPage::DUICreatePropertySheetPage(HINSTANCE)
-{
-	return 0;
-}
-
-HWND TaskPage::GetParentHWND(void)
-{
-	return HWND();
-}
-
-Element* TaskPage::GetElement(void)
-{
-	return nullptr;
-}
-
-LONG_PTR TaskPage::PropSheet_SendMessage(UINT message, WPARAM, LPARAM)
-{
-	return 0;
-}
-
-void TaskPage::OnListenerAttach(Element*)
-{
-}
-
-void TaskPage::OnListenerDetach(Element*)
-{
-}
-
-bool TaskPage::OnListenedPropertyChanging(Element*, PropertyInfo const*, int, Value*, Value*)
-{
-	return false;
-}
-
-void TaskPage::OnListenedPropertyChanged(Element*, PropertyInfo const*, int, Value*, Value*)
-{
-}
-
-void TaskPage::OnListenedEvent(Element*, Event*)
-{
-}
-
-void TaskPage::OnListenedInput(Element*, InputEvent*)
-{
-}
-
-long TaskPage::LoadParser(DUIXmlParser**)
-{
-	return 0;
-}
-
-long TaskPage::LoadPage(HWNDElement*, HINSTANCE, Element**, DUIXmlParser**)
-{
-	return 0;
-}
-
-unsigned int TaskPage::GetPageRCID(void)
-{
-	return 0;
-}
-
-unsigned short const* TaskPage::GetPageResID(void)
-{
-	return nullptr;
-}
-
-void TaskPage::InitPropSheetPage(PROPSHEETPAGEW*)
-{
-}
-
-LRESULT TaskPage::OnKillActive(void)
-{
-	return 0;
-}
-
-LRESULT TaskPage::OnQueryCancel(void)
-{
-	return 0;
-}
-
-Element* TaskPage::OnQueryInitialFocus(void)
-{
-	return nullptr;
-}
-
-LRESULT TaskPage::OnReset(void)
-{
-	return 0;
-}
-
-LRESULT TaskPage::OnSetActive(void)
-{
-	return 0;
-}
-
-LRESULT TaskPage::OnWizBack(void)
-{
-	return 0;
-}
-
-LRESULT TaskPage::OnWizFinish(void)
-{
-	return 0;
-}
-
-LRESULT TaskPage::OnWizNext(void)
-{
-	return 0;
-}
-
-bool TaskPage::OnMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return false;
-}
-
-LONG_PTR TaskPage::StaticXHostSubclassProc(HWND, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	return 0;
-}
-
-void TaskPage::StaticXmlParserError(unsigned short const*, unsigned short const*, int, void*)
-{
-}
-
-void TaskPage::FreeComCtl32(void)
-{
-}
-
-int TaskPage::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return 0;
-}
-
-long TaskPage::LoadComCtl32(void)
-{
-	return 0;
-}
-
-long TaskPage::LoadPage(Element**, Element*, DUIXmlParser**)
-{
-	return 0;
-}
-
-long TaskPage::CreateDUICP(HWNDElement*, HWND, HWND, Element**, DUIXmlParser**)
-{
-	return 0;
-}
-
-long TaskPage::CreateParserCP(DUIXmlParser**)
-{
-	return 0;
-}
-
-void TaskPage::DestroyCP(void)
-{
-}
+//~ Begin DirectUI::TaskPage Class
+TaskPage::TaskPage() STUB_VOID;
+TaskPage::~TaskPage() STUB_VOID;
+HRESULT TaskPage::DUICreatePropertySheetPage(HINSTANCE hInstance) STUB_ZERO;
+TaskPage::operator HPROPSHEETPAGE() STUB_ZERO;
+HWND TaskPage::GetParentHWND() STUB_ZERO;
+LRESULT TaskPage::PropSheet_SendMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO;
+Element* TaskPage::GetElement() STUB_ZERO;
+HRESULT TaskPage::LoadParser(DUIXmlParser** ppParser) STUB_ZERO;
+HRESULT TaskPage::LoadPage(Element** ppe, Element* pParent, DUIXmlParser** ppParser) STUB_ZERO;
+HRESULT TaskPage::LoadPage(HWNDElement* peRoot, HINSTANCE hInstance, Element** ppe, DUIXmlParser** ppParser) STUB_ZERO;
+UINT TaskPage::GetPageRCID() STUB_ZERO;
+const WCHAR* TaskPage::GetPageResID() STUB_ZERO;
+void TaskPage::InitPropSheetPage(PROPSHEETPAGE*) STUB_VOID;
+LRESULT TaskPage::OnKillActive() STUB_ZERO;
+LRESULT TaskPage::OnQueryCancel() STUB_ZERO;
+LRESULT TaskPage::OnReset() STUB_ZERO;
+LRESULT TaskPage::OnSetActive() STUB_ZERO;
+LRESULT TaskPage::OnWizBack() STUB_ZERO;
+LRESULT TaskPage::OnWizFinish() STUB_ZERO;
+LRESULT TaskPage::OnWizNext() STUB_ZERO;
+Element* TaskPage::OnQueryInitialFocus() STUB_ZERO;
+bool TaskPage::OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+void TaskPage::OnListenerAttach(Element* peFrom) STUB_VOID;
+void TaskPage::OnListenerDetach(Element* peFrom) STUB_VOID;
+bool TaskPage::OnListenedPropertyChanging(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
+void TaskPage::OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void TaskPage::OnListenedInput(Element* peFrom, InputEvent* pInput) STUB_VOID;
+void TaskPage::OnListenedEvent(Element* peFrom, Event* pEvent) STUB_VOID;
+HRESULT TaskPage::CreateDUICP(HWNDElement* peRoot, HWND hwndParent, HWND hwndHost, Element** ppe, DUIXmlParser** ppParser) STUB_ZERO;
+HRESULT TaskPage::CreateParserCP(DUIXmlParser** ppParser) STUB_ZERO;
+void TaskPage::DestroyCP() STUB_VOID;
+int TaskPage::OnWndMsg(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+HRESULT TaskPage::LoadComCtl32() STUB_ZERO;
+void TaskPage::FreeComCtl32() STUB_VOID;
+void TaskPage::StaticXmlParserError(const WCHAR* pszError, const WCHAR* pszToken, int dLine, void* pContext) STUB_VOID;
+LRESULT TaskPage::StaticXHostSubclassProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) STUB_ZERO;
+//~ End DirectUI::TaskPage Class
 
 long TextGraphic::Create(Element*, unsigned long*, Element**)
 {

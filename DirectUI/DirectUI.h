@@ -151,7 +151,7 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #include "StyledScrollViewer.h"
 #include "UIAutomation\TableItemProvider.h"
 #include "UIAutomation\TableProvider.h"
-#include "TaskPage.h"
+#include "Extensions\WizPageBase.h"
 #include "Control\Thumb.h"
 #include "UIAutomation\ToggleProvider.h"
 #include "Core\UnknownElement.h"

@@ -135,9 +135,6 @@
     <ClInclude Include="StyledScrollViewer.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
-    <ClInclude Include="TaskPage.h">
-      <Filter>Header Files\DirectUI</Filter>
-    </ClInclude>
     <ClInclude Include="XBaby.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
@@ -466,6 +463,9 @@
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
     <ClInclude Include="Extensions\XHost.h">
+      <Filter>Header Files\DirectUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Extensions\WizPageBase.h">
       <Filter>Header Files\DirectUI</Filter>
     </ClInclude>
   </ItemGroup>

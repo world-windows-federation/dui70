@@ -88,9 +88,9 @@ namespace DirectUI
 		virtual HWND GetNotificationSinkHWND() = 0;
 	};
 
-	interface IDataEngine
+	interface UILIB_API IDataEngine
 	{
-		virtual ~IDataEngine() = 0;
+		virtual ~IDataEngine();
 		virtual UINT GetSize() = 0;
 		virtual IDataEntry* GetEntry(UINT) = 0;
 	};

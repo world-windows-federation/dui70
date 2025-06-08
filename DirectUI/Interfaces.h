@@ -90,7 +90,7 @@ namespace DirectUI
 
 	interface UILIB_API IDataEngine
 	{
-		virtual ~IDataEngine();
+		virtual ~IDataEngine() = default;
 		virtual UINT GetSize() = 0;
 		virtual IDataEntry* GetEntry(UINT) = 0;
 	};

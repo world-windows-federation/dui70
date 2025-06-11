@@ -5,58 +5,66 @@ namespace DirectUI
 	class UILIB_API Edit : public HWNDHost
 	{
 	public:
-		Edit(Edit const &);
-		Edit(void);
-		virtual ~Edit();
-		Edit & operator=(Edit const &);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static const PropertyInfo* __stdcall DirtyProp(void);
-		static UID __stdcall Enter(void);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static const PropertyInfo* __stdcall MultilineProp(void);
-		static const PropertyInfo* __stdcall MaxLengthProp(void);
-		static const PropertyInfo* __stdcall PasswordCharacterProp(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		static const PropertyInfo* __stdcall ThemedBorderProp(void);
-		static const PropertyInfo* __stdcall WantTabsProp(void);
-		
-		bool GetDirty(void);
-		int GetMaxLength(void);
-		bool GetMultiline(void);
-		int GetPasswordCharacter(void);
-		bool GetThemedBorder(void);
-		bool GetWantTabs(void);
-		long Initialize(unsigned int, Element *, unsigned long *);
-		long SetDirty(bool);
-		long SetMaxLength(int);
-		long SetMultiline(bool);
-		long SetPasswordCharacter(int);
-		long SetThemedBorder(bool);
-		long SetWantTabs(bool);
+		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+		void OnInput(InputEvent*) override;
 
+		bool OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) override;
 
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual SIZE GetContentSize(int, int, Surface *);
-		virtual const WCHAR* GetContentStringAsDisplayed(Value * *);
-		virtual bool IsContentProtected(void);
-		virtual unsigned int MessageCallback(LPGMSG);
-		virtual void OnInput(InputEvent *);
-		virtual bool OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult);
-		virtual void OnPropertyChanged(const PropertyInfo*, int, Value *, Value *);
+		UINT MessageCallback(GMSG* pGMsg) override;
+
+		bool IsContentProtected() override;
+
+		const WCHAR* GetContentStringAsDisplayed(Value** ppv) override;
+		SIZE GetContentSize(int dConstW, int dConstH, Surface* psrf) override;
+
+		static UID WINAPI Enter();
+
+		static const PropertyInfo* WINAPI MultilineProp();
+		static const PropertyInfo* WINAPI PasswordCharacterProp();
+		static const PropertyInfo* WINAPI DirtyProp();
+		static const PropertyInfo* WINAPI MaxLengthProp();
+		static const PropertyInfo* WINAPI ThemedBorderProp();
+		static const PropertyInfo* WINAPI WantTabsProp();
+
+		int GetPasswordCharacter();
+		bool GetMultiline();
+		bool GetDirty();
+		bool GetThemedBorder();
+		int GetMaxLength();
+		bool GetWantTabs();
+
+		HRESULT SetPasswordCharacter(int v);
+		HRESULT SetMultiline(bool v);
+		HRESULT SetDirty(bool v);
+		HRESULT SetThemedBorder(bool v);
+		HRESULT SetMaxLength(int v);
+		HRESULT SetWantTabs(bool v);
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+
+	private:
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
+
+		Edit();
+		Edit(const Edit& other) = default;
+		~Edit() override;
+
+		static HRESULT WINAPI Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
 
 	protected:
-		virtual HWND CreateHWND(HWND);
+		HWND CreateHWND(HWND hwndParent) override;
+		virtual HWND CreateHWND(HWND hwndParent, bool bPassword);
 
-		//1
-		virtual HWND CreateHWND(HWND, bool);
-	
 	private:
-		static IClassInfo * s_pClassInfo;
-		unsigned int GetTextHeight(void);
-		void PropertyChangedCore(const PropertyInfo*, int, Value *, HWND);
-
+		void PropertyChangedCore(const PropertyInfo* ppi, int iIndex, Value* pvNew, HWND hwnd);
+		UINT GetTextHeight();
 	};
 }

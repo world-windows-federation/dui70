@@ -1423,116 +1423,30 @@ IClassInfo* CCListView::GetClassInfoW() STUB_ZERO;
 HRESULT CCListView::Register() STUB_ZERO;
 //~ End DirectUI::CCListView Class
 
-Combobox::Combobox(Combobox const&)
-{
-}
-
-Combobox::Combobox(void)
-{
-}
-
-Combobox::~Combobox(void)
-{
-}
-
-Combobox& Combobox::operator=(Combobox const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long Combobox::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long Combobox::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* Combobox::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long Combobox::Register(void)
-{
-	return 0;
-}
-
-UID Combobox::SelectionChange(void)
-{
-	return UID();
-}
-
-const PropertyInfo* Combobox::SelectionProp(void)
-{
-	return nullptr;
-}
-
-void Combobox::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long Combobox::SetSelection(int)
-{
-	return 0;
-}
-
-int Combobox::AddString(unsigned short const*)
-{
-	return 0;
-}
-
-int Combobox::GetSelection(void)
-{
-	return 0;
-}
-
-long Combobox::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-HWND Combobox::CreateHWND(HWND)
-{
-	return HWND();
-}
-
-IClassInfo* Combobox::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE Combobox::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-int Combobox::OnAdjustWindowSize(int, int, unsigned int)
-{
-	return 0;
-}
-
-void Combobox::OnHosted(Element*)
-{
-}
-
-void Combobox::OnInput(InputEvent*)
-{
-}
-
-bool Combobox::OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return false;
-}
-
-void Combobox::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
+//~ Begin DirectUI::Combobox Class
+HRESULT Combobox::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT Combobox::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void Combobox::OnInput(InputEvent* pInput) STUB_VOID;
+void Combobox::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void Combobox::OnHosted(Element* peNewHost) STUB_VOID;
+bool Combobox::OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+int Combobox::OnAdjustWindowSize(int x, int y, UINT uFlags) STUB_ZERO;
+SIZE Combobox::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+IClassInfo* Combobox::GetClassInfoPtr() STUB_ZERO;
+void Combobox::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Combobox::s_pClassInfo;
+IClassInfo* Combobox::GetClassInfoW() STUB_ZERO;
+HRESULT Combobox::Register() STUB_ZERO;
+int Combobox::AddString(const WCHAR* lpszString) STUB_ZERO;
+UID Combobox::SelectionChange() STUB_ZERO;
+const PropertyInfo* Combobox::SelectionProp() STUB_ZERO;
+int Combobox::GetSelection() STUB_ZERO;
+HRESULT Combobox::SetSelection(int v) STUB_ZERO;
+Combobox::Combobox() STUB_VOID;
+Combobox::~Combobox() STUB_VOID;
+HRESULT Combobox::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+HWND Combobox::CreateHWND(HWND hwndParent) STUB_ZERO;
+//~ End DirectUI::Combobox Class
 
 //~ Begin DirectUI::CCProgressBar Class
 CCProgressBar::CCProgressBar() STUB_VOID;
@@ -1707,208 +1621,52 @@ void DialogElement::OnListenedInput(Element* peFrom, InputEvent* pInput) STUB_VO
 void DialogElement::OnListenedEvent(Element* peFrom, Event* pEvent) STUB_VOID;
 //~ End DirectUI::DialogElement Class
 
+//~ Begin DirectUI::DuiNavigate Class
 Element* DuiNavigate::Navigate(Element* peFrom, DynamicArray<Element*>* pelConsider, int nNavDir) STUB_ZERO;
+//~ End DirectUI::DuiNavigate Class
 
-Edit::Edit(Edit const&)
-{
-}
-
-Edit::Edit(void)
-{
-}
-
-Edit::~Edit(void)
-{
-}
-
-Edit& Edit::operator=(Edit const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long Edit::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long Edit::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-const PropertyInfo* Edit::DirtyProp(void)
-{
-	return nullptr;
-}
-
-UID WINAPI Edit::Enter(void)
-{
-	return UID();
-}
-
-IClassInfo* Edit::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* Edit::MultilineProp(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* Edit::MaxLengthProp(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* Edit::PasswordCharacterProp(void)
-{
-	return nullptr;
-}
-
-long Edit::Register(void)
-{
-	return 0;
-}
-
-void Edit::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-const PropertyInfo* Edit::ThemedBorderProp(void)
-{
-	return nullptr;
-}
-
-const PropertyInfo* Edit::WantTabsProp(void)
-{
-	return nullptr;
-}
-
-bool Edit::GetDirty(void)
-{
-	return false;
-}
-
-int Edit::GetMaxLength(void)
-{
-	return 0;
-}
-
-bool Edit::GetMultiline(void)
-{
-	return false;
-}
-
-int Edit::GetPasswordCharacter(void)
-{
-	return 0;
-}
-
-bool Edit::GetThemedBorder(void)
-{
-	return false;
-}
-
-bool Edit::GetWantTabs(void)
-{
-	return false;
-}
-
-long Edit::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-long Edit::SetDirty(bool)
-{
-	return 0;
-}
-
-long Edit::SetMaxLength(int)
-{
-	return 0;
-}
-
-long Edit::SetMultiline(bool)
-{
-	return 0;
-}
-
-long Edit::SetPasswordCharacter(int)
-{
-	return 0;
-}
-
-long Edit::SetThemedBorder(bool)
-{
-	return 0;
-}
-
-long Edit::SetWantTabs(bool)
-{
-	return 0;
-}
-
-IClassInfo* Edit::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-SIZE Edit::GetContentSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-const WCHAR* Edit::GetContentStringAsDisplayed(Value**)
-{
-	return nullptr;
-}
-
-bool Edit::IsContentProtected(void)
-{
-	return false;
-}
-
-unsigned int Edit::MessageCallback(LPGMSG)
-{
-	return 0;
-}
-
-void Edit::OnInput(InputEvent*)
-{
-}
-
-bool Edit::OnNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* plResult)
-{
-	return false;
-}
-
-void Edit::OnPropertyChanged(const PropertyInfo*, int, Value*, Value*)
-{
-}
-
-HWND Edit::CreateHWND(HWND)
-{
-	return HWND();
-}
-
-HWND Edit::CreateHWND(HWND, bool)
-{
-	return HWND();
-}
-
-unsigned int Edit::GetTextHeight(void)
-{
-	return 0;
-}
-
-void Edit::PropertyChangedCore(const PropertyInfo*, int, Value*, HWND)
-{
-}
-
+//~ Begin DirectUI::Edit Class
+HRESULT Edit::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT Edit::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void Edit::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void Edit::OnInput(InputEvent*) STUB_VOID;
+bool Edit::OnNotify(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+UINT Edit::MessageCallback(GMSG* pGMsg) STUB_ZERO;
+bool Edit::IsContentProtected() STUB_ZERO;
+const WCHAR* Edit::GetContentStringAsDisplayed(Value** ppv) STUB_ZERO;
+SIZE Edit::GetContentSize(int dConstW, int dConstH, Surface* psrf) STUB_ZERO;
+UID Edit::Enter() STUB_ZERO;
+const PropertyInfo* Edit::MultilineProp() STUB_ZERO;
+const PropertyInfo* Edit::PasswordCharacterProp() STUB_ZERO;
+const PropertyInfo* Edit::DirtyProp() STUB_ZERO;
+const PropertyInfo* Edit::MaxLengthProp() STUB_ZERO;
+const PropertyInfo* Edit::ThemedBorderProp() STUB_ZERO;
+const PropertyInfo* Edit::WantTabsProp() STUB_ZERO;
+int Edit::GetPasswordCharacter() STUB_ZERO;
+bool Edit::GetMultiline() STUB_ZERO;
+bool Edit::GetDirty() STUB_ZERO;
+bool Edit::GetThemedBorder() STUB_ZERO;
+int Edit::GetMaxLength() STUB_ZERO;
+bool Edit::GetWantTabs() STUB_ZERO;
+HRESULT Edit::SetPasswordCharacter(int v) STUB_ZERO;
+HRESULT Edit::SetMultiline(bool v) STUB_ZERO;
+HRESULT Edit::SetDirty(bool v) STUB_ZERO;
+HRESULT Edit::SetThemedBorder(bool v) STUB_ZERO;
+HRESULT Edit::SetMaxLength(int v) STUB_ZERO;
+HRESULT Edit::SetWantTabs(bool v) STUB_ZERO;
+IClassInfo* Edit::GetClassInfoPtr() STUB_ZERO;
+void Edit::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Edit::s_pClassInfo;
+IClassInfo* Edit::GetClassInfoW() STUB_ZERO;
+HRESULT Edit::Register() STUB_ZERO;
+Edit::Edit() STUB_VOID;
+Edit::~Edit() STUB_VOID;
+HRESULT Edit::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+HWND Edit::CreateHWND(HWND hwndParent) STUB_ZERO;
+HWND Edit::CreateHWND(HWND hwndParent, bool bPassword) STUB_ZERO;
+void Edit::PropertyChangedCore(const PropertyInfo* ppi, int iIndex, Value* pvNew, HWND hwnd) STUB_VOID;
+UINT Edit::GetTextHeight() STUB_ZERO;
+//~ End DirectUI::Edit Class
 
 //~ Begin DirectUI::EventManager Class
 HRESULT EventManager::Init() STUB_ZERO;

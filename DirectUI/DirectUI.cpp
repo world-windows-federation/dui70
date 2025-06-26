@@ -57,6 +57,7 @@ void WINAPI ForceDebugBreak() STUB_VOID;
 IDataEntry* WINAPI GetElementDataEntry(Element* pe) STUB_ZERO;
 Macro* WINAPI GetElementMacro(Element* pe) STUB_ZERO;
 void* WINAPI GetFontCache() STUB_ZERO;
+float WINAPI GetScaleFactor() STUB_ZERO;
 HRESULT WINAPI GetThemeHandle(const WCHAR* pszClass, HTHEME* phTheme) STUB_ZERO;
 HRESULT WINAPI HrSysAllocString(const OLECHAR* psz, BSTR* pbstrOut) STUB_ZERO;
 HRESULT WINAPI HStrDup(const WCHAR* pszSrc, WCHAR** ppszOut) STUB_ZERO;

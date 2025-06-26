@@ -14,6 +14,7 @@
 #include <intsafe.h>
 #include <crtdbg.h>
 #include <directmanipulation.h>
+#include <Corecrt_math.h>
 
 #include "../DUser/DUser.h"
 
@@ -286,6 +287,13 @@ namespace DirectUI
 		HRESULT WINAPI RegisterPVLBehaviorFactory();
 		void WINAPI DUIStopPVLAnimation(Element* peAnimating, UINT nDCProperty, BOOL fFinal);
 		HRESULT WINAPI DuiCreateObject(REFCLSID rclsid, REFIID riid, void** ppv);
+
+		UILIB_API float WINAPI GetScaleFactor();
+	}
+
+	int RelPixToPixel(int nRelPix)
+	{
+		return (int)(float)floor(GetScaleFactor() * (float)nRelPix + 0.5);
 	}
 
 	inline int GetPixelHelper(Element* pe, const PropertyInfo* ppi, bool fUseDefault)

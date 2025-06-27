@@ -291,7 +291,7 @@ namespace DirectUI
 		UILIB_API float WINAPI GetScaleFactor();
 	}
 
-	int RelPixToPixel(int nRelPix)
+	inline int RelPixToPixel(int nRelPix)
 	{
 		return (int)(float)floor(GetScaleFactor() * (float)nRelPix + 0.5);
 	}

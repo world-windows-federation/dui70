@@ -23,7 +23,7 @@ namespace DirectUI
 
 	public:
 		IClassInfo* GetClassInfoW() override;
-		HRESULT Register();
+		static HRESULT Register();
 
 		int AddString(const WCHAR* lpszString); // @TODO: Really an int?
 		static UID WINAPI SelectionChange();

@@ -57,7 +57,7 @@ namespace DirectUI
 		Edit(const Edit& other) = default;
 		~Edit() override;
 
-		static HRESULT WINAPI Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
+		HRESULT Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
 
 	protected:
 		HWND CreateHWND(HWND hwndParent) override;

@@ -13,7 +13,7 @@
 #define DEFINE_CLASSINFO() \
     static ::DirectUI::IClassInfo *s_pClassInfo; \
     static ::DirectUI::IClassInfo *GetClassInfoPtr(); \
-	static void SetClassInfoPtr(::DirectUI::IClassInfo *pClassInfo); \
+    static void SetClassInfoPtr(::DirectUI::IClassInfo *pClass); \
     ::DirectUI::IClassInfo *GetClassInfo();
 
 #define IMPLEMENT_CLASSINFO(c) \
@@ -24,11 +24,11 @@
         return s_pClassInfo; \
     } \
     \
-	void c::SetClassInfoPtr(::DirectUI::IClassInfo *pClassInfo) \
-	{ \
-		s_pClassInfo = pClassInfo; \
-	} \
-	\
+    void c::SetClassInfoPtr(::DirectUI::IClassInfo *pClass) \
+    { \
+        s_pClassInfo = pClassInfo; \
+    } \
+    \
     ::DirectUI::IClassInfo *c::GetClassInfo() \
     { \
         return s_pClassInfo; \

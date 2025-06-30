@@ -11,19 +11,25 @@
     }
 
 #define DEFINE_CLASSINFO() \
-    static IClassInfo *s_pClassInfo; \
-    static IClassInfo *GetClassInfoPtr(); \
-    IClassInfo *GetClassInfo();
+    static ::DirectUI::IClassInfo *s_pClassInfo; \
+    static ::DirectUI::IClassInfo *GetClassInfoPtr(); \
+	static void SetClassInfoPtr(::DirectUI::IClassInfo *pClassInfo); \
+    ::DirectUI::IClassInfo *GetClassInfo();
 
 #define IMPLEMENT_CLASSINFO(c) \
-    IClassInfo *c::s_pClassInfo; \
+    ::DirectUI::IClassInfo *c::s_pClassInfo; \
     \
-    IClassInfo *c::GetClassInfoPtr() \
+    ::DirectUI::IClassInfo *c::GetClassInfoPtr() \
     { \
         return s_pClassInfo; \
     } \
     \
-    IClassInfo *c::GetClassInfo() \
+	void c::SetClassInfoPtr(::DirectUI::IClassInfo *pClassInfo) \
+	{ \
+		s_pClassInfo = pClassInfo; \
+	} \
+	\
+    ::DirectUI::IClassInfo *c::GetClassInfo() \
     { \
         return s_pClassInfo; \
     }

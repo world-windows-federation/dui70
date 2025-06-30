@@ -26,7 +26,7 @@
     \
     void c::SetClassInfoPtr(::DirectUI::IClassInfo *pClass) \
     { \
-        s_pClassInfo = pClassInfo; \
+        s_pClassInfo = pClass; \
     } \
     \
     ::DirectUI::IClassInfo *c::GetClassInfo() \

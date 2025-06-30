@@ -10,6 +10,24 @@
         className::SetClassInfoPtr(pClassInfo); \
     }
 
+#define DEFINE_CLASSINFO() \
+    static IClassInfo *s_pClassInfo; \
+    static IClassInfo *GetClassInfoPtr(); \
+    IClassInfo *GetClassInfo();
+
+#define IMPLEMENT_CLASSINFO(c) \
+    IClassInfo *c::s_pClassInfo; \
+    \
+    IClassInfo *c::GetClassInfoPtr() \
+    { \
+        return s_pClassInfo; \
+    } \
+    \
+    IClassInfo *c::GetClassInfo() \
+    { \
+        return s_pClassInfo; \
+    }
+
 namespace DirectUI
 {
 	class UILIB_API ClassInfoBase : public IClassInfo

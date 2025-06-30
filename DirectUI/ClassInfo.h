@@ -11,9 +11,13 @@
     }
 
 #define DEFINE_CLASSINFO() \
-    static ::DirectUI::IClassInfo *s_pClassInfo; \
     static ::DirectUI::IClassInfo *GetClassInfoPtr(); \
     static void SetClassInfoPtr(::DirectUI::IClassInfo *pClass); \
+\
+private: \
+    static ::DirectUI::IClassInfo *s_pClassInfo; \
+\
+public: \
     ::DirectUI::IClassInfo *GetClassInfo();
 
 #define IMPLEMENT_CLASSINFO(c) \

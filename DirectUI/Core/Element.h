@@ -48,8 +48,14 @@ namespace DirectUI
 	// nCreate flags
 	typedef enum tagElementCreateFlags
 	{
-		ECF_NOCREATEGADGET = 0x1,
-		ECF_SELFLAYOUT = 0x2,
+		ECF_NoCreateGadget = 0x1,
+		ECF_SelfLayout = 0x2,
+		ECF_ReadMarkupDirection = 0x4, // TODO: Verify, HWNDElement::Initialize
+		ECF_MultiTouch = 0x8, // @TODO: Verify, HWNDElement::Initialize
+		ECF_PreserveAlphaChannel = 0x10, // @TODO: Verify, HWNDElement::Initialize
+		ECF_MouseInputFocus = 0x20, // @TODO: Verify, HWNDElement::Initialize
+		ECF_SendAllPointerEvents = 0x40, // @TODO: Verify, HWNDElement::Initialize
+		ECF_DoNotStealFocus = 0x80, // @TODO: Verify, HWNDElement::Initialize
 	} ElementCreateFlags;
 
 	class DuiAccessible;

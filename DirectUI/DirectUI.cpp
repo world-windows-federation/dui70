@@ -4068,73 +4068,21 @@ long SelectorSelectionItemProxy::Select(void)
 	return 0;
 }
 
-StyledScrollViewer::StyledScrollViewer(StyledScrollViewer const&)
-{
-}
-
-StyledScrollViewer::StyledScrollViewer(void)
-{
-}
-
-StyledScrollViewer::~StyledScrollViewer(void)
-{
-}
-
-StyledScrollViewer& StyledScrollViewer::operator=(StyledScrollViewer const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long StyledScrollViewer::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* StyledScrollViewer::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long StyledScrollViewer::Register(void)
-{
-	return 0;
-}
-
-void StyledScrollViewer::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-IClassInfo* StyledScrollViewer::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void StyledScrollViewer::OnListenedPropertyChanged(Element*, PropertyInfo const*, int, Value*, Value*)
-{
-}
-
-long StyledScrollViewer::AddChildren(void)
-{
-	return 0;
-}
-
-long StyledScrollViewer::CreateScrollBars(void)
-{
-	return 0;
-}
-
-BaseScrollBar* StyledScrollViewer::GetHScroll(void)
-{
-	return nullptr;
-}
-
-BaseScrollBar* StyledScrollViewer::GetVScroll(void)
-{
-	return nullptr;
-}
-
+//~ Begin DirectUI::StyledScrollViewer Class
+StyledScrollViewer::StyledScrollViewer() STUB_VOID;
+StyledScrollViewer::~StyledScrollViewer() STUB_VOID;
+HRESULT StyledScrollViewer::Create(Element* peParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void StyledScrollViewer::OnListenedPropertyChanged(Element* peFrom, const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+IClassInfo* StyledScrollViewer::GetClassInfoPtr() STUB_ZERO;
+void StyledScrollViewer::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* StyledScrollViewer::s_pClassInfo;
+IClassInfo* StyledScrollViewer::GetClassInfoW() STUB_ZERO;
+HRESULT StyledScrollViewer::Register() STUB_ZERO;
+HRESULT StyledScrollViewer::CreateScrollBars() STUB_ZERO;
+HRESULT StyledScrollViewer::AddChildren() STUB_ZERO;
+BaseScrollBar* StyledScrollViewer::GetHScroll() STUB_ZERO;
+BaseScrollBar* StyledScrollViewer::GetVScroll() STUB_ZERO;
+//~ End DirectUI::StyledScrollViewer Class
 
 TableProvider::TableProvider(void)
 {

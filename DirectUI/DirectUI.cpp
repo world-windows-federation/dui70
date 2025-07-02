@@ -1818,69 +1818,18 @@ ATOM Expando::_atmArrow;
 ATOM Expando::_atmClipper;
 //~ End DirectUI::Expando Class
 
-ExpandoButtonGlyph::ExpandoButtonGlyph(ExpandoButtonGlyph const&)
-{
-}
-
-ExpandoButtonGlyph::ExpandoButtonGlyph(void)
-{
-}
-
-ExpandoButtonGlyph::~ExpandoButtonGlyph(void)
-{
-}
-
-ExpandoButtonGlyph& ExpandoButtonGlyph::operator=(ExpandoButtonGlyph const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long ExpandoButtonGlyph::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long ExpandoButtonGlyph::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* ExpandoButtonGlyph::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long ExpandoButtonGlyph::Register(void)
-{
-	return 0;
-}
-
-void ExpandoButtonGlyph::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long ExpandoButtonGlyph::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-IClassInfo* ExpandoButtonGlyph::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-bool ExpandoButtonGlyph::OnLostDialogFocus(DialogElement*)
-{
-	return false;
-}
-
-bool ExpandoButtonGlyph::OnReceivedDialogFocus(DialogElement*)
-{
-	return false;
-}
-
+//~ Begin DirectUI::ExpandoButtonGlyph Class
+HRESULT ExpandoButtonGlyph::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT ExpandoButtonGlyph::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT ExpandoButtonGlyph::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+IClassInfo* ExpandoButtonGlyph::GetClassInfoPtr() STUB_ZERO;
+void ExpandoButtonGlyph::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* ExpandoButtonGlyph::s_pClassInfo;
+IClassInfo* ExpandoButtonGlyph::GetClassInfoW() STUB_ZERO;
+HRESULT ExpandoButtonGlyph::Register() STUB_ZERO;
+bool ExpandoButtonGlyph::OnLostDialogFocus(IDialogElement* pDE) STUB_ZERO;
+bool ExpandoButtonGlyph::OnReceivedDialogFocus(IDialogElement* pDE) STUB_ZERO;
+//~ End DirectUI::ExpandoButtonGlyph Class
 
 //~ Begin DirectUI::FontCache Class
 HRESULT FontCache::InitProcess() STUB_ZERO

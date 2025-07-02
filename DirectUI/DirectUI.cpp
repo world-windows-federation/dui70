@@ -1517,7 +1517,7 @@ IClassInfo* CCTrackBar::GetClassInfoW() STUB_ZERO;
 HRESULT CCTrackBar::Register() STUB_ZERO;
 const PropertyInfo* CCTrackBar::RangeMinProp() STUB_ZERO;
 const PropertyInfo* CCTrackBar::RangeMaxProp() STUB_ZERO;
-const PropertyInfo* LineSizeProp() STUB_ZERO;
+const PropertyInfo* CCTrackBar::LineSizeProp() STUB_ZERO;
 const PropertyInfo* CCTrackBar::ThumbPositionProp() STUB_ZERO;
 int CCTrackBar::GetRangeMin() STUB_ZERO;
 int CCTrackBar::GetRangeMax() STUB_ZERO;

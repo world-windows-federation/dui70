@@ -35,15 +35,22 @@ namespace DirectUI
 	};
 
 	// nActive flags
-	typedef enum tagActiveEnum
+	typedef enum tagElementActiveFlags
 	{
-		AE_Inactive = 0x0,
-		AE_Mouse = 0x1,
-		AE_Keyboard = 0x2,
-		AE_MouseAndKeyboard = AE_Mouse | AE_Keyboard,
-		AE_NoSyncFocus = 0x4,
-		AE_Pointer = 0x8,
-	} ActiveEnum;
+		AEF_Inactive = 0x0,
+		AEF_Mouse = 0x1,
+		AEF_Keyboard = 0x2,
+		AEF_MouseAndKeyboard = AEF_Mouse | AEF_Keyboard,
+		AEF_NoSyncFocus = 0x4,
+		AEF_Pointer = 0x8,
+	} ElementActiveFlags;
+
+	// nCreate flags
+	typedef enum tagElementCreateFlags
+	{
+		ECF_NOCREATEGADGET = 0x1,
+		ECF_SELFLAYOUT = 0x2,
+	} ElementCreateFlags;
 
 	class DuiAccessible;
 

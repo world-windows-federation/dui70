@@ -4691,155 +4691,39 @@ HRESULT ValueProxy::SetValue(const unsigned short*)
 
 //~ End ValueProxy Class
 
-Viewer::Viewer(Viewer const&)
-{
-}
-
-Viewer::Viewer()
-{
-}
-
-Viewer::~Viewer(void)
-{
-}
-
-Viewer& Viewer::operator=(Viewer const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long Viewer::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long Viewer::Register(void)
-{
-	return 0;
-}
-
-void Viewer::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-PropertyInfo const* Viewer::XOffsetProp(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* Viewer::XScrollableProp(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* Viewer::YOffsetProp(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* Viewer::YScrollableProp(void)
-{
-	return nullptr;
-}
-
-IClassInfo* Viewer::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-int Viewer::GetXOffset(void)
-{
-	return 0;
-}
-
-bool Viewer::GetXScrollable(void)
-{
-	return false;
-}
-
-int Viewer::GetYOffset(void)
-{
-	return 0;
-}
-
-bool Viewer::GetYScrollable(void)
-{
-	return false;
-}
-
-long Viewer::Initialize(Element*, unsigned long*)
-{
-	return 0;
-}
-
-long Viewer::SetXOffset(int)
-{
-	return 0;
-}
-
-long Viewer::SetXScrollable(bool)
-{
-	return 0;
-}
-
-long Viewer::SetYOffset(int)
-{
-	return 0;
-}
-
-long Viewer::SetYScrollable(bool)
-{
-	return 0;
-}
-
-bool Viewer::EnsureVisible(int, int, int, int)
-{
-	return false;
-}
-
-IClassInfo* Viewer::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void Viewer::OnEvent(Event*)
-{
-}
-
-void Viewer::OnInput(InputEvent*)
-{
-}
-
-void Viewer::OnPropertyChanged(PropertyInfo const*, int, Value*, Value*)
-{
-}
-
-bool Viewer::OnPropertyChanging(PropertyInfo const*, int, Value*, Value*)
-{
-	return false;
-}
-
-void Viewer::_SelfLayoutDoLayout(int, int)
-{
-}
-
-SIZE Viewer::_SelfLayoutUpdateDesiredSize(int, int, Surface*)
-{
-	return SIZE();
-}
-
-Element* Viewer::GetContent(void)
-{
-	return nullptr;
-}
-
-bool Viewer::InternalEnsureVisible(int, int, int, int)
-{
-	return false;
-}
-
+//~ Begin DirectUI::Viewer Class
+HRESULT Viewer::Create(Element* peParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void Viewer::OnEvent(Event* pEvent) STUB_VOID;
+void Viewer::OnInput(InputEvent* pie) STUB_VOID;
+bool Viewer::OnPropertyChanging(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_ZERO;
+void Viewer::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void Viewer::_SelfLayoutDoLayout(int cx, int cy) STUB_VOID;
+SIZE Viewer::_SelfLayoutUpdateDesiredSize(int cxConstraint, int cyConstraint, Surface* psrf) STUB_ZERO;
+const PropertyInfo* Viewer::XOffsetProp() STUB_ZERO;
+const PropertyInfo* Viewer::YOffsetProp() STUB_ZERO;
+const PropertyInfo* Viewer::XScrollableProp() STUB_ZERO;
+const PropertyInfo* Viewer::YScrollableProp() STUB_ZERO;
+int Viewer::GetXOffset() STUB_ZERO;
+int Viewer::GetYOffset() STUB_ZERO;
+bool Viewer::GetXScrollable() STUB_ZERO;
+bool Viewer::GetYScrollable() STUB_ZERO;
+HRESULT Viewer::SetXOffset(int v) STUB_ZERO;
+HRESULT Viewer::SetYOffset(int v) STUB_ZERO;
+HRESULT Viewer::SetXScrollable(bool v) STUB_ZERO;
+HRESULT Viewer::SetYScrollable(bool v) STUB_ZERO;
+IClassInfo* Viewer::GetClassInfoPtr() STUB_ZERO;
+void Viewer::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Viewer::s_pClassInfo;
+IClassInfo* Viewer::GetClassInfoW() STUB_ZERO;
+HRESULT Viewer::Register() STUB_ZERO;
+bool Viewer::EnsureVisible(int x, int y, int cx, int cy) STUB_ZERO;
+Viewer::Viewer() STUB_VOID;
+HRESULT Viewer::Initialize(Element* pParent, DWORD* pdwDeferCooke) STUB_ZERO;
+Viewer::~Viewer() STUB_VOID;
+void Viewer::SetEnsureVisibleUseLayoutCoordinates(bool fUseLayoutCoordinates) STUB_VOID;
+Element* Viewer::_GetContent() STUB_ZERO;
+bool Viewer::_InternalEnsureVisible(int x, int y, int cx, int cy) STUB_ZERO;
+//~ End DirectUI::Viewer Class
 
 XBaby::XBaby(XBaby const&)
 {

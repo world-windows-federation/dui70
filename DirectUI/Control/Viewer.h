@@ -5,43 +5,56 @@ namespace DirectUI
 	class UILIB_API Viewer : public Element
 	{
 	public:
-		Viewer(Viewer const &);
-		Viewer(void);
-		virtual ~Viewer(void);
-		Viewer & operator=(Viewer const &);
+		static HRESULT WINAPI Create(Element* peParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		static PropertyInfo const * __stdcall XOffsetProp(void);
-		static PropertyInfo const * __stdcall XScrollableProp(void);
-		static PropertyInfo const * __stdcall YOffsetProp(void);
-		static PropertyInfo const * __stdcall YScrollableProp(void);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
+		void OnEvent(Event* pEvent) override;
+		void OnInput(InputEvent* pie) override;
+		bool OnPropertyChanging(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
 
-		int GetXOffset(void);
-		bool GetXScrollable(void);
-		int GetYOffset(void);
-		bool GetYScrollable(void);
-		long Initialize(Element *, unsigned long *);
-		long SetXOffset(int);
-		long SetXScrollable(bool);
-		long SetYOffset(int);
-		long SetYScrollable(bool);
+		void _SelfLayoutDoLayout(int cx, int cy) override;
+		SIZE _SelfLayoutUpdateDesiredSize(int cxConstraint, int cyConstraint, Surface* psrf) override;
 
-		virtual bool EnsureVisible(int, int, int, int);
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual void OnEvent(Event *);
-		virtual void OnInput(InputEvent *);
-		virtual void OnPropertyChanged(PropertyInfo const *, int, Value *, Value *);
-		virtual bool OnPropertyChanging(PropertyInfo const *, int, Value *, Value *);
-		virtual void _SelfLayoutDoLayout(int, int);
-		virtual SIZE _SelfLayoutUpdateDesiredSize(int, int, Surface *);
+		static const PropertyInfo* WINAPI XOffsetProp();
+		static const PropertyInfo* WINAPI YOffsetProp();
+		static const PropertyInfo* WINAPI XScrollableProp();
+		static const PropertyInfo* WINAPI YScrollableProp();
+
+		int GetXOffset();
+		int GetYOffset();
+		bool GetXScrollable();
+		bool GetYScrollable();
+
+		HRESULT SetXOffset(int v);
+		HRESULT SetYOffset(int v);
+		HRESULT SetXScrollable(bool v);
+		HRESULT SetYScrollable(bool v);
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		static IClassInfo * s_pClassInfo;
-		Element * GetContent(void);
-		bool InternalEnsureVisible(int, int, int, int);
+		static IClassInfo* s_pClassInfo;
 
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
+
+		bool EnsureVisible(int x, int y, int cx, int cy) override;
+
+		Viewer();
+		Viewer(const Viewer& other) = default;
+
+		HRESULT Initialize(Element* pParent, DWORD* pdwDeferCooke);
+
+		~Viewer() override;
+
+		void SetEnsureVisibleUseLayoutCoordinates(bool fUseLayoutCoordinates);
+
+	private:
+		Element* _GetContent();
+		bool _InternalEnsureVisible(int x, int y, int cx, int cy);
+
+		bool _fEnsureVisibleUseLayoutCoordinates;
 	};
 }

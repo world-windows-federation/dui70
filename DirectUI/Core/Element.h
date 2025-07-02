@@ -32,8 +32,18 @@ namespace DirectUI
 
 	class DeferCycle
 	{
-		
 	};
+
+	// nActive flags
+	typedef enum tagActiveEnum
+	{
+		AE_Inactive = 0x0,
+		AE_Mouse = 0x1,
+		AE_Keyboard = 0x2,
+		AE_MouseAndKeyboard = AE_Mouse | AE_Keyboard,
+		AE_NoSyncFocus = 0x4,
+		AE_Pointer = 0x8,
+	} ActiveEnum;
 
 	class DuiAccessible;
 
@@ -502,7 +512,7 @@ namespace DirectUI
 		HRESULT SetY(int v);
 		HRESULT SetLayout(Layout* v);
 		HRESULT SetLayoutPos(int v);
-		HRESULT SetBorderThickness(int l, int t , int r, int b);
+		HRESULT SetBorderThickness(int l, int t, int r, int b);
 		HRESULT SetBorderStyle(int v);
 		HRESULT SetBorderStdColor(int v);
 		HRESULT SetBorderColor(COLORREF cr);

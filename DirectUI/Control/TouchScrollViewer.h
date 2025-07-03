@@ -229,25 +229,25 @@ namespace DirectUI
 		void OnMouseFocusMoved(Element* peFrom, Element* peTo) override;
 
 	private:
-		bool _SetElementContentVisualTransform(Element* pElement, float _11, float _12, float _21, float _22, float _31, float _32); // Olive6841: Any clue what these arguments mean?
+		bool _SetElementContentVisualTransform(Element* pElement, float _11, float _12, float _21, float _22, float _31, float _32);
 		void _MapVisuals(float newTargetX, float newTargetY, float xOffset, float yOffset, bool fAllowSubpixelMapping);
 
 	protected:
 		HRESULT CreateScrollBars() override;
 		HRESULT AddChildren() override;
 
-	public:
-		BaseScrollBar* BaseScrollViewer::GetHScroll() override;
-
-	protected:
-		virtual TouchScrollBar* TouchScrollViewer_GetHScroll(); // OG name: GetHScroll
+		TouchScrollBar* GetHScroll() override;
 
 	public:
-		BaseScrollBar* BaseScrollViewer::GetVScroll() override;
+		using BaseScrollViewer::GetHScroll; // @NOTE: Might be wrong
 
 	protected:
-		virtual TouchScrollBar* TouchScrollViewer_GetVScroll(); // OG name: GetVScroll
+		TouchScrollBar* GetVScroll() override;
 
+	public:
+		using BaseScrollViewer::GetVScroll; // @NOTE: Might be wrong
+
+	protected:
 		void _SetLastInputType(UINT nLastInputType);
 
 		UINT MessageCallback(GMSG* pMsg) override;

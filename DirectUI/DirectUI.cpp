@@ -848,7 +848,16 @@ IClassInfo* AccessibleButton::s_pClassInfo;
 IClassInfo* AccessibleButton::GetClassInfoW() STUB_ZERO;
 HRESULT AccessibleButton::Register() STUB_ZERO;
 AccessibleButton::AccessibleButton() STUB_VOID;
-//const AccessibleButton::ACCESSIBLEROLE c_rgar[] = {};
+
+const DirectUI::AccessibleButton::ACCESSIBLEROLE c_rgar[] =
+{
+  { 43, 0, -792, 0, -792 },
+  { 44, 0, -791, 16, -790 },
+  { 45, 0, -791, 16, -791 },
+  { 64, 1024, -795, 512, -794 },
+  { 30, 4194304, -793, 4194304, -793 }
+};
+
 const AccessibleButton::ACCESSIBLEROLE* AccessibleButton::FindAccessibleRole(int role) STUB_ZERO;
 void AccessibleButton::UpdateState(ACCESSIBLEROLE*) STUB_VOID;
 //~ End DirectUI::AccessibleButton Class
@@ -1201,7 +1210,17 @@ const int CallstackTracker::INITIALSTACKSKIP = 0;
 const int CallstackTracker::STACKDEPTH = 0;
 void CallstackTracker::FillSymbolInfo(STACK_SYMBOL_INFO* psi, DWORD_PTR dwAddr) STUB_VOID;
 DWORD_PTR CallstackTracker::GetModuleBase(HANDLE hProcess, DWORD_PTR dwAddr) STUB_ZERO;
-CallstackTracker::IMGHLPFN_LOAD CallstackTracker::s_ImageHlpFuncList[];
+
+CallstackTracker::IMGHLPFN_LOAD CallstackTracker::s_ImageHlpFuncList[] =
+{
+	{ "ImagehlpApiVersionEx", (void**)&CallstackTracker::s_pfnImagehlpApiVersionEx },
+	{ "SymGetModuleInfo64", (void**)&CallstackTracker::s_pfnSymGetModuleInfo64 },
+	{ "SymFromAddr", (void**)&CallstackTracker::s_pfnSymFromAddr },
+	{ "SymInitialize", (void**)&CallstackTracker::s_pfnSymInitialize },
+	{ "SymLoadModule64", (void**)&CallstackTracker::s_pfnSymLoadModule64 },
+	{ "SymSetOptions", (void**)&CallstackTracker::s_pfnSymSetOptions }
+};
+
 pfnNtDll_RtlCaptureStackBackTrace CallstackTracker::s_pfnRtlCaptureStackBackTrace;
 pfnImgHlp_ImagehlpApiVersionEx CallstackTracker::s_pfnImagehlpApiVersionEx;
 pfnImgHlp_SymGetModuleInfo64 CallstackTracker::s_pfnSymGetModuleInfo64;

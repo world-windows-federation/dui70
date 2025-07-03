@@ -151,9 +151,6 @@ static void CALLBACK WilLogCallback(wil::FailureInfo const &failure) noexcept
 
 void CALLBACK DUI_ParserErrorCB(const WCHAR* pszError, const WCHAR* pszToken, int dLine, void* pContext)
 {
-	//WCHAR szParserError[1024];
-	//StringCchPrintfW(szParserError, ARRAYSIZE(szParserError), L"%s '%s' (%d)", pszError, pszToken, (dLine != -1) ? dLine : 0);
-	//MessageBox(nullptr, szParserError, L"Error while parsing DirectUI", MB_ICONERROR);
 	if (pszError != nullptr)
 	{
 		MessageBox(nullptr, pszError, L"Error while parsing DirectUI", MB_ICONERROR);
@@ -162,7 +159,7 @@ void CALLBACK DUI_ParserErrorCB(const WCHAR* pszError, const WCHAR* pszToken, in
 	}
 }
 
-HRESULT WINAPI DUI_InitializeDUI()
+HRESULT WINAPI DUI_Initialize()
 {
 	HRESULT hr = S_OK;
 
@@ -188,7 +185,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	THROW_IF_FAILED(CoInitializeEx(nullptr, 0));
 
-	THROW_IF_FAILED(DUI_InitializeDUI());
+	THROW_IF_FAILED(DUI_Initialize());
 
 	// uncomment to update class definitions
 	// HookClassFactoryRegister();

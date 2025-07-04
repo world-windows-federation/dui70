@@ -2,28 +2,38 @@
 
 namespace DirectUI
 {
-
 	class UILIB_API RepeatButton : public Button
 	{
 	public:
-		RepeatButton(RepeatButton const &);
-		RepeatButton(void);
-		virtual ~RepeatButton(void);
-		RepeatButton & operator=(RepeatButton const &);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		
-		long Initialize(unsigned int, Element *, unsigned long *);
+		void OnInput(InputEvent* pie) override;
 
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual void OnInput(struct InputEvent *);
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
+
 	private:
-		static void __stdcall _RepeatButtonActionCallback(struct GMA_ACTIONINFO *);
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
 
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
+
+		RepeatButton();
+		RepeatButton(const RepeatButton& other) = default;
+
+		HRESULT Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
+
+		~RepeatButton() override;
+
+		void SetStopThumbBehavior();
+
+	private:
+		static void _RepeatButtonActionCallback(GMA_ACTIONINFO* pmai);
+
+		HACTION _hAction;
+		BOOL _fActionDelay;
+		BOOL _fStopThumbBehavior;
 	};
 }

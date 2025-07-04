@@ -3255,67 +3255,21 @@ void RefPointElement::OnPropertyChanged(PropertyInfo const*, int, Value*, Value*
 
 IClassInfo* RefPointElement::s_pClassInfo;
 
-RepeatButton::RepeatButton(RepeatButton const&)
-{
-}
-
-RepeatButton::RepeatButton(void)
-{
-}
-
-RepeatButton::~RepeatButton(void)
-{
-}
-
-RepeatButton& RepeatButton::operator=(RepeatButton const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long RepeatButton::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long RepeatButton::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* RepeatButton::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long RepeatButton::Register(void)
-{
-	return 0;
-}
-
-void RepeatButton::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-long RepeatButton::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-IClassInfo* RepeatButton::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void RepeatButton::OnInput(InputEvent*)
-{
-}
-
-void RepeatButton::_RepeatButtonActionCallback(GMA_ACTIONINFO*)
-{
-}
-
+//~ Begin DirectUI::RepeatButton Class
+HRESULT RepeatButton::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT RepeatButton::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void RepeatButton::OnInput(InputEvent* pie) STUB_VOID;
+IClassInfo* RepeatButton::GetClassInfoPtr() STUB_ZERO;
+void RepeatButton::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* RepeatButton::s_pClassInfo;
+IClassInfo* RepeatButton::GetClassInfoW() STUB_ZERO;
+HRESULT RepeatButton::Register() STUB_ZERO;
+RepeatButton::RepeatButton() STUB_VOID;
+HRESULT RepeatButton::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+RepeatButton::~RepeatButton() STUB_VOID;
+void RepeatButton::SetStopThumbBehavior() STUB_VOID;
+void RepeatButton::_RepeatButtonActionCallback(GMA_ACTIONINFO* pmai) STUB_VOID;
+//~ End DirectUI::RepeatButton Class
 
 HRESULT Repeater::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
 HRESULT Repeater::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;

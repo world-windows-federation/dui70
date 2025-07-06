@@ -2,45 +2,63 @@
 
 namespace DirectUI
 {
+	interface IXProvider;
+
 	class UILIB_API XElement
 		: public HWNDHost
-		, public IXElementCP
+		, IXElementCP
 	{
 	public:
-		XElement(XElement const &);
-		XElement(void);
-		virtual ~XElement(void);
-		XElement & operator=(XElement const &);
-		static long __stdcall Create(unsigned int, Element *, unsigned long *, Element * *);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static unsigned int const s_uButtonFocusChangeMsg;
-		static unsigned int const s_uNavigateOutMsg;
-		static unsigned int const s_uUnhandledSyscharMsg;
-		static UID __stdcall UnhandledSyschar(void);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
+		//~ Begin DirectUI::IXElementCP Interface
+		STDMETHODIMP_(HWND) GetNotificationSinkHWND() override;
+		STDMETHODIMP_(UINT) GetCreationFlags() override;
+		//~ End DirectUI::IXElementCP Interface
 
-		void FreeProvider(void);
-		HWND GetInnerHWND(void);
-		struct IXProvider * GetProvider(void);
-		long Initialize(unsigned int, Element *, unsigned long *);
-		bool IsDescendent(Element *);
-		long SetProvider(IUnknown *);
+		static const UINT s_uNavigateOutMsg;
+		static const UINT s_uButtonFocusChangeMsg;
+		static const UINT s_uUnhandledSyscharMsg;
 
-		virtual HWND CreateHWND(HWND);
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual void OnEvent(Event *);
-		virtual void OnInput(InputEvent *);
-		virtual bool OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*);
-		virtual bool OnSinkThemeChanged(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*);
-		virtual bool OnSysChar(unsigned short);
-		virtual void SetKeyFocus(void);
+		static UID WINAPI UnhandledSyschar();
 
-		//IXElementCP
-		virtual HWND GetNotificationSinkHWND(void);
+		XElement();
+		XElement(const XElement& other) = default;
+		~XElement() override;
+
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		static HRESULT WINAPI Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+
+		void OnInput(InputEvent* pie) override;
+		bool OnMessage(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) override;
+		bool OnSysChar(WCHAR chKeyCode) override;
+		bool OnSinkThemeChanged(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) override;
+		void OnEvent(Event* pEvent) override;
+
+		// ReSharper disable once CppHidingFunction
+		HRESULT Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
+
+		HWND CreateHWND(HWND hwndParent) override;
+		void SetKeyFocus() override;
+
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		static IClassInfo * s_pClassInfo;
+		static IClassInfo* s_pClassInfo;
+
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
+
+		IXProvider* GetProvider();
+		HRESULT SetProvider(IUnknown* punk);
+		void FreeProvider();
+
+		// ReSharper disable once CppHidingFunction
+		bool IsDescendent(Element* pe);
+		HWND GetInnerHWND();
+
+	private:
+		IXProvider* _pixp;
+		HWND _hwndInner;
 	};
 }

@@ -2321,6 +2321,7 @@ int InvokeHelper::Init(ULONG idThread) STUB_ZERO;
 void InvokeHelper::Uninit() STUB_VOID;
 HRESULT InvokeHelper::DoInvoke(MethodId methodId, ElementProvider* pElementProvider, PfnCreateProxy pfnCreate, va_list args) STUB_ZERO;
 InvokeHelper::InvokeArgs::InvokeArgs(MethodId methodId, ElementProvider* pElementProvider, PfnCreateProxy pfnCreate, va_list args) STUB_VOID;
+const UINT InvokeHelper::s_uInvokeHelperMsg = RegisterWindowMessage(L"DUI_UIA_InvokeHelperMsg");
 int InvokeHelper::_WndProc(void* pThis, HWND hwnd, UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
 void InvokeHelper::OnInvoke(InvokeArgs* pInvokeArgs) STUB_VOID;
 //~ End DirectUI::InvokeHelper Class
@@ -4628,133 +4629,39 @@ HRESULT XBaby::SetButtonClassAcceptsEnterKey(bool v) STUB_ZERO;
 bool XBaby::ClickDefaultButton() STUB_ZERO;
 HRESULT XBaby::SetRegisteredDefaultButton(Element* v) STUB_ZERO;
 HRESULT XBaby::SetHandleEnterKey(bool v) STUB_ZERO;
-HRESULT Initialize(IXElementCP* pcp, XProvider* pprov, HWND hwndParent, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+HRESULT XBaby::Initialize(IXElementCP* pcp, XProvider* pprov, HWND hwndParent, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
 //~ End DirectUI::XBaby Class
 
-XElement::XElement(XElement const&)
-{
-}
-
-XElement::XElement()
-{
-}
-
-XElement::~XElement(void)
-{
-}
-
-XElement& XElement::operator=(XElement const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long XElement::Create(unsigned int, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long XElement::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-unsigned int const XElement::s_uButtonFocusChangeMsg = 0;
-unsigned int const XElement::s_uNavigateOutMsg = 0;
-unsigned int const XElement::s_uUnhandledSyscharMsg = 0;
-
-
-UID XElement::UnhandledSyschar(void)
-{
-	return UID();
-}
-
-IClassInfo* XElement::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long XElement::Register(void)
-{
-	return 0;
-}
-
-void XElement::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-void XElement::FreeProvider(void)
-{
-}
-
-HWND XElement::GetInnerHWND(void)
-{
-	return HWND();
-}
-
-IXProvider* XElement::GetProvider(void)
-{
-	return nullptr;
-}
-
-long XElement::Initialize(unsigned int, Element*, unsigned long*)
-{
-	return 0;
-}
-
-bool XElement::IsDescendent(Element*)
-{
-	return false;
-}
-
-long XElement::SetProvider(IUnknown*)
-{
-	return 0;
-}
-
-HWND XElement::CreateHWND(HWND)
-{
-	return HWND();
-}
-
-IClassInfo* XElement::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void XElement::OnEvent(Event*)
-{
-}
-
-void XElement::OnInput(InputEvent*)
-{
-}
-
-bool XElement::OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*)
-{
-	return false;
-}
-
-bool XElement::OnSinkThemeChanged(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT*)
-{
-	return false;
-}
-
-bool XElement::OnSysChar(unsigned short)
-{
-	return false;
-}
-
-void XElement::SetKeyFocus(void)
-{
-}
-
-HWND XElement::GetNotificationSinkHWND(void)
-{
-	return HWND();
-}
-
+// Begin DirectUI::XElement Class
+HWND XElement::GetNotificationSinkHWND() STUB_ZERO;
+UINT XElement::GetCreationFlags() STUB_ZERO;
+const UINT XElement::s_uNavigateOutMsg = RegisterWindowMessage(L"XElementNavigateOut");
+const UINT XElement::s_uButtonFocusChangeMsg = RegisterWindowMessage(L"XElementButtonFocusChange");
+const UINT XElement::s_uUnhandledSyscharMsg = RegisterWindowMessage(L"XElementUnhandledSyschar");
+UID XElement::UnhandledSyschar() STUB_ZERO;
+XElement::XElement() STUB_VOID;
+XElement::~XElement() STUB_VOID;
+HRESULT XElement::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT XElement::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void XElement::OnInput(InputEvent* pie) STUB_VOID;
+bool XElement::OnMessage(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+bool XElement::OnSysChar(WCHAR chKeyCode) STUB_ZERO;
+bool XElement::OnSinkThemeChanged(UINT nMsg, WPARAM wParam, LPARAM lParam, LRESULT* plRet) STUB_ZERO;
+void XElement::OnEvent(Event* pEvent) STUB_VOID;
+HRESULT XElement::Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+HWND XElement::CreateHWND(HWND hwndParent) STUB_ZERO;
+void XElement::SetKeyFocus() STUB_VOID;
+IClassInfo* XElement::GetClassInfoPtr() STUB_ZERO;
+void XElement::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* XElement::s_pClassInfo;
+IClassInfo* XElement::GetClassInfoW() STUB_ZERO;
+HRESULT XElement::Register() STUB_ZERO;
+IXProvider* XElement::GetProvider() STUB_ZERO;
+HRESULT XElement::SetProvider(IUnknown* punk) STUB_ZERO;
+void XElement::FreeProvider() STUB_VOID;
+bool XElement::IsDescendent(Element* pe) STUB_ZERO;
+HWND XElement::GetInnerHWND() STUB_ZERO;
+//~ End DirectUI::XElement Class
 
 HRESULT XProvider::QueryInterface(REFIID iid, void** ppv) STUB_ZERO;
 ULONG XProvider::AddRef() STUB_ZERO;

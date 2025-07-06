@@ -86,6 +86,7 @@ namespace DirectUI
 		IXElementCP& operator=(const IXElementCP&);
 
 		virtual HWND GetNotificationSinkHWND() = 0;
+		virtual UINT GetCreationFlags() = 0;
 	};
 
 	interface UILIB_API IDataEngine

@@ -171,7 +171,7 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 // Touch elements
 #include "Control\ModernProgressBar.h"
 #include "Control\TouchButton.h"
-#include "TouchCheckBox.h"
+#include "Control\TouchCheckBox.h"
 #include "Control\TouchHWNDElement.h"
 #include "Control\TouchScrollBar.h"
 #include "Control\TouchScrollViewer.h"

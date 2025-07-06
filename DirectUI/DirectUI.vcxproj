@@ -259,6 +259,7 @@
     <ClInclude Include="Control\SemanticController.h" />
     <ClInclude Include="Control\Thumb.h" />
     <ClInclude Include="Control\TouchButton.h" />
+    <ClInclude Include="Control\TouchCheckBox.h" />
     <ClInclude Include="Control\TouchEdit2.h" />
     <ClInclude Include="Control\TouchEditBase.h" />
     <ClInclude Include="Control\TouchEditInner.h" />
@@ -338,7 +339,6 @@
     <ClInclude Include="StockBehaviors\ContextMenuBehavior.h" />
     <ClInclude Include="StyledScrollViewer.h" />
     <ClInclude Include="TextGraphic.h" />
-    <ClInclude Include="TouchCheckBox.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UIAutomation\ElementProvider.h" />
     <ClInclude Include="UIAutomation\EventManager.h" />

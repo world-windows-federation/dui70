@@ -1,11 +1,5 @@
 ﻿#pragma once
 
-interface IDirectManipulationCompositor;
-interface IDirectManipulationContent;
-interface IDirectManipulationManager;
-interface IDirectManipulationPrimaryContent;
-interface IDirectManipulationViewport;
-
 namespace DirectUI
 {
 	struct ManipulationEvent : Event

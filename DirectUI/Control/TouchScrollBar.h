@@ -1,10 +1,5 @@
 ﻿#pragma once
 
-struct IDirectManipulationContent;
-struct IDirectManipulationViewport;
-struct IDirectManipulationCompositor;
-struct IDirectManipulationManager;
-
 namespace DirectUI
 {
 	class TouchScrollBar : public ScrollBar

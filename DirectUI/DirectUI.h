@@ -183,7 +183,7 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #include "Control\TouchEditBase.h"
 #include "Control\TouchEditInner.h"
 #include "Control\TouchEdit2.h"
-
+#include "Control\TouchHyperLink.h"
 
 #include "SemanticZoomToggle.h"
 #include "ElementProviderManager.h"

@@ -264,6 +264,7 @@
     <ClInclude Include="Control\TouchEditBase.h" />
     <ClInclude Include="Control\TouchEditInner.h" />
     <ClInclude Include="Control\TouchHWNDElement.h" />
+    <ClInclude Include="Control\TouchHyperLink.h" />
     <ClInclude Include="Control\TouchScrollBar.h" />
     <ClInclude Include="Control\TouchScrollViewer.h" />
     <ClInclude Include="Control\TouchSelect.h" />

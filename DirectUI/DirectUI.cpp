@@ -5653,6 +5653,19 @@ HRESULT ContextMenuBehavior::Create(IDuiBehavior** ppBehavior) STUB_ZERO;
 UID ContextMenuBehavior::ContextMenuRequested() STUB_ZERO;
 UID ContextMenuBehavior::ContextMenuHintShowing() STUB_ZERO;
 
+HRESULT TouchHyperLink::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT TouchHyperLink::Create(UINT nActive, Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+void TouchHyperLink::OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) STUB_VOID;
+void TouchHyperLink::GetImmersiveFocusRectOffsets(RECT* lprc) STUB_VOID;
+const PropertyInfo* TouchHyperLink::VisitedProp() STUB_ZERO;
+bool TouchHyperLink::GetVisited() STUB_ZERO;
+HRESULT TouchHyperLink::SetVisited(bool v) STUB_ZERO;
+IClassInfo* TouchHyperLink::GetClassInfoPtr() STUB_ZERO;
+IClassInfo* TouchHyperLink::s_pClassInfo;
+IClassInfo* TouchHyperLink::GetClassInfoW() STUB_ZERO;
+HRESULT TouchHyperLink::Register() STUB_ZERO;
+TouchHyperLink::TouchHyperLink() STUB_VOID;
+TouchHyperLink::~TouchHyperLink() STUB_VOID;
 } // namespace DirectUI
 
 HRESULT CSafeElementProxy::CreateInstance(DirectUI::Element* pe, CSafeElementProxy** ppProxy) STUB_ZERO;

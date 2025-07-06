@@ -34,6 +34,8 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
 #include "Types.h"
 #include "Extensions\Misc.h"
+#include "Base\Alloc.h"
+#include "Base\DynamicArray.h"
 #include "Base\Surface.h"
 #include "Base\SBAlloc.h"
 #include "Event.h"

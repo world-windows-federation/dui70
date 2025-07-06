@@ -217,6 +217,8 @@
     <ClInclude Include="AutoVariant.h" />
     <ClInclude Include="AutoThread.h" />
     <ClInclude Include="Base.h" />
+    <ClInclude Include="Base\Alloc.h" />
+    <ClInclude Include="Base\DynamicArray.h" />
     <ClInclude Include="Base\FontCache.h" />
     <ClInclude Include="Base\LinkedList.h" />
     <ClInclude Include="Base\SBAlloc.h" />

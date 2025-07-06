@@ -39,4 +39,17 @@ namespace DirectUI
 		virtual void Init(Element *);
 
 	};
+
+	class UILIB_API ProgressRangeValueProxy : public RangeValueProxy
+	{
+	public:
+		ProgressRangeValueProxy(ProgressRangeValueProxy const&);
+		ProgressRangeValueProxy(void);
+		ProgressRangeValueProxy& operator=(ProgressRangeValueProxy const&);
+
+		virtual long DoMethod(int, char*);
+
+	protected:
+		virtual void Init(Element*);
+	};
 }

@@ -1,5 +1,4 @@
 #pragma once
-#include "UIAutomation\RangeValueProvider.h"
 
 namespace DirectUI
 {
@@ -35,18 +34,5 @@ namespace DirectUI
 		Progress(const Progress& other) = default;
 
 		HRESULT Initialize(Element* pParent, DWORD* pdwDeferCookie);
-	};
-
-	class UILIB_API ProgressRangeValueProxy : public RangeValueProxy
-	{
-	public:
-		ProgressRangeValueProxy(ProgressRangeValueProxy const&);
-		ProgressRangeValueProxy(void);
-		ProgressRangeValueProxy& operator=(ProgressRangeValueProxy const&);
-
-		virtual long DoMethod(int, char*);
-
-	protected:
-		virtual void Init(Element*);
 	};
 }

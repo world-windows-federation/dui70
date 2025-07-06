@@ -6,41 +6,41 @@ namespace DirectUI
 	class ModernProgressRing : public CElementWithProxy<Element>
 	{
 	public:
-		static IClassInfo* WINAPI GetClassInfoPtr();
+		UILIB_API static IClassInfo* WINAPI GetClassInfoPtr();
 		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
 		static IClassInfo* s_pClassInfo;
 
 	public:
-		IClassInfo* GetClassInfoW() override;
+		UILIB_API IClassInfo* GetClassInfoW() override;
 
-		ModernProgressRing();
+		UILIB_API ModernProgressRing();
 		ModernProgressRing(const ModernProgressRing& other) = default;
 
-		~ModernProgressRing() override;
+		UILIB_API ~ModernProgressRing() override;
 
 		static const PropertyInfo* WINAPI ActivityOccuringProp();
 		static const PropertyInfo* WINAPI AddLayeredRefProp();
 
-		bool IsActivityOccuring();
-		HRESULT SetActivityOccuring(bool v);
+		UILIB_API bool IsActivityOccuring();
+		UILIB_API HRESULT SetActivityOccuring(bool v);
 
-		bool IsAddLayeredRef();
-		HRESULT SetAddLayeredRef(bool v);
+		UILIB_API bool IsAddLayeredRef();
+		UILIB_API HRESULT SetAddLayeredRef(bool v);
 
-		static HRESULT WINAPI Register();
-		static HRESULT Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
+		UILIB_API static HRESULT WINAPI Register();
+		UILIB_API static HRESULT Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 
-		HRESULT Initialize(UINT, Element*, DWORD*);
+		HRESULT Initialize(UINT nActive, Element* pParent, DWORD* pdwDeferCookie);
 
 	protected:
-		void OnDestroy() override;
-		void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
-		void OnHosted(Element* peNewRoot) override;
-		void OnUnHosted(Element* peOldRoot) override;
+		UILIB_API void OnDestroy() override;
+		UILIB_API void OnPropertyChanged(const PropertyInfo* ppi, int iIndex, Value* pvOld, Value* pvNew) override;
+		UILIB_API void OnHosted(Element* peNewRoot) override;
+		UILIB_API void OnUnHosted(Element* peOldRoot) override;
 
-		void Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) override;
+		UILIB_API void Paint(HDC hDC, const RECT* prcBounds, const RECT* prcInvalid, RECT* prcSkipBorder, RECT* prcSkipContent) override;
 
 		enum FUNCMODE
 		{

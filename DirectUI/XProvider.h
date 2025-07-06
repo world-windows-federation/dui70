@@ -21,23 +21,6 @@ namespace DirectUI
 		virtual HRESULT STDMETHODCALLTYPE SetButtonClassAcceptsEnterKey(bool fEnabled) = 0;
 	};
 
-	interface IXBaby
-	{
-		virtual HWNDElement* GetXBabyElement() = 0;
-		virtual void CacheParser(DUIXmlParser* pParserNew) = 0;
-		virtual HRESULT SetToHost(Element* peToHost) = 0;
-		virtual SIZE GetContentDesiredSize(int cxConstraint, int cyConstraint) = 0;
-		virtual bool CanSetFocus() = 0;
-		virtual HRESULT GetHostedElementID(ATOM* patomID) = 0;
-		virtual void ForceThemeChange(WPARAM wParam, LPARAM lParam) = 0;
-		virtual bool GetDefaultButtonTracking() = 0;
-		virtual HRESULT SetDefaultButtonTracking(bool v) = 0;
-		virtual HRESULT SetButtonClassAcceptsEnterKey(bool v) = 0;
-		virtual bool ClickDefaultButton() = 0;
-		virtual HRESULT SetRegisteredDefaultButton(Element* v) = 0;
-		virtual HRESULT SetHandleEnterKey(bool v) = 0;
-	};
-
 	class UILIB_API XProvider : public IXProvider
 	{
 	public:

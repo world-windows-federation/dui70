@@ -4595,132 +4595,41 @@ Element* Viewer::_GetContent() STUB_ZERO;
 bool Viewer::_InternalEnsureVisible(int x, int y, int cx, int cy) STUB_ZERO;
 //~ End DirectUI::Viewer Class
 
-XBaby::XBaby(XBaby const&)
-{
-}
-
-XBaby::XBaby()
-{
-}
-
-XBaby::~XBaby(void)
-{
-}
-
-XBaby& XBaby::operator=(XBaby const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-void XBaby::CacheParser(DUIXmlParser*)
-{
-}
-
-long XBaby::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long XBaby::Create(IXElementCP*, XProvider*, HWND, Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-IClassInfo* XBaby::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-long XBaby::Register(void)
-{
-	return 0;
-}
-
-void XBaby::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-void XBaby::ForceThemeChange(UINT_PTR, LONG_PTR)
-{
-}
-
-SIZE XBaby::GetContentDesiredSize(int, int)
-{
-	return SIZE();
-}
-
-long XBaby::GetHostedElementID(unsigned short*)
-{
-	return 0;
-}
-
-long XBaby::SetToHost(Element*)
-{
-	return 0;
-}
-
-bool XBaby::CanSetFocus(void)
-{
-	return false;
-}
-
-long XBaby::CreateStyleParser(DUIXmlParser**)
-{
-	return 0;
-}
-
-Element* XBaby::GetAdjacent(Element*, int, NavReference const*, unsigned long)
-{
-	return nullptr;
-}
-
-IClassInfo* XBaby::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-bool XBaby::OnChildLostFocus(Element*)
-{
-	return false;
-}
-
-bool XBaby::OnChildReceivedFocus(Element*)
-{
-	return false;
-}
-
-void XBaby::OnEvent(Event*)
-{
-}
-
-void XBaby::OnNoChildWithShortcutFound(KeyboardEvent*)
-{
-}
-
-void XBaby::OnThemeChanged(ThemeChangedEvent*)
-{
-}
-
-void XBaby::OnWmThemeChanged(WPARAM wParam, LPARAM lParam)
-{
-}
-
-void XBaby::SetKeyFocus(void)
-{
-}
-
-Element* XBaby::GetFocusableElement(void)
-{
-	return nullptr;
-}
-
-long XBaby::Initialize(IXElementCP*, XProvider*, HWND, Element*, unsigned long*)
-{
-	return 0;
-}
-
+//~ Begin DirectUI::XBaby Class
+XBaby::~XBaby() STUB_VOID;
+HRESULT WINAPI XBaby::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppe) STUB_ZERO;
+HRESULT WINAPI XBaby::Create(IXElementCP* pcp, XProvider* pprov, HWND hwndParent, Element* pParent, DWORD* pdwDeferCookie, Element** ppe) STUB_ZERO;
+IClassInfo* WINAPI XBaby::GetClassInfoPtr() STUB_ZERO;
+void WINAPI XBaby::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* XBaby::s_pClassInfo;
+IClassInfo* XBaby::GetClassInfoW() STUB_ZERO;
+HRESULT WINAPI XBaby::Register() STUB_ZERO;
+Element* XBaby::GetAdjacent(Element* peFrom, int iNavDir, const NavReference* pnr, DWORD dwFlags) STUB_ZERO;
+void XBaby::OnEvent(Event* pEvent) STUB_VOID;
+void XBaby::OnThemeChanged(ThemeChangedEvent* pev) STUB_VOID;
+void XBaby::OnNoChildWithShortcutFound(KeyboardEvent* pke) STUB_VOID;
+bool XBaby::OnChildLostFocus(Element* peFrom) STUB_ZERO;
+bool XBaby::OnChildReceivedFocus(Element* peTo) STUB_ZERO;
+HRESULT XBaby::CreateStyleParser(DUIXmlParser** ppParser) STUB_ZERO;
+void XBaby::OnWmThemeChanged(WPARAM wParam, LPARAM lParam) STUB_VOID;
+Element* XBaby::GetFocusableElement() STUB_ZERO;
+void XBaby::SetKeyFocus() STUB_VOID;
+HRESULT XBaby::GetElementProviderImpl(InvokeHelper* pih, ElementProvider** ppprv) STUB_ZERO;
+HWNDElement* XBaby::GetXBabyElement() STUB_ZERO;
+void XBaby::CacheParser(DUIXmlParser* pParserNew) STUB_VOID;
+HRESULT XBaby::SetToHost(Element* peToHost) STUB_ZERO;
+SIZE XBaby::GetContentDesiredSize(int cxConstraint, int cyConstraint) STUB_ZERO;
+bool XBaby::CanSetFocus() STUB_ZERO;
+HRESULT XBaby::GetHostedElementID(ATOM* patomID) STUB_ZERO;
+void XBaby::ForceThemeChange(WPARAM wParam, LPARAM lParam) STUB_VOID;
+bool XBaby::GetDefaultButtonTracking() STUB_ZERO;
+HRESULT XBaby::SetDefaultButtonTracking(bool v) STUB_ZERO;
+HRESULT XBaby::SetButtonClassAcceptsEnterKey(bool v) STUB_ZERO;
+bool XBaby::ClickDefaultButton() STUB_ZERO;
+HRESULT XBaby::SetRegisteredDefaultButton(Element* v) STUB_ZERO;
+HRESULT XBaby::SetHandleEnterKey(bool v) STUB_ZERO;
+HRESULT Initialize(IXElementCP* pcp, XProvider* pprov, HWND hwndParent, Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+//~ End DirectUI::XBaby Class
 
 XElement::XElement(XElement const&)
 {

@@ -12,9 +12,9 @@ namespace DirectUI
 		//~ End DirectUI::IXProviderCP Interface
 
 		static HRESULT WINAPI Create(XResourceProvider** pprprov);
-		static HRESULT WINAPI Create(HINSTANCE hRes, WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, XResourceProvider** pprprov);
+		static HRESULT WINAPI Create(HINSTANCE hRes, const WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, XResourceProvider** pprprov);
 
-		HRESULT Initialize(HINSTANCE hRes, WCHAR* pszResource, const WCHAR* pszResid, const WCHAR* pszFile);
+		HRESULT Initialize(HINSTANCE hRes, const WCHAR* pszResource, const WCHAR* pszResid, const WCHAR* pszFile);
 
 	private:
 		HINSTANCE _hInstance;

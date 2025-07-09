@@ -2956,8 +2956,8 @@ HRESULT XResourceProvider::CreateDUICP(HWNDElement* peHWNDElement, HWND hwndPare
 HRESULT XResourceProvider::CreateParserCP(DUIXmlParser** ppParser) STUB_ZERO;
 void XResourceProvider::DestroyCP() STUB_VOID;
 HRESULT XResourceProvider::Create(XResourceProvider** pprprov) STUB_ZERO;
-HRESULT XResourceProvider::Create(HINSTANCE hRes, WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, XResourceProvider** pprprov) STUB_ZERO;
-HRESULT XResourceProvider::Initialize(HINSTANCE hRes, WCHAR* pszResource, const WCHAR* pszResid, const WCHAR* pszFile) STUB_ZERO;
+HRESULT XResourceProvider::Create(HINSTANCE hRes, const WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, XResourceProvider** pprprov) STUB_ZERO;
+HRESULT XResourceProvider::Initialize(HINSTANCE hRes, const WCHAR* pszResource, const WCHAR* pszResid, const WCHAR* pszFile) STUB_ZERO;
 //~ End DirectUI::XResourceProvider Class
 
 PText::~PText(void)

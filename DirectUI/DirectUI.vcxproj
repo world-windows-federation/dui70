@@ -330,6 +330,7 @@
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="PromptText.h" />
     <ClInclude Include="PropNotify.h" />
+    <ClInclude Include="Provider.h" />
     <ClInclude Include="PText.h" />
     <ClInclude Include="PVLLauncherTrigger.h" />
     <ClInclude Include="PVLTrigger.h" />

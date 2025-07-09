@@ -2,25 +2,25 @@
 
 namespace DirectUI
 {
-	
-	
-	class UILIB_API XResourceProvider : IXProviderCP
+	class UILIB_API XResourceProvider : public IXProviderCP
 	{
 	public:
-		XResourceProvider();
-		XResourceProvider( const XResourceProvider& );
-		XResourceProvider& operator=( const XResourceProvider& );
+		//~ Begin DirectUI::IXProviderCP Interface
+		STDMETHODIMP CreateDUICP(HWNDElement* peHWNDElement, HWND hwndParent, HWND hwndHost, Element** ppe, DUIXmlParser** ppParser) override;
+		STDMETHODIMP CreateParserCP(DUIXmlParser** ppParser) override;
+		STDMETHODIMP_(void) DestroyCP() override;
+		//~ End DirectUI::IXProviderCP Interface
 
-		//1
-		virtual long CreateDUICP(HWNDElement*, HWND, HWND, Element**, class DUIXmlParser**);
-		//2
-		virtual long CreateParserCP(class DUIXmlParser** pOut);
-		//3
-		virtual void DestroyCP();
+		static HRESULT WINAPI Create(XResourceProvider** pprprov);
+		static HRESULT WINAPI Create(HINSTANCE hRes, WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, XResourceProvider** pprprov);
 
-		static long WINAPI Create(XResourceProvider**pOut);
-		static long WINAPI Create(HINSTANCE, const WCHAR*, const WCHAR*, const WCHAR*, XResourceProvider**pOut );
-		
-		long Initialize(HINSTANCE h, const WCHAR* s1, const WCHAR* s2, const WCHAR* s3);
+		HRESULT Initialize(HINSTANCE hRes, WCHAR* pszResource, const WCHAR* pszResid, const WCHAR* pszFile);
+
+	private:
+		HINSTANCE _hInstance;
+		WCHAR* _pszResource;
+		WCHAR _szResource[MAX_PATH];
+		WCHAR _szResid[MAX_PATH];
+		WCHAR _szFile[MAX_PATH];
 	};
 }

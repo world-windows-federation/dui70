@@ -2951,48 +2951,14 @@ void ProgressRangeValueProxy::Init(Element*)
 {
 }
 
-XResourceProvider::XResourceProvider()
-{
-}
-
-XResourceProvider::XResourceProvider(const XResourceProvider&)
-{
-}
-
-XResourceProvider& XResourceProvider::operator=(const XResourceProvider&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-long WINAPI XResourceProvider::Create(XResourceProvider** pOut)
-{
-	return 0;
-}
-
-long WINAPI XResourceProvider::Create(HINSTANCE, const WCHAR*, const WCHAR*, const WCHAR*, XResourceProvider** pOut)
-{
-	return 0;
-}
-
-long XResourceProvider::Initialize(HINSTANCE h, const WCHAR* s1, const WCHAR* s2, const WCHAR* s3)
-{
-	return 0;
-}
-
-long XResourceProvider::CreateDUICP(HWNDElement*, HWND, HWND, Element**, DUIXmlParser**)
-{
-	return 0;
-}
-
-long XResourceProvider::CreateParserCP(DUIXmlParser** pOut)
-{
-	return 0;
-}
-
-void XResourceProvider::DestroyCP()
-{
-}
+// Begin DirectUI::XResourceProvider Class
+HRESULT XResourceProvider::CreateDUICP(HWNDElement* peHWNDElement, HWND hwndParent, HWND hwndHost, Element** ppe, DUIXmlParser** ppParser) STUB_ZERO;
+HRESULT XResourceProvider::CreateParserCP(DUIXmlParser** ppParser) STUB_ZERO;
+void XResourceProvider::DestroyCP() STUB_VOID;
+HRESULT XResourceProvider::Create(XResourceProvider** pprprov) STUB_ZERO;
+HRESULT XResourceProvider::Create(HINSTANCE hRes, WCHAR* pszResource, const WCHAR* pszResID, const WCHAR* pszFile, XResourceProvider** pprprov) STUB_ZERO;
+HRESULT XResourceProvider::Initialize(HINSTANCE hRes, WCHAR* pszResource, const WCHAR* pszResid, const WCHAR* pszFile) STUB_ZERO;
+//~ End DirectUI::XResourceProvider Class
 
 PText::~PText(void)
 {

@@ -2,6 +2,14 @@
 
 namespace DirectUI
 {
+	enum FillLayoutPos
+	{
+		FLP_Left   = 0,
+		FLP_Top    = 1,
+		FLP_Right  = 2,
+		FLP_Bottom = 3,
+	};
+	
 	class UILIB_API FillLayout : public Layout
 	{
 	public:

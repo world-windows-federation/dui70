@@ -2,6 +2,15 @@
 
 namespace DirectUI
 {
+	enum BorderLayoutPos
+	{
+		BLP_Left   = 0,
+		BLP_Top    = 1,
+		BLP_Right  = 2,
+		BLP_Bottom = 3,
+		BLP_Client = 4,
+	};
+
 	class UILIB_API BorderLayout : public Layout
 	{
 	public:

@@ -2,6 +2,13 @@
 
 namespace DirectUI
 {
+	enum LayoutPos
+	{
+		LP_None     = -3,
+		LP_Absolute = -2,
+		LP_Auto     = -1,
+	};
+
 	class UILIB_API Layout
 	{
 	public:

@@ -2,6 +2,19 @@
 
 namespace DirectUI
 {
+	enum NineGridLayoutPos
+	{
+		NGLP_TopLeft     = 0,
+		NGLP_Top         = 1,
+		NGLP_TopRight    = 2,
+		NGLP_Left        = 3,
+		NGLP_Client      = 4,
+		NGLP_Right       = 5,
+		NGLP_BottomLeft  = 6,
+		NGLP_Bottom      = 7,
+		NGLP_BottomRight = 8,
+	};
+
 	class UILIB_API NineGridLayout : public Layout
 	{
 	public:

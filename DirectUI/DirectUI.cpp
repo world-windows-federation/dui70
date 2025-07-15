@@ -2469,87 +2469,22 @@ void Movie::advanceFrameActionStart() STUB_VOID;
 void Movie::advanceFrameActionStop() STUB_VOID;
 //~ End DirectUI::Movie Class
 
-Navigator::Navigator(Navigator const&)
-{
-}
-
-Navigator::Navigator(void)
-{
-}
-
-Navigator::~Navigator(void)
-{
-}
-
-Navigator& Navigator::operator=(Navigator const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
-}
-
-UID Navigator::ActionInitiated(void)
-{
-	return UID();
-}
-
-long Navigator::Create(Element*, unsigned long*, Element**)
-{
-	return 0;
-}
-
-long Navigator::Register(void)
-{
-	return 0;
-}
-
-void Navigator::SetClassInfoPtr(IClassInfo*)
-{
-}
-
-IClassInfo* Navigator::GetClassInfoPtr(void)
-{
-	return nullptr;
-}
-
-PropertyInfo const* Navigator::TargetPageProp(void)
-{
-	return nullptr;
-}
-
-Browser* Navigator::GetBrowser(void)
-{
-	return nullptr;
-}
-
-unsigned short const* Navigator::GetTargetPage(Value**)
-{
-	return nullptr;
-}
-
-long Navigator::Initialize(Element*, unsigned long*)
-{
-	return 0;
-}
-
-long Navigator::SetTargetPage(unsigned short const*)
-{
-	return 0;
-}
-
-IClassInfo* Navigator::GetClassInfoW(void)
-{
-	return nullptr;
-}
-
-void Navigator::OnEvent(Event*)
-{
-}
-
-void Navigator::FireNavigationEvent(void)
-{
-}
-
+//~ Begin DirectUI::Navigator Class
+HRESULT Navigator::Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement) STUB_ZERO;
+HRESULT Navigator::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
+Browser* Navigator::GetBrowser() STUB_ZERO;
+UID Navigator::ActionInitiated() STUB_ZERO;
+const PropertyInfo* Navigator::TargetPageProp() STUB_ZERO;
+const WCHAR* Navigator::GetTargetPage(Value** ppv) STUB_ZERO;
+HRESULT Navigator::SetTargetPage(const WCHAR* v) STUB_ZERO;
+void Navigator::OnEvent(Event* pev) STUB_VOID;
+IClassInfo* Navigator::GetClassInfoPtr() STUB_ZERO;
+void Navigator::SetClassInfoPtr(IClassInfo* pClass) STUB_VOID;
 IClassInfo* Navigator::s_pClassInfo;
+IClassInfo* Navigator::GetClassInfoW() STUB_ZERO;
+HRESULT Navigator::Register() STUB_ZERO;
+void Navigator::FireNavigationEvent() STUB_VOID;
+//~ End DirectUI::Navigator Class
 
 NavigatorSelectionItemProxy::NavigatorSelectionItemProxy(NavigatorSelectionItemProxy const&)
 {

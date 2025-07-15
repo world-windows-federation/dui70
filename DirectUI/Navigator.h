@@ -1,4 +1,5 @@
 #pragma once
+
 #include "UIAutomation\SelectionItemProvider.h"
 
 namespace DirectUI
@@ -6,30 +7,30 @@ namespace DirectUI
 	class UILIB_API Navigator : public PushButton
 	{
 	public:
-		Navigator(Navigator const &);
-		Navigator(void);
-		virtual ~Navigator(void);
-		Navigator & operator=(Navigator const &);
-
-		static UID __stdcall ActionInitiated(void);
-		static long __stdcall Create(Element *, unsigned long *, Element * *);
-		static long __stdcall Register(void);
-		static void __stdcall SetClassInfoPtr(IClassInfo *);
-		static IClassInfo * __stdcall GetClassInfoPtr(void);
-		static PropertyInfo const * __stdcall TargetPageProp(void);
-
-		Browser * GetBrowser(void);
-		unsigned short const * GetTargetPage(Value * *);
-		long Initialize(Element *, unsigned long *);
-		long SetTargetPage(unsigned short const *);
+		static HRESULT WINAPI Create(Element* pParent, DWORD* pdwDeferCookie, Element** ppElement);
 		
-		virtual IClassInfo * GetClassInfoW(void);
-		virtual void OnEvent(Event *);
+		HRESULT Initialize(Element* pParent, DWORD* pdwDeferCookie);
+
+		Browser* GetBrowser();
+		static UID WINAPI ActionInitiated();
+		static const PropertyInfo* WINAPI TargetPageProp();
+		const WCHAR* GetTargetPage(Value** ppv);
+		HRESULT SetTargetPage(const WCHAR* v);
+		
+		void OnEvent(Event* pev) override;
+		
+		static IClassInfo* WINAPI GetClassInfoPtr();
+		static void WINAPI SetClassInfoPtr(IClassInfo* pClass);
 
 	private:
-		static IClassInfo * s_pClassInfo;
-		void FireNavigationEvent(void);
+		static IClassInfo* s_pClassInfo;
 
+	public:
+		IClassInfo* GetClassInfoW() override;
+		static HRESULT WINAPI Register();
+
+	private:
+		void FireNavigationEvent();
 	};
 
 	class UILIB_API NavigatorSelectionItemProxy : public SelectionItemProxy

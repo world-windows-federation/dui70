@@ -310,8 +310,10 @@
     <ClInclude Include="Extensions\Misc.h" />
     <ClInclude Include="Extensions\PushButton.h" />
     <ClInclude Include="Extensions\WizPageBase.h" />
+    <ClInclude Include="Extensions\XBaby.h" />
     <ClInclude Include="Extensions\XElement.h" />
     <ClInclude Include="Extensions\XHost.h" />
+    <ClInclude Include="Extensions\XProvider.h" />
     <ClInclude Include="FontCheckOut.h" />
     <ClInclude Include="Interfaces.h" />
     <ClInclude Include="Layout\BorderLayout.h" />
@@ -365,8 +367,6 @@
     <ClInclude Include="UIAutomation\UiaSchema.h" />
     <ClInclude Include="UIAutomation\ValueProvider.h" />
     <ClInclude Include="ValuePtr.h" />
-    <ClInclude Include="XBaby.h" />
-    <ClInclude Include="XProvider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectUI.cpp" />

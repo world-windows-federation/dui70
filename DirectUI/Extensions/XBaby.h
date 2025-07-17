@@ -56,19 +56,19 @@ namespace DirectUI
 		HRESULT GetElementProviderImpl(InvokeHelper* pih, ElementProvider** ppprv) override;
 
 		//~ Begin DirectUI::IXBaby Interface
-		STDMETHODIMP_(HWNDElement*) GetXBabyElement() override;
-		STDMETHODIMP_(void) CacheParser(DUIXmlParser* pParserNew) override;
-		STDMETHODIMP SetToHost(Element* peToHost) override;
-		STDMETHODIMP_(SIZE) GetContentDesiredSize(int cxConstraint, int cyConstraint) override;
-		STDMETHODIMP_(bool) CanSetFocus() override;
-		STDMETHODIMP GetHostedElementID(ATOM* patomID) override;
-		STDMETHODIMP_(void) ForceThemeChange(WPARAM wParam, LPARAM lParam) override;
-		STDMETHODIMP_(bool) GetDefaultButtonTracking() override;
-		STDMETHODIMP SetDefaultButtonTracking(bool v) override;
-		STDMETHODIMP SetButtonClassAcceptsEnterKey(bool v) override;
-		STDMETHODIMP_(bool) ClickDefaultButton();
-		STDMETHODIMP SetRegisteredDefaultButton(Element* v) override;
-		STDMETHODIMP SetHandleEnterKey(bool v) override;
+		HWNDElement* GetXBabyElement() override;
+		void CacheParser(DUIXmlParser* pParserNew) override;
+		HRESULT SetToHost(Element* peToHost) override;
+		SIZE GetContentDesiredSize(int cxConstraint, int cyConstraint) override;
+		bool CanSetFocus() override;
+		HRESULT GetHostedElementID(ATOM* patomID) override;
+		void ForceThemeChange(WPARAM wParam, LPARAM lParam) override;
+		bool GetDefaultButtonTracking() override;
+		HRESULT SetDefaultButtonTracking(bool v) override;
+		HRESULT SetButtonClassAcceptsEnterKey(bool v) override;
+		bool ClickDefaultButton();
+		HRESULT SetRegisteredDefaultButton(Element* v) override;
+		HRESULT SetHandleEnterKey(bool v) override;
 		//~ End DirectUI::IXBaby Interface
 
 	protected:

@@ -6,9 +6,9 @@ namespace DirectUI
 	{
 	public:
 		//~ Begin DirectUI::IXProviderCP Interface
-		STDMETHODIMP CreateDUICP(HWNDElement* peHWNDElement, HWND hwndParent, HWND hwndHost, Element** ppe, DUIXmlParser** ppParser) override;
-		STDMETHODIMP CreateParserCP(DUIXmlParser** ppParser) override;
-		STDMETHODIMP_(void) DestroyCP() override;
+		HRESULT CreateDUICP(HWNDElement* peHWNDElement, HWND hwndParent, HWND hwndHost, Element** ppe, DUIXmlParser** ppParser) override;
+		HRESULT CreateParserCP(DUIXmlParser** ppParser) override;
+		void DestroyCP() override;
 		//~ End DirectUI::IXProviderCP Interface
 
 		static HRESULT WINAPI Create(XResourceProvider** pprprov);

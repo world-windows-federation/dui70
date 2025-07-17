@@ -10,8 +10,8 @@ namespace DirectUI
 	{
 	public:
 		//~ Begin DirectUI::IXElementCP Interface
-		STDMETHODIMP_(HWND) GetNotificationSinkHWND() override;
-		STDMETHODIMP_(UINT) GetCreationFlags() override;
+		HWND GetNotificationSinkHWND() override;
+		UINT GetCreationFlags() override;
 		//~ End DirectUI::IXElementCP Interface
 
 		static const UINT s_uNavigateOutMsg;

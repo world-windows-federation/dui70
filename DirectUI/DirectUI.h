@@ -215,8 +215,12 @@ namespace DirectUI
 	{
 		// @Careful: fInitCommctl is new in Windows 10
 		HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl);
-		// @Note: The following is purely guessed based on https://github.com/i2ali/RAD/blob/develop/RADv2/Samples/Slicer/DuiInitializer.h#L29
-		FORCEINLINE HRESULT WINAPI InitProcess(DWORD dwExpectedVersion) { return InitProcessPriv(dwExpectedVersion, HINST_THISCOMPONENT, true, true, true); }
+
+		FORCEINLINE HRESULT WINAPI InitProcess(DWORD dwExpectedVersion, bool fEnableUIAutomationProvider = true, bool fInitCommctl = true)
+		{
+			return InitProcessPriv(dwExpectedVersion, HINST_THISCOMPONENT, true, fEnableUIAutomationProvider, fInitCommctl);
+		}
+
 		HRESULT WINAPI UnInitProcessPriv(HMODULE hModule);
 		FORCEINLINE HRESULT WINAPI UnInitProcess() { return UnInitProcessPriv(HINST_THISCOMPONENT); }
 		HRESULT WINAPI InitThread(UINT nThreadMode);
@@ -243,7 +247,7 @@ namespace DirectUI
 
 		ATOM WINAPI StrToID(const WCHAR* psz);
 		CHAR* WINAPI UnicodeToMultiByte(const WCHAR* pszUnicode, int cChars, int* pMultiBytes);
-		WCHAR* WINAPI MultiByteToUnicode(WCHAR* pszMulti, int dBytes, int* pUniChars);
+		WCHAR* WINAPI MultiByteToUnicode(const CHAR* pszMulti, int dBytes, int* pUniChars);
 
 		BOOL WINAPI IsAnimationsEnabled();
 		bool WINAPI IsPalette(HWND hwnd);

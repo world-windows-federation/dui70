@@ -38,7 +38,7 @@ BOOL WINAPI StartMessagePump() STUB_ZERO;
 void WINAPI StopMessagePump() STUB_VOID;
 ATOM WINAPI StrToID(const WCHAR* psz) STUB_ZERO;
 CHAR* WINAPI UnicodeToMultiByte(const WCHAR* pszUnicode, int cChars, int* pMultiBytes) STUB_ZERO;
-WCHAR* WINAPI MultiByteToUnicode(WCHAR* pszMulti, int dBytes, int* pUniChars) STUB_ZERO;
+WCHAR* WINAPI MultiByteToUnicode(const CHAR* pszMulti, int dBytes, int* pUniChars) STUB_ZERO;
 BOOL WINAPI IsAnimationsEnabled() STUB_ZERO;
 bool WINAPI IsPalette(HWND hwnd) STUB_ZERO;
 BOOL WINAPI IsUIAutomationProviderEnabled() STUB_ZERO;

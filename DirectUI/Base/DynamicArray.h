@@ -130,7 +130,7 @@ namespace DirectUI
 		static UINT NewCapacity(const HeapT __unaligned& heap, UINT uRequiredCapacity)
 		{
 			UINT uNewCapacity;
-			if (SUCCEEDED(ULongLongToUInt(2 * heap._uCapacity, &uNewCapacity)))
+			if (SUCCEEDED(UIntMult(2, heap._uCapacity, &uNewCapacity)))
 			{
 				return max(uRequiredCapacity, uNewCapacity);
 			}
@@ -554,7 +554,7 @@ namespace DirectUI
 			UINT uInitial = TAllocationPolicy::NewCapacity(max(uMinCapacity, MinHeapCapacity));
 
 			UINT cbToAlloc;
-			HRESULT hr = ULongLongToUInt(sizeof(T) * uInitial, &cbToAlloc);
+			HRESULT hr = UIntMult(sizeof(T), uInitial, &cbToAlloc);
 			if (SUCCEEDED(hr))
 			{
 				T* pNewBuffer = (T*)HAlloc(cbToAlloc);
@@ -588,7 +588,7 @@ namespace DirectUI
 			if (uMinCapacity > TAllocationPolicy::GetCapacity(pThis->_Heap, pThis->_uSize))
 			{
 				UINT cbToAlloc;
-				hr = ULongLongToUInt(sizeof(T) * TAllocationPolicy::NewCapacity(pThis->_Heap, uMinCapacity), &cbToAlloc);
+				hr = UIntMult(sizeof(T), TAllocationPolicy::NewCapacity(pThis->_Heap, uMinCapacity), &cbToAlloc);
 				if (SUCCEEDED(hr))
 				{
 					if (pThis->_Heap._pData)

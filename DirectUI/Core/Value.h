@@ -247,4 +247,44 @@ namespace DirectUI
 		static Value* WINAPI GetDblListEmpty();
 		static Value* WINAPI GetStringRPNull();
 	};
+
+	struct _StaticValue
+	{
+		int _dType : 6;
+		int _fWeakRef : 1;
+		int _cRef : 25;
+		int _val0;
+		int _val1;
+		int _val2;
+		int _val3;
+		DynamicScaleValue _dynamicScaleValue;
+	};
+
+	struct _StaticValuePtr
+	{
+		int _dType : 6;
+		int _fWeakRef : 1;
+		int _cRef : 25;
+		void* _ptr;
+	};
+
+	struct _StaticValueFloat
+	{
+		int _dType : 6;
+		int _fWeakRef : 1;
+		int _cRef : 25;
+		float _flVal;
+		DynamicScaleValue _dynamicScaleValue;
+	};
+
+	struct _StaticValueColor
+	{
+		int _dType : 6;
+		int _fWeakRef : 1;
+		int _cRef : 25;
+		BYTE dType;
+		COLORREF cr;
+		COLORREF cr2;
+		COLORREF cr3;
+	};
 }

@@ -2,6 +2,15 @@
 
 namespace DirectUI
 {
+	enum NativeHWNDHostOptions
+	{
+		NHHO_IgnoreClose         = 1,
+		NHHO_NoSendQuitMessage   = 2,
+		NHHO_HostControlsSize    = 4,
+		NHHO_ScreenCenter        = 8,
+		NHHO_DeleteOnHWNDDestroy = 16
+	};
+
 	class UILIB_API NativeHWNDHost
 	{
 	public:

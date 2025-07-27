@@ -3,8 +3,11 @@
 namespace DirectUI
 {
 	class UILIB_API ValueProvider
-		: public PatternProvider<ValueProvider, IValueProvider, Schema::Pattern::Value>
-		  , public IValueProvider
+		: public PatternProvider<ValueProvider
+			, IValueProvider
+			, Schema::Pattern::Value
+		>
+		, public IValueProvider
 	{
 	public:
 		ValueProvider();
@@ -12,7 +15,7 @@ namespace DirectUI
 		PfnCreateProxy GetProxyCreator() override;
 
 		//~ Begin IUnknown Interface
-		STDMETHODIMP QueryInterface(REFIID riid, void** ppvObject) override;
+		STDMETHODIMP QueryInterface(REFIID iid, void** ppvObject) override;
 		STDMETHODIMP_(ULONG) AddRef() override;
 		STDMETHODIMP_(ULONG) Release() override;
 		//~ End IUnknow Interface
@@ -24,23 +27,24 @@ namespace DirectUI
 		//~ End IValueProvider Interface
 	};
 
-	class UILIB_API ValueProxy : ProviderProxy
+	class UILIB_API ValueProxy : public ProviderProxy
 	{
 	public:
-		ValueProxy(ValueProxy const&);
-		ValueProxy();
-		ValueProxy& operator=(ValueProxy const&);
 		static ValueProxy* WINAPI Create(Element* pe);
+
+		ValueProxy();
+		ValueProxy(const ValueProxy& other) = default;
+		ValueProxy(ValueProxy&& other) noexcept = default;
+
+		HRESULT DoMethod(MethodId methodId, va_list args) override;
 		static bool WINAPI IsPatternSupported(Element* pe);
 
-		HRESULT DoMethod(int, char*) override = 0;
-
 	protected:
-		void Init(Element* pe) override = 0;
+		void Init(Element* pe) override;
 
 	private:
-		HRESULT GetIsReadOnly(int*);
-		HRESULT GetValue(WCHAR* pRetVal);
-		HRESULT SetValue(unsigned short const*);
+		HRESULT SetValue(const WCHAR* val);
+		HRESULT GetValue(BSTR* pRetVal);
+		HRESULT GetIsReadOnly(BOOL* pRetVal);
 	};
 }

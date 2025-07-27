@@ -1747,10 +1747,6 @@ ExpandCollapseProvider::ExpandCollapseProvider(void)
 {
 }
 
-ExpandCollapseProvider::~ExpandCollapseProvider(void)
-{
-}
-
 PfnCreateProxy ExpandCollapseProvider::GetProxyCreator(void)
 {
 	return PfnCreateProxy();
@@ -1786,18 +1782,8 @@ HRESULT ExpandCollapseProvider::get_ExpandCollapseState(ExpandCollapseState* pRe
 	return E_NOTIMPL;
 }
 
-ExpandCollapseProxy::ExpandCollapseProxy(ExpandCollapseProxy const&)
-{
-}
-
 ExpandCollapseProxy::ExpandCollapseProxy(void)
 {
-}
-
-ExpandCollapseProxy& ExpandCollapseProxy::operator=(ExpandCollapseProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 ExpandCollapseProxy* ExpandCollapseProxy::Create(Element*)
@@ -1879,10 +1865,6 @@ GridProvider::GridProvider(void)
 {
 }
 
-GridProvider::~GridProvider(void)
-{
-}
-
 unsigned long GridProvider::AddRef(void)
 {
 	return 0;
@@ -1918,18 +1900,8 @@ long GridProvider::get_RowCount(int*)
 	return 0;
 }
 
-GridProxy::GridProxy(GridProxy const&)
-{
-}
-
 GridProxy::GridProxy()
 {
-}
-
-GridProxy& GridProxy::operator=(GridProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 GridProxy* GridProxy::Create(Element*)
@@ -1967,10 +1939,6 @@ long GridProxy::GetRowCount(int*)
 }
 
 GridItemProvider::GridItemProvider(void)
-{
-}
-
-GridItemProvider::~GridItemProvider(void)
 {
 }
 
@@ -2019,18 +1987,8 @@ long GridItemProvider::get_RowSpan(int*)
 	return 0;
 }
 
-GridItemProxy::GridItemProxy(GridItemProxy const&)
-{
-}
-
 GridItemProxy::GridItemProxy(void)
 {
-}
-
-GridItemProxy& GridItemProxy::operator=(GridItemProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 GridItemProxy* GridItemProxy::Create(Element*)
@@ -2863,18 +2821,8 @@ Progress::Progress() STUB_VOID;
 HRESULT Progress::Initialize(Element* pParent, DWORD* pdwDeferCookie) STUB_ZERO;
 //~ End DirectUI::Progress Class
 
-ProgressRangeValueProxy::ProgressRangeValueProxy(ProgressRangeValueProxy const&)
-{
-}
-
 ProgressRangeValueProxy::ProgressRangeValueProxy(void)
 {
-}
-
-ProgressRangeValueProxy& ProgressRangeValueProxy::operator=(ProgressRangeValueProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 long ProgressRangeValueProxy::DoMethod(int, char*)
@@ -2972,10 +2920,6 @@ RangeValueProvider::RangeValueProvider(void)
 {
 }
 
-RangeValueProvider::~RangeValueProvider(void)
-{
-}
-
 unsigned long RangeValueProvider::AddRef(void)
 {
 	return 0;
@@ -3029,16 +2973,6 @@ long RangeValueProvider::get_SmallChange(double*)
 long RangeValueProvider::get_Value(double*)
 {
 	return 0;
-}
-
-RangeValueProxy::RangeValueProxy(RangeValueProxy const&)
-{
-}
-
-RangeValueProxy& RangeValueProxy::operator=(RangeValueProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 RangeValueProxy* RangeValueProxy::Create(Element*)
@@ -3912,10 +3846,6 @@ TableProvider::TableProvider(void)
 {
 }
 
-TableProvider::~TableProvider(void)
-{
-}
-
 unsigned long TableProvider::AddRef(void)
 {
 	return 0;
@@ -3951,18 +3881,8 @@ long TableProvider::get_RowOrColumnMajor(RowOrColumnMajor*)
 	return 0;
 }
 
-TableProxy::TableProxy(TableProxy const&)
-{
-}
-
 TableProxy::TableProxy()
 {
-}
-
-TableProxy& TableProxy::operator=(TableProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 TableProxy* TableProxy::Create(Element*)
@@ -4211,10 +4131,6 @@ ToggleProvider::ToggleProvider()
 {
 }
 
-ToggleProvider::~ToggleProvider(void)
-{
-}
-
 unsigned long ToggleProvider::AddRef(void)
 {
 	return 0;
@@ -4245,18 +4161,8 @@ long ToggleProvider::get_ToggleState(ToggleState*)
 	return 0;
 }
 
-ToggleProxy::ToggleProxy(ToggleProxy const&)
-{
-}
-
 ToggleProxy::ToggleProxy()
 {
-}
-
-ToggleProxy& ToggleProxy::operator=(ToggleProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 ToggleProxy* ToggleProxy::Create(Element*)
@@ -4413,18 +4319,8 @@ HRESULT ValueProvider::get_IsReadOnly(BOOL* pRetVal) STUB_ZERO;
 //~ End DirectUI::ValueProvider Class
 
 //~ Begin DirectUI::ValueProxy Class
-ValueProxy::ValueProxy(ValueProxy const&)
-{
-}
-
 ValueProxy::ValueProxy()
 {
-}
-
-ValueProxy& ValueProxy::operator=(ValueProxy const&)
-{
-	// TODO: 在此处插入 return 语句
-	return *this;
 }
 
 ValueProxy* ValueProxy::Create(Element* pe)
@@ -4451,7 +4347,7 @@ HRESULT ValueProxy::GetIsReadOnly(int*)
 	return 0;
 }
 
-HRESULT ValueProxy::GetValue(WCHAR* pRetVal)
+HRESULT ValueProxy::GetValue(BSTR* pRetVal)
 {
 	return 0;
 }

@@ -3,36 +3,43 @@
 namespace DirectUI
 {
 	class UILIB_API TableProvider
-		: public PatternProvider<TableProvider, ITableProvider, Schema::Pattern::Table>
+		: public PatternProvider<TableProvider
+			, ITableProvider
+			, Schema::Table
+		>
 		, public ITableProvider
 	{
 	public:
-		TableProvider(void);
-		virtual ~TableProvider(void);
+		TableProvider();
 
-		virtual unsigned long __stdcall AddRef(void);
-		virtual long __stdcall GetColumnHeaders(SAFEARRAY * *);
-		virtual PfnCreateProxy GetProxyCreator(void);
-		virtual long __stdcall GetRowHeaders(SAFEARRAY * *);
-		virtual long __stdcall QueryInterface(GUID const &, void * *);
-		virtual unsigned long __stdcall Release(void);
-		virtual long __stdcall get_RowOrColumnMajor(RowOrColumnMajor *);
+		PfnCreateProxy GetProxyCreator() override;
+
+		//~ Begin IUnknown Interface
+		STDMETHODIMP QueryInterface(REFIID iid, void** ppvObject) override;
+		STDMETHODIMP_(ULONG) AddRef() override;
+		STDMETHODIMP_(ULONG) Release() override;
+		//~ End IUnknown Interface
+
+		//~ Begin ITableProvider Interface
+		STDMETHODIMP GetRowHeaders(SAFEARRAY** pRetVal) override;
+		STDMETHODIMP GetColumnHeaders(SAFEARRAY** pRetVal) override;
+		STDMETHODIMP get_RowOrColumnMajor(RowOrColumnMajor* pRetVal) override;
+		//~ End ITableProvider Interface
 	};
 
 	class UILIB_API TableProxy : public ProviderProxy
 	{
 	public:
-		TableProxy(TableProxy const &);
-		TableProxy(void);
-		TableProxy & operator=(TableProxy const &);
+		static TableProxy* WINAPI Create(Element* pe);
+		static bool WINAPI IsPatternSupported(Element* pe);
 
-		static TableProxy * __stdcall Create(Element *);
-		static bool __stdcall IsPatternSupported(Element *);
+		TableProxy();
+		TableProxy(const TableProxy& other) = default;
+		TableProxy(TableProxy&& other) noexcept = default;
 
-		virtual long DoMethod(int, char *);
+		HRESULT DoMethod(MethodId methodId, va_list args) override;
 
 	protected:
-		virtual void Init(Element *);
-
+		void Init(Element* pe) override;
 	};
 }

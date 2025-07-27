@@ -4,7 +4,7 @@ namespace DirectUI
 {
 	class UILIB_API HWNDElementProvider
 		: public ElementProvider
-		  , public IRawElementProviderFragmentRoot
+		, public IRawElementProviderFragmentRoot
 	{
 	public:
 		PfnCreateProxy GetProxyCreator() override;

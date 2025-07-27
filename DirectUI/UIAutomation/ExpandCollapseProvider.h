@@ -2,57 +2,44 @@
 
 namespace DirectUI
 {
-
 	class UILIB_API ExpandCollapseProvider
-		: public PatternProvider<ExpandCollapseProvider, IExpandCollapseProvider, Schema::Pattern::ExpandCollapse>
+		: public PatternProvider<ExpandCollapseProvider
+			, IExpandCollapseProvider
+			, Schema::ExpandCollapse
+		>
 		, public IExpandCollapseProvider
 	{
 	public:
-		ExpandCollapseProvider(void);
+		ExpandCollapseProvider();
 
-		virtual ~ExpandCollapseProvider(void);;
+		PfnCreateProxy GetProxyCreator() override;
 
+		//~ Begin IUnknown Interface
+		STDMETHODIMP QueryInterface(REFIID iid, void** ppvObject) override;
+		STDMETHODIMP_(ULONG) AddRef() override;
+		STDMETHODIMP_(ULONG) Release() override;
+		//~ End IUnknown Interface
 
-		virtual PfnCreateProxy GetProxyCreator(void);
-
-
-		//IUnknown
-		virtual HRESULT STDMETHODCALLTYPE QueryInterface(
-			/* [in] */ REFIID riid,
-			/* [iid_is][out] */ _COM_Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject);
-
-		virtual ULONG STDMETHODCALLTYPE AddRef(void);
-
-		virtual ULONG STDMETHODCALLTYPE Release(void);
-
-
-		//IExpandCollapseProvider
-		virtual HRESULT STDMETHODCALLTYPE Expand(void);
-
-		virtual HRESULT STDMETHODCALLTYPE Collapse(void);
-
-		virtual /* [propget] */ HRESULT STDMETHODCALLTYPE get_ExpandCollapseState(
-			/* [retval][out] */ __RPC__out enum ExpandCollapseState *pRetVal);
-
+		//~ Begin IExpandCollapseProvider Interface
+		STDMETHODIMP Expand() override;
+		STDMETHODIMP Collapse() override;
+		STDMETHODIMP get_ExpandCollapseState(ExpandCollapseState* pRetVal) override;
+		//~ End IExpandCollapseProvider Interface
 	};
 
 	class UILIB_API ExpandCollapseProxy : public ProviderProxy
 	{
 	public:
-		ExpandCollapseProxy(ExpandCollapseProxy const &);
-		ExpandCollapseProxy(void);
-		ExpandCollapseProxy & operator=(ExpandCollapseProxy const &);
+		static ExpandCollapseProxy* Create(Element* pe);
+		static bool IsPatternSupported(Element* pe);
 
-		static ExpandCollapseProxy * __stdcall Create(Element *);
-		static bool __stdcall IsPatternSupported(Element *);
-		
-		//1
-		virtual long DoMethod(int, char *);
+		ExpandCollapseProxy();
+		ExpandCollapseProxy(const ExpandCollapseProxy& other) = default;
+		ExpandCollapseProxy(ExpandCollapseProxy&& other) noexcept = default;
 
+		HRESULT DoMethod(MethodId methodId, va_list args) override;
 
 	protected:
-		//2
-		virtual void Init(Element *);
+		void Init(Element* pe) override;
 	};
-
 }

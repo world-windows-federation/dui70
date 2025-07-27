@@ -3,53 +3,60 @@
 namespace DirectUI
 {
 	class UILIB_API RangeValueProvider
-		: public PatternProvider<RangeValueProvider, IRangeValueProvider, Schema::Pattern::RangeValue>
+		: public PatternProvider<RangeValueProvider, IRangeValueProvider, Schema::RangeValue>
 		, public IRangeValueProvider
 	{
 	public:
-		RangeValueProvider(void);
-		virtual ~RangeValueProvider(void);
+		RangeValueProvider();
 
-		virtual unsigned long __stdcall AddRef(void);
-		virtual PfnCreateProxy GetProxyCreator(void);
-		virtual long __stdcall QueryInterface(GUID const &, void * *);
-		virtual unsigned long __stdcall Release(void);
-		virtual long __stdcall SetValue(double);
-		virtual long __stdcall get_IsReadOnly(int *);
-		virtual long __stdcall get_LargeChange(double *);
-		virtual long __stdcall get_Maximum(double *);
-		virtual long __stdcall get_Minimum(double *);
-		virtual long __stdcall get_SmallChange(double *);
-		virtual long __stdcall get_Value(double *);
+		PfnCreateProxy GetProxyCreator() override;
+
+		//~ Begin IUnknown Interface
+		STDMETHODIMP QueryInterface(REFIID iid, void** ppvObject) override;
+		STDMETHODIMP_(ULONG) AddRef() override;
+		STDMETHODIMP_(ULONG) Release() override;
+		//~ End IUnknown Interface
+
+		//~ Begin IRangeValueProvider Interface
+		STDMETHODIMP SetValue(double val) override;
+		STDMETHODIMP get_Value(double* pRetVal) override;
+		STDMETHODIMP get_IsReadOnly(BOOL* pRetVal) override;
+		STDMETHODIMP get_Maximum(double* pRetVal) override;
+		STDMETHODIMP get_Minimum(double* pRetVal) override;
+		STDMETHODIMP get_LargeChange(double* pRetVal) override;
+		STDMETHODIMP get_SmallChange(double* pRetVal) override;
+		//~ End IRangeValueProvider Interface
 	};
 
 	class UILIB_API RangeValueProxy : public ProviderProxy
 	{
 	public:
-		RangeValueProxy(RangeValueProxy const &);
-		RangeValueProxy & operator=(RangeValueProxy const &);
+		static RangeValueProxy* WINAPI Create(Element* pe);
+		static bool WINAPI IsPatternSupported(Element* pe);
 
-		static RangeValueProxy * __stdcall Create(Element *);
-		static bool __stdcall IsPatternSupported(Element *);
-		
-		virtual long DoMethod(int, char *);
+		HRESULT DoMethod(MethodId methodId, va_list args) override;
+
 	protected:
-		RangeValueProxy(void);
+		RangeValueProxy();
 
-		virtual void Init(Element *);
+	public:
+		RangeValueProxy(const RangeValueProxy& other) = default;
+		RangeValueProxy(RangeValueProxy&& other) noexcept = default;
 
+	protected:
+		void Init(Element* pe) override;
 	};
 
 	class UILIB_API ProgressRangeValueProxy : public RangeValueProxy
 	{
 	public:
-		ProgressRangeValueProxy(ProgressRangeValueProxy const&);
-		ProgressRangeValueProxy(void);
-		ProgressRangeValueProxy& operator=(ProgressRangeValueProxy const&);
+		ProgressRangeValueProxy();
+		ProgressRangeValueProxy(const ProgressRangeValueProxy& other) = default;
+		ProgressRangeValueProxy(ProgressRangeValueProxy&& other) noexcept = default;
 
-		virtual long DoMethod(int, char*);
+		HRESULT DoMethod(MethodId methodId, va_list args) override;
 
 	protected:
-		virtual void Init(Element*);
+		void Init(Element* pe) override;
 	};
 }

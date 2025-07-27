@@ -3,35 +3,45 @@
 namespace DirectUI
 {
 	class UILIB_API ToggleProvider
-		: public PatternProvider<ToggleProvider, IToggleProvider, Schema::Pattern::Toggle>
+		: public PatternProvider<ToggleProvider
+			, IToggleProvider
+			, Schema::Toggle
+		>
 		, public IToggleProvider
 	{
 	public:
-		ToggleProvider(void);
-		virtual ~ToggleProvider(void);
-		virtual unsigned long __stdcall AddRef(void);
-		virtual PfnCreateProxy GetProxyCreator(void);
-		virtual long __stdcall QueryInterface(GUID const &, void * *);
-		virtual unsigned long __stdcall Release(void);
-		virtual long __stdcall Toggle(void);
-		virtual long __stdcall get_ToggleState(ToggleState *);
+		ToggleProvider();
+
+		PfnCreateProxy GetProxyCreator() override;
+
+		//~ Begin IUnknown Interface
+		STDMETHODIMP QueryInterface(REFIID iid, void** ppvObject) override;
+		STDMETHODIMP_(ULONG) AddRef() override;
+		STDMETHODIMP_(ULONG) Release() override;
+		//~ End IUnknown Interface
+
+		//~ Begin IToggleProvider Interface
+		STDMETHODIMP Toggle() override;
+		STDMETHODIMP get_ToggleState(ToggleState* pRetVal) override;
+		//~ End IToggleProvider Interface
 	};
 
 	class UILIB_API ToggleProxy : public ProviderProxy
 	{
 	public:
-		ToggleProxy(ToggleProxy const &);
-		ToggleProxy(void);
-		ToggleProxy & operator=(ToggleProxy const &);
-		static ToggleProxy * __stdcall Create(Element *);
-		static bool __stdcall IsPatternSupported(Element *);
-		virtual long DoMethod(int, char *);
+		static ToggleProxy* WINAPI Create(Element* pe);
+		static bool WINAPI IsPatternSupported(Element* pe);
+		
+		HRESULT DoMethod(MethodId methodId, va_list args) override;
+
+		ToggleProxy();
+		ToggleProxy(const ToggleProxy& other) = default;
+		ToggleProxy(ToggleProxy&& other) noexcept = default;
 
 	protected:
-		virtual void Init(Element *);
+		void Init(Element* pe) override;
 
 	private:
-		long GetToggleState(ToggleState *);
-
+		HRESULT GetToggleState(ToggleState* pToggleState);
 	};
 }

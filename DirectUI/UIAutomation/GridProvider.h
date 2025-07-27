@@ -3,41 +3,45 @@
 namespace DirectUI
 {
 	class UILIB_API GridProvider
-		: public PatternProvider<GridProvider, IGridProvider, Schema::Pattern::Grid>
+		: public PatternProvider<GridProvider, IGridProvider, Schema::Grid>
 		, public IGridProvider
 	{
 	public:
-		GridProvider(void);
-		virtual ~GridProvider(void);;
+		GridProvider();
 
-		virtual unsigned long __stdcall AddRef(void);
-		virtual long __stdcall GetItem(int, int, IRawElementProviderSimple * *);
-		virtual PfnCreateProxy GetProxyCreator(void);
-		virtual long __stdcall QueryInterface(GUID const &, void * *);
-		virtual unsigned long __stdcall Release(void);
-		virtual long __stdcall get_ColumnCount(int *);
-		virtual long __stdcall get_RowCount(int *);
+		PfnCreateProxy GetProxyCreator() override;
 
+		//~ Begin IUnknown Interface
+		STDMETHODIMP QueryInterface(REFIID iid, void** ppvObject) override;
+		STDMETHODIMP_(ULONG) AddRef() override;
+		STDMETHODIMP_(ULONG) Release() override;
+		//~ End IUnknown Interface
+
+		//~ Begin IGridProvider Interface
+		STDMETHODIMP GetItem(int row, int column, IRawElementProviderSimple** pRetVal) override;
+		STDMETHODIMP get_RowCount(int* pRetVal) override;
+		STDMETHODIMP get_ColumnCount(int* pRetVal) override;
+		//~ End IGridProvider Interface
 	};
 
 	class UILIB_API GridProxy : public ProviderProxy
 	{
 	public:
-		GridProxy(GridProxy const &);
+		static GridProxy* WINAPI Create(Element* pe);
+
 		GridProxy();
-		GridProxy & operator=(GridProxy const &);
+		GridProxy(const GridProxy& other) = default;
+		GridProxy(GridProxy&& other) noexcept = default;
 
-		static GridProxy * __stdcall Create(Element *);
-		static bool __stdcall IsPatternSupported(Element *);
-
-		virtual long DoMethod(int, char *);
+		HRESULT DoMethod(MethodId methodId, va_list args) override;
+		static bool WINAPI IsPatternSupported(Element* pe);
 
 	protected:
-		virtual void Init(Element *);
+		void Init(Element* pe) override;
 
 	private:
-		long GetColumnCount(int *);
-		long GetItem(unsigned int, unsigned int, IRawElementProviderSimple * *);
-		long GetRowCount(int *);
+		HRESULT GetItem(UINT row, UINT column, IRawElementProviderSimple** ppprv);
+		HRESULT GetRowCount(int* pcRow);
+		HRESULT GetColumnCount(int* pcColumn);
 	};
 }

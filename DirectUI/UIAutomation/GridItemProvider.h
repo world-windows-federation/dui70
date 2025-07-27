@@ -3,42 +3,47 @@
 namespace DirectUI
 {
 	class UILIB_API GridItemProvider
-		: public PatternProvider<GridItemProvider, IGridItemProvider, Schema::Pattern::GridItem>
+		: public PatternProvider<GridItemProvider, IGridItemProvider, Schema::GridItem>
 		, public IGridItemProvider
 	{
 	public:
-		GridItemProvider(void);
-		virtual ~GridItemProvider(void);
+		GridItemProvider();
 
-		virtual unsigned long __stdcall AddRef(void);
-		virtual PfnCreateProxy GetProxyCreator(void);;
-		virtual long __stdcall QueryInterface(GUID const &, void * *);
-		virtual unsigned long __stdcall Release(void);
-		virtual long __stdcall get_Column(int *);
-		virtual long __stdcall get_ColumnSpan(int *);
-		virtual long __stdcall get_ContainingGrid(IRawElementProviderSimple * *);
-		virtual long __stdcall get_Row(int *);
-		virtual long __stdcall get_RowSpan(int *);
+		PfnCreateProxy GetProxyCreator() override;
+
+		//~ Begin IUnknown Interface
+		STDMETHODIMP QueryInterface(REFIID iid, void** ppvObject) override;
+		STDMETHODIMP_(ULONG) AddRef() override;
+		STDMETHODIMP_(ULONG) Release() override;
+		//~ End IUnknown Interface
+
+		//~ Begin IGridItemProvider Interface
+		STDMETHODIMP get_Row(int* pRetVal) override;
+		STDMETHODIMP get_Column(int* pRetVal) override;
+		STDMETHODIMP get_RowSpan(int* pRetVal) override;
+		STDMETHODIMP get_ColumnSpan(int* pRetVal) override;
+		STDMETHODIMP get_ContainingGrid(IRawElementProviderSimple** pRetVal) override;
+		//~ End IGridItemProvider Interface
 	};
 
 	class UILIB_API GridItemProxy : public ProviderProxy
 	{
 	public:
-		GridItemProxy(GridItemProxy const &);
-		GridItemProxy(void);
-		GridItemProxy & operator=(GridItemProxy const &);
+		static GridItemProxy* WINAPI Create(Element* pe);
 
-		static GridItemProxy * __stdcall Create(Element *);
-		static bool __stdcall IsPatternSupported(Element *);
-		//1
-		virtual long DoMethod(int, char *);
+		GridItemProxy();
+		GridItemProxy(const GridItemProxy& other) = default;
+		GridItemProxy(GridItemProxy&& other) noexcept = default;
+
+		HRESULT DoMethod(MethodId methodId, va_list args) override;
+		static bool WINAPI IsPatternSupported(Element* pe);
+
 	protected:
-		//2
-		virtual void Init(Element *);
+		void Init(Element* pe) override;
 
 	private:
-		long GetColumn(int *);
-		long GetContainingGrid(IRawElementProviderSimple * *);
-		long GetRow(int *);
+		HRESULT GetContainingGrid(IRawElementProviderSimple** ppprv);
+		HRESULT GetColumn(int* piColumn);
+		HRESULT GetRow(int* piRow);
 	};
 }

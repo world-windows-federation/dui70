@@ -1,5 +1,15 @@
 ﻿#pragma once
 
+#define DUI_GET_CLASS_INFO(className, ppClassInfo) \
+	__if_exists(className::Class) \
+	{ \
+		*(ppClassInfo) = className::Class; \
+	} \
+	__if_not_exists(className::Class) \
+	{ \
+		*(ppClassInfo) = className::GetClassInfoPtr(); \
+	}
+
 #define DUI_SET_CLASS_INFO(className, pClassInfo) \
     __if_exists(className::Class) \
     { \
@@ -127,9 +137,12 @@ namespace DirectUI
 		{
 			HRESULT hr = S_OK;
 
-			if (SuperType::GetClassInfoPtr())
+			IClassInfo* pClassSuper = nullptr;
+			DUI_GET_CLASS_INFO(SuperType, &pClassSuper);
+			if (pClassSuper)
 			{
-				SuperType::GetClassInfoPtr()->AddRef();
+				DUI_GET_CLASS_INFO(SuperType, &pClassSuper);
+				pClassSuper->AddRef();
 			}
 			else
 			{
@@ -141,7 +154,8 @@ namespace DirectUI
 				CritSecLock lock(Element::GetFactoryLock());
 
 				IClassInfo* pClassExisting;
-				if (ClassExist(&pClassExisting, ppPI, cPI, SuperType::GetClassInfoPtr(), hModule, pszName, fGlobal))
+				DUI_GET_CLASS_INFO(SuperType, &pClassSuper);
+				if (ClassExist(&pClassExisting, ppPI, cPI, pClassSuper, hModule, pszName, fGlobal))
 				{
 					DUI_SET_CLASS_INFO(ControlType, pClassExisting);
 					hr = S_OK;
@@ -188,7 +202,9 @@ namespace DirectUI
 
 		IClassInfo* GetBaseClass() override
 		{
-			return SuperType::GetClassInfoPtr();
+			IClassInfo* pClassSuper = nullptr;
+			DUI_GET_CLASS_INFO(SuperType, &pClassSuper);
+			return pClassSuper;
 		}
 
 		void Destroy() override
@@ -320,4 +336,5 @@ BOOL IsClassOf(DirectUI::Element* pe)
 	return pe->GetClassInfoW() == ((T*)pe)->T::GetClassInfoW();
 }
 
+#undef DUI_GET_CLASS_INFO
 #undef DUI_SET_CLASS_INFO

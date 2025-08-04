@@ -74,8 +74,8 @@ namespace DirectUI
         UILIB_API void SetRespondToMouseScroll(bool respondToMouseScroll);
         UILIB_API void SetFireContinuousSliderEvent(bool fireContinuousSliderEvent);
 
-        UILIB_API static UID SliderUpdated();
-        UILIB_API static UID MouseOrPointerReleased();
+        UILIB_API static UID WINAPI SliderUpdated();
+        UILIB_API static UID WINAPI MouseOrPointerReleased();
 
         UILIB_API int GetRangeMin();
         UILIB_API int GetRangeMax();

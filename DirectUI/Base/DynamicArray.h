@@ -162,7 +162,8 @@ namespace DirectUI
 				CHeapBuffer_Release(this);
 			}
 
-			Reset();
+			_fHeapBuffer = false;
+			_uSize = 0;
 		}
 
 		void DestroyDeep()
@@ -208,9 +209,11 @@ namespace DirectUI
 		{
 			HRESULT hr = S_OK;
 
-			Reset();
-			_fZeroData = fZeroData;
+			_uSize = 0;
+			_fHeapBuffer = false;
+			_fZeroData = false;
 			_fImmutable = false;
+			_fZeroData = fZeroData;
 			_Heap = {};
 
 			if (uCapacity > MAX_DYNAMIC_ARRAY_SIZE)
@@ -406,7 +409,6 @@ namespace DirectUI
 		void Reset()
 		{
 			_uSize = 0;
-			_fHeapBuffer = false;
 		}
 
 		bool IsEqual(const DynamicArrayBase* pOther) const
@@ -431,7 +433,8 @@ namespace DirectUI
 			if (!p)
 				return E_OUTOFMEMORY;
 
-			p->Reset();
+			p->_uSize = 0;
+			p->_fHeapBuffer = false;
 			p->_fZeroData = false;
 			p->_fImmutable = false;
 			p->_fZeroData = _fZeroData;

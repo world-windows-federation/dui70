@@ -158,7 +158,7 @@ public:
 	}
 
 protected:
-	~CSafeElementProxy()
+	virtual ~CSafeElementProxy()
 	{
 	}
 

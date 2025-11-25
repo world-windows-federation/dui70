@@ -301,7 +301,7 @@ namespace DirectUI
 
 	inline int RelPixToPixel(int nRelPix)
 	{
-		return (int)(float)floor(GetScaleFactor() * (float)nRelPix + 0.5);
+		return (int)floor((GetScaleFactor() * (float)nRelPix) + 0.5f);
 	}
 
 	inline int GetPixelHelper(Element* pe, const PropertyInfo* ppi, bool fUseDefault)

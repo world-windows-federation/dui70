@@ -21,6 +21,20 @@
 
 namespace DirectUI
 {
+	inline void TryDbgPrintEx(ULONG ComponentId, ULONG Level, PCSTR Format)
+	{
+		HMODULE hModule = GetModuleHandleW(L"ntdll.dll");
+		if (hModule)
+		{
+			typedef ULONG (WINAPI *DbgPrintEx_t)(ULONG ComponentId, ULONG Level, PCSTR Format, ...);
+			DbgPrintEx_t pfnDbgPrintEx = (DbgPrintEx_t)GetProcAddress(hModule, "DbgPrintEx");
+			if (pfnDbgPrintEx)
+			{
+				pfnDbgPrintEx(ComponentId, Level, Format);
+			}
+		}
+	}
+
 	// exported for int
 	template <typename T>
 	class SafeArrayAccessor
@@ -764,18 +778,4 @@ namespace DirectUI
 	{
 	public:
 	};
-
-	inline void TryDbgPrintEx(ULONG ComponentId, ULONG Level, PCSTR Format)
-	{
-		HMODULE hModule = GetModuleHandleW(L"ntdll.dll");
-		if (hModule)
-		{
-			typedef ULONG (WINAPI *DbgPrintEx_t)(ULONG ComponentId, ULONG Level, PCSTR Format, ...);
-			DbgPrintEx_t pfnDbgPrintEx = (DbgPrintEx_t)GetProcAddress(hModule, "DbgPrintEx");
-			if (pfnDbgPrintEx)
-			{
-				pfnDbgPrintEx(ComponentId, Level, Format);
-			}
-		}
-	}
 }

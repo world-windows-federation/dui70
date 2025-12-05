@@ -5,7 +5,7 @@ class CSafeElementPtrBase : protected DirectUI::IElementListener
 {
 public:
 	operator T*() const { return _pe; }
-	T* operator->() const { return _pe; }
+	T* operator->() const { /*_ASSERT(_pe != nullptr);*/ return _pe; }
 	bool operator!() const { return !_pe; }
 	bool operator!=(T* pe) const { return _pe != pe; }
 	bool operator==(T* pe) const { return _pe == pe; }

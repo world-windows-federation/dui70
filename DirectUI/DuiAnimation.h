@@ -2,21 +2,6 @@
 
 namespace DirectUI
 {
-	enum TRANSITIONPROPERTY
-	{
-		TRANSP_POSITION = 1,
-		TRANSP_ALPHA = 2,
-		TRANSP_SCALE = 3,
-		TRANSP_ROTATE = 4,
-		TRANSP_SKEW = 5,
-		TRANSP_CLIP = 6,
-		TRANSP_POSITION_3D = 7,
-		TRANSP_SCALE_3D = 8,
-		TRANSP_ROTATE_3D = 9,
-		TRANSP_ZORDER = 10,
-		TRANSP_MAX = 11,
-	};
-
 	enum PVLANIMATIONDIRECTION
 	{
 		PANI_DIR_LEFT = 1,
@@ -44,6 +29,20 @@ namespace DirectUI
 		PANI_STATE_IN_LONG = 9,
 		PANI_STATE_OUT_LONG = 10,
 		PANI_STATE_OUT_LEAVE_VISIBLE = 11
+	};
+
+	enum TAPVERSION
+	{
+		TV_SQUARE70X70_TILE_TILT = 0,
+		TV_SQUARE150X150_TILE_TILT = 1,
+		TV_WIDE310X150_TILE_TILT = 2,
+		TV_SQUARE310X310_TILE_TILT = 3,
+		TV_SQUARE70X70_TILE_TILT_NO_DEAD_ZONE = 4,
+		TV_TILE_TILT_BEGIN_SKIP_SCALE = 4,
+		TV_SQUARE150X150_TILE_TILT_NO_DEAD_ZONE = 5,
+		TV_WIDE310X150_TILE_TILT_NO_DEAD_ZONE = 6,
+		TV_SQUARE310X310_TILE_TILT_NO_DEAD_ZONE = 7,
+		TV_TILE_TILT_MAX = 8,
 	};
 
 	struct SafeElementIndexPair
@@ -302,6 +301,26 @@ namespace DirectUI
 		POINT ptContact;
 		bool fUseCustomScale;
 		bool fAnimatingTowerClip;
+
+		PVLAnimationDragEvent()
+			: pspelRemaining(nullptr)
+			, fAnimatingTowerClip(false)
+		{
+		}
+
+		~PVLAnimationDragEvent()
+		{
+			if (pspelRemaining)
+			{
+				pspelRemaining->DestroyDeep();
+				pspelRemaining = nullptr;
+			}
+			if (pTowerClippingRects)
+			{
+				pTowerClippingRects->Destroy();
+				pTowerClippingRects = nullptr;
+			}
+		}
 	};
 
 	struct PVLAnimationDropEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation, PVLAnimationScale, PVLAnimationClip
@@ -364,6 +383,26 @@ namespace DirectUI
 		CSafeElementPtr<Element> speSearchBox;
 		POINT ptOffsetLauncher;
 		POINT ptOffsetTower;
+
+		PVLAnimationLauncherEvent()
+			: pspelTowers(nullptr)
+			, pspelGroupHeaders(nullptr)
+		{
+		}
+
+		~PVLAnimationLauncherEvent()
+		{
+			if (pspelTowers)
+			{
+				pspelTowers->DestroyDeep();
+				pspelTowers = nullptr;
+			}
+			if (pspelGroupHeaders)
+			{
+				pspelGroupHeaders->DestroyDeep();
+				pspelGroupHeaders = nullptr;
+			}
+		}
 	};
 
 	struct PVLAnimationManualStoryboard : PVLAnimationNotifyEvent

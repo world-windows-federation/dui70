@@ -45,6 +45,15 @@ namespace DirectUI
 		TV_TILE_TILT_MAX = 8,
 	};
 
+	enum LOGOANIMATIONOPTION
+	{
+		LAO_FLAG_NONE = 0x0,
+		LAO_FLAG_TILT = 0x1,
+		LAO_FLAG_UNTILT = 0x2,
+		LAO_FLAG_WASH = 0x4,
+		LAO_FLAG_INSTANT = 0x8,
+	};
+
 	struct SafeElementIndexPair
 	{
 		CSafeElementPtr<Element> spElement;
@@ -183,6 +192,15 @@ namespace DirectUI
 		POINTFLOAT ptflInit;
 		POINTFLOAT ptflScale;
 		POINTFLOAT ptflOrigin;
+	};
+
+	struct PVLAnimationScale3D
+	{
+		bool fInitScale;
+		bool fOriginScale;
+		POINTFLOAT3D ptfl3dInit;
+		POINTFLOAT3D ptfl3dScale;
+		POINTFLOAT3D ptfl3dOrigin;
 	};
 
 	struct PVLAnimationNotifyEvent : Event
@@ -551,6 +569,18 @@ namespace DirectUI
 		UINT uiVersion;
 		POINT ptContact;
 		bool fSkipScaleTransform;
+	};
+
+	struct PVLAnimationTileNotificationEvent : PVLAnimationNotifyEvent, PVLAnimationTranslation
+	{
+		bool fPeek;
+		CSafeElementPtr<Element> speOutgoing;
+		CSafeElementPtr<Element> speIncoming;
+		CSafeElementPtr<Element> speLogo;
+		CSafeElementPtr<Element> speDisplayName;
+		POINT ptOutgoingDest;
+		POINT ptIncomingDest;
+		UINT uTileNotificationOption;
 	};
 
 	struct TriggeredAnimationCompleteEvent : Event

@@ -187,27 +187,48 @@ struct GANI_ROTATEDESC : GANI_DESC
 	UINT nDir;
 };
 
+// 0x8007
 struct GMSG_QUERY : EventMsg
 {
 	UINT nCode;
 };
 
+// 0x8007 nCode=5
+struct GMSG_QUERYHITTEST : GMSG_QUERY
+{
+	POINT ptClientPxl;
+	UINT nResultCode;
+	void* pvResultData;
+};
+
+// 0x8007 nCode=6
+struct GMSG_QUERYPADDING : GMSG_QUERY
+{
+	RECT rcPadding;
+};
+
+// 0x8007 nCode = 7
 struct GMSG_QUERYDROPTARGET : GMSG_QUERY
 {
 	HGADGET hgadDrop;
 	IDropTarget* pdt;
 };
 
-struct GMSG_QUERYPADDING : GMSG_QUERY
+// 0x8009
+struct GMSG_TRANSITIONCHANGED : EventMsg
 {
-	RECT rcPadding;
+    UINT nCode;
+    int fRemainLayered;
+    int fCopy;
 };
 
-struct GMSG_QUERYHITTEST : GMSG_QUERY
+// 0x800A
+struct GMSG_STORYBOARDCOMPLETE : EventMsg
 {
-	POINT ptClientPxl;
-	UINT nResultCode;
-	void* pvResultData;
+    UINT nCode;
+    BOOL fAnimationTrapped;
+    BOOL fDUIPVLAnimation;
+    void* pvContext;
 };
 
 typedef BOOL (CALLBACK *GADGETENUMPROC)(HGADGET, void*);

@@ -215,14 +215,7 @@ namespace DirectUI
 	{
 		// @Careful: fInitCommctl is new in Windows 10
 		HRESULT WINAPI InitProcessPriv(DWORD dwExpectedVersion, HMODULE hModule, bool fRegisterControls, bool fEnableUIAutomationProvider, bool fInitCommctl);
-
-		FORCEINLINE HRESULT WINAPI InitProcess(DWORD dwExpectedVersion, bool fEnableUIAutomationProvider = true, bool fInitCommctl = true)
-		{
-			return InitProcessPriv(dwExpectedVersion, HINST_THISCOMPONENT, true, fEnableUIAutomationProvider, fInitCommctl);
-		}
-
 		HRESULT WINAPI UnInitProcessPriv(HMODULE hModule);
-		FORCEINLINE HRESULT WINAPI UnInitProcess() { return UnInitProcessPriv(HINST_THISCOMPONENT); }
 		HRESULT WINAPI InitThread(UINT nThreadMode);
 		void WINAPI UnInitThread();
 
@@ -299,9 +292,24 @@ namespace DirectUI
 		UILIB_API float WINAPI GetScaleFactor();
 	}
 
+	inline HRESULT WINAPI InitProcess(DWORD dwExpectedVersion, bool fEnableUIAutomationProvider = true, bool fInitCommctl = true)
+	{
+		return InitProcessPriv(dwExpectedVersion, HINST_THISCOMPONENT, true, fEnableUIAutomationProvider, fInitCommctl);
+	}
+
+	inline HRESULT WINAPI UnInitProcess()
+	{
+		return UnInitProcessPriv(HINST_THISCOMPONENT);
+	}
+
+	inline int RelPixToPixelWithScaleFactor(float flScaleFactor, int nRelPix)
+	{
+		return (int)floorf((float)nRelPix * flScaleFactor + 0.5f);
+	}
+
 	inline int RelPixToPixel(int nRelPix)
 	{
-		return (int)floor((GetScaleFactor() * (float)nRelPix) + 0.5f);
+		return RelPixToPixelWithScaleFactor(GetScaleFactor(), nRelPix);
 	}
 
 	inline int GetPixelHelper(Element* pe, const PropertyInfo* ppi, bool fUseDefault)

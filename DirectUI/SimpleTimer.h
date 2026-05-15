@@ -85,15 +85,15 @@ namespace DirectUI
         }
 
         template <typename TFunc>
-        class InvokeHandler final : public IDUIActionInvokeHelper
+        class InvokeHelper final : public IDUIActionInvokeHelper
         {
         public:
-            InvokeHandler(const TFunc& funcInvoke)
+            InvokeHelper(const TFunc& funcInvoke)
                 : _funcInvoke(funcInvoke)
             {
             }
 
-            InvokeHandler(const InvokeHandler&) = delete;
+            InvokeHelper(const InvokeHelper&) = delete;
 
             void DoInvoke() override
             {
@@ -101,7 +101,7 @@ namespace DirectUI
             }
 
         private:
-            SimpleTimer& operator=(const InvokeHandler&) = delete;
+            SimpleTimer& operator=(const InvokeHelper&) = delete;
 
             const TFunc _funcInvoke;
         };
@@ -110,7 +110,7 @@ namespace DirectUI
         HRESULT SetHandler(const TFunc& func)
         {
             delete _pInvoker;
-            _pInvoker = new InvokeHandler<TFunc>(func);
+            _pInvoker = new InvokeHelper<TFunc>(func);
             return _pInvoker ? S_OK : E_OUTOFMEMORY;
         }
 

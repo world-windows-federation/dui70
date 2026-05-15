@@ -342,6 +342,7 @@
     <ClInclude Include="SelectorSelection.h" />
     <ClInclude Include="SelectorSelectionItem.h" />
     <ClInclude Include="SemanticZoomToggle.h" />
+    <ClInclude Include="SimpleTimer.h" />
     <ClInclude Include="StockBehaviors\ContextMenuBehavior.h" />
     <ClInclude Include="StyledScrollViewer.h" />
     <ClInclude Include="TextGraphic.h" />

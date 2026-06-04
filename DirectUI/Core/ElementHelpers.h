@@ -22,6 +22,7 @@ public:
 
 	ULONG Release()
 	{
+		_ASSERTE("0 != _cRef");
 		ULONG cRef = InterlockedDecrement(&_cRef);
 		if (cRef == 0 && this)
 		{
@@ -36,9 +37,10 @@ public:
 	UILIB_API static HRESULT CALLBACK s_SyncCallback(HGADGET, void*, EventMsg* pmsg);
 
 	template <typename T>
-	HRESULT GetAttachedElement(T** ppElement) const
+	HRESULT GetElement(T** ppe) const
 	{
-		return ElementCast<T>(_speAttached, ppElement);
+		_ASSERT_EXPR(_dwUIThreadId == GetCurrentThreadId(), "CSafeElementProxy::GetElement called from wrong thread!");
+		return ElementCast<T>(_speAttached, ppe);
 	}
 
 	template <typename TFuncInvoke>
@@ -160,6 +162,7 @@ public:
 protected:
 	virtual ~CSafeElementProxy()
 	{
+		_ASSERTE("_hgSync == nullptr");
 	}
 
 public:

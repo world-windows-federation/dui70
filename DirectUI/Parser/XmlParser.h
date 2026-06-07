@@ -381,9 +381,9 @@ namespace DirectUI
 		bool _fScaleFactorSet;
 		bool _fParseErrorSent;
 		bool _fDesignMode;
-		int _fThemed;
-		int _fHighContrast;
-		int _fComposited;
+		BOOL _fThemed;
+		BOOL _fHighContrast;
+		BOOL _fComposited;
 		bool _fOverrideScale;
 
 		const PropertyInfo* _ppiValue;
@@ -440,7 +440,7 @@ namespace DirectUI
 		UILIB_API static void WINAPI s_XMLParseError(const WCHAR* pszError, const WCHAR* pszToken, int dLine, DUIFactory* pContext);
 		UILIB_API void ClearParser();
 
-		int _fError;
+		BOOL _fError;
 		HINSTANCE _hInst;
 		DUIXmlParser* _pParser;
 		HWND _hwndParent;

@@ -45,7 +45,7 @@ namespace DirectUI
 		bool _GetBitmapSize(HBITMAP hBitmap, SIZE* pSize);
 		Value* _LoadImage32BitsPerPixel(const WCHAR* pszPath);
 
-		int _fResolveBindings;
+		BOOL _fResolveBindings;
 		BYTE _dDefaultGraphicType;
 		bool _fOffOpaqueGraphicType;
 	};

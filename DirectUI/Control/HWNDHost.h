@@ -117,7 +117,7 @@ namespace DirectUI
 		HWND _hwndSink;
 		WNDPROC _pfnCtrlOrgProc;
 		HWND _hwndAccName;
-		int _fCtrlAttached;
+		BOOL _fCtrlAttached;
 		RECT _rcBounds;
 		HFONT _hFont;
 		COLORREF _crBkColor;

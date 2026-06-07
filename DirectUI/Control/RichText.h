@@ -146,9 +146,9 @@ namespace DirectUI
 
 		int _nFontStyle;
 		int _nDrawRectLeadOffset;
-		int _fExternalDWriteLayout;
-		int _fHasStrikethrough;
-		int _fHasUnderline;
+		BOOL _fExternalDWriteLayout;
+		BOOL _fHasStrikethrough;
+		BOOL _fHasUnderline;
 		bool _fAcceleratorIsUnderlined;
 		bool _fCanReuseOverhangValues;
 		UINT _uiShortcutTextPosition;

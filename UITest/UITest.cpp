@@ -149,14 +149,16 @@ static void CALLBACK WilLogCallback(wil::FailureInfo const &failure) noexcept
 	}
 }
 
-void CALLBACK DUI_ParserErrorCB(const WCHAR* pszError, const WCHAR* pszToken, int dLine, void* pContext)
+void CALLBACK DUIParserError(const WCHAR* pszError, const WCHAR* pszToken, int dLine, void* pContext)
 {
-	if (pszError != nullptr)
-	{
-		MessageBox(nullptr, pszError, L"Error while parsing DirectUI", MB_ICONERROR);
-		OutputDebugString(pszError);
-		DebugBreak();
-	}
+#ifdef _DEBUG
+	WCHAR szParseError[1024];
+	if (dLine != -1)
+		StringCchPrintfW(szParseError, ARRAYSIZE(szParseError), L"%s '%s' at line %d", pszError, pszToken, dLine);
+	else
+		StringCchPrintfW(szParseError, ARRAYSIZE(szParseError), L"%s '%s'", pszError, pszToken);
+	MessageBoxW(nullptr, szParseError, L"DUI Parse Error", MB_OK);
+#endif
 }
 
 HRESULT WINAPI DUI_Initialize()
@@ -213,7 +215,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		WS_EX_WINDOWEDGE, WS_OVERLAPPEDWINDOW | WS_VISIBLE, 0, &pHost));
 
 	DUIXmlParser* pParser;
-	THROW_IF_FAILED(DUIXmlParser::Create(&pParser, nullptr, nullptr, DUI_ParserErrorCB, nullptr));
+	THROW_IF_FAILED(DUIXmlParser::Create(&pParser, nullptr, nullptr, DUIParserError, nullptr));
 
 	THROW_IF_FAILED(pParser->SetXMLFromResource(IDR_UIFILE1, hInstance, HINST_THISCOMPONENT));
 
